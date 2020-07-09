@@ -17,8 +17,26 @@
 
 \section{Introduction}
 
-In this paper, we transfinitely extend an intelligence measure which was
-proposed by Bill Hibbard \cite{hibbard}.
+In his insightful paper \cite{hibbard}, Bill Hibbard introduces a novel
+intelligence measure (which we will here refer to as the \emph{classical Hibbard measure})
+for agents with artificial general intelligence.
+Hibbard's measure is based on ``the game of adversarial sequence prediction
+against a hierarchy of increasingly difficult sets of'' evaders (environments that attempt
+to emit $1$s and $0$s in such a way as to evade prediction).
+The levels of Hibbard's hierarchy are labelled by natural numbers\footnote{Technically,
+Hibbard's hierarchy begins at level $1$ and he separately defines what it means for
+an agent to have intelligence $0$, but that definition is equivalent to what would result
+by declaring that the $0$th level of the hierarchy consists of the empty set of evaders.}, and
+an agent's classical Hibbard measure is the maximum $n\in\mathbb N$ such that
+said agent can eventually predict all the evaders in the $n$th level of the hierarchy,
+or implicitly\footnote{Hibbard does not explicitly include the $\infty$ case in his
+definition, but in his Proposition 3 he refers to agents having ``finite intelligence'', and
+it is clear from context that by this he means agents who fail to predict some evader
+somewhere in the hierarchy.} an agent's classical Hibbard measure is defined to be $\infty$
+if said agent can eventually predict all the evaders in all levels of the hierarchy.
+
+
+
 
 \bibliographystyle{plain}
 \bibliography{references}
