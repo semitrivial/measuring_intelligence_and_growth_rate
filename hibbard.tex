@@ -111,12 +111,11 @@ sequences. By $\langle\rangle$ we mean the empty binary sequence.
         and outputs $0$ or $1$ (thought of as an \emph{evasion}), which output
         we write as $e(y_0,\ldots,y_n)$.
         \item
-        By a \emph{predictor}, we mean a Turing machine $p$
+        By a \emph{predictor}, we mean a function $p:B^*\to B$
         which takes as input a finite (possibly empty) binary sequence
         $(x_0,\ldots,x_n)\in B^*$
         (thought of as a sequence of \emph{evasions})
-        and outputs $0$ or $1$ (thought of as a \emph{prediction}), which output
-        we write as $p(x_0,\ldots,x_n)$.
+        and outputs $0$ or $1$ (thought of as a \emph{prediction}).
         \item
         For any evader $e$ and predictor $p$, the \emph{result of $p$ playing the
         game of adversarial prediction against $e$} (or more simply, the \emph{result of
@@ -130,7 +129,7 @@ sequences. By $\langle\rangle$ we mean the empty binary sequence.
             This is thought of as $e$'s initial evasion.
             \item
             $y_0=p(\langle\rangle)$ is
-            the output of $p$ when run on the empty evasion-sequence.
+            the result of applying $p$ to the empty evasion-sequence.
             This is thought of as $p$'s initial prediction.
             \item
             For all $n\in\mathbb N$,
@@ -140,7 +139,7 @@ sequences. By $\langle\rangle$ we mean the empty binary sequence.
             \item
             For all $n\in\mathbb N$,
             $y_{n+1}=p(x_0,\ldots,x_n)$ is
-            the output of $p$ on the sequence of $e$'s first $n+1$ evasions.
+            the result of applying $p$ to $e$'s first $n+1$ evasions.
             This is thought of as $p$'s $(n+1)$th prediction.
         \end{enumerate}
         \item
@@ -155,17 +154,14 @@ sequences. By $\langle\rangle$ we mean the empty binary sequence.
 \end{definition}
 
 \begin{definition}
-    Suppose $e$ is an evader and $p$ is a predictor
-    and let $r=(x_0,y_0,x_1,y_1,\ldots)$ be the result of $p$ playing
-    against $e$.
-    For each $n\in\mathbb N$, we write $t^{e,v}_e(n)$
-    for the number of steps it takes for $e$ to compute
-    $x_n=e(y_0,\ldots,y_{n-1})$, and we write
-    $t^{e,v}_p(n)$ for the number of steps it takes for $p$
-    to compute $y_n=p(x_0,\ldots,x_{n-1})$.
-    If $e$ and $v$ are clear from context, then we will write $t_e(n)$
-    for $t^{e,v}_e(n)$ and we will write $t_p(n)$ for $t^{e,v}_p(n)$.
+    Suppose $e$ is an evader and $p$ is a predictor.
+    For each $n\in\mathbb N$, we write $t_{e,p}(n)$ for the
+    number of steps it takes for $e$ to run in order to compute
+    $x_n=e(y_0,\ldots,y_{n-1})$, where $(x_0,y_0,x_1,y_1,\ldots)$
+    is the result of $p$ playing against $e$.
 \end{definition}
+
+
 
 \bibliographystyle{plain}
 \bibliography{hibbard}
