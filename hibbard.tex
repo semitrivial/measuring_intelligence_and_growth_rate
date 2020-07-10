@@ -3,7 +3,9 @@
 \usepackage{natbib}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{amsmath}
 \newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
 
 \title{Transfinite extensions of Hibbard's intelligence measure}
 \author{Samuel Alexander\thanks{The U.S.\ Securities and Exchange Commission}}
@@ -154,12 +156,45 @@ sequences. By $\langle\rangle$ we mean the empty binary sequence.
 \end{definition}
 
 \begin{definition}
-    Suppose $e$ is an evader and $p$ is a predictor.
-    For each $n\in\mathbb N$, we write $t_{e,p}(n)$ for the
-    number of steps it takes for $e$ to run in order to compute
-    $x_n=e(y_0,\ldots,y_{n-1})$, where $(x_0,y_0,x_1,y_1,\ldots)$
-    is the result of $p$ playing against $e$.
+    For any evader $e$ and natural $n>0$,
+    let
+    \[
+        t_e(n) = \max_{b_1,\ldots,b_n\in \{0,1\}}
+        (\text{number of steps $e$ takes to run on input $(b_1,\ldots,b_n)$}).
+    \]
 \end{definition}
+
+\begin{example}
+Let $e$ be an evader.
+\begin{enumerate}
+    \item
+    $t_e(0)$ is simply the number of steps $e$ takes to run on input $\langle\rangle$,
+    the empty binary sequence.
+    \item
+    $t_e(2)$ is equal to the number of steps $e$ takes to run on input
+    $(0,0)$, or to run on input $(0,1)$, or to run on input $(1,0)$, or to run on input
+    $(1,1)$---whichever of these four possibilities is largest.
+\end{enumerate}
+\end{example}
+
+\begin{definition}
+    Suppose $f:\mathbb N\to\mathbb N$. We define the \emph{evader-set bounded by $f$},
+    written $E_f$, to be the set of all evaders $e$ such that
+    there is some $k\in\mathbb N$ such that $\forall n>k$,
+    $t_e(n)<f(n)$.
+\end{definition}
+
+\begin{definition}
+    Suppose $g_i$ ($i\in \mathbb N$) is any family of functions,
+    each $g_i:\mathbb N\to\mathbb N$.
+    For each $m\in\mathbb N$, define $f_m:\mathbb N\to\mathbb N$ by
+    \[f_m(k)=\max_{i\leq m}\max_{j\leq k}g_i(j).\]
+    For any predictor $p$, the \emph{Hibbard intelligence of $p$ (given by the family $g_i$)}
+    is defined to be the maximum $m$ such that
+    $p$ learns to predict $e$ for every $e$ in $E_{f_m}$ (or $\infty$
+    if $p$ learns to predict $e$ for every $e$ in $E_{f_m}$ for every $m$).
+\end{definition}
+
 
 
 
