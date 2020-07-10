@@ -100,18 +100,23 @@ sequences. By $\langle\rangle$ we mean the empty binary sequence.
 \end{definition}
 
 \begin{definition}
-    (Predictors and evaders)
+\label{evaderpredictordefn}
+    (Evaders and predictors)
     \begin{enumerate}
         \item
-        By an \emph{evader}, we mean a function $e:B^*\to B$
-        which takes as input a finite (possibly empty) empty sequence $(y_0,\ldots,y_n)$
+        By an \emph{evader}, we mean a Turing machine $e$
+        which takes as input a finite (possibly empty) binary sequence
+        $(y_0,\ldots,y_n)\in B^*$
         (thought of as a sequence of \emph{predictions})
-        and outputs $0$ or $1$ (thought of as an \emph{evasion}).
+        and outputs $0$ or $1$ (thought of as an \emph{evasion}), which output
+        we write as $e(y_0,\ldots,y_n)$.
         \item
-        By a \emph{predictor}, we mean a function $p:B^*\to B$
-        which takes as input a finite (possibly empty) binary sequence $(x_0,\ldots,x_n)$
+        By a \emph{predictor}, we mean a Turing machine $p$
+        which takes as input a finite (possibly empty) binary sequence
+        $(x_0,\ldots,x_n)\in B^*$
         (thought of as a sequence of \emph{evasions})
-        and outputs $0$ or $1$ (thought of as a \emph{prediction}).
+        and outputs $0$ or $1$ (thought of as a \emph{prediction}), which output
+        we write as $p(x_0,\ldots,x_n)$.
         \item
         For any evader $e$ and predictor $p$, the \emph{result of $p$ playing the
         game of adversarial prediction against $e$} (or more simply, the \emph{result of
@@ -120,27 +125,46 @@ sequences. By $\langle\rangle$ we mean the empty binary sequence.
         defined as follows:
         \begin{enumerate}
             \item
-            $x_0=e(\langle\rangle)$ is obtained by plugging the empty prediction-sequence into
-            the evader $e$. This is thought of as $e$'s initial evasion.
+            $x_0=e(\langle\rangle)$ is
+            the output of $e$ when run on the empty prediction-sequence.
+            This is thought of as $e$'s initial evasion.
             \item
-            $y_0=p(\langle\rangle)$ is obtained by plugging the empty evasion-sequence into
-            the predictor $p$. This is thought of as $p$'s initial prediction.
-            \item
-            For all $n\in\mathbb N$,
-            $x_{n+1}=e(y_0,\ldots,y_n)$ is obtained by plugging the first $n+1$ predictions
-            into the evader $e$. This is thought of as $e$'s $(n+1)$th evasion.
+            $y_0=p(\langle\rangle)$ is
+            the output of $p$ when run on the empty evasion-sequence.
+            This is thought of as $p$'s initial prediction.
             \item
             For all $n\in\mathbb N$,
-            $y_{n+1}=p(x_0,\ldots,x_n)$ is obtained by plugging the first $n+1$ evasions into
-            the predictor $p$. This is thought of as $p$'s $(n+1)$th prediction.
+            $x_{n+1}=e(y_0,\ldots,y_n)$ is
+            the output of $e$ on the sequence of $p$'s first $n+1$ predictions.
+            This is thought of as $e$'s $(n+1)$th evasion.
+            \item
+            For all $n\in\mathbb N$,
+            $y_{n+1}=p(x_0,\ldots,x_n)$ is
+            the output of $p$ on the sequence of $e$'s first $n+1$ evasions.
+            This is thought of as $p$'s $(n+1)$th prediction.
         \end{enumerate}
         \item
         Suppose $r=(x_0,y_0,x_1,y_1,\ldots)$ is the result of a predictor $p$ playing
-        against an evader $e$. For every $n\in\mathbb N$, the \emph{winner of round $n$ in $r$}
-        is $p$ if $x_n=y_n$, or is $e$ if $x_n\neq y_n$.
-        We say that \emph{$p$ learns to predict $e$ in $r$} if there is some $N\in\mathbb N$
+        against an evader $e$. For every $n\in\mathbb N$,
+        we say that \emph{the predictor wins round $n$ in $r$}
+        if $x_n=y_n$; otherwise, if $x_n\neq y_n$, we say that
+        \emph{the evader wins round $n$ in $r$}.
+        We say that \emph{$p$ learns to predict $e$} if there is some $N\in\mathbb N$
         such that for all $n>N$, $p$ is the winner of round $n$ in $r$.
     \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    Suppose $e$ is an evader and $p$ is a predictor
+    and let $r=(x_0,y_0,x_1,y_1,\ldots)$ be the result of $p$ playing
+    against $e$.
+    For each $n\in\mathbb N$, we write $t^{e,v}_e(n)$
+    for the number of steps it takes for $e$ to compute
+    $x_n=e(y_0,\ldots,y_{n-1})$, and we write
+    $t^{e,v}_p(n)$ for the number of steps it takes for $p$
+    to compute $y_n=p(x_0,\ldots,x_{n-1})$.
+    If $e$ and $v$ are clear from context, then we will write $t_e(n)$
+    for $t^{e,v}_e(n)$ and we will write $t_p(n)$ for $t^{e,v}_p(n)$.
 \end{definition}
 
 \bibliographystyle{plain}
