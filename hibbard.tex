@@ -203,6 +203,62 @@ Let $e$ be an evader.
 \end{definition}
 
 
+\section{Do all AGIs have classic Hibbard intelligence $\infty$?}
+
+As yet, we are unaware of any formal mathematical definition of what an AGI
+actually is. We take the stance that an AGI should be capable of understanding
+practical conversations and instructions in a common human language (such as
+English) and, if commanded by their employers, to obey commands expressed
+therein. So if the AGI's employer said, ``Recite digits of pi until I tell you to
+stop,'' then the AGI would begin computing and reciting digits of pi, until said
+employer told it to stop (if ever). Unlike a human employee, who would eventually
+get fed up with such a task, an AGI should have no fear of tedium, and should
+never grow tired of performing whatever task it has been assigned.
+
+We think assumptions like the above are implicit in many attempts to study AGIs.
+Many authors who set out to study
+AGIs actually study not the full AGI, but rather the AGI's persona when it is
+performing some general type of task. For example:
+\begin{itemize}
+    \item
+    Legg and Hutter measure the intelligence of AGIs based on their performance
+    in reinforcement learning environments \cite{legg}. On a superficial
+    level, that approach is inappropriate because a genuine AGI is much more than
+    merely a reinforcement learning agent (however good that agent might be).
+    But at a deeper level, the approach is appropriate because although an AGI is
+    more than an RL agent, we could command the AGI to act as an RL agent, saying,
+    ``I am going to put you in a certain environment where you can take such-and-such
+    tasks, and rewards and observations will be communicated to you; please try to
+    reverse-engineer the environment and act in such a way as to maximize rewards.''
+    And while it is difficult to say anything about a full AGI, we can say quite a
+    lot about an RL agent, and thus we can study AGIs by proxy.
+    \item
+    In the Non-Axiomatic Reasoning System research program (NARS) \cite{nars},
+    AGIs are reduced to agents who are bombarded with assertions in a specific formal
+    language, each assertion being accompanied by a priority measure, and some of
+    which assertions might contradict each-other. At any time during the bombardment
+    of assertions, the agent might also be queried, at which point the agent's job is
+    to estimate the probability of the truth of a queried assertion, based on the
+    assertions and priorities it has seen so far. This is certainly not all an AGI
+    is (for an AGI should be able to reason about first- and higher-order logics
+    involving quantifiers, for example). Nevertheless, an AGI's employer could command
+    it to behave like such an agent, and in response the AGI would behave like such an
+    agent.
+    \item
+    Many philosophers and logicians reduce an AGI to a mere \emph{knowing
+    agent} who performs no actions but simply knows things in some formal language.
+    Superficially, this is inappropriate because an AGI does much more than merely
+    know things \cite{wang2007three}. But at a deeper level, this is appropriate
+    because an AGI could certainly be commanded to act as such an agent, e.g., via 
+    a command like: ``Until further notice, do nothing except enumerate consequences
+    of Peano arithmetic'' (or some other formal language). And again, while it is
+    hard to say anything about a full AGI, we can say a lot about such computably
+    enumerable theories as would be recited by an AGI in response to such a question
+    (and they would indeed be computably enumerable because an AGI, whatever else it
+    is, must be mechanical).
+\end{itemize}
+
+
 \bibliographystyle{plain}
 \bibliography{hibbard}
 \end{document}
