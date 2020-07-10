@@ -2,6 +2,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{natbib}
 \usepackage{amssymb}
+\usepackage{amsthm}
+\newtheorem{definition}{Definition}
 
 \title{Transfinite extensions of Hibbard's intelligence measure}
 \author{Samuel Alexander\thanks{The U.S.\ Securities and Exchange Commission}}
@@ -64,7 +66,7 @@ which we introduced in \cite{ioi1} and \cite{ioi2}.
 The structure of the paper is as follows.
 \begin{itemize}
     \item
-    In Section ..., we review the classical Hibbard measure.
+    In Section \ref{originalmeasuresection}, we review the classical Hibbard measure.
     \item
     In Section ..., we present our viewpoint of AGIs and argue that
     under certain idealizing assumptions, \emph{every} AGI should have intelligence
@@ -83,6 +85,65 @@ The structure of the paper is as follows.
     and Intuitive Ordinal Intelligence.
 \end{itemize}
 
+\section{Hibbard's original measure}
+\label{originalmeasuresection}
+
+Hibbard's intelligence measure is based on predictors and evaders---the predictor
+representing the AGI whose intelligence we would like to measure, and the evader
+representing an environment---which we define below. A predictor and an evader
+are thought of as interacting together in a ``game of adversarial sequence prediction''.
+
+\begin{definition}
+By $B$, we mean the binary alphabet $\{0,1\}$. By $B^*$, we mean the set of all
+finite binary sequences. By $B^\infty$, we mean the set of all infinite binary
+sequences. By $\langle\rangle$ we mean the empty binary sequence (so
+$B^*\backslash\{\langle\rangle\}$ is the set of all non-empty finite binary
+sequences).
+\end{definition}
+
+\begin{definition}
+    (Predictors and evaders)
+    \begin{enumerate}
+        \item
+        By an \emph{evader}, we mean a function $e:B^*\to B$
+        which takes as input a finite (possibly empty) empty sequence $(y_0,\ldots,y_n)$
+        (thought of as a sequence of \emph{predictions})
+        and outputs $0$ or $1$ (thought of as an \emph{evasion}).
+        \item
+        By a \emph{predictor}, we mean a function $p:B^*\to B$
+        which takes as input a finite (possibly empty) binary sequence $(x_0,\ldots,x_n)$
+        (thought of as a sequence of \emph{evasions})
+        and outputs $0$ or $1$ (thought of as a \emph{prediction}).
+        \item
+        For any evader $e$ and predictor $p$, the \emph{result of $p$ playing the
+        game of adversarial prediction against $e$} (or more simply, the \emph{result of
+        $p$ playing against $e$}) is the infinite binary sequence
+        $(x_0,y_0,x_1,y_1,\ldots)\in B^\infty$
+        defined as follows:
+        \begin{enumerate}
+            \item
+            $x_0=e(\langle\rangle)$ is obtained by plugging the empty prediction-sequence into
+            the evader $e$. This is thought of as $e$'s initial evasion.
+            \item
+            $y_0=p(\langle\rangle)$ is obtained by plugging the empty evasion-sequence into
+            the predictor $p$. This is thought of as $p$'s initial prediction.
+            \item
+            For all $n\in\mathbb N$,
+            $x_{n+1}=e(y_0,\ldots,y_n)$ is obtained by plugging the first $n+1$ predictions
+            into the evader $e$. This is thought of as $e$'s $(n+1)$th evasion.
+            \item
+            For all $n\in\mathbb N$,
+            $y_{n+1}=p(x_0,\ldots,x_n)$ is obtained by plugging the first $n+1$ evasions into
+            the predictor $p$. This is thought of as $p$'s $(n+1)$th prediction.
+        \end{enumerate}
+        \item
+        Suppose $r=(x_0,y_0,x_1,y_1,\ldots)$ is the result of a predictor $p$ playing
+        against an evader $e$. For every $n\in\mathbb N$, the \emph{winner of round $n$}
+        in $r$ is $p$ if $x_n=y_n$, or is $e$ if $x_n\neq y_n$.
+        We say that \emph{$p$ learns to predict $e$} if there is some $N\in\mathbb N$
+        such that for all $n>N$, $p$ is the winner of round $n$.
+    \end{enumerate}
+\end{definition}
 
 \bibliographystyle{plain}
 \bibliography{hibbard}
