@@ -5,7 +5,10 @@
 \usepackage{amsthm}
 \usepackage{amsmath}
 \newtheorem{definition}{Definition}
-\newtheorem{example}{Example}
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{lemma}[theorem]{Lemma}
 
 \title{Transfinite extensions of Hibbard's intelligence measure}
 \author{Samuel Alexander\thanks{The U.S.\ Securities and Exchange Commission}}
@@ -70,7 +73,7 @@ The structure of the paper is as follows.
     \item
     In Section \ref{originalmeasuresection}, we review the classical Hibbard measure.
     \item
-    In Section ..., we present our viewpoint of AGIs and argue that
+    In Section \ref{agiperspectivesection}, we present our viewpoint of AGIs and argue that
     under certain idealizing assumptions, \emph{every} AGI should have intelligence
     $\infty$ according to the classical Hibbard measure.
     \item
@@ -185,6 +188,7 @@ Let $e$ be an evader.
 \end{definition}
 
 \begin{definition}
+\label{generalintelligencemeasuredefn}
     Suppose $g_i$ ($i\in \mathbb N$) is any family of functions,
     each $g_i:\mathbb N\to\mathbb N$.
     For each $m\in\mathbb N$, define $f_m:\mathbb N\to\mathbb N$ by
@@ -196,6 +200,7 @@ Let $e$ be an evader.
 \end{definition}
 
 \begin{definition}
+\label{classichibbardmeasuredefn}
     The \emph{classic Hibbard measure} is defined to be the Hibbard intelligence
     measure given by one specific family $g_i$ of functions, namely:
     the enumeration of the primitive recursive functions described by S.C.\ Liu
@@ -204,6 +209,7 @@ Let $e$ be an evader.
 
 
 \section{Do all AGIs have classic Hibbard intelligence $\infty$?}
+\label{agiperspectivesection}
 
 As yet, we are unaware of any formal mathematical definition of what an AGI
 actually is. We take the stance that an AGI should be capable of understanding
@@ -257,6 +263,116 @@ performing some general type of task. For example:
     (and they would indeed be computably enumerable because an AGI, whatever else it
     is, must be mechanical).
 \end{itemize}
+
+In the same way, an AGI is certainly more than a predictor competing in
+games of adversarial sequence prediction. But an AGI could be commanded to
+act as such a predictor. That is why it makes sense to refer to the measures
+from Definition \ref{generalintelligencemeasuredefn} as ``intelligence'' measures
+(rather than as, say, ``prediction power'' measures). In the same way that
+IQ tests are intended to measure overall human intelligence despite the fact that
+human intelligence is so much more than the ability to take IQ tests, in the same
+way, adversarial sequence prediction games can serve as a sort of intelligence
+test for AGIs.
+
+In the remainder of this section, we will argue that under certain idealizing
+assumptions, every AGI should have classical Hibbard intelligence $\infty$.
+Thus, we would suggest that Definition \ref{classichibbardmeasuredefn} is really
+only appropriate for certain weak AIs who are strong enough that they can be
+induced to participate in adversarial sequence prediction games, but who are
+not strong enough to qualify as genuine AGIs. Later in the paper, we will argue
+that suitable extensions of Hibbard's intelligence measure are more relevant
+for genuine AGIs.
+
+\begin{assumption}
+\label{idealizingassumption}
+    We make the following idealizing assumptions about an AGI $X$.
+    \begin{itemize}
+        \item
+        (Mathematical reasoning ability) If $X$ knows some set $S$ of mathematical
+        axioms then, given sufficient time to think about it, $X$ would eventually
+        become aware of all the consequences of $S$.
+        \item
+        (Basic mathematical exposure) $X$ knows the axioms of Peano arithmetic.
+        \item
+        (Caution) $X$ avoids infinite loops: if $X$ is commanded to play the
+        role of a predictor, then the resulting predictor $p$ will have
+        the property that $X$ knows that $p$ is a total computable function
+        from $B^*$ to $B$.
+    \end{itemize}
+\end{assumption}
+
+\begin{definition}
+\label{Xspredictordefn}
+    If $X$ is an AGI, \emph{$X$'s predictor} is the predictor which
+    would result if $X$ were commanded to play the role of a predictor (so
+    the $X$'s predictor is a total computable function from $B^*\to B$ by Caution).
+\end{definition}
+
+\subsection{A semi-optimal predictor}
+
+\begin{definition}
+\label{bruteforcepredictordefn}
+    (The Brute Force Predictor)
+    Suppose $X$ is an AGI. Let $M_1,M_2,\ldots$ be the list of Turing machines
+    which $X$ would enumerate if $X$ were commanded: ``Enumerate all the Turing
+    machines which you know define total functions from $B^*$ to $B$''.
+    By \emph{$X$'s brute force predictor}, we mean the predictor $p$ defined
+    as follows.
+    \begin{enumerate}
+        \item
+        Initially, $p$ shall attempt to predict the evader $e$ by assuming that $e$
+        defines the same function as $M_1$. When (if ever) this fails,
+        say that \emph{$M_1$ is ruled out from being the evader}.
+        \item
+        Once $M_1$ has been ruled out from being the evader (if ever),
+        $p$ shall attempt to predict $e$ by assuming that $e$ defines the same
+        function as $M_2$. When (if ever) this fails,
+        say that \emph{$M_2$ is ruled out from being the evader}.
+        \item
+        Once $M_2$ has been ruled out from being the evader (if ever),
+        $p$ shall attempt to predict $e$ by assuming that $e$ defines the same
+        function as $M_3$. When (if ever) this fails,
+        say that \emph{$M_3$ is ruled out from being the evader}.
+        \item
+        And so on forever...
+    \end{enumerate}
+\end{definition}
+
+Note that $X$'s predictor (Definition \ref{Xspredictordefn})
+may or may not be equal to $X$'s brute force predictor
+(Definition \ref{bruteforcepredictordefn}).
+
+\begin{lemma}
+    Let $X$ be an AGI and let $e$ be an evader (so $e$ is a Turing machine,
+    say, the $n$th Turing machine) which
+    defines a total function from $B^*$ to $B$).
+    If $X$ knows that the $n$th Turing machine defines a total function from $B^*$ to $B$,
+    then $X$'s brute force predictor learns to predict $e$.
+\end{lemma}
+
+\begin{proof}
+    Let $p$ be $X$'s brute force predictor.
+    Let $M_1,M_2,\ldots$ be as in Definition \ref{bruteforcepredictordefn}.
+    Since $X$ knows that the $n$th Turing machine (i.e., $e$) defines a total
+    function from $B^*$ to $B$,
+    it follows that $e=M_k$ for some $k$.
+    When $p$ plays against $e$, it cannot occur that $M_k$ is ruled out
+    from being the evader, because in order for that to occur, $p$ would have
+    to fail at predicting $e$ when $p$ assumes that $e$ computes the same
+    function as $M_k$, but that cannot fail because that assumption is true.
+    Since $M_k$ cannot be ruled out from being the evader, it follows that
+    at most finitely many $M_i$'s can be ruled out from being the evader,
+    which implies that after finitely many failures, $p$ always succeeds at
+    predicting $e$, that is, $p$ learns to predict $e$, as desired.
+\end{proof}
+
+% Def: strategy S beats evader e "but-not-without-a-fight" if S beats e and
+% for all sufficiently large n, on the nth move when playing S, e uses as much
+% runtime as e would ever use on move n against any opponent.
+%
+% Conjecture: If there exists any strategy S such that the AGI knows S is
+% total, and such that S beats an evader e but-not-without-a-fight, then
+% then the standard strategy for the AGI would also beat e.
 
 
 \bibliographystyle{plain}
