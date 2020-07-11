@@ -288,6 +288,9 @@ for genuine AGIs.
     We make the following idealizing assumptions about an AGI $X$.
     \begin{itemize}
         \item
+        (Mathematical truthfulness) If $X$ knows some statement in the language
+        of Peano arithmetic, then that statement is true.
+        \item
         (Mathematical reasoning ability) If $X$ knows some set $S$ of mathematical
         axioms then, given sufficient time to think about it, $X$ would eventually
         become aware of all the consequences of $S$.
@@ -322,11 +325,11 @@ for genuine AGIs.
 
 \begin{definition}
 \label{bruteforcepredictordefn}
-    (The Brute Force Predictor)
+    (The Brute-Force Predictor)
     Suppose $X$ is an AGI. Let $M_1,M_2,\ldots$ be the list of Turing machines
     which $X$ would enumerate if $X$ were commanded: ``Enumerate all the Turing
     machines which you know define total functions from $B^*$ to $B$''.
-    By \emph{$X$'s brute force predictor}, we mean the predictor $p$ defined
+    By \emph{$X$'s brute-force predictor}, we mean the predictor $p$ defined
     as follows.
     \begin{enumerate}
         \item
@@ -349,19 +352,25 @@ for genuine AGIs.
 \end{definition}
 
 Note that $X$'s predictor (Definition \ref{Xspredictordefn})
-may or may not be equal to $X$'s brute force predictor
-(Definition \ref{bruteforcepredictordefn}).
+may or may not be equal to $X$'s brute-force predictor
+(Definition \ref{bruteforcepredictordefn}). Note also that $X$'s predictor
+is total precisely because of the mathematical truthfulness assumption
+(from Definition \ref{idealizingassumption}): whenever $X$ knows that
+$M_i$ defines a total function from $B^*$ to $B$, $M_i$ really \emph{does}
+define a total function from $B^*$ to $B$ (hereafter, we will suppress
+remarks like this and routinely use the mathematical truthfulness assumption
+without explicit mention).
 
 \begin{lemma}
     Let $X$ be an AGI and let $e$ be an evader (so $e$ is a Turing machine,
     say, the $n$th Turing machine) which
     defines a total function from $B^*$ to $B$).
     If $X$ knows that the $n$th Turing machine defines a total function from $B^*$ to $B$,
-    then $X$'s brute force predictor learns to predict $e$.
+    then $X$'s brute-force predictor learns to predict $e$.
 \end{lemma}
 
 \begin{proof}
-    Let $p$ be $X$'s brute force predictor.
+    Let $p$ be $X$'s brute-force predictor.
     Let $M_1,M_2,\ldots$ be as in Definition \ref{bruteforcepredictordefn}.
     Since $X$ knows that the $n$th Turing machine (i.e., $e$) defines a total
     function from $B^*$ to $B$,
@@ -375,6 +384,44 @@ may or may not be equal to $X$'s brute force predictor
     reached, which in turn implies that $p$ stops failing at predicting $e$
     after finitely many initial failures, in other words, $p$ learns to
     predict $e$.
+\end{proof}
+
+For any AGI $X$, we would like to claim that $X$'s brute-force predictor is
+optimal among all predictors which $X$ could make use of without violating the
+Caution assumption (Definition \ref{idealizingassumption}); unfortunately this
+is not true in the strongest sense it possibly could be true, as the following
+example shows.
+
+\begin{example}
+    Let $X$ be an AGI and let $e$ be a Turing machine which defines a total
+    function from $B^*$ to $B$ but such that $X$ does not know that.
+    For each $i\in\{0,1\}$, $e_i$ be an evader which behaves as follows:
+    given any prediction-sequence
+    $(y_1,\ldots,y_n)$, if $y_1=\cdots=y_n=i$, then $e_i$ shall output $i$,
+    otherwise $e_i$ shall output whatever $e$ would output.
+    For each $i\in\{0,1\}$, let $p_i$ be the
+    constantly-$i$ predictor, $p_i(x_1,\ldots,x_n)=i$.
+    Then $p_0$ learns to predict $e_0$ and $p_1$ learns to predict $e_1$,
+    but $X$'s brute-force predictor learns to predict at most one of $e_0$ or $e_1$.
+\end{example}
+
+\begin{proof}
+    Clearly the result of $p_0$ playing against $e_0$ is
+    $(x_0,y_0,x_1,y_1,\ldots)=(0,0,0,0,\ldots)$, so $p_0$ learns to predict $e_0$.
+    Likewise, the result of $p_1$ playing against $e_1$ is
+    $(x_0,y_0,x_1,y_1,\ldots)=(1,1,1,1,\ldots)$, so $p_1$ learns to predict $e_1$.
+    It remains to show that $X$'s brute-force predictor cannot learn to predict
+    both $e_0$ and $e_1$.
+
+    Let $p$ be $X$'s brute-force predictor.
+    Let $M_1,M_2,\ldots$ be as in Definition \ref{bruteforcepredictordefn}.
+    Let $f:B^*\to B$ be the function defined by $M_1$.
+
+    Case 1: $f(\langle\rangle)=1$. Then when $p$ plays against $e_0$,
+    after the first step, it will never be the case that
+    $y_1=\cdots=y_n=0$ (because $y_1=f(\langle\rangle)=1$).
+    Thus, after that first step, $e_0$ will output whatever $e$ would output.
+    Now, for every $i$, $M_i$ must 
 \end{proof}
 
 % Def: strategy S beats evader e "but-not-without-a-fight" if S beats e and
