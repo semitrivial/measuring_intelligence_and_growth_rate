@@ -303,9 +303,19 @@ for genuine AGIs.
 
 \begin{definition}
 \label{Xspredictordefn}
-    If $X$ is an AGI, \emph{$X$'s predictor} is the predictor which
-    would result if $X$ were commanded to play the role of a predictor (so
-    the $X$'s predictor is a total computable function from $B^*\to B$ by Caution).
+    Suppose $X$ is an AGI.
+    \begin{enumerate}
+        \item
+        \emph{$X$'s predictor} is the predictor which
+        would result if $X$ were commanded to play the role of a predictor (so
+        the $X$'s predictor is a total computable function from $B^*\to B$ by Caution).
+        \item
+        For any family $g_i$ of functions as in
+        Definition \ref{generalintelligencemeasuredefn},
+        the \emph{Hibbard intelligence of $X$ (given by the family $g_i$)}
+        is defined to be the Hibbard intelligence of
+        $X$'s predictor (given by the family $g_i$).
+    \end{enumerate}
 \end{definition}
 
 \subsection{A semi-optimal predictor}
@@ -361,9 +371,10 @@ may or may not be equal to $X$'s brute force predictor
     to fail at predicting $e$ when $p$ assumes that $e$ computes the same
     function as $M_k$, but that cannot fail because that assumption is true.
     Since $M_k$ cannot be ruled out from being the evader, it follows that
-    at most finitely many $M_i$'s can be ruled out from being the evader,
-    which implies that after finitely many failures, $p$ always succeeds at
-    predicting $e$, that is, $p$ learns to predict $e$, as desired.
+    step $k+1$ of Definition \ref{bruteforcepredictordefn} will never be
+    reached, which in turn implies that $p$ stops failing at predicting $e$
+    after finitely many initial failures, in other words, $p$ learns to
+    predict $e$.
 \end{proof}
 
 % Def: strategy S beats evader e "but-not-without-a-fight" if S beats e and
