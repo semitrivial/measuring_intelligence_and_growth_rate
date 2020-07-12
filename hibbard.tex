@@ -362,6 +362,7 @@ remarks like this and routinely use the mathematical truthfulness assumption
 without explicit mention).
 
 \begin{lemma}
+\label{knowingimplieslearninglemma}
     Let $X$ be an AGI and let $e$ be an evader (so $e$ is a Turing machine,
     say, the $n$th Turing machine) which
     defines a total function from $B^*$ to $B$).
@@ -464,20 +465,37 @@ the former.
     if the following conditions hold:
     \begin{enumerate}
         \item $p$ learns $e$.
-        \item For each $i$, $M$ takes more than $t_e(i)$ steps to compute
-        $p(x_1,\ldots,i)$.
+        \item For each $i$, $t_M(i)\geq t_e(i)$.
+        $p(x_1,\ldots,x_i)$.
     \end{enumerate}
 \end{definition}
 
 \begin{theorem}
     (Semi-optimality of brute force)
-    Let $X$ be an AGI. For any predictor $p$ (such that $X$ knows $p$
-    is a predictor), and any evader $e$,
-    if $p$ learns $e$ but-not-without-a-fight,
-    then $X$'s brute-force predictor learns $e$.
+    Let $X$ be an AGI.
+    Suppose $M$ is a Turing machine which computes a predictor $p$.
+    If $X$ knows that $M$ computes a predictor, and if $M$ learns $e$
+    but-not-without-a-fight, then $X$'s brute-force predictor learns $e$.
 \end{theorem}
 
-
+\begin{proof}
+    Since $X$ knows $M$ computes a predictor, $X$ knows $M$ computes a total
+    function from $B^*$ to $B$. Thus $X$ knows that that $e'$ is a total
+    computable function from $B^*$ to $B$, where $e'$ is a Turing machine which
+    takes an input $b\in B^*$ and operates as follows:
+    \begin{enumerate}
+        \item
+        Calculate $t_M(i)$ (by running $M$ on all length-$i$ binary sequences).
+        \item
+        Run $e$ on $b$ up to $t_M(i)$ steps. If $e$ outputs a result $x$ within that
+        time, then output $x$. Otherwise, output $0$.
+    \end{enumerate}
+    Since $M$ learns $e$ but-not-without-a-fight, each $t_M(i)\geq t_e(i)$,
+    so in fact $e'$ computes the same function as $e$.
+    By Lemma \ref{knowingimplieslearninglemma}, $X$'s brute-force predictor
+    learns $e'$. Since $e'$ and $e$ compute the same function, this implies
+    $X$'s brute-force predictor learns $e$.
+\end{proof}
 
 \bibliographystyle{plain}
 \bibliography{hibbard}
