@@ -393,12 +393,16 @@ is not true in the strongest sense it possibly could be true, as the following
 example shows.
 
 \begin{example}
-    Let $X$ be an AGI and let $e$ be a Turing machine which defines a total
-    function from $B^*$ to $B$ but such that $X$ does not know that.
-    For each $i\in\{0,1\}$, $e_i$ be an evader which behaves as follows:
-    given any prediction-sequence
-    $(y_1,\ldots,y_n)$, if $y_1=\cdots=y_n=i$, then $e_i$ shall output $i$,
-    otherwise $e_i$ shall output whatever $e$ would output.
+    Let $X$ be an AGI. Let $f:\mathbb N\to B$ be a total computable function which
+    is different from every total computable function $X$ knows.
+    For each $i\in\{0,1\}$, $e_i$ be an evader defined as follows:
+    \[
+        e_i(y_1,\ldots,y_n) =
+        \begin{cases}
+            i &\mbox{if $y_1=\cdots=y_n=i$ (or if $n=0$),}\\
+            f(n) &\mbox{otherwise.}
+        \end{cases}
+    \]
     For each $i\in\{0,1\}$, let $p_i$ be the
     constantly-$i$ predictor, $p_i(x_1,\ldots,x_n)=i$.
     Then $p_0$ learns to predict $e_0$ and $p_1$ learns to predict $e_1$,
@@ -415,13 +419,28 @@ example shows.
 
     Let $p$ be $X$'s brute-force predictor.
     Let $M_1,M_2,\ldots$ be as in Definition \ref{bruteforcepredictordefn}.
-    Let $f:B^*\to B$ be the function defined by $M_1$.
+    Let $g:B^*\to B$ be the function defined by $M_1$.
 
-    Case 1: $f(\langle\rangle)=1$. Then when $p$ plays against $e_0$,
+    Case 1: $g(\langle\rangle)=1$. Then when $p$ plays against $e_0$,
     after the first step, it will never be the case that
-    $y_1=\cdots=y_n=0$ (because $y_1=f(\langle\rangle)=1$).
-    Thus, after that first step, $e_0$ will output whatever $e$ would output.
-    Now, for every $i$, $M_i$ must 
+    $y_1=\cdots=y_n=0$ (because $y_1=g(\langle\rangle)=1$).
+    Thus, for all $n>0$, $e_0(y_1,\ldots,y_n)=f(n)$.
+    I claim that $p$ does not learn $e_0$.
+    To see this, assume (for the sake of contradiction)
+    that $p$ learns $e_0$. It follows that there is some $k$ (which we may take
+    as small as possible) such that $M_k$ never gets ruled out from being the
+    evader (Definition \ref{bruteforcepredictordefn}). Let $h:B^*\to B$ be the
+    function defined by $M_k$.
+    Let $(x_0,y_0,x_1,y_1,\ldots)$ be the result of $p$ playing against $e_0$.
+    It follows that there is some $j$ such that for all $i>j$,
+    $h(y_1,\ldots,y_{i-1})=x_i=y_i=f(i)$.
+    This shows that for all but finitely many $i\in\mathbb N$,
+    $f(i)=h(y_1,\ldots,y_{i-1})$. Since $X$ knows that $M_k$ defines a total
+    function from $B^*$ to $B$, it follows that $X$ knows $f$ is total computable,
+    which contradicts our choice of $f$.
+
+    Case 2: $g(\langle\rangle)=0$. Then by similar reasoning as in Case 1,
+    it can be shown that $p$ does not learn $e_1$.
 \end{proof}
 
 % Def: strategy S beats evader e "but-not-without-a-fight" if S beats e and
