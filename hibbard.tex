@@ -353,7 +353,7 @@ for genuine AGIs.
 
 Note that $X$'s predictor (Definition \ref{Xspredictordefn})
 may or may not be equal to $X$'s brute-force predictor
-(Definition \ref{bruteforcepredictordefn}). Note also that $X$'s predictor
+(Definition \ref{bruteforcepredictordefn}). Note also that $X$'s brute-force predictor
 is total precisely because of the mathematical truthfulness assumption
 (from Definition \ref{idealizingassumption}): whenever $X$ knows that
 $M_i$ defines a total function from $B^*$ to $B$, $M_i$ really \emph{does}
@@ -393,6 +393,7 @@ is not true in the strongest sense it possibly could be true, as the following
 example shows.
 
 \begin{example}
+\label{bruteforcenottotallyoptimalexample}
     Let $X$ be an AGI. Let $f:\mathbb N\to B$ be a total computable function which
     is different from every total computable function $X$ knows.
     For each $i\in\{0,1\}$, $e_i$ be an evader defined as follows:
@@ -442,6 +443,33 @@ example shows.
     Case 2: $g(\langle\rangle)=0$. Then by similar reasoning as in Case 1,
     it can be shown that $p$ does not learn $e_1$.
 \end{proof}
+
+Example \ref{bruteforcenottotallyoptimalexample} shows that we cannot
+hope for the brute-force to be totally optimal in the most extreme possible sense:
+there will always be evaders that the AGI's brute-force fails to learn, but which other
+predictors (which the AGI knows about)
+do nevertheless learn. Example \ref{bruteforcenottotallyoptimalexample} involves
+highly contrived evaders which are custom made to act stupidly in one specific case
+(allowing them to be learned by a correspondingly stupid predictor), while being
+highly sophisticated in all other cases. In the following definition, we rule out
+situations where a less sophisticated predictor manages to learn a
+more sophisticated evader due to the latter cloaking its true sophistication from
+the former.
+
+\begin{definition}
+    Suppose $M$ is a Turing machine which computes a predictor $p$.
+    Suppose $e$ is an evader.
+    Let $(x_0,y_0,x_1,y_1,\ldots)$ be result of $p$ playing against $e$.
+    We say that \emph{$M$ learns $e$ but-not-without-a-fight}
+    if the following conditions hold:
+    \begin{enumerate}
+        \item $p$ learns $e$.
+        \item For each $i$, $M$ takes more than $t_e(i)$ steps to compute
+        $p(x_1,\ldots,i)$.
+    \end{enumerate}
+\end{definition}
+
+
 
 % Def: strategy S beats evader e "but-not-without-a-fight" if S beats e and
 % for all sufficiently large n, on the nth move when playing S, e uses as much
