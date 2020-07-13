@@ -181,6 +181,7 @@ Let $e$ be an evader.
 \end{example}
 
 \begin{definition}
+\label{evadersetdefinition}
     Suppose $f:\mathbb N\to\mathbb N$. We define the \emph{evader-set bounded by $f$},
     written $E_f$, to be the set of all evaders $e$ such that
     there is some $k\in\mathbb N$ such that $\forall n>k$,
@@ -363,19 +364,20 @@ without explicit mention).
 
 \begin{lemma}
 \label{knowingimplieslearninglemma}
-    Let $X$ be an AGI and let $e$ be an evader (so $e$ is a Turing machine,
-    say, the $n$th Turing machine) which
-    defines a total function from $B^*$ to $B$).
-    If $X$ knows that the $n$th Turing machine defines a total function from $B^*$ to $B$,
+    Let $X$ be an AGI and let $e$ be an evader (so $e$ is a Turing machine which
+    computes a function from $B^*$ to $B$).
+    Let $M$ be any Turing machine which computes the same function from $B^*$ to $B$
+    as $e$ computes.
+    If $X$ knows that $M$ defines a total function from $B^*$ to $B$,
     then $X$'s brute-force predictor learns to predict $e$.
 \end{lemma}
 
 \begin{proof}
     Let $p$ be $X$'s brute-force predictor.
     Let $M_1,M_2,\ldots$ be as in Definition \ref{bruteforcepredictordefn}.
-    Since $X$ knows that the $n$th Turing machine (i.e., $e$) defines a total
+    Since $X$ knows that $M$ defines a total
     function from $B^*$ to $B$,
-    it follows that $e=M_k$ for some $k$.
+    it follows that $M=M_k$ for some $k$.
     When $p$ plays against $e$, it cannot occur that $M_k$ is ruled out
     from being the evader, because in order for that to occur, $p$ would have
     to fail at predicting $e$ when $p$ assumes that $e$ computes the same
@@ -469,6 +471,7 @@ the former.
 \end{definition}
 
 \begin{theorem}
+\label{semioptimalitytheorem}
     (Semi-optimality of brute force)
     Let $X$ be an AGI.
     Suppose $M$ is a Turing machine which computes a predictor $p$.
@@ -494,6 +497,70 @@ the former.
     learns $e'$. Since $e'$ and $e$ compute the same function, this implies
     $X$'s brute-force predictor learns $e$.
 \end{proof}
+
+\subsection{Triviality of the classical Hibbard measure}
+
+Although Example \ref{bruteforcenottotallyoptimalexample} showed that
+an AGI $X$'s brute-force predictor
+is not optimal in the strongest possible sense, Theorem \ref{semioptimalitytheorem}
+shows that $X$'s brute-force predictor is still semi-optimal. In some sense,
+$X$'s brute-force predictor learns every evader which any other predictor $p$ (that $X$
+knows is a predictor) would learn, except possibly for cases where $p$ only learns
+an evader $e$ because $e$ withholds its full sophistication from $p$.
+
+Based on the above, we informally conjecture that the brute-force predictor is
+the most sensible predictor for an AGI $X$ to act as, if $X$ is commanded to
+act as a predictor and try to predict as many evaders as possible. If this conjecture
+is true, then the following theorem suggests that the classical Hibbard measure is
+trivial: that it assigns intelligence level $\infty$ to every AGI.
+
+\begin{theorem}
+    Suppose $X$ is an AGI. If $X$'s predictor is $X$'s brute-force predictor,
+    then $X$ has classical Hibbard intelligence $\infty$.
+\end{theorem}
+
+\begin{proof}
+    By Definition \ref{Xspredictordefn}, $X$'s classical Hibbard intelligence
+    equals the classical Hibbard intelligence of $X$'s predictor, which is
+    $X$'s brute-force predictor by assumption. Let $p$ be $X$'s brute-force
+    predictor. By Definition \ref{generalintelligencemeasuredefn}, in order
+    to show $p$ has classical Hibbard intelligence $\infty$, we must
+    show that $p$ learns to predict $e$ for every $e$ in $E_{f_m}$ for
+    every $m\in\mathbb N$,
+    where each $f_m:\mathbb N\to\mathbb N$ is defined by
+    $f_m(k)=\max_{i\leq m}\max_{j\leq k}g_i(j)$,
+    where $g_i$ is the $i$th primitive recursive function
+    (Definition \ref{classichibbardmeasuredefn}).
+
+    Let $m\in\mathbb N$ be arbitrary and let $e\in E_{f_m}$ be arbitrary.
+    By Definition \ref{evadersetdefinition},
+    for all but finitely many $n\in\mathbb N$, $t_e(n)<f_m(n)$.
+    We must show that $p$ learns to predict $e$.
+
+    Let $M$ be a Turing machine which takes an input
+    $(y_1,\ldots,y_n)\in\mathbb B^*$ and
+    operates as follows:
+    \begin{itemize}
+        \item
+        Spend up to $f_m(n)$ steps computing $e(y_1,\ldots,y_n)$.
+        If $e$ halts during that time, say with output $x$, then output $x$.
+        Otherwise, output $0$.
+    \end{itemize}
+    Since, for all but finitely many $n\in\mathbb N$, $t_e(n)<f_m(n)$,
+    it follows that $M$ computes the same function as $e$ except for finitely
+    many exceptions.
+
+    It is well-known that for any primitive recursive function $g$, Peano
+    arithmetic proves that $g$ is total. Thus, by the \emph{basic mathematical
+    exposure} and \emph{mathematical reasoning ability} assumptions from
+    Assumption \ref{idealizingassumption}, it follows that $X$ knows that
+    $M$ is total. Since $M$ computes the same function as $e$ except for
+    finitely many exceptions, it follows that there is a Turing machine $M'$
+    which computes the same function as $e$ all thet time, and such that $X$
+    knows that $M'$ is total. By Lemma \ref{knowingimplieslearninglemma},
+    $p$ learns to predict $e$, as desired.
+\end{proof}
+
 
 \bibliographystyle{plain}
 \bibliography{hibbard}
