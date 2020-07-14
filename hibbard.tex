@@ -619,6 +619,8 @@ said set).
     according to the simple Hibbard measure given by $X$.
 \end{definition}
 
+\subsection{Non-triviality of the simple Hibbard measures}
+
 We will argue that, at least for certain AGIs $X$,
 the simple Hibbard measure given by $X$ is
 not trivial in the same way that the classical Hibbard measure is:
@@ -658,6 +660,26 @@ $|Y|_X$ is finite.
     it is not the case that $p$ learns to predict every evader in $E_{f_m}$.
     Therefore, $|Y|_X<m$.
 \end{proof}
+
+\subsection{The problem with simple Hibbard measures}
+
+The following theorem shows that the simple Hibbard measure given by an AGI $X$
+depends non-trivially on the order in which $X$ would enumerate Turing machines
+when commanded as in Definition \ref{functionlistdefinition}.
+
+\begin{theorem}
+    (Order-dependence of simple Hibbard measures)
+    Suppose $X,Y,Z$ are AGIs. Let $p_Z$ and $p_Y$ be $Z$'s predictor and
+    $Y$'s predictor, respectively. Assume the following:
+    \begin{enumerate}
+        \item $X$ knows that $p_Y$ computes a total function from $B^*$ to $B$.
+        \item $Y$ knows that $p_Z$ computes a total function from $B^*$ to $B$.
+    \end{enumerate}
+    Then $|Y|_X$ and $|Z|_X$ may be equal or unequal, depending on the order
+    in which $X$ would enumerate Turing machines when commanded as in
+    Definition \ref{functionlistdefinition}.
+\end{theorem}
+
 
 \bibliographystyle{plain}
 \bibliography{hibbard}
