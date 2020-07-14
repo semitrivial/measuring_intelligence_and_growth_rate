@@ -650,20 +650,36 @@ $|Y|_X$ is finite.
 
 \begin{theorem}
     (Non-triviality of simple Hibbard measures)
-    Suppose $X$ and $Y$ are AGIs. Let $e$ be the brute-force evader of $Y$.
-    If $X$ knows that $e$ computes a total function from $B^*$ to $B$, then
-    $|Y|_X$ is finite.
+    Suppose $X$ and $Y$ are AGIs. Let $p$ be $Y$'s predictor.
+    If $X$ knows that $p$ defines a total function from $B^*$ to $B$,
+    then $|Y|_X<\infty$.
 \end{theorem}
 
 \begin{proof}
-    Since $X$ knows that $e$ computes a total function from $B^*$ to $B$,
+    Let $e$ be the evader which attempts to evade the predictor by assuming
+    that the predictor is $p$ and always outputting the opposite of what
+    the predictor will output based on that assumption. Clearly, $p$ does
+    not learn to predict $e$.
+
+    Since $X$ knows that $p$ defines a total function from $B^*$ to $B$,
     it follows that there is a Turing machine $C$ such that:
     \begin{enumerate}
-        \item $C$ computes $t_e:\mathbb N\to\mathbb N$ (from Definition \ref{tsubedefinition}).
-        \item $X$ knows that $C$ defines a total function from $\mathbb N$ to $\mathbb N$.
+        \item
+        $C$ computes the function $g:\mathbb N\to \mathbb N$ defined by
+        $g(n)=t_e(n)+1$, where $t_e$ is as in
+        Definition \ref{tsubedefinition}).
+        \item
+        $X$ knows that $C$ computes a total function from $\mathbb N$ to $\mathbb N$. 
     \end{enumerate}
-    By (2), $C=C^X_k$ for some $k$, and thus $g^X_k=t_e$.
-    
+    By (2), $C=C^X_m$ for some $m$, and thus $g^X_m=g$.
+    So if $f_m:\mathbb N\to\mathbb N$ is defined
+    (as in Definition \ref{generalintelligencemeasuredefn})
+    as $f_m(k)=\max_{i\leq m}\max_{j\leq k}g^X_i(j)$,
+    then for every $k$, $f_m(k)\geq g^X_m(k)=g(k)=t_e(n)+1>t_e(n)$.
+    This shows that $e\in E_{f_m}$ (from Definition \ref{evadersetdefinition}).
+    Since $p$ does not learn to predict $e$,
+    it is not the case that $p$ learns to predict every evader in $E_{f_m}$.
+    Therefore, $|Y|_X<m$.
 \end{proof}
 
 \bibliographystyle{plain}
