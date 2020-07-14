@@ -162,6 +162,7 @@ sequences. By $\langle\rangle$ we mean the empty binary sequence.
 \end{definition}
 
 \begin{definition}
+\label{tsubedefinition}
     For any evader $e$ and natural $n>0$,
     let
     \[
@@ -302,9 +303,9 @@ for genuine AGIs.
         (Basic mathematical exposure) $X$ knows the axioms of Peano arithmetic.
         \item
         (Caution) $X$ avoids infinite loops: if $X$ is commanded to play the
-        role of a predictor, then the resulting predictor $p$ will have
-        the property that $X$ knows that $p$ is a total computable function
-        from $B^*$ to $B$.
+        role of a predictor, then the resulting predictor $p$ will indeed
+        be a predictor (a total computable function
+        from $B^*$ to $B$).
     \end{itemize}
 \end{assumption}
 
@@ -610,8 +611,60 @@ said set).
     For any AGI $X$, the \emph{simple Hibbard measure given by $X$}
     is defined to be the Hibbard measure given by
     $(g^X_0,g^X_1,\ldots$) (see Definition \ref{generalintelligencemeasuredefn}).
+    For any AGI $Y$, we will write $|Y|_X$ for the intelligence of $Y$
+    according to the simple Hibbard measure given by $X$.
 \end{definition}
 
+We will argue that, at least for certain AGIs $X$,
+the simple Hibbard measure given by $X$ is
+not trivial in the same way that the classical Hibbard measure is:
+that at least for certain $X$, there exist $Y$ such that
+$|Y|_X$ is finite.
+
+\begin{definition}
+    (The Brute-Force Evader)
+    Suppose $Y$ is an AGI. Let $M_1,M_2,\ldots$ be the
+    list of Turing machines which $Y$ would enumerate if $Y$ were commanded:
+    ``Enumerate all the Turing machines which you know define total functions
+    from $B^*$ to $B$''. By the \emph{brute-force evader of $Y$}, we mean the
+    evader $e$ defined as follows.
+    \begin{enumerate}
+        \item
+        Initially, $e$ shall attempt to evade the predictor $p$ by assuming that
+        $p$ defines the same function as $M_1$. When (if ever) this fails,
+        say that \emph{$M_1$ is ruled out from being the predictor}.
+        \item
+        Once $M_1$ has been ruled out from being the predictor (if ever),
+        $e$ shall attempt to evade $p$ by assuming that $p$ defines the same
+        function as $M_2$. When (if ever) this fails,
+        say that \emph{$M_2$ is ruled out from being the predictor}.
+        \item
+        Once $M_2$ has been ruled out from being the predictor (if ever),
+        $e$ shall attempt to evade $p$ by assuming that $p$ defines the same
+        function as $M_3$. When (if ever) this fails,
+        say that \emph{$M_3$ is ruled out from being the predictor}.
+        \item
+        And so on forever...
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+    (Non-triviality of simple Hibbard measures)
+    Suppose $X$ and $Y$ are AGIs. Let $e$ be the brute-force evader of $Y$.
+    If $X$ knows that $e$ computes a total function from $B^*$ to $B$, then
+    $|Y|_X$ is finite.
+\end{theorem}
+
+\begin{proof}
+    Since $X$ knows that $e$ computes a total function from $B^*$ to $B$,
+    it follows that there is a Turing machine $C$ such that:
+    \begin{enumerate}
+        \item $C$ computes $t_e:\mathbb N\to\mathbb N$ (from Definition \ref{tsubedefinition}).
+        \item $X$ knows that $C$ defines a total function from $\mathbb N$ to $\mathbb N$.
+    \end{enumerate}
+    By (2), $C=C^X_k$ for some $k$, and thus $g^X_k=t_e$.
+    
+\end{proof}
 
 \bibliographystyle{plain}
 \bibliography{hibbard}
