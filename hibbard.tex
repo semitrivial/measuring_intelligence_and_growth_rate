@@ -621,33 +621,6 @@ not trivial in the same way that the classical Hibbard measure is:
 that at least for certain $X$, there exist $Y$ such that
 $|Y|_X$ is finite.
 
-\begin{definition}
-    (The Brute-Force Evader)
-    Suppose $Y$ is an AGI. Let $M_1,M_2,\ldots$ be the
-    list of Turing machines which $Y$ would enumerate if $Y$ were commanded:
-    ``Enumerate all the Turing machines which you know define total functions
-    from $B^*$ to $B$''. By the \emph{brute-force evader of $Y$}, we mean the
-    evader $e$ defined as follows.
-    \begin{enumerate}
-        \item
-        Initially, $e$ shall attempt to evade the predictor $p$ by assuming that
-        $p$ defines the same function as $M_1$. When (if ever) this fails,
-        say that \emph{$M_1$ is ruled out from being the predictor}.
-        \item
-        Once $M_1$ has been ruled out from being the predictor (if ever),
-        $e$ shall attempt to evade $p$ by assuming that $p$ defines the same
-        function as $M_2$. When (if ever) this fails,
-        say that \emph{$M_2$ is ruled out from being the predictor}.
-        \item
-        Once $M_2$ has been ruled out from being the predictor (if ever),
-        $e$ shall attempt to evade $p$ by assuming that $p$ defines the same
-        function as $M_3$. When (if ever) this fails,
-        say that \emph{$M_3$ is ruled out from being the predictor}.
-        \item
-        And so on forever...
-    \end{enumerate}
-\end{definition}
-
 \begin{theorem}
     (Non-triviality of simple Hibbard measures)
     Suppose $X$ and $Y$ are AGIs. Let $p$ be $Y$'s predictor.
