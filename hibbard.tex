@@ -19,7 +19,11 @@
 \maketitle
 
 \begin{abstract}
-    Fill this in.
+    Todo:
+    \begin{enumerate}
+        \item Rewrite 'caution'.
+        \item Fix the subscripts in generalintelligencemeasuredefn to start at 0.
+    \end{enumerate}
 \end{abstract}
 
 \section{Introduction}
@@ -585,21 +589,21 @@ on Liu, we will instead depend on an AGI $X$.
 
 \begin{definition}
 \label{functionlistdefinition}
-    If $X$ is an AGI, let $(C^X_0, C^X_1, C^X_2, \ldots)$ be the sequence of
+    If $X$ is an AGI, let $(C^X_1, C^X_2, \ldots)$ be the sequence of
     Turing machines which would result if $X$ were commanded: ``Until further
     notice, list all the Turing machines $C$ that you can think of such that
     you know $C$ computes a total function from $\mathbb N$ to $\mathbb N$.''
-    For each $i$, let $g^X_i:\mathbb N\to\mathbb N$ be the function computed by
+    For each $i>0$, let $g^X_i:\mathbb N\to\mathbb N$ be the function computed by
     $C^X_i$.
 \end{definition}
 
 For example, if $X$ is an AGI, then in response to the command in Definition
 \ref{functionlistdefinition}, $X$ might think for a while, figure out a Turing
-machine $C^X_0$ which computes the constant function $g^X_0(n)=0$. Then $X$
-might think some more and figure out a Turing machine $C^X_1$ which computes
-the identity function $g^X_1(n)=n$. Then $X$ might think some more and figure
-out a Turing machine $C^X_2$ which computes the prime number function, so that
-$g^X_2(n)$ is the $(n+1)$th prime number. And so on.
+machine $C^X_1$ which computes the constant function $g^X_1(n)=0$. Then $X$
+might think some more and figure out a Turing machine $C^X_2$ which computes
+the identity function $g^X_2(n)=n$. Then $X$ might think some more and figure
+out a Turing machine $C^X_3$ which computes the prime number function, so that
+$g^X_3(n)$ is the $(n+1)$th prime number. And so on.
 
 It is philosophically interesting that although there is no apparent ordering that
 would turn the set of all total-function-from-$\mathbb N$-to-$\mathbb N$-computing
@@ -610,7 +614,7 @@ said set).
 \begin{definition}
     For any AGI $X$, the \emph{simple Hibbard measure given by $X$}
     is defined to be the Hibbard measure given by
-    $(g^X_0,g^X_1,\ldots$) (see Definition \ref{generalintelligencemeasuredefn}).
+    $(g^X_1,g^X_2,\ldots$) (see Definition \ref{generalintelligencemeasuredefn}).
     For any AGI $Y$, we will write $|Y|_X$ for the intelligence of $Y$
     according to the simple Hibbard measure given by $X$.
 \end{definition}
