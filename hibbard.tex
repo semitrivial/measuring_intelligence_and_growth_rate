@@ -43,30 +43,31 @@ somewhere in the hierarchy.} an agent's classical Hibbard measure is defined to 
 if said agent can eventually predict all the evaders in all levels of the hierarchy.
 
 In this paper, we will argue that the evader-hierarchy which Hibbard originally proposed is
-too small: we will argue that \emph{all} suitably idealized AGIs have $\infty$
-intelligence according to the classical Hibbard measure. In order to remedy this
-situation, we will propose a family of large evader-hierarchies. Each
-evader-hierarchy in this family will admit a corresponding intelligence measure.
-Whereas the classical Hibbard
-measure is natural-number-valued, the intelligence measures obained from these larger
-evader-hierarchies will be computable-ordinal-number-valued. Larger evader-hierarchies
-will admit better intelligence measures, in the sense that the larger the evader-hierarchy,
-the more difficult it will be for an AGI to have intelligence $\infty$ (i.e., for an
-AGI to eventually predict all the evaders in all levels of said evader-hierarchy).
-
-Our enlarged evader-hierarchies will be constructed using a technique
-closely related to the so-called
-\emph{majorization hierarchies} from mathematical logic \cite{weiermann2002slow}.
-However, the majorization hierarchies in mathematical logic depend on so-called
-\emph{fundamental sequences} which (in the long run) have problems both in
-theory and practice, and so we modify the technique to be more concrete. Our modified
-technique depends on what we call \emph{Intuitive Ordinal Notations}, which are more
-concrete and practical (in the long run).
-
-Finally, we will argue that, when applied to AGIs satisfying certain assumptions,
-these extended Hibbard intelligence measures
-are closely related to the so-called \emph{Intuitive Ordinal Intelligence} measure
-which we introduced in \cite{ioi1} and \cite{ioi2}.
+trivial: we will argue that \emph{all} suitably idealized AGIs probably have $\infty$
+intelligence according to the classical Hibbard measure.
+We will suggest two different methods to repair Hibbard's intelligence measure.
+\begin{itemize}
+    \item
+    The first method we describe will be elementary, in the sense that it will
+    essentially involve
+    no mathematics more advanced than the mathematics used in Hibbard's original approach.
+    However, we will show that the intelligence measure yielded by this elementary
+    method has a crucial flaw.
+    \item
+    The second method we describe will make use of two advanced notions from
+    mathematical logic: the \emph{slow-growing hierarchy}
+    \cite{weiermann2002slow} and the ordinal notation system known as
+    \emph{Kleene's $\mathcal O$} \cite{kleene1938notation}.
+\end{itemize}
+Both of these methods will, rather than producing a single intelligence measure,
+rather, produce a family of intelligence measures indexed by a parameter $X$ where
+$X$ is an AGI. In other words, for every AGI $X$, for each of the above two methods,
+there will be a corresponding intelligence measure, which can informally be thought
+of as ``intelligence as judged by $X$'': $X$ itself will have intelligence $\infty$
+according to the intelligence measure corresponding to $X$, but some other AGI $Y$
+may have non-$\infty$ intelligence. This captures the intuition that an entity who
+measures intelligence of less intelligent entities cannot accurately measure
+its own intelligence, nor the intelligence of entities more intelligent than itself.
 
 The structure of the paper is as follows.
 \begin{itemize}
@@ -74,20 +75,20 @@ The structure of the paper is as follows.
     In Section \ref{originalmeasuresection}, we review the classical Hibbard measure.
     \item
     In Section \ref{agiperspectivesection}, we present our viewpoint of AGIs and argue that
-    under certain idealizing assumptions, \emph{every} AGI should have intelligence
+    under certain idealizing assumptions, \emph{every} AGI probably has intelligence
     $\infty$ according to the classical Hibbard measure.
     \item
-    In Section ..., we review Intuitive Ordinal Notations.
+    In Section ..., we present an elementary way to remedy Hibbard's intelligence
+    measure so that not every AGI has intelligence $\infty$; however, the resulting
+    intelligence measures are shown to still have a crucial flaw.
     \item
-    In Section ..., we describe a technique for constructing fast-growing functions
-    $f:\mathbb N\to\mathbb N$ from Intuitive Ordinal Notations. This technique is
-    closely related to the \emph{majorization hierarchies} from mathematical logic.
+    In Section ..., we review the \emph{slow-growing hierarchy} and
+    \emph{Kleene's $\mathcal O$}.
     \item
-    In Section ..., we introduce a family of large evader-hierarchies and corresponding
-    Hibbard intelligence measures.
-    \item
-    In Section ..., we discuss relationships between Hibbard intelligence measures
-    and Intuitive Ordinal Intelligence.
+    In Section ..., we use the slow-growing hierarchy and Kleene's $\mathcal O$
+    to present another way to
+    remedy Hibbard's intelligence measure. This resulting intelligence measures do not
+    have the flaw that is seen in Section ....
 \end{itemize}
 
 \section{Hibbard's original measure}
