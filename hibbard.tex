@@ -78,7 +78,8 @@ The structure of the paper is as follows.
     under certain idealizing assumptions, \emph{every} AGI probably has intelligence
     $\infty$ according to the classical Hibbard measure.
     \item
-    In Section ..., we present an elementary way to remedy Hibbard's intelligence
+    In Section \ref{simplemeasuresection}, we present an elementary way to
+    remedy Hibbard's intelligence
     measure so that not every AGI has intelligence $\infty$; however, the resulting
     intelligence measures are shown to still have a crucial flaw.
     \item
@@ -501,6 +502,7 @@ the former.
 \end{proof}
 
 \subsection{Triviality of the classical Hibbard measure}
+\label{trivialitysubsection}
 
 Although Example \ref{bruteforcenottotallyoptimalexample} showed that
 an AGI $X$'s brute-force predictor
@@ -562,6 +564,53 @@ trivial: that it assigns intelligence level $\infty$ to every AGI.
     knows that $M'$ is total. By Lemma \ref{knowingimplieslearninglemma},
     $p$ learns to predict $e$, as desired.
 \end{proof}
+
+\section{An elementary method to non-trivialize Hibbard's intelligence measure}
+\label{simplemeasuresection}
+
+In Subsection \ref{trivialitysubsection}, we saw that every AGI probably has
+intelligence $\infty$ according to the classical Hibbard measure. If so, this
+means the classical Hibbard measure is trivial. In this section, we will present
+the first of two methods for remedying this state of affairs. Rather than define
+one single intelligence measure, we will define a family of intelligence measures:
+one intelligence measure for each AGI $X$, which one might think of informally as
+a measure of ``intelligence as judged by $X$''.
+
+The idea is simple. The classical Hibbard measure
+(Definition \ref{classichibbardmeasuredefn}) depends on a sequence $(g_0,g_1,\ldots)$
+of total computable functions $g_i:\mathbb N\to\mathbb N$ imported from one specific
+outside source, namely Liu \cite{liu1960enumeration}. Rather than artificially depend
+on Liu, we will instead depend on an AGI $X$.
+
+\begin{definition}
+\label{functionlistdefinition}
+    If $X$ is an AGI, let $(C^X_0, C^X_1, C^X_2, \ldots)$ be the sequence of
+    Turing machines which would result if $X$ were commanded: ``Until further
+    notice, list all the Turing machines $C$ that you can think of such that
+    you know $C$ computes a total function from $\mathbb N$ to $\mathbb N$.''
+    For each $i$, let $g^X_i:\mathbb N\to\mathbb N$ be the function computed by
+    $C^X_i$.
+\end{definition}
+
+For example, if $X$ is an AGI, then in response to the command in Definition
+\ref{functionlistdefinition}, $X$ might think for a while, figure out a Turing
+machine $C^X_0$ which computes the constant function $g^X_0(n)=0$. Then $X$
+might think some more and figure out a Turing machine $C^X_1$ which computes
+the identity function $g^X_1(n)=n$. Then $X$ might think some more and figure
+out a Turing machine $C^X_2$ which computes the prime number function, so that
+$g^X_2(n)$ is the $(n+1)$th prime number. And so on.
+
+It is philosophically interesting that although there is no apparent ordering that
+would turn the set of all total-function-from-$\mathbb N$-to-$\mathbb N$-computing
+Turing machines into a sequence, an AGI automatically acts as a kind of oracle for
+so ordering said Turing machines (or at least, those which said AGI knows to be in
+said set).
+
+\begin{definition}
+    For any AGI $X$, the \emph{simple Hibbard measure given by $X$}
+    is defined to be the Hibbard measure given by
+    $(g^X_0,g^X_1,\ldots$) (see Definition \ref{generalintelligencemeasuredefn}).
+\end{definition}
 
 
 \bibliographystyle{plain}
