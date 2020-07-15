@@ -88,7 +88,7 @@ The structure of the paper is as follows.
     measure so that not every AGI has intelligence $\infty$; however, the resulting
     intelligence measures are shown to still have a crucial flaw.
     \item
-    In Section ..., we review the \emph{slow-growing hierarchy}.
+    In Section \ref{slowgrowinghierarchysection}, we review the \emph{slow-growing hierarchy}.
     \item
     In Section ..., we review \emph{Kleene's $\mathcal O$}.
     \item
@@ -664,6 +664,7 @@ $|Y|_X$ is finite.
 \end{proof}
 
 \subsection{The problem with simple Hibbard measures}
+\label{problemwithsimplehibbardsection}
 
 In Theorem \ref{simplehibbardnontrivialtheorem} we proved more than was necessary,
 yielding the following stronger result.
@@ -724,7 +725,51 @@ that $|Y|_X$ depends just as much on the arbitrary order in which $X$
 outputs Turing machines as it does on how intelligent $Y$ is.
 
 In Section ..., we will define a more sophisticated type of Hibbard measure
-which avoids the above problem.
+which avoids the above problem. First, though, we need to borrow some machinery
+from mathematical logic.
+
+\section{The slow-growing hierarchy}
+\label{slowgrowinghierarchysection}
+
+The classic Hibbard measure
+(Definition \ref{classichibbardmeasuredefn}) depends on a specific list of
+quickly-growing computable functions from $\mathbb N$ to $\mathbb N$, imported from
+\cite{liu1960enumeration}. In Section \ref{agiperspectivesection}, we argued
+that the classic Hibbard measure is trivial because the functions thus imported
+are too slow-growing.
+In Section \ref{simplemeasuresection} we generalized
+the classic Hibbard measure
+by delegating the choice of a list of quickly-growing computable functions to an AGI rather
+than to a single external paper. The resulting family of simple Hibbard measures is
+non-trivial (Theorem \ref{simplehibbardnontrivialtheorem}), but in
+Subsection \ref{problemwithsimplehibbardsection} we argued that these generalized
+measures still have a crucial flaw: they depend too heavily on the order in which
+the AGI supplies its list of computable functions.
+
+In order to solve the problem of dependence on computable functions, we will take
+a different strategy.
+\begin{itemize}
+    \item
+    In mathematical logic, there is a general recipe for obtaining
+    quickly-growing functions. This recipe is called the \emph{slow-growing hierarchy}.
+    \item
+    The recipe takes as input an ordinal number along with a so-called \emph{fundamental
+    sequence}, and outputs a quickly-growing computable function.
+    \item
+    Thus, instead of
+    commanding our AGI to directly produce a list of quickly-growing computable functions,
+    we can instead command our AGI to produce a list of computable ordinal numbers (carefully
+    notated so as to include fundamental sequences), and then obtain a list of quickly-growing
+    computable functions indirectly, by means of the slow-growing hierarchy.
+\end{itemize}
+This solves the problem of dependence on ordering: we can completely ignore the order
+in which the AGI outputs the computable ordinals, because computable ordinals are
+\emph{themselves} ordered. In other words, if the AGI outputs a small computable ordinal
+and a large computable ordinal, we can consider the small computable ordinal to precede
+the large computable ordinal, regardless of in which order the AGI outputs them.
+
+
+
 
 \bibliographystyle{plain}
 \bibliography{hibbard}
