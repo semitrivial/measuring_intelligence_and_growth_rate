@@ -6,6 +6,7 @@
 \usepackage{amsmath}
 \newtheorem{definition}{Definition}
 \newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{example}[theorem]{Example}
 \newtheorem{assumption}[theorem]{Assumption}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -628,6 +629,7 @@ that at least for certain $X$, there exist $Y$ such that
 $|Y|_X$ is finite.
 
 \begin{theorem}
+\label{simplehibbardnontrivialtheorem}
     (Non-triviality of simple Hibbard measures)
     Suppose $X$ and $Y$ are AGIs. Let $p$ be $Y$'s predictor.
     If $X$ knows that $p$ defines a total function from $B^*$ to $B$,
@@ -663,23 +665,66 @@ $|Y|_X$ is finite.
 
 \subsection{The problem with simple Hibbard measures}
 
-The following theorem shows that the simple Hibbard measure given by an AGI $X$
-depends non-trivially on the order in which $X$ would enumerate Turing machines
-when commanded as in Definition \ref{functionlistdefinition}.
+In Theorem \ref{simplehibbardnontrivialtheorem} we proved more than was necessary,
+yielding the following stronger result.
 
-\begin{theorem}
-    (Order-dependence of simple Hibbard measures)
-    Suppose $X,Y,Z$ are AGIs. Let $p_Z$ and $p_Y$ be $Z$'s predictor and
-    $Y$'s predictor, respectively. Assume the following:
+\begin{corollary}
+\label{technicalcorollaryaboutsimplehibbardmeasures}
+    Suppose $X$ and $Y$ are AGIs. Let $p$ be $Y$'s predictor.
+    Suppose that $X$ knows that $p$ defines a total function from
+    $B^*$ to $B$.
+    Then there is a Turing machine $C$ such that:
     \begin{enumerate}
-        \item $X$ knows that $p_Y$ computes a total function from $B^*$ to $B$.
-        \item $Y$ knows that $p_Z$ computes a total function from $B^*$ to $B$.
+        \item
+        $C$ computes the function $g:\mathbb N\to \mathbb N$ defined by
+        $g(n)=t_e(n)+1$, where $t_e$ is as in
+        Definition \ref{tsubedefinition}.
+        \item
+        $X$ knows that $C$ computes a total function from $\mathbb N$ to $\mathbb N$.
     \end{enumerate}
-    Then $|Y|_X$ and $|Z|_X$ may be equal or unequal, depending on the order
-    in which $X$ would enumerate Turing machines when commanded as in
-    Definition \ref{functionlistdefinition}.
-\end{theorem}
+    Furthermore: $|Y|_X<m$ where $m$ is such that $C=C^X_m$.
+\end{corollary}
 
+On the other hand, the following result also holds.
+
+\begin{lemma}
+\label{technicallemmaaboutsimplehibbardmeasures}
+    Suppose $X$ and $Y$ are AGIs. Suppose that for all $i=1,\ldots,m$,
+    $g^X_i$ is identically zero: $g^X_i(n)=0$.
+    Then $|Y|_X\geq m$.
+\end{lemma}
+
+\begin{proof}
+    If $f_m:\mathbb N\to\mathbb N$
+    is defined (as in Definition \ref{generalintelligencemeasuredefn})
+    by $f_m(k)=\max_{i\leq m}\max_{j\leq k}g^X_i(j)$, then, by
+    assumption, $f_m(k)=\max_{i\leq m}\max_{j\leq k}0=0$.
+    Thus $E_{f_m}$ is empty, and so, vacuously, $Y$'s predictor learns
+    to predict every evader in $E_{f_m}$. This shows $|Y|_X\geq m$.
+\end{proof}
+
+By the \emph{mathematical reasoning ability} and \emph{basic mathematical
+exposure} assumptions from Assumption \ref{idealizingassumption},
+for any AGI $X$, there are infinitely many Turing machines $C$ such that
+\begin{enumerate}
+    \item
+    $C$ defines the zero function $g(n)=0$ defined on all of $\mathbb N$, and
+    \item
+    $X$ knows $C$ defines a total function from $\mathbb N$ to $\mathbb N$.
+\end{enumerate}
+Thus, combining Corollary \ref{technicalcorollaryaboutsimplehibbardmeasures}
+and Lemma \ref{technicallemmaaboutsimplehibbardmeasures},
+we see that if $X$ knows that $Y$'s predictor defines a total function
+from $B^*$ to $B$, then we can make $|Y|_{X'}$ have any value we like,
+by letting $X'$ be an AGI identical to $X$ in every way except that
+$X'$ outputs Turing machines in a different order than $X$ when commanded
+as in Definition \ref{functionlistdefinition}.
+This is a crucial flaw in the simple Hibbard measures, because it shows
+that $|Y|_X$ depends just as much on the arbitrary order in which $X$
+outputs Turing machines as it does on how intelligent $Y$ is.
+
+In Section ..., we will define a more sophisticated type of Hibbard measure
+which avoids the above problem.
 
 \bibliographystyle{plain}
 \bibliography{hibbard}
