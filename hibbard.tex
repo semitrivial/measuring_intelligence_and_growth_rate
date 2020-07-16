@@ -753,15 +753,18 @@ a different strategy.
 \begin{itemize}
     \item
     In mathematical logic, there is a general recipe for obtaining
-    quickly-growing functions. This recipe is called the \emph{slow-growing hierarchy}.
+    quickly-growing computable
+    functions. This recipe is called the \emph{slow-growing hierarchy}.
     \item
-    The recipe takes as input an ordinal number along with a so-called \emph{fundamental
-    sequence}, and outputs a quickly-growing computable function.
+    The recipe takes as input a computable
+    ordinal number $\alpha$ along with some so-called \emph{fundamental
+    sequences} for certain ordinals $\lambda<\alpha$, and outputs
+    a quickly-growing computable function.
     \item
     Thus, instead of
     commanding our AGI to directly produce a list of quickly-growing computable functions,
-    we can instead command our AGI to produce a list of computable ordinal numbers (carefully
-    notated so as to include fundamental sequences), and then obtain a list of quickly-growing
+    we can instead command our AGI to produce computable ordinal numbers and
+    fundamental sequences, and then obtain a list of quickly-growing
     computable functions indirectly, by means of the slow-growing hierarchy.
 \end{itemize}
 This solves the problem of dependence on ordering: we can completely ignore the order
@@ -799,7 +802,7 @@ the large computable ordinal, regardless of in which order the AGI outputs them.
 \end{definition}
 
 \begin{definition}
-    (The Slow-Growing Hierarchy)
+    (Slow-Growing Hierarchies)
     Suppose $\alpha$ is an ordinal and suppose $\mathcal F$ is a function which
     takes as input a limit ordinal $\lambda<\alpha$ and outputs a fundamental
     sequence $\mathcal F(\lambda)=(\lambda[0],\lambda[1],\lambda[2],\ldots)$
@@ -818,6 +821,17 @@ the large computable ordinal, regardless of in which order the AGI outputs them.
         $\mathcal F(\lambda)$ of $\lambda$.
     \end{enumerate}
 \end{definition}
+
+\begin{lemma}
+    Suppose $\{G_\beta\}_{\beta<\alpha}$ is the slow-growing hierarchy given by
+    an ordinal $\alpha$ and function $\mathcal F$.
+    If $\alpha$ is computable and $\mathcal F$ is computable,
+    then each $G_\beta$ is computable.
+\end{lemma}
+
+\begin{proof}
+By Church's thesis.
+\end{proof}
 
 \begin{example}
     Consider the ordinal $\alpha=\omega^2$ (where $\omega$ is the smallest infinite
@@ -905,9 +919,23 @@ the large computable ordinal, regardless of in which order the AGI outputs them.
 \end{example}
 
 Example \ref{epsilon0example} illustrates how the slow-growing hierarchy reduces
-the open-ended problem, ``Invent a quickly-growing function,'' into a slightly
+the open-ended problem, ``Invent a quickly-growing computable function,'' into a slightly
 less open-ended and more manageable problem: ``Invent fundamental sequences up to a
-large ordinal.''
+large computable ordinal.''
+
+Slow-growing hierarchies provide an elegant means of obtaining quickly-growing
+computable functions from $\mathbb N$ to $\mathbb N$.
+The larger the computable ordinal, the larger the resulting computable function.
+However, inventing large computable ordinals is a non-trivial task---in
+\cite{ioi2} we argue that it might be a task that exhausts the full range
+of intelligence (i.e., that for any possible intelligence level, there is a corresponding
+computable ordinal whose invention requires at least that much intelligence).
+Even having invented a large computable ordinal, the task of assigning fundamental
+sequences to the limit ordinals below it is another difficult task in general\footnote{The
+choice of fundamental sequences can dramatically change the growth rate of the
+resulting slow-growing hierarchy---see \cite{weiermann1997sometimes}.}.
+Fortunately, this is a theoretical paper about AGI, so we can completely dodge all this
+work by delegating it to our AGI.
 
 \begin{definition}
 \label{fundamentalsequenceextensiondef}
