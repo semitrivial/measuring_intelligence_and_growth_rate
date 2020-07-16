@@ -4,6 +4,8 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{mathdots}
 \newtheorem{definition}{Definition}
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -768,8 +770,143 @@ in which the AGI outputs the computable ordinals, because computable ordinals ar
 and a large computable ordinal, we can consider the small computable ordinal to precede
 the large computable ordinal, regardless of in which order the AGI outputs them.
 
+\begin{definition}
+    (Classification of ordinal numbers)
+    Let $\alpha$ be an ordinal number.
+    \begin{enumerate}
+        \item
+        If $\alpha=\beta+1$ for some ordinal number $\beta$, then $\alpha$ is called
+        a \emph{successor ordinal}.
+        \item
+        If $\alpha$ is not a successor ordinal and $\alpha\neq 0$, then $\alpha$ is
+        called a \emph{limit ordinal}.
+    \end{enumerate}
+\end{definition}
 
+\begin{definition}
+    If $\lambda$ is a limit ordinal, a \emph{fundamental sequence} for $\lambda$
+    is a sequence $(\lambda[0],\lambda[1],\lambda[2],\ldots)$
+    of ordinals, such that the following requirements hold:
+    \begin{enumerate}
+        \item
+        Each $\lambda[i]<\lambda[i+1]<\lambda$.
+        \item
+        $\lim_{i\to\infty}\lambda[i]=\lambda$, by which we mean that for
+        any ordinal $\alpha<\lambda$, there is some $N\in\mathbb N$ such that
+        for all $i>N$, $\lambda[i]>\alpha$.
+    \end{enumerate}
+\end{definition}
 
+\begin{definition}
+    (The Slow-Growing Hierarchy)
+    Suppose $\alpha$ is an ordinal and suppose $\mathscr F$ is a function which
+    takes as input a limit ordinal $\lambda<\alpha$ and outputs a fundamental
+    sequence $\mathscr F(\lambda)=(\lambda[0],\lambda[1],\lambda[2],\ldots)$
+    for $\lambda$. The \emph{slow-growing hierarchy given by $\alpha$ and $\mathscr F$}
+    is the family of family of functions consisting of a function
+    $G_\beta:\mathbb N\to\mathbb N$ for every
+    ordinal $\beta<\alpha$, defined by transfinite induction by the following cases.
+    \begin{enumerate}
+        \item
+        $G_0(x)=0$.
+        \item
+        $G_{\beta+1}(x) = G_\beta(x) + 1$.
+        \item
+        $G_{\lambda}(x) = G_{\lambda[x]}(x)$ (for every limit ordinal $\lambda<\alpha$),
+        where $(\lambda[0],\lambda[1],\lambda[2],\ldots)$ are the fundamental sequence
+        $\mathscr F(\lambda)$ of $\lambda$.
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    Consider the ordinal $\alpha=\omega^2$ (where $\omega$ is the smallest infinite
+    ordinal).
+    The limit ordinals $\lambda<\omega^2$ are exactly the ordinals
+    $\{\omega\cdot (n+1)\,:\,n\in\mathbb N,\}$.
+    A natural way to assign fundamental sequences to these limit ordinals is to define,
+    for all $n,m\in\mathbb N$,
+    \[
+        \mathscr F(\omega\cdot(n+1))(m) = (\omega\cdot(n+1))[m] = (\omega\cdot n)+m.
+    \]
+    Let us compute some of the functions $\{G_{\beta}\,:\,\beta<\alpha\}$
+    given by $\alpha$ and $\mathscr F$. Below, $x$ and $n$
+    denote arbitrary natural numbers.
+    \begin{enumerate}
+        \item
+        By the base case, $F_0(x)=0$ for all $x\in\mathbb N$.
+        \item
+        By the successor case, $F_1(x)=F_0(x)+1=0+1=1$.
+        \item
+        By the successor case, $F_2(x)=F_1(x)+1=1+1=2$.
+        \item
+        Generalizing the above pattern, $F_n(x)=n$.
+        \item
+        By the limit case,
+        $F_\omega(x)=F_{\omega\cdot(0+1)}(x)
+        =F_{(\omega\cdot(0+1))[x]}(x)=F_{(\omega\cdot 0)+x}(x)
+        =F_x(x)=x$ (by (4) above).
+        \item
+        By the successor case, $F_{\omega+1}(x)=F_{\omega}(x)+1=x+1$.
+        \item
+        By the successor case, $F_{\omega+2}(x)=F_{\omega+1}(x)+1=x+2$.
+        \item
+        Generalizing the above pattern, $F_{\omega+n}(x)=x+n$.
+        \item
+        By the limit case,
+        $F_{\omega\cdot 2}(x)=F_{\omega\cdot(1+1)}(x)
+        =F_{(\omega\cdot(1+1))[x]}(x)=F_{(\omega\cdot 1)+x}(x)
+        =x+x$.
+        \item
+        Similarly, the reader can check that $F_{\omega\cdot 3}(x)=x+x+x$.
+        \item
+        Generalizing the above pattern, $F_{\omega\cdot n}(x)=x\cdot n$.
+    \end{enumerate}
+\end{example}
+
+\begin{example}
+\label{epsilon0example}
+    The ordinal $\epsilon_0$
+    (pronounced ``epsilon-nought'') is the smallest ordinal which is larger than
+    all the ordinals $\omega, \omega^\omega, \omega^{\omega^\omega}, \ldots$.
+    It satisfies the equation $\epsilon_0=\omega^{\epsilon_0}$, and can be
+    intuitively thought of as
+    \[
+        \epsilon_0 = \omega^{\omega^{\omega^{\iddots}}}.
+    \]
+    Examples of ordinals below $\epsilon_0$ include such ordinals as
+    $\omega^\omega$, $\omega^{\omega^\omega+\omega}$,
+    \[
+        \omega^{\omega^{\omega^{\omega^\omega+\omega^3+5}+\omega^{\omega^2}+\omega^\omega}+1}
+        +\omega^{\omega^{\omega^2+\omega+1}+\omega^{800}}
+        +\omega^{\omega^5\cdot 12 + \omega^4\cdot 9 + 1000}
+        +1,
+    \]
+    and so on. There is a natural way to assign fundamental sequences to ordinals
+    up to $\epsilon_0$, yielding a corresponding slow-growing hierarchy where, for example,
+    \begin{align*}
+        F_{\omega^\omega}(x) &= x^x,\\
+        F_{\omega^{\omega^\omega}+5}(x) &= x^{x^x}+5,\\
+        F_{\omega^{\omega^{\omega^{\omega^\omega}}}}(x) &= x^{x^{x^{x^{x}}}},
+    \end{align*}
+    and so on. Likewise, $(\omega,\omega^\omega,\omega^{\omega^\omega},\ldots)$ is itself a
+    natural fundamental sequence for $\epsilon_0$. What can $F_{\epsilon_0}(x)$ be?
+    Thinking of $\epsilon_0$ as $\omega^{\omega^{\iddots}}$, one might initially think
+    $F_{\epsilon_0}(x)=x^{x^{\iddots}}$, but such an infinite tower of natural numbers
+    does not make sense for $x>1$. Instead, the answer defies familiar mathematical notation,
+    but can be indicated as follows:
+    \begin{align*}
+        F_{\epsilon_0}(0) &= 0\\
+        F_{\epsilon_0}(1) &= 1^1\\
+        F_{\epsilon_0}(2) &= 2^{2^2}\\
+        F_{\epsilon_0}(3) &= 3^{3^{3^3}},
+    \end{align*}
+    and so on.
+\end{example}
+
+Example \ref{epsilon0example} illustrates how the slow-growing hierarchy reduces
+the open-ended problem, ``Invent a quickly-growing function,'' into a slightly
+less open-ended and more manageable problem: ``Invent fundamental sequences up to a
+large ordinal.''
 
 \bibliographystyle{plain}
 \bibliography{hibbard}
