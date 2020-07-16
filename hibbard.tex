@@ -801,6 +801,7 @@ the large computable ordinal, regardless of in which order the AGI outputs them.
 \end{definition}
 
 \begin{definition}
+\label{slowgrowinghierarchiesdefn}
     (Slow-Growing Hierarchies)
     Suppose $\alpha$ is an ordinal and suppose $\mathcal F$ is a function which
     takes as input a limit ordinal $\lambda<\alpha$ and outputs a fundamental
@@ -847,33 +848,33 @@ By Church's thesis.
     denote arbitrary natural numbers.
     \begin{enumerate}
         \item
-        By the base case, $F_0(x)=0$ for all $x\in\mathbb N$.
+        By the base case, $G_0(x)=0$ for all $x\in\mathbb N$.
         \item
-        By the successor case, $F_1(x)=F_0(x)+1=0+1=1$.
+        By the successor case, $G_1(x)=G_0(x)+1=0+1=1$.
         \item
-        By the successor case, $F_2(x)=F_1(x)+1=1+1=2$.
+        By the successor case, $G_2(x)=G_1(x)+1=1+1=2$.
         \item
-        Generalizing the above pattern, $F_n(x)=n$.
-        \item
-        By the limit case,
-        $F_\omega(x)=F_{\omega\cdot(0+1)}(x)
-        =F_{(\omega\cdot(0+1))[x]}(x)=F_{(\omega\cdot 0)+x}(x)
-        =F_x(x)=x$ (by (4) above).
-        \item
-        By the successor case, $F_{\omega+1}(x)=F_{\omega}(x)+1=x+1$.
-        \item
-        By the successor case, $F_{\omega+2}(x)=F_{\omega+1}(x)+1=x+2$.
-        \item
-        Generalizing the above pattern, $F_{\omega+n}(x)=x+n$.
+        Generalizing the above pattern, $G_n(x)=n$.
         \item
         By the limit case,
-        $F_{\omega\cdot 2}(x)=F_{\omega\cdot(1+1)}(x)
-        =F_{(\omega\cdot(1+1))[x]}(x)=F_{(\omega\cdot 1)+x}(x)
+        $G_\omega(x)=G_{\omega\cdot(0+1)}(x)
+        =G_{(\omega\cdot(0+1))[x]}(x)=G_{(\omega\cdot 0)+x}(x)
+        =G_x(x)=x$ (by (4) above).
+        \item
+        By the successor case, $G_{\omega+1}(x)=G_{\omega}(x)+1=x+1$.
+        \item
+        By the successor case, $G_{\omega+2}(x)=G_{\omega+1}(x)+1=x+2$.
+        \item
+        Generalizing the above pattern, $G_{\omega+n}(x)=x+n$.
+        \item
+        By the limit case,
+        $G_{\omega\cdot 2}(x)=G_{\omega\cdot(1+1)}(x)
+        =G_{(\omega\cdot(1+1))[x]}(x)=G_{(\omega\cdot 1)+x}(x)
         =x+x$.
         \item
-        Similarly, the reader can check that $F_{\omega\cdot 3}(x)=x+x+x$.
+        Similarly, the reader can check that $G_{\omega\cdot 3}(x)=x+x+x$.
         \item
-        Generalizing the above pattern, $F_{\omega\cdot n}(x)=x\cdot n$.
+        Generalizing the above pattern, $G_{\omega\cdot n}(x)=x\cdot n$.
     \end{enumerate}
 \end{example}
 
@@ -898,21 +899,20 @@ By Church's thesis.
     and so on. There is a natural way to assign fundamental sequences to ordinals
     up to $\epsilon_0$, yielding a corresponding slow-growing hierarchy where, for example,
     \begin{align*}
-        F_{\omega^\omega}(x) &= x^x,\\
-        F_{\omega^{\omega^\omega}+5}(x) &= x^{x^x}+5,\\
-        F_{\omega^{\omega^{\omega^{\omega^\omega}}}}(x) &= x^{x^{x^{x^{x}}}},
+        G_{\omega^\omega}(x) &= x^x,\\
+        G_{\omega^{\omega^\omega}+5}(x) &= x^{x^x}+5,\\
+        G_{\omega^{\omega^{\omega^{\omega^\omega}}}}(x) &= x^{x^{x^{x^{x}}}},
     \end{align*}
     and so on. Likewise, $(\omega,\omega^\omega,\omega^{\omega^\omega},\ldots)$ is itself a
-    natural fundamental sequence for $\epsilon_0$. What can $F_{\epsilon_0}(x)$ be?
+    fundamental sequence for $\epsilon_0$. What could $G_{\epsilon_0}(x)$ be?
     Thinking of $\epsilon_0$ as $\omega^{\omega^{\iddots}}$, one might initially think
-    $F_{\epsilon_0}(x)=x^{x^{\iddots}}$, but such an infinite tower of natural numbers
-    does not make sense for $x>1$. Instead, the answer defies familiar mathematical notation,
-    but can be indicated as follows:
+    $G_{\epsilon_0}(x)=x^{x^{\iddots}}$, but such an infinite tower of natural numbers
+    makes no sense for $x>1$. Instead, the answer defies familiar mathematical notation:
     \begin{align*}
-        F_{\epsilon_0}(0) &= 0\\
-        F_{\epsilon_0}(1) &= 1^1\\
-        F_{\epsilon_0}(2) &= 2^{2^2}\\
-        F_{\epsilon_0}(3) &= 3^{3^{3^3}},
+        G_{\epsilon_0}(0) &= 0\\
+        G_{\epsilon_0}(1) &= 1^1\\
+        G_{\epsilon_0}(2) &= 2^{2^2}\\
+        G_{\epsilon_0}(3) &= 3^{3^{3^3}},
     \end{align*}
     and so on.
 \end{example}
@@ -1019,6 +1019,7 @@ would be long and tedious.
 \end{definition}
 
 \begin{definition}
+\label{slowgrowinghierarchyofanagidefn}
     Let $X$ be an AGI. The \emph{slow-growing hierarchy of $X$} is defined to be
     the slow-growing hierarchy given by $\alpha_\infty$ and $\mathcal F_\infty$
     (via Lemma \ref{slowgrowingtechnicallemma}) where $(\alpha_i)_{i\in\mathbb N}$
@@ -1032,7 +1033,15 @@ would be long and tedious.
     that the $\alpha_i$s include computable ordinals as large as you can think of.''
 \end{definition}
 
-
+\begin{definition}
+    Let $X$ be an AGI. The \emph{transfinite Hibbard measure} given by $X$ is
+    the function which assigns to each AGI $Y$ a computable ordinal $\|Y\|_X$
+    defined as follows. Let $\alpha_\infty$ and $\mathcal F_\infty$ be as in
+    Definition \ref{slowgrowinghierarchyofanagidefn}, and let
+    $\{G_\beta\}_{\beta<\alpha_\infty}$ be the slow-growing hierarchy
+    given by $\alpha_\infty$ and $\mathcal F_\infty$
+    (Definition \ref{slowgrowinghierarchiesdefn}).
+\end{definition}
 
 \bibliographystyle{plain}
 \bibliography{hibbard}
