@@ -92,9 +92,8 @@ The structure of the paper is as follows.
     \item
     In Section \ref{slowgrowinghierarchysection}, we review the \emph{slow-growing hierarchy}.
     \item
-    In Section ..., we review \emph{Kleene's $\mathcal O$}.
-    \item
-    In Section ..., we use the slow-growing hierarchy and Kleene's $\mathcal O$
+    In Section \ref{transfinitehibbardsection}, we use the
+    slow-growing hierarchy and Kleene's $\mathcal O$
     to present another way to
     remedy Hibbard's intelligence measure. This resulting intelligence measures do not
     have the flaw that is seen in Section ....
@@ -935,7 +934,9 @@ sequences to the limit ordinals below it is another difficult task in general\fo
 choice of fundamental sequences can dramatically change the growth rate of the
 resulting slow-growing hierarchy---see \cite{weiermann1997sometimes}.}.
 Fortunately, this is a theoretical paper about AGI, so we can completely dodge all this
-work by delegating it to our AGI.
+work by delegating it to our AGI. In order to do so in a sensible way, we need a certain
+technical lemma which will allow us to command the AGI to give us a slow-growing hierarchy
+one piece at a time.
 
 \begin{definition}
 \label{fundamentalsequenceextensiondef}
@@ -956,6 +957,7 @@ work by delegating it to our AGI.
 \end{definition}
 
 \begin{lemma}
+\label{slowgrowingtechnicallemma}
     Suppose for every $i\in\mathbb N$,
     $\mathcal H_i$ is the slow-growing hierarchy given by an ordinal
     $\alpha_i$ and function $\mathcal F_i$.
@@ -997,6 +999,40 @@ work by delegating it to our AGI.
     $\mathcal F_i$ is a function which assigns fundamental sequences to all limit
     ordinals $<\alpha_i$.
 \end{proof}
+
+\section{The Transfinite Hibbard measures}
+\label{transfinitehibbardsection}
+
+We would like to delegate the problem of inventing large computable ordinals and
+fundamental sequences to an AGI. In order to do so, we need a systematic
+way for the AGI to encode those things. Since we do not care about the specific
+details of the encoding, we can get away with the following high-level definition.
+A more concrete definition would be possible by using, say, the ordinal notation
+system known as Kleene's $\mathcal O$ \cite{kleene1938notation}, but the details
+would be long and tedious.
+
+\begin{definition}
+    By a \emph{slow-growing hierarchy notation}, we mean a
+    definition (in the language of ZFC) of a pair $(\alpha,\mathcal F)$
+    such that $\alpha$ is a computable ordinal and $\mathcal F$ is a computable
+    function that assigns fundamental sequences to limit ordinals $\lambda<\alpha$.
+\end{definition}
+
+\begin{definition}
+    Let $X$ be an AGI. The \emph{slow-growing hierarchy of $X$} is defined to be
+    the slow-growing hierarchy given by $\alpha_\infty$ and $\mathcal F_\infty$
+    (via Lemma \ref{slowgrowingtechnicallemma}) where $(\alpha_i)_{i\in\mathbb N}$
+    and $(\mathcal F_i)_{i\in\mathbb N}$ are the defined by the
+    slow-growing hierarchy notations which
+    $X$ would output if $X$ were commanded as follows:
+    ``Until further notice, output slow-growing hierarchy
+    notations of pairs $(\alpha_i,\mathcal F_i)$, such that
+    the corresponding slow-growing hierarchies $\mathcal H_i$ satisfy
+    the hypotheses of Lemma \ref{slowgrowingtechnicallemma}. Do this in such a way
+    that the $\alpha_i$s include computable ordinals as large as you can think of.''
+\end{definition}
+
+
 
 \bibliographystyle{plain}
 \bibliography{hibbard}
