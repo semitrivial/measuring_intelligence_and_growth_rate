@@ -1034,14 +1034,40 @@ would be long and tedious.
 \end{definition}
 
 \begin{definition}
-    Let $X$ be an AGI. The \emph{transfinite Hibbard measure} given by $X$ is
-    the function which assigns to each AGI $Y$ a computable ordinal $\|Y\|_X$
-    defined as follows. Let $\alpha_\infty$ and $\mathcal F_\infty$ be as in
-    Definition \ref{slowgrowinghierarchyofanagidefn}, and let
-    $\{G_\beta\}_{\beta<\alpha_\infty}$ be the slow-growing hierarchy
+\label{transfinitehibbardmeasuredefn}
+    Suppose that $X$ is an AGI, and that
+    $\alpha_\infty$ and $\mathcal F_\infty$ are as in
+    Definition \ref{slowgrowinghierarchyofanagidefn}, and that
+    $\{G_\beta\}_{\beta<\alpha_\infty}$ is the slow-growing hierarchy
     given by $\alpha_\infty$ and $\mathcal F_\infty$
     (Definition \ref{slowgrowinghierarchiesdefn}).
+    The \emph{transfinite Hibbard measure given by $X$} is
+    the function which assigns to each AGI $Y$ a computable ordinal (or $\infty$)
+    $\|Y\|_X$
+    defined as follows.
+    We define $\|Y\|_X$ to be the smallest ordinal $\alpha<\alpha_\infty$ such that
+    there is some evader $e\in E_{G_\alpha}$ such that $Y$'s predictor does not
+    learn to predict $e$ (where $E_{G_\alpha}$ is as in Definition \ref{evadersetdefinition}),
+    or we define $\|Y\|_X=\infty$ if there is no such $\alpha$.
 \end{definition}
+
+Definition \ref{transfinitehibbardmeasuredefn} avoids the order-dependency problem which
+we saw in Subsection \ref{problemwithsimplehibbardsection}, because the functions
+$G_{\alpha}$ which are used to define evader-sets come with their own intrinsic ordering
+($G_{\alpha}$ comes before $G_{\beta}$ if and only if $\alpha<\beta$) rather than
+depending on the order in which the AGI thinks of things.
+
+If $X$ is an AGI, consider the set $S$ of all AGIs $Y$ such that $\|Y\|_X<\infty$.
+The transfinite Hibbard measure given by $X$ is a computable-ordinal-valued intelligence
+measure defined on $S$. This should be contrasted with intelligence measures that
+are real-number-valued. In \cite{alexander2020archimedean} we point out that because
+the real numbers are constrained by a certain generalized Archimedean property,
+real numbers are inappropriate for measuring things which are non-Archimedean in a certain
+technical sense. Arguably, if $X$ itself is sufficiently intelligent, then
+the intelligences of the AGIs in $S$ are probably non-Archimedean, and so the usage of
+computable ordinals to measure their intelligence is more appropriate than using real numbers.
+
+
 
 \bibliographystyle{plain}
 \bibliography{hibbard}
