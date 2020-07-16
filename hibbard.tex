@@ -48,7 +48,6 @@ than a function-sequence.
 \begin{quote}
     Todo:
     \begin{enumerate}
-        \item Rewrite 'caution'.
         \item Fix the subscripts in generalintelligencemeasuredefn to start at 0.
         \item Fix definition/theorem/etc numbering
         \item More examples in AGI section, including Turing Test.
@@ -348,7 +347,13 @@ for genuine AGIs.
         (Caution) $X$ avoids infinite loops: if $X$ is commanded to play the
         role of a predictor, then the resulting predictor $p$ will indeed
         be a predictor (a total computable function
-        from $B^*$ to $B$).
+        from $B^*$ to $B$). More generally, if $X$ is commanded to carry out any
+        task which involves outputting things repeatedly
+        until further notice, and the task is not impossible
+        (e.g., does not require solving the Halting Problem or doing other
+        non-computable things), then $X$ will continue outputting things (perhaps
+        after long intervals in between outputs), without ever entering into an
+        infinite period without output.
     \end{itemize}
 \end{assumption}
 
@@ -358,8 +363,9 @@ for genuine AGIs.
     \begin{enumerate}
         \item
         \emph{$X$'s predictor} is the predictor which
-        would result if $X$ were commanded to play the role of a predictor (so
-        the $X$'s predictor is a total computable function from $B^*\to B$ by Caution).
+        would result if $X$ were commanded to play the role of a predictor (a
+        genuine predictor by the \emph{caution} part of Assumption
+        \ref{idealizingassumption}).
         \item
         For any family $g_i$ of functions as in
         Definition \ref{generalintelligencemeasuredefn},
@@ -438,8 +444,7 @@ without explicit mention).
 \end{proof}
 
 For any AGI $X$, we would like to claim that $X$'s brute-force predictor is
-optimal among all predictors which $X$ could make use of without violating the
-Caution assumption (Definition \ref{idealizingassumption}); unfortunately this
+optimal among all predictors $X$ could act as; unfortunately this
 is not true in the strongest sense it possibly could be true, as the following
 example shows.
 
