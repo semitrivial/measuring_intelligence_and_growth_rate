@@ -22,14 +22,35 @@
 \maketitle
 
 \begin{abstract}
+In 2011, Bill Hibbard suggested an intelligence measure for predictors in adversarial
+sequence prediction games (and, implicitly, for AGIs capable of acting as such
+predictors upon command). Hibbard's measure depends on a specific sequence of functions
+which Hibbard imports from a paper by Liu. We argue that Hibbard's measure is trivial
+in the sense that any genuine AGI should have intelligence $\infty$ according to the
+measure, essentially because the specific functions in Liu's paper should all be
+trivial to a genuine AGI. We propose two families of Hibbard measures to improve upon
+Hibbard's first definition. First, we propose what we call simple Hibbard measures.
+For every AGI $X$, there is a corresponding simple Hibbard measure function, which
+assigns intelligence measurements to every AGI $Y$ (the intelligence measure assigned
+to $Y$ by the measure corresponding to $X$ might be thought of as ``intelligence of $Y$
+as judged by $X$''). Our key insight here is that instead of depending on one specific
+function-sequence provided by Liu, we can instead delegate the choice of a function-sequence
+to the AGI itself. We show that simple Hibbard measures are less trivial than Hibbard's
+original measure, but are still flawed. To repair the flaw, we propose what we call
+transfinite Hibbard measures, which are similar to simple Hibbard measures except that
+they depend on an AGI choosing a slow-growing hierarchy (from mathematical logic) rather
+than a function-sequence.
+\end{abstract}
+
+\section{Introduction}
+
+\begin{quote}
     Todo:
     \begin{enumerate}
         \item Rewrite 'caution'.
         \item Fix the subscripts in generalintelligencemeasuredefn to start at 0.
     \end{enumerate}
-\end{abstract}
-
-\section{Introduction}
+\end{quote}
 
 In his insightful paper \cite{hibbard}, Bill Hibbard introduces a novel
 intelligence measure (which we will here refer to as the \emph{classical Hibbard measure})
@@ -96,7 +117,9 @@ The structure of the paper is as follows.
     slow-growing hierarchy and Kleene's $\mathcal O$
     to present another way to
     remedy Hibbard's intelligence measure. This resulting intelligence measures do not
-    have the flaw that is seen in Section ....
+    have the flaw that is seen in Section \ref{simplemeasuresection}.
+    \item
+    In Section \ref{conclusionsection}, we summarize and make concluding remarks.
 \end{itemize}
 
 \section{Hibbard's original measure}
@@ -1097,6 +1120,54 @@ our Intuitive Ordinal Intelligence measure (an AGI $Y$'s Intuitive Ordinal Intel
 defined as the supremum of the ordinals $\alpha$ such that $\alpha$ has any code
 $c$ such that $Y$ knows that $c$ is the code of a computable ordinal)
 \cite{ioi1} \cite{ioi2}.
+
+\section{Summary and Conclusion}
+\label{conclusionsection}
+
+To summarize:
+\begin{itemize}
+    \item
+    Hibbard proposed \cite{hibbard} an intelligence measure for predictors (or, implicitly,
+    for AGIs capable of acting as predictors) in games of adversarial sequence prediction.
+    \item
+    Hibbard's measure depends on one specific sequence of computable functions from $\mathbb N$
+    to $\mathbb N$.
+    \item
+    In Section \ref{agiperspectivesection}, we argued that all AGIs probably have
+    intelligence $\infty$ according to Hibbard's definition. Essentially, this is because
+    the specific functions that Hibbard's definition is based on should all be trivially
+    well-known by any genuine AGI.
+    \item
+    In Section \ref{simplemeasuresection}, we introduced what we call \emph{simple Hibbard
+    measures}. For each AGI $X$, there is a corresponding simple Hibbard measure which
+    assigns an intelligence measurement $|Y|_X$ to every AGI $Y$. The simple Hibbard
+    measure corresponding to $X$ might be thought of as a measure of ``intelligence as
+    judged by $X$''. The key insight needed to define the simple Hibbard measure corresponding
+    to $X$ is as follows: rather than depend on one fixed sequence of functions (as in
+    Hibbard's original definition), we can delegate the task of choosing a function-sequence
+    to $X$.
+    \item
+    We showed that simple Hibbard measures are less trivial than Hibbard's original measure.
+    However, they still suffer a crucial flaw: the Hibbard measure corresponding to an
+    AGI $X$ depends unnaturally on the \emph{order} in which $X$ can think of
+    computable functions.
+    \item
+    To remedy the above-mentioned flaw in the simple Hibbard measures, we reviewed
+    \emph{slow-growing hierarchies} from mathematical logic and used them to define
+    (in Section \ref{transfinitehibbardsection}) what
+    we call \emph{transfinite Hibbard measures}, which assign
+    computable-ordinal-number-valued
+    intelligence measures rather than real-number-valued intelligence measures.
+\end{itemize}
+
+This paper exemplifies a useful technique for theoretical AGI research.
+By viewing an AGI as an employee who is capable of engaging in casual human
+language communication with its employer, and which can be commanded (using said
+casual human language) to perform mathematical tasks, the AGI becomes a useful
+black box to which many arbitrary decisions can be delegated. For example, instead
+of arbitrarily choosing one particular function-sequence (as Hibbard did in order
+to define his original measure), we can short-circuit the task of
+function-sequence-selection by delegating it to an AGI.
 
 
 \bibliographystyle{plain}
