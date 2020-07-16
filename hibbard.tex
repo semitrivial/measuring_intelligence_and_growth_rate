@@ -333,6 +333,7 @@ for genuine AGIs.
 \end{definition}
 
 \subsection{A semi-optimal predictor}
+\label{semioptimalpredictorsubsection}
 
 \begin{definition}
 \label{bruteforcepredictordefn}
@@ -1067,6 +1068,28 @@ technical sense. Arguably, if $X$ itself is sufficiently intelligent, then
 the intelligences of the AGIs in $S$ are probably non-Archimedean, and so the usage of
 computable ordinals to measure their intelligence is more appropriate than using real numbers.
 
+If AGI $Y$ plays the adversarial sequence prediction game using $Y$'s brute-force
+predictor, $Y$ enumerates all the Turing machines $M_1,M_2,\ldots$ such that $Y$ knows that
+$M_i$ computes a total function from $B^*$ to $B$, and $Y$ systematically tries to
+predict the evader $e$ by first assuming that $e$ computes the same function as
+$M_1$, and if that fails, then assuming that $e$ computes the same function as
+$M_2$, and so on. In particular, suppose $Y$ knows that a certain computable ordinal
+$\alpha$ and function $\mathcal F$ give a slow-growing hierarchy
+$\{G_\beta\}_{\beta<\alpha}$. For any $\beta<\alpha$,
+since $Y$ is capable of mathematical reasoning, for every Turing machine $M$
+which computes a total function from $B^*$ to $B$ and which has runtime bounded by
+$G_\beta$, there should be a Turing machine $M'$ such that $M$ computes the same
+function as $M'$ and such that $Y$ knows that $M'$ computes a total function from $B^*$
+to $B$. Thus, $M_1,M_2,\ldots$ should include Turing machines that compute all the
+functions from $B^*$ to $B$ that can be so computed with runtime bounded by any such
+$G_\beta$. Thus, assuming that $Y$'s predictor is $Y$'s brute-force predictor, if
+$\|Y\|_X<\infty$, then it seems that $\|Y\|_X$ should in some sense measure the size
+of the supremum of the ordinals $\alpha$ such that $Y$ knows a fundamental sequence up
+to $\alpha$. This suggests a close relation between the transfinite Hibbard measure and
+our Intuitive Ordinal Intelligence measure (an AGI $Y$'s Intuitive Ordinal Intelligence is
+defined as the supremum of the ordinals $\alpha$ such that $\alpha$ has any code
+$c$ such that $Y$ knows that $c$ is the code of a computable ordinal)
+\cite{ioi1} \cite{ioi2}.
 
 
 \bibliographystyle{plain}
