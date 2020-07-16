@@ -784,6 +784,7 @@ the large computable ordinal, regardless of in which order the AGI outputs them.
 \end{definition}
 
 \begin{definition}
+\label{fundamentalsequencedefn}
     If $\lambda$ is a limit ordinal, a \emph{fundamental sequence} for $\lambda$
     is a sequence $(\lambda[0],\lambda[1],\lambda[2],\ldots)$
     of ordinals, such that the following requirements hold:
@@ -799,10 +800,10 @@ the large computable ordinal, regardless of in which order the AGI outputs them.
 
 \begin{definition}
     (The Slow-Growing Hierarchy)
-    Suppose $\alpha$ is an ordinal and suppose $\mathscr F$ is a function which
+    Suppose $\alpha$ is an ordinal and suppose $\mathcal F$ is a function which
     takes as input a limit ordinal $\lambda<\alpha$ and outputs a fundamental
-    sequence $\mathscr F(\lambda)=(\lambda[0],\lambda[1],\lambda[2],\ldots)$
-    for $\lambda$. The \emph{slow-growing hierarchy given by $\alpha$ and $\mathscr F$}
+    sequence $\mathcal F(\lambda)=(\lambda[0],\lambda[1],\lambda[2],\ldots)$
+    for $\lambda$. The \emph{slow-growing hierarchy given by $\alpha$ and $\mathcal F$}
     is the family of family of functions consisting of a function
     $G_\beta:\mathbb N\to\mathbb N$ for every
     ordinal $\beta<\alpha$, defined by transfinite induction by the following cases.
@@ -814,7 +815,7 @@ the large computable ordinal, regardless of in which order the AGI outputs them.
         \item
         $G_{\lambda}(x) = G_{\lambda[x]}(x)$ (for every limit ordinal $\lambda<\alpha$),
         where $(\lambda[0],\lambda[1],\lambda[2],\ldots)$ are the fundamental sequence
-        $\mathscr F(\lambda)$ of $\lambda$.
+        $\mathcal F(\lambda)$ of $\lambda$.
     \end{enumerate}
 \end{definition}
 
@@ -826,10 +827,10 @@ the large computable ordinal, regardless of in which order the AGI outputs them.
     A natural way to assign fundamental sequences to these limit ordinals is to define,
     for all $n,m\in\mathbb N$,
     \[
-        \mathscr F(\omega\cdot(n+1))(m) = (\omega\cdot(n+1))[m] = (\omega\cdot n)+m.
+        \mathcal F(\omega\cdot(n+1))(m) = (\omega\cdot(n+1))[m] = (\omega\cdot n)+m.
     \]
     Let us compute some of the functions $\{G_{\beta}\,:\,\beta<\alpha\}$
-    given by $\alpha$ and $\mathscr F$. Below, $x$ and $n$
+    given by $\alpha$ and $\mathcal F$. Below, $x$ and $n$
     denote arbitrary natural numbers.
     \begin{enumerate}
         \item
@@ -907,6 +908,67 @@ Example \ref{epsilon0example} illustrates how the slow-growing hierarchy reduces
 the open-ended problem, ``Invent a quickly-growing function,'' into a slightly
 less open-ended and more manageable problem: ``Invent fundamental sequences up to a
 large ordinal.''
+
+\begin{definition}
+\label{fundamentalsequenceextensiondef}
+    Suppose $\mathcal H_1$ is the slow-growing hierarchy given by
+    ordinal $\alpha_1$ and function $\mathcal F_1$, and suppose
+    $\mathcal H_2$ is the slow-growing hierarchy given by
+    ordinal $\alpha_2$ and function $\mathcal F_2$.
+    We say \emph{$\mathcal H_2$ extends $\mathcal H_1$},
+    written $\mathcal H_1\prec \mathcal H_2$, if the following
+    requirements hold:
+    \begin{enumerate}
+        \item
+        $\alpha_1<\alpha_2$.
+        \item
+        For every limit ordinal $\lambda<\alpha_1$,
+        $\mathcal F_1(\lambda)=\mathcal F_2(\lambda)$.
+    \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+    Suppose for every $i\in\mathbb N$,
+    $\mathcal H_i$ is the slow-growing hierarchy given by an ordinal
+    $\alpha_i$ and function $\mathcal F_i$.
+    If $\mathcal H_0\prec \mathcal H_1\prec \mathcal H_2\prec\cdots$,
+    then
+    $\mathcal F_\infty=\cup_i\mathcal F_i$ is a function which assigns
+    fundamental sequences
+    to all limit ordinals $\lambda<\alpha_\infty=\cup_i\alpha_i$
+    (so that together, $\alpha_\infty$ and $\mathcal F_\infty$
+    give a slow-growing hierarchy).
+\end{lemma}
+
+\begin{proof}
+    By definition, $\mathcal F_\infty$ is a relation whose domain is
+    the union of the domains of all the $\mathcal F_i$, i.e.,
+    the set of all limit ordinals $\{\lambda\,:\,\lambda<\alpha_i\mbox{ for some $i$}\}$.
+    To show that $\mathcal F_\infty$ is a function, which must show that for any two pairs
+    $(\lambda,y_1)\in\mathcal F_\infty$ and $(\lambda,y_2)\in\mathcal F_\infty$,
+    $y_1=y_2$ (i.e., that
+    $\mathcal F_\infty$ ``passes the vertical line test'').
+    Assume $(\lambda,y_1)\in\mathcal F_\infty$ and $(\lambda,y_2)\in\mathcal F_\infty$.
+    This means there are some $i_1,i_2\in\mathbb N$ such that
+    $\mathcal F_{i_1}(\lambda)=y_1$ and $\mathcal F_{i_2}(\lambda)=y_2$.
+    If $i_1=i_2$ then $y_1=y_2$ because $\mathcal F_{i_1}=\mathcal F_{i_2}$ is a function,
+    but assume $i_1\neq i_2$. Without loss of generality we may
+    assume $i_1<i_2$ (the other case is similar).
+    Since $\mathcal H_{i_1}\prec \cdots \prec \mathcal H_{i_2}$,
+    it follows by a simple inductive argument that $\mathcal H_{i_1}\prec \mathcal H_{i_2}$.
+    Thus by condition 2 of Definition \ref{fundamentalsequenceextensiondef},
+    $y_1=y_2$, as desired.
+
+    It remains to let $\lambda<\alpha_\infty$ be a limit ordinal and show
+    that conditions 1 and 2 of Definition \ref{fundamentalsequencedefn}
+    hold for $\mathcal F_\infty(\lambda)$.
+    Since $\lambda<\alpha_\infty$, that means $\lambda<\alpha_i$ for some $i\in\mathbb N$.
+    Let $(\lambda[0],\lambda[1],\ldots)=\mathcal F_\infty(\lambda)$.
+    Then $(\lambda[0],\lambda[1],\ldots)=\mathcal F_i(\lambda)$, so
+    conditions 1 and 2 of Definition \ref{fundamentalsequencedefn} hold because
+    $\mathcal F_i$ is a function which assigns fundamental sequences to all limit
+    ordinals $<\alpha_i$.
+\end{proof}
 
 \bibliographystyle{plain}
 \bibliography{hibbard}
