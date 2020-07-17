@@ -609,34 +609,51 @@ is not optimal in the strongest possible sense, Theorem \ref{semioptimalitytheor
 shows that $X$'s brute-force predictor is still semi-optimal. In some sense,
 $X$'s brute-force predictor learns every evader which any other predictor $p$ (that $X$
 knows is a predictor) would learn, except possibly for cases where $p$ only learns
-an evader $e$ because $e$ withholds its full sophistication from $p$.
+an evader $e$ because $e$ conceals its full sophistication from $p$.
 
-Based on the above, we informally conjecture that the brute-force predictor is
-the most sensible predictor for an AGI $X$ to act as, if $X$ is commanded to
-act as a predictor and try to predict as many evaders as possible. If this conjecture
-is true, then the following theorem suggests that the original Hibbard measure is
+Since we only used basic mathematics to prove Theorem \ref{semioptimalitytheorem},
+any genuine AGI should also eventually figure out Theorem \ref{semioptimalitytheorem}.
+Thus, when an AGI is commanded to compete as a predictor in the adversarial
+sequence prediction game, the resulting predictor which the AGI acts as should be
+at least as good as the brute-force predictor, because why would the AGI act as
+a worse predictor if it can figure out that brute-force is semi-optimal?
+We formalize this in the following assumption.
+
+\begin{assumption}
+\label{bruteforceassumption}
+    For any AGI $X$, $X$'s predictor is at least as good as
+    $X$'s brute-force predictor, by which we mean that for any evader $e$,
+    if $X$'s brute-force predictor learns $e$, then $X$'s predictor
+    learns $e$.
+\end{assumption}
+
+Based on Assumption \ref{bruteforceassumption},
+we are now ready to argue that the original Hibbard measure is
 trivial: that it assigns intelligence level $\infty$ to every AGI.
 
 \begin{theorem}
-    Suppose $X$ is an AGI. If $X$'s predictor is $X$'s brute-force predictor,
-    then $X$ has original Hibbard intelligence $\infty$.
+    Every AGI $X$ has original Hibbard intelligence $\infty$.
 \end{theorem}
 
 \begin{proof}
-    Let $p$ be $X$'s brute-force
-    predictor. By Definition \ref{generalintelligencemeasuredefn}, in order
-    to show $p$ has original Hibbard intelligence $\infty$, we must
-    show that $p$ learns to predict $e$ for every $e$ in $E_{f_m}$ for
+    Let $p$ be $X$'s brute-force predictor, and let $q$ be $X$'s predictor.
+    By Definition \ref{generalintelligencemeasuredefn}, in order
+    to show $X$ has original Hibbard intelligence $\infty$, we must
+    show that $q$ learns to predict $e$ for every $e$ in $E_{f_m}$ for
     every $m\in\mathbb N$,
     where each $f_m:\mathbb N\to\mathbb N$ is defined by
     $f_m(k)=\max_{i\leq m}\max_{j\leq k}g_i(j)$,
     where $g_i$ is the $i$th primitive recursive function
+    in Liu's enumeration
     (Definition \ref{classichibbardmeasuredefn}).
+    By Assumption \ref{bruteforceassumption}, it suffices to show that
+    $q$ learns all such $e$, for then Assumption \ref{bruteforceassumption}
+    says that $p$ learns all such $e$ as well.
 
     Let $m\in\mathbb N$ be arbitrary and let $e\in E_{f_m}$ be arbitrary.
     By Definition \ref{evadersetdefinition},
     for all but finitely many $n\in\mathbb N$, $t_e(n)<f_m(n)$.
-    We must show that $p$ learns to predict $e$.
+    We will show that $p$ learns to predict $e$.
 
     Let $M$ be a Turing machine which takes an input
     $(y_1,\ldots,y_n)\in B^*$ and
@@ -644,22 +661,22 @@ trivial: that it assigns intelligence level $\infty$ to every AGI.
     \begin{itemize}
         \item
         Spend up to $f_m(n)$ steps computing $e(y_1,\ldots,y_n)$.
-        If $e$ halts during that time, say with output $x$, then output $x$.
+        If $e$ halts (with output $x$) during that time, then output $x$.
         Otherwise, output $0$.
     \end{itemize}
     Since, for all but finitely many $n\in\mathbb N$, $t_e(n)<f_m(n)$,
     it follows that $M$ computes the same function as $e$ except for finitely
     many exceptions.
 
-    It is well-known that for any primitive recursive function $g$, Peano
+    It is well-known that for every primitive recursive function $g$, Peano
     arithmetic proves that $g$ is total. Thus, by the \emph{basic mathematical
     exposure} and \emph{mathematical reasoning ability} assumptions from
     Assumption \ref{idealizingassumption}, it follows that $X$ knows that
     $M$ is total. Since $M$ computes the same function as $e$ except for
     finitely many exceptions, it follows that there is a Turing machine $M'$
-    which computes the same function as $e$ all thet time, and such that $X$
+    which computes the same function as $e$, and such that $X$
     knows that $M'$ is total. By Lemma \ref{knowingimplieslearninglemma},
-    $p$ learns to predict $e$, as desired.
+    $p$ learns to predict $e$.
 \end{proof}
 
 \section{An elementary method to non-trivialize Hibbard's intelligence measure}
