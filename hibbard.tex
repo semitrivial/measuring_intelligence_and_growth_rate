@@ -143,99 +143,95 @@ The structure of the paper is as follows.
 \label{agiperspectivesection}
 
 \begin{quote}
-    ``Thus it is a property of man to be capable of learning
-    grammar; for if he is a man, then he is capable of learning
+    ``Thus it is a property of man[-like intelligence] to be capable of learning
+    grammar; for if he is a man[-like intelligence], then he is capable of learning
     grammar, and if he is capable of learning grammar, then he is
-    a man.'' ---Aristotle \cite{aristotle}
+    a man[-like intelligence].'' ---Aristotle \cite{aristotle} (modified)
 \end{quote}
 
 As yet, we are unaware of any formal mathematical definition of what an AGI
-actually is. We take the stance that an AGI should be capable of understanding
-practical conversations and instructions in a common human language (such as
-English) and, if commanded by their employers, to obey commands expressed
-therein. So if the AGI's employer said, ``Recite digits of pi until I tell you to
-stop,'' then the AGI would begin computing and reciting digits of pi, until said
+actually is. We take the stance that an AGI should be thought of like a faithful
+employee which can understand
+practical conversation in a common human language (such as
+English) and capable of (and faithfully willing to) obey commands
+expressed by its employer in said language.
+So if the AGI's employer said, ``Recite the digits of pi until I tell you to
+stop,'' then the AGI would begin computing and reciting digits of pi, until the
 employer told it to stop (if ever). Unlike a human employee, who would eventually
 get fed up with such a task, an AGI should have no fear of tedium, and should
-never grow tired of performing whatever task it has been assigned.
+never grow tired of performing whatever task it has been assigned (we assume
+the AGI never runs out of memory and can indeed run forever, just like a Turing
+machine is routinely assumed to be able to run forever and have infinite tape).
 
-We think assumptions like the above are implicit in many attempts to study AGIs.
+We think assumptions similar to the above are implicit in many attempts to study AGIs.
 Many authors who set out to study
 AGIs actually study not the full AGI, but rather the AGI's persona when it is
 performing some general type of task. For example:
 \begin{itemize}
     \item
-    Legg and Hutter measure the intelligence of AGIs based on their performance
-    in reinforcement learning environments \cite{legg}. On a superficial
-    level, that approach is inappropriate because a genuine AGI is much more than
-    merely a reinforcement learning agent (however good that agent might be).
-    But at a deeper level, the approach is appropriate because although an AGI is
-    more than an RL agent, we could command the AGI to act as an RL agent, saying,
-    ``I am going to put you in a certain environment where you can take such-and-such
-    tasks, and rewards and observations will be communicated to you; please try to
-    reverse-engineer the environment and act in such a way as to maximize rewards.''
-    And while it is difficult to say anything about a full AGI, we can say quite a
-    lot about an RL agent, and thus we can study AGIs by proxy.
+    In the Turing test, the AGI is reduced to a conversation partner pretending to
+    be human.
+    An AGI is more than a pretend human conversation partner;
+    but an AGI would act as a pretend human conversation partner
+    if commanded to do so.
+    \item
+    In Hibbard's paper \cite{hibbard}, the AGI is reduced to a predictor in an
+    adversarial sequence prediction game.
+    An AGI is more than a predictor; but an AGI would
+    act as such a predictor if commanded to do so.
+    \item
+    Some authors \cite{legg} \cite{hernandez}
+    reduce the AGI to a reinforcement learning agent.
+    An AGI is more than a reinforcement
+    learning agent; but an AGI would
+    act as a reinforcement learning agent if commanded to do so.
+    \item
+    Some philosophers
+    reduce the AGI to a mere \emph{knower} who performs
+    no actions but simply knows things in some formal language, or, equivalently,
+    to a formal theory (namely the list of all the things it knows).
+    An AGI is more than a mere knower
+    or theory \cite{wang2007three};
+    but an AGI would act as a mere knower (and give rise to a resulting theory)
+    if commanded to do so.
     \item
     In the Non-Axiomatic Reasoning System research program (NARS) \cite{nars},
-    AGIs are reduced to agents who are bombarded with assertions in a specific formal
-    language, each assertion being accompanied by a priority measure, and some of
-    which assertions might contradict each-other. At any time during the bombardment
-    of assertions, the agent might also be queried, at which point the agent's job is
-    to estimate the probability of the truth of a queried assertion, based on the
-    assertions and priorities it has seen so far. This is certainly not all an AGI
-    is (for an AGI should be able to reason about first- and higher-order logics
-    involving quantifiers, for example). Nevertheless, an AGI's employer could command
-    it to behave like such an agent, and in response the AGI would behave like such an
-    agent.
-    \item
-    Many philosophers and logicians reduce an AGI to a mere \emph{knowing
-    agent} who performs no actions but simply knows things in some formal language.
-    Superficially, this is inappropriate because an AGI does much more than merely
-    know things \cite{wang2007three}. But at a deeper level, this is appropriate
-    because an AGI could certainly be commanded to act as such an agent, e.g., via 
-    a command like: ``Until further notice, do nothing except enumerate consequences
-    of Peano arithmetic'' (or some other formal language). And again, while it is
-    hard to say anything about a full AGI, we can say a lot about such computably
-    enumerable theories as would be recited by an AGI in response to such a question
-    (and they would indeed be computably enumerable because an AGI, whatever else it
-    is, must be mechanical).
+    it is hoped that an AGI can be realized via the implementation of what is,
+    essentially, a special type of database capable of being bombarded by
+    many (possibly conflicting) assertions in a certain formal language
+    and of outputting probabilistic answers to realtime queries about said
+    assertions. An AGI is more
+    than a mere database; but
+    an AGI would act as such a database if commanded to do so.
 \end{itemize}
+In the same way that IQ tests are intended to measure human intelligence despite
+the fact that humans are more than professional IQ-test-takers,
+likewise, the above cross-sections of AGI serve to illuminate AGI
+even though none of them capture the full AGI.
 
-In the same way, an AGI is certainly more than a predictor competing in
-games of adversarial sequence prediction. But an AGI could be commanded to
-act as such a predictor. That is why it makes sense to refer to the measures
-from Definition \ref{generalintelligencemeasuredefn} as ``intelligence'' measures
-(rather than as, say, ``prediction power'' measures). In the same way that
-IQ tests are intended to measure overall human intelligence despite the fact that
-human intelligence is so much more than the ability to take IQ tests, in the same
-way, adversarial sequence prediction games can serve as a sort of intelligence
-test for AGIs.
 
 \begin{assumption}
 \label{idealizingassumption}
-    We make the following idealizing assumptions about an AGI $X$.
+    We make the following idealizing assumptions about every AGI $X$.
     \begin{itemize}
         \item
+        (Basic mathematical exposure) $X$ knows the axioms of ZFC (the axiomatic
+        system underlying mainstream mathematics).
+        \item
         (Mathematical truthfulness) If $X$ knows some statement in the language
-        of Peano arithmetic, then that statement is true.
+        of ZFC, then that statement is true.
         \item
         (Mathematical reasoning ability) If $X$ knows some set $S$ of mathematical
         axioms then, given sufficient time to think about it, $X$ would eventually
         become aware of all the consequences of $S$.
         \item
-        (Basic mathematical exposure) $X$ knows the axioms of Peano arithmetic.
-        \item
-        (Caution) $X$ avoids infinite loops: if $X$ is commanded to play the
-        role of a predictor, then the resulting predictor $p$ will indeed
-        be a predictor (a total computable function
-        from $B^*$ to $B$). More generally, if $X$ is commanded to carry out any
-        task which involves outputting things repeatedly
-        until further notice, and the task is not impossible
+        (Caution) $X$ avoids infinite loops: If $X$ is commanded to carry out any
+        task which involves outputting things
+        forever, and if the task is not impossible
         (e.g., does not require solving the Halting Problem or doing other
-        non-computable things), then $X$ will continue outputting things (perhaps
-        after long intervals in between outputs), without ever entering into an
-        infinite period without output.
+        non-computable or nonsensical things),
+        then $X$ will continue outputting things (perhaps
+        after long intervals of time between outputs) indefinitely.
     \end{itemize}
 \end{assumption}
 
