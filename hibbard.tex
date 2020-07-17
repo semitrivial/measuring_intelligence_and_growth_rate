@@ -58,7 +58,7 @@ logic) rather than a function-sequence.
         \item A lemma to the effect that if X knows M is a Turing machine which computes
             f at all but finitely many points, then there exists a TM M' which computes
             f everywhere and such that X knows M' is total.
-        \item Fix the definition of t_e to work for predictors as well as evaders.
+        \item Fix the definition of $t_e$ to work for predictors as well as evaders.
     \end{enumerate}
 \end{quote}
 
@@ -494,9 +494,9 @@ example shows.
     computable functions from $\mathbb N$ to $B$, which is absurd because those functions
     are not computably enumerable.} by any Turing machine $M$ such that $X$ knows $X$ computes
     a total function from $\mathbb N$ to $B$.
-    For each $i\in\{0,1\}$, let $e_i$ be the evader defined as follows:
+    For each $i\in\{0,1\}$, let $e_i$ be an evader such that:
     \begin{align*}
-        e(\langle\rangle) &= i,\\
+        e_i(\langle\rangle) &= i,\\
         e_i(y_1,\ldots,y_n) &=
         \begin{cases}
             i &\mbox{if $y_1=\cdots=y_n=i$,}\\
