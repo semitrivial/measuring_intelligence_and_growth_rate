@@ -56,18 +56,19 @@ logic) rather than a function-sequence.
     \end{enumerate}
 \end{quote}
 
-At a high-level, this paper is about a meta-technique in theoretical AGI research, namely:
+At a high-level, this paper is about a meta-technique in theoretical research
+on agents with Artificial General Intelligence (that is, on AGIs), namely:
 avoiding difficult and arbitrary decisions by delegating those decisions to the
-very AGIs we are studying. To speak metaphorically, suppose we had an oracle which
-could deliver inspired truths on demand, and we were fighting about the best dimensions
-for the oracle's storage room: such fighting could be avoided
-by asking the oracle itself how big its room should be. At a low-level, this paper
-is about a certain specific intelligence measure, and improvements thereon: these
-serve as a kind of proving ground for the higher-level meta-technique.
+very AGIs we are studying. To speak metaphorically, suppose we were fighting about
+what clothes the Oracle of Delphi should wear: such fighting could be avoided
+by asking the oracle herself what clothes an Oracle of Delphi should wear. At
+a low-level, this paper is about a certain specific intelligence measure, and
+improvements thereon: these serve as a kind of proving ground for the
+higher-level meta-technique.
 
 In his insightful paper \cite{hibbard}, Bill Hibbard introduces a novel
 intelligence measure (which we will here refer to as the \emph{original Hibbard measure})
-for agents with Artificial General Intelligence (or AGIs).
+for AGIs.
 Hibbard's measure is based on ``the game of adversarial sequence prediction
 against a hierarchy of increasingly difficult sets of'' evaders (environments that attempt
 to emit $1$s and $0$s in such a way as to evade prediction).
@@ -76,39 +77,43 @@ Hibbard's hierarchy begins at level $1$ and he separately defines what it means 
 an agent to have intelligence $0$, but that definition is equivalent to what would result
 by declaring that the $0$th level of the hierarchy consists of the empty set of evaders.}, and
 an agent's original Hibbard measure is the maximum $n\in\mathbb N$ such that
-said agent can eventually predict all the evaders in the $n$th level of the hierarchy,
+said agent learns to predict all the evaders in the $n$th level of the hierarchy,
 or implicitly\footnote{Hibbard does not explicitly include the $\infty$ case in his
 definition, but in his Proposition 3 he refers to agents having ``finite intelligence'', and
 it is clear from context that by this he means agents who fail to predict some evader
-somewhere in the hierarchy.} an agent's original Hibbard measure is defined to be $\infty$
-if said agent can eventually predict all the evaders in all levels of the hierarchy.
+somewhere in the hierarchy.} an agent's original Hibbard measure is $\infty$
+if said agent learns to predict all the evaders in all levels of Hibbard's hierarchy.
 
-In this paper, we will argue that the evader-hierarchy which Hibbard originally proposed is
-trivial: we will argue that \emph{all} suitably idealized AGIs probably have $\infty$
-intelligence according to the original Hibbard measure.
+In this paper, we will argue that the original Hibbard measure is
+trivial: we will argue that \emph{all} suitably idealized AGIs should have
+original Hibbard intelligence $\infty$. This is because Hibbard's hierarchy
+depends on a function-sequence which is (we would argue) arbitrarily chosen,
+and which happens to consist of functions which should be trivial to a genuine AGI.
+
 We will suggest two different methods to repair Hibbard's intelligence measure.
 \begin{itemize}
     \item
-    The first method we describe will be elementary, in the sense that it will
+    The first method we describe will be elementary, in that it will
     essentially involve
     no mathematics more advanced than the mathematics used in Hibbard's original approach.
-    However, we will show that the intelligence measure yielded by this elementary
-    method has a crucial flaw.
+    This will yield a non-trivial family of intelligence measures,
+    which we will call \emph{simple Hibbard measures}, but these will still suffer a flaw.
     \item
-    The second method we describe will make use of two advanced notions from
-    mathematical logic: the \emph{slow-growing hierarchy}
-    \cite{weiermann2002slow} and the ordinal notation system known as
-    \emph{Kleene's $\mathcal O$} \cite{kleene1938notation}.
+    The second method we describe will make use of \emph{slow-growing hierarchies}
+    \cite{weiermann2002slow} (an advanced notion from mathematical logic) and will
+    produce a family of ordinal-number-valued intelligence measures, which we will
+    call \emph{transfinite Hibbard measures}, to avoid the above-mentioned flaw.
 \end{itemize}
 Both of these methods will, rather than producing a single intelligence measure,
 rather, produce a family of intelligence measures indexed by a parameter $X$ where
-$X$ is an AGI. In other words, for every AGI $X$, for each of the above two methods,
-there will be a corresponding intelligence measure, which can informally be thought
-of as ``intelligence as judged by $X$'': $X$ itself will have intelligence $\infty$
-according to the intelligence measure corresponding to $X$, but some other AGI $Y$
-may have non-$\infty$ intelligence. This captures the intuition that an entity who
-measures intelligence of less intelligent entities cannot accurately measure
-its own intelligence, nor the intelligence of entities more intelligent than itself.
+$X$ is an AGI.
+Every AGI $X$ will have a corresponding simple Hibbard measure $|\bullet|_X$
+(for any AGI $Y$, $|Y|_X$ will be a natural-number-valued measurement of $Y$'s intelligence
+``according to $X$'').
+Every AGI $X$ will also have a corresponding transfinite Hibbard measure
+$\|\bullet\|_X$
+(for any AGI $Y$, $\|Y\|_X$ will be a computable-ordinal-valued measurement of $Y$'s
+intelligence ``according to $X$'').
 
 The structure of the paper is as follows.
 \begin{itemize}
@@ -121,18 +126,15 @@ The structure of the paper is as follows.
     under certain idealizing assumptions, \emph{every} AGI probably has
     original Hibbard intelligence $\infty$.
     \item
-    In Section \ref{simplemeasuresection}, we present an elementary way to
-    remedy Hibbard's intelligence
-    measure so that not every AGI has intelligence $\infty$; however, the resulting
-    intelligence measures are shown to still have a crucial flaw.
+    In Section \ref{simplemeasuresection}, we delegate an arbitrary choice
+    (which Hibbard originally made by importing from a paper by Liu) to an AGI,
+    thereby obtaining what we call \emph{simple Hibbard measures}.
     \item
     In Section \ref{slowgrowinghierarchysection}, we review the \emph{slow-growing hierarchy}.
     \item
-    In Section \ref{transfinitehibbardsection}, we use the
-    slow-growing hierarchy and Kleene's $\mathcal O$
-    to present another way to
-    remedy Hibbard's intelligence measure. This resulting intelligence measures do not
-    have the flaw that is seen in Section \ref{simplemeasuresection}.
+    In Section \ref{transfinitehibbardsection}, we use
+    slow-growing hierarchies to define what we call \emph{transfinite Hibbard measures}
+    (delegating the choice of a slow-growing hierarchy to an AGI).
     \item
     In Section \ref{conclusionsection}, we summarize and make concluding remarks.
 \end{itemize}
