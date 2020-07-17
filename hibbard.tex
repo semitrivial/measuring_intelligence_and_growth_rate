@@ -208,7 +208,6 @@ the fact that humans are more than professional IQ-test-takers,
 likewise, the above cross-sections of AGI serve to illuminate AGI
 even though none of them capture the full AGI.
 
-
 \begin{assumption}
 \label{idealizingassumption}
     We make the following idealizing assumptions about every AGI $X$.
@@ -237,21 +236,35 @@ even though none of them capture the full AGI.
 \section{Hibbard's original measure}
 \label{originalmeasuresection}
 
-Hibbard's intelligence measure is based on predictors and evaders---the predictor
-representing the AGI whose intelligence we would like to measure, and the evader
-representing an environment---which we define below. A predictor and an evader
-are thought of as interacting together in a ``game of adversarial sequence prediction''.
+Hibbard's intelligence measure is based on the AGI's performance against
+many opponents in a game of adversarial sequence prediction (we define this
+formally below). The AGI acts as
+a predictor $p$ which competes against evaders $e$. In each step of the game,
+both predictor and evader simultaneoulsy choose a binary digit, $1$ or $0$.
+Only after both of them have made their choice do they see which choice the other
+one made, and then the game proceeds to the next step. The predictor's goal in
+each step of the game is to choose the same digit that the evader will choose;
+the evader's goal is to choose a different digit than the predictor. The predictor
+wins the game (and is said to \emph{learn to predict $e$}) if, after finitely many
+initial steps, eventually the predictor always chooses the same digit as the
+evader.
 
 \begin{definition}
 By $B$, we mean the binary alphabet $\{0,1\}$. By $B^*$, we mean the set of all
-finite binary sequences. By $B^\infty$, we mean the set of all infinite binary
-sequences. By $\langle\rangle$ we mean the empty binary sequence.
+finite binary sequences. By $\langle\rangle$ we mean the empty binary sequence.
 \end{definition}
 
 \begin{definition}
 \label{evaderpredictordefn}
-    (Evaders and predictors)
+    (Predictors and evaders)
     \begin{enumerate}
+        \item
+        By a \emph{predictor}, we mean a Turing machine $p$
+        which takes as input a finite (possibly empty) binary sequence
+        $(x_1,\ldots,x_n)\in B^*$
+        (thought of as a sequence of \emph{evasions})
+        and outputs $0$ or $1$ (thought of as a \emph{prediction}), which output
+        we write as $p(x_1,\ldots,x_n)$.
         \item
         By an \emph{evader}, we mean a Turing machine $e$
         which takes as input a finite (possibly empty) binary sequence
@@ -260,73 +273,66 @@ sequences. By $\langle\rangle$ we mean the empty binary sequence.
         and outputs $0$ or $1$ (thought of as an \emph{evasion}), which output
         we write as $e(y_1,\ldots,y_n)$.
         \item
-        By a \emph{predictor}, we mean a function $p:B^*\to B$
-        which takes as input a finite (possibly empty) binary sequence
-        $(x_1,\ldots,x_n)\in B^*$
-        (thought of as a sequence of \emph{evasions})
-        and outputs $0$ or $1$ (thought of as a \emph{prediction}).
-        \item
-        For any evader $e$ and predictor $p$, the \emph{result of $p$ playing the
+        For any predictor $p$ and evader $e$, the \emph{result of $p$ playing the
         game of adversarial prediction against $e$} (or more simply, the \emph{result of
         $p$ playing against $e$}) is the infinite binary sequence
-        $(x_1,y_1,x_2,y_2,\ldots)\in B^\infty$
+        $(x_1,y_1,x_2,y_2,\ldots)$
         defined as follows:
         \begin{enumerate}
             \item
+            The first evasion
             $x_1=e(\langle\rangle)$ is
             the output of $e$ when run on the empty prediction-sequence.
-            This is thought of as $e$'s first evasion.
             \item
+            The first prediction
             $y_1=p(\langle\rangle)$ is
             the result of applying $p$ to the empty evasion-sequence.
-            This is thought of as $p$'s first prediction.
             \item
-            For all $n>0$,
+            For all $n>0$, the $(n+1)$th evasion
             $x_{n+1}=e(y_1,\ldots,y_n)$ is
-            the output of $e$ on the sequence of $p$'s first $n$ predictions.
-            This is thought of as $e$'s $(n+1)$th evasion.
+            the output of $e$ on the sequence of the first $n$ predictions.
             \item
-            For all $n>0$,
+            For all $n>0$, the $(n+1)$th prediction
             $y_{n+1}=p(x_1,\ldots,x_n)$ is
-            the result of applying $p$ to $e$'s first $n$ evasions.
-            This is thought of as $p$'s $(n+1)$th prediction.
+            the result of applying $p$ to the first $n$ evasions.
         \end{enumerate}
         \item
         Suppose $r=(x_1,y_1,x_2,y_2,\ldots)$ is the result of a predictor $p$ playing
         against an evader $e$. For every $n\geq 1$,
-        we say that \emph{the predictor wins round $n$ in $r$}
-        if $x_n=y_n$; otherwise, if $x_n\neq y_n$, we say that
+        we say \emph{the predictor wins round $n$ in $r$}
+        if $x_n=y_n$; otherwise,
         \emph{the evader wins round $n$ in $r$}.
         We say that \emph{$p$ learns to predict $e$} if there is some $N\in\mathbb N$
         such that for all $n>N$, $p$ is the winner of round $n$ in $r$.
     \end{enumerate}
 \end{definition}
 
+In the following definition, we differ from Hibbard's original paper
+because of a minor (and fortunately, easy-to-fix) error there.
+
 \begin{definition}
 \label{tsubedefinition}
-    For any evader $e$ and natural $n>0$,
-    let
+    For any evader $e$ and $n\in\mathbb N$,
+    let $t_e(n)$ be the maximum number of steps that $e$ takes to run
+    on any length-$n$ sequence of binary digits.
+    In other words, $t_e(0)$ is the number of steps $e$ takes to run on
+    $\langle\rangle$, and for all $n>0$,
     \[
         t_e(n) = \max_{b_1,\ldots,b_n\in \{0,1\}}
-        (\text{number of steps $e$ takes to run on input $(b_1,\ldots,b_n)$}).
+        (\text{number of steps $e$ takes to run on $(b_1,\ldots,b_n)$}).
     \]
 \end{definition}
 
 \begin{example}
-Let $e$ be an evader.
-\begin{enumerate}
-    \item
-    $t_e(0)$ is simply the number of steps $e$ takes to run on input $\langle\rangle$,
-    the empty binary sequence.
-    \item
+Let $e$ be an evader. Then
     $t_e(2)$ is equal to the number of steps $e$ takes to run on input
     $(0,0)$, or to run on input $(0,1)$, or to run on input $(1,0)$, or to run on input
     $(1,1)$---whichever of these four possibilities is largest.
-\end{enumerate}
 \end{example}
 
 \begin{definition}
 \label{evadersetdefinition}
+    (The evader-set bounded by a function)
     Suppose $f:\mathbb N\to\mathbb N$. We define the \emph{evader-set bounded by $f$},
     written $E_f$, to be the set of all evaders $e$ such that
     there is some $k\in\mathbb N$ such that $\forall n>k$,
