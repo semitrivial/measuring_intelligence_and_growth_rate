@@ -307,6 +307,16 @@ finite binary sequences. By $\langle\rangle$ we mean the empty binary sequence.
     \end{enumerate}
 \end{definition}
 
+The following definition makes explicit a subtlety which is implicit in Hibbard's
+original paper.
+
+\begin{definition}
+\label{Xspredictordefn}
+    Suppose $X$ is an AGI. By \emph{$X$'s predictor}, we mean the predictor which
+    $X$ would act as if $X$ were commanded to act as a predictor as in
+    Definition \ref{evaderpredictordefn}.
+\end{definition}
+
 In the following definition, we differ from Hibbard's original paper
 because of a minor (and fortunately, easy-to-fix) error there.
 
@@ -339,23 +349,32 @@ Let $e$ be an evader. Then
     $t_e(n)<f(n)$.
 \end{definition}
 
+In the very broad definition, we define one intelligence measure for
+every function-sequence of functions from $\mathbb N$ to $\mathbb N$.
+The original Hibbard measure is a special case for one specific
+such function-sequence.
+
 \begin{definition}
 \label{generalintelligencemeasuredefn}
-    Suppose $g_i$ ($i\in \mathbb N$) is any family of functions,
+    (The general Hibbard measure given by a function-sequence)
+    Suppose $(g_1,g_2,\ldots)$ is a function-sequence,
     each $g_i:\mathbb N\to\mathbb N$.
     For each $m\in\mathbb N$, define $f_m:\mathbb N\to\mathbb N$ by
     \[f_m(k)=\max_{i\leq m}\max_{j\leq k}g_i(j).\]
-    For any predictor $p$, the \emph{Hibbard intelligence of $p$ (given by the family $g_i$)}
-    is defined to be the maximum $m$ such that
-    $p$ learns to predict $e$ for every $e$ in $E_{f_m}$ (or $\infty$
-    if $p$ learns to predict $e$ for every $e$ in $E_{f_m}$ for every $m$).
+    For any AGI $X$, we define the \emph{Hibbard intelligence of $X$
+    given by $(g_1,g_2,\ldots)$}, written $|X|_{(g_1,g_2,\ldots)}$, as follows.
+    Let $p$ be $X$'s predictor (Definition \ref{Xspredictordefn}).
+    We define $|X|_{(g_1,g_2,\ldots)}$ to be the maximum $m>0$
+    such that $p$ learns to predict $e$ for every $e\in E_{f_m}$
+    (or $0$ if there is no such $m$, or $\infty$ if $p$ learns to predict $e$
+    for every $e\in E_{f_m}$ for every $m$).
 \end{definition}
 
 \begin{definition}
 \label{classichibbardmeasuredefn}
     The \emph{original Hibbard measure} is defined to be the Hibbard intelligence
-    measure given by one specific family $g_i$ of functions, namely:
-    the enumeration of the primitive recursive functions described by S.C.\ Liu
+    measure given by one specific family $(g_1,g_2,\ldots)$ of functions, namely:
+    the enumeration of the primitive recursive functions described by Liu
     \cite{liu1960enumeration}.
 \end{definition}
 
