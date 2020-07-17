@@ -13,7 +13,7 @@
 \newtheorem{assumption}[theorem]{Assumption}
 \newtheorem{lemma}[theorem]{Lemma}
 
-\title{Extending Hibbard's intelligence measure by delegating to the agent}
+\title{Extending Hibbard's intelligence measure by delegating hard choices to the agent}
 \author{Samuel Alexander\thanks{The U.S.\ Securities and Exchange Commission}}
 \date{2020}
 
@@ -66,7 +66,7 @@ is about a certain specific intelligence measure, and improvements thereon: thes
 serve as a kind of proving ground for the higher-level meta-technique.
 
 In his insightful paper \cite{hibbard}, Bill Hibbard introduces a novel
-intelligence measure (which we will here refer to as the \emph{classical Hibbard measure})
+intelligence measure (which we will here refer to as the \emph{original Hibbard measure})
 for agents with Artificial General Intelligence (or AGIs).
 Hibbard's measure is based on ``the game of adversarial sequence prediction
 against a hierarchy of increasingly difficult sets of'' evaders (environments that attempt
@@ -75,17 +75,17 @@ The levels of Hibbard's hierarchy are labelled by natural numbers\footnote{Techn
 Hibbard's hierarchy begins at level $1$ and he separately defines what it means for
 an agent to have intelligence $0$, but that definition is equivalent to what would result
 by declaring that the $0$th level of the hierarchy consists of the empty set of evaders.}, and
-an agent's classical Hibbard measure is the maximum $n\in\mathbb N$ such that
+an agent's original Hibbard measure is the maximum $n\in\mathbb N$ such that
 said agent can eventually predict all the evaders in the $n$th level of the hierarchy,
 or implicitly\footnote{Hibbard does not explicitly include the $\infty$ case in his
 definition, but in his Proposition 3 he refers to agents having ``finite intelligence'', and
 it is clear from context that by this he means agents who fail to predict some evader
-somewhere in the hierarchy.} an agent's classical Hibbard measure is defined to be $\infty$
+somewhere in the hierarchy.} an agent's original Hibbard measure is defined to be $\infty$
 if said agent can eventually predict all the evaders in all levels of the hierarchy.
 
 In this paper, we will argue that the evader-hierarchy which Hibbard originally proposed is
 trivial: we will argue that \emph{all} suitably idealized AGIs probably have $\infty$
-intelligence according to the classical Hibbard measure.
+intelligence according to the original Hibbard measure.
 We will suggest two different methods to repair Hibbard's intelligence measure.
 \begin{itemize}
     \item
@@ -113,11 +113,11 @@ its own intelligence, nor the intelligence of entities more intelligent than its
 The structure of the paper is as follows.
 \begin{itemize}
     \item
-    In Section \ref{originalmeasuresection}, we review the classical Hibbard measure.
+    In Section \ref{originalmeasuresection}, we review the original Hibbard measure.
     \item
     In Section \ref{agiperspectivesection}, we present our viewpoint of AGIs and argue that
     under certain idealizing assumptions, \emph{every} AGI probably has intelligence
-    $\infty$ according to the classical Hibbard measure.
+    $\infty$ according to the original Hibbard measure.
     \item
     In Section \ref{simplemeasuresection}, we present an elementary way to
     remedy Hibbard's intelligence
@@ -248,14 +248,14 @@ Let $e$ be an evader.
 
 \begin{definition}
 \label{classichibbardmeasuredefn}
-    The \emph{classic Hibbard measure} is defined to be the Hibbard intelligence
+    The \emph{original Hibbard measure} is defined to be the Hibbard intelligence
     measure given by one specific family $g_i$ of functions, namely:
     the enumeration of the primitive recursive functions described by S.C.\ Liu
     \cite{liu1960enumeration}.
 \end{definition}
 
 
-\section{Do all AGIs have classic Hibbard intelligence $\infty$?}
+\section{Do all AGIs have original Hibbard intelligence $\infty$?}
 \label{agiperspectivesection}
 
 \begin{quote}
@@ -329,7 +329,7 @@ way, adversarial sequence prediction games can serve as a sort of intelligence
 test for AGIs.
 
 In the remainder of this section, we will argue that under certain idealizing
-assumptions, every AGI should have classical Hibbard intelligence $\infty$.
+assumptions, every AGI should have original Hibbard intelligence $\infty$.
 Thus, we would suggest that Definition \ref{classichibbardmeasuredefn} is really
 only appropriate for certain weak AIs who are strong enough that they can be
 induced to participate in adversarial sequence prediction games, but who are
@@ -558,7 +558,7 @@ the former.
     $X$'s brute-force predictor learns $e$.
 \end{proof}
 
-\subsection{Triviality of the classical Hibbard measure}
+\subsection{Triviality of the original Hibbard measure}
 \label{trivialitysubsection}
 
 Although Example \ref{bruteforcenottotallyoptimalexample} showed that
@@ -572,20 +572,20 @@ an evader $e$ because $e$ withholds its full sophistication from $p$.
 Based on the above, we informally conjecture that the brute-force predictor is
 the most sensible predictor for an AGI $X$ to act as, if $X$ is commanded to
 act as a predictor and try to predict as many evaders as possible. If this conjecture
-is true, then the following theorem suggests that the classical Hibbard measure is
+is true, then the following theorem suggests that the original Hibbard measure is
 trivial: that it assigns intelligence level $\infty$ to every AGI.
 
 \begin{theorem}
     Suppose $X$ is an AGI. If $X$'s predictor is $X$'s brute-force predictor,
-    then $X$ has classical Hibbard intelligence $\infty$.
+    then $X$ has original Hibbard intelligence $\infty$.
 \end{theorem}
 
 \begin{proof}
-    By Definition \ref{Xspredictordefn}, $X$'s classical Hibbard intelligence
-    equals the classical Hibbard intelligence of $X$'s predictor, which is
+    By Definition \ref{Xspredictordefn}, $X$'s original Hibbard intelligence
+    equals the original Hibbard intelligence of $X$'s predictor, which is
     $X$'s brute-force predictor by assumption. Let $p$ be $X$'s brute-force
     predictor. By Definition \ref{generalintelligencemeasuredefn}, in order
-    to show $p$ has classical Hibbard intelligence $\infty$, we must
+    to show $p$ has original Hibbard intelligence $\infty$, we must
     show that $p$ learns to predict $e$ for every $e$ in $E_{f_m}$ for
     every $m\in\mathbb N$,
     where each $f_m:\mathbb N\to\mathbb N$ is defined by
@@ -626,14 +626,14 @@ trivial: that it assigns intelligence level $\infty$ to every AGI.
 \label{simplemeasuresection}
 
 In Subsection \ref{trivialitysubsection}, we saw that every AGI probably has
-intelligence $\infty$ according to the classical Hibbard measure. If so, this
-means the classical Hibbard measure is trivial. In this section, we will present
+intelligence $\infty$ according to the original Hibbard measure. If so, this
+means the original Hibbard measure is trivial. In this section, we will present
 the first of two methods for remedying this state of affairs. Rather than define
 one single intelligence measure, we will define a family of intelligence measures:
 one intelligence measure for each AGI $X$, which one might think of informally as
 a measure of ``intelligence as judged by $X$''.
 
-The idea is simple. The classical Hibbard measure
+The idea is simple. The original Hibbard measure
 (Definition \ref{classichibbardmeasuredefn}) depends on a sequence $(g_0,g_1,\ldots)$
 of total computable functions $g_i:\mathbb N\to\mathbb N$ imported from one specific
 outside source, namely Liu \cite{liu1960enumeration}. Rather than artificially depend
@@ -675,7 +675,7 @@ said set).
 
 We will argue that, at least for certain AGIs $X$,
 the simple Hibbard measure given by $X$ is
-not trivial in the same way that the classical Hibbard measure is:
+not trivial in the same way that the original Hibbard measure is:
 that at least for certain $X$, there exist $Y$ such that
 $|Y|_X$ is finite.
 
@@ -782,14 +782,14 @@ from mathematical logic.
 \section{The slow-growing hierarchy}
 \label{slowgrowinghierarchysection}
 
-The classic Hibbard measure
+The original Hibbard measure
 (Definition \ref{classichibbardmeasuredefn}) depends on a specific list of
 quickly-growing computable functions from $\mathbb N$ to $\mathbb N$, imported from
 \cite{liu1960enumeration}. In Section \ref{agiperspectivesection}, we argued
-that the classic Hibbard measure is trivial because the functions thus imported
+that the original Hibbard measure is trivial because the functions thus imported
 are too slow-growing.
 In Section \ref{simplemeasuresection} we generalized
-the classic Hibbard measure
+the original Hibbard measure
 by delegating the choice of a list of quickly-growing computable functions to an AGI rather
 than to a single external paper. The resulting family of simple Hibbard measures is
 non-trivial (Theorem \ref{simplehibbardnontrivialtheorem}), but in
