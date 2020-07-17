@@ -113,11 +113,13 @@ its own intelligence, nor the intelligence of entities more intelligent than its
 The structure of the paper is as follows.
 \begin{itemize}
     \item
+    In Section \ref{agiperspectivesection}, we present an idealized viewpoint of AGIs.
+    \item
     In Section \ref{originalmeasuresection}, we review the original Hibbard measure.
     \item
-    In Section \ref{agiperspectivesection}, we present our viewpoint of AGIs and argue that
-    under certain idealizing assumptions, \emph{every} AGI probably has intelligence
-    $\infty$ according to the original Hibbard measure.
+    In Section \ref{trivialitysection}, argue that
+    under certain idealizing assumptions, \emph{every} AGI probably has
+    original Hibbard intelligence $\infty$.
     \item
     In Section \ref{simplemeasuresection}, we present an elementary way to
     remedy Hibbard's intelligence
@@ -134,6 +136,106 @@ The structure of the paper is as follows.
     \item
     In Section \ref{conclusionsection}, we summarize and make concluding remarks.
 \end{itemize}
+
+\section{An idealized viewpoint of AGIs}
+\label{agiperspectivesection}
+
+\begin{quote}
+    ``Thus it is a property of man to be capable of learning
+    grammar; for if he is a man, then he is capable of learning
+    grammar, and if he is capable of learning grammar, then he is
+    a man.'' ---Aristotle \cite{aristotle}
+\end{quote}
+
+As yet, we are unaware of any formal mathematical definition of what an AGI
+actually is. We take the stance that an AGI should be capable of understanding
+practical conversations and instructions in a common human language (such as
+English) and, if commanded by their employers, to obey commands expressed
+therein. So if the AGI's employer said, ``Recite digits of pi until I tell you to
+stop,'' then the AGI would begin computing and reciting digits of pi, until said
+employer told it to stop (if ever). Unlike a human employee, who would eventually
+get fed up with such a task, an AGI should have no fear of tedium, and should
+never grow tired of performing whatever task it has been assigned.
+
+We think assumptions like the above are implicit in many attempts to study AGIs.
+Many authors who set out to study
+AGIs actually study not the full AGI, but rather the AGI's persona when it is
+performing some general type of task. For example:
+\begin{itemize}
+    \item
+    Legg and Hutter measure the intelligence of AGIs based on their performance
+    in reinforcement learning environments \cite{legg}. On a superficial
+    level, that approach is inappropriate because a genuine AGI is much more than
+    merely a reinforcement learning agent (however good that agent might be).
+    But at a deeper level, the approach is appropriate because although an AGI is
+    more than an RL agent, we could command the AGI to act as an RL agent, saying,
+    ``I am going to put you in a certain environment where you can take such-and-such
+    tasks, and rewards and observations will be communicated to you; please try to
+    reverse-engineer the environment and act in such a way as to maximize rewards.''
+    And while it is difficult to say anything about a full AGI, we can say quite a
+    lot about an RL agent, and thus we can study AGIs by proxy.
+    \item
+    In the Non-Axiomatic Reasoning System research program (NARS) \cite{nars},
+    AGIs are reduced to agents who are bombarded with assertions in a specific formal
+    language, each assertion being accompanied by a priority measure, and some of
+    which assertions might contradict each-other. At any time during the bombardment
+    of assertions, the agent might also be queried, at which point the agent's job is
+    to estimate the probability of the truth of a queried assertion, based on the
+    assertions and priorities it has seen so far. This is certainly not all an AGI
+    is (for an AGI should be able to reason about first- and higher-order logics
+    involving quantifiers, for example). Nevertheless, an AGI's employer could command
+    it to behave like such an agent, and in response the AGI would behave like such an
+    agent.
+    \item
+    Many philosophers and logicians reduce an AGI to a mere \emph{knowing
+    agent} who performs no actions but simply knows things in some formal language.
+    Superficially, this is inappropriate because an AGI does much more than merely
+    know things \cite{wang2007three}. But at a deeper level, this is appropriate
+    because an AGI could certainly be commanded to act as such an agent, e.g., via 
+    a command like: ``Until further notice, do nothing except enumerate consequences
+    of Peano arithmetic'' (or some other formal language). And again, while it is
+    hard to say anything about a full AGI, we can say a lot about such computably
+    enumerable theories as would be recited by an AGI in response to such a question
+    (and they would indeed be computably enumerable because an AGI, whatever else it
+    is, must be mechanical).
+\end{itemize}
+
+In the same way, an AGI is certainly more than a predictor competing in
+games of adversarial sequence prediction. But an AGI could be commanded to
+act as such a predictor. That is why it makes sense to refer to the measures
+from Definition \ref{generalintelligencemeasuredefn} as ``intelligence'' measures
+(rather than as, say, ``prediction power'' measures). In the same way that
+IQ tests are intended to measure overall human intelligence despite the fact that
+human intelligence is so much more than the ability to take IQ tests, in the same
+way, adversarial sequence prediction games can serve as a sort of intelligence
+test for AGIs.
+
+\begin{assumption}
+\label{idealizingassumption}
+    We make the following idealizing assumptions about an AGI $X$.
+    \begin{itemize}
+        \item
+        (Mathematical truthfulness) If $X$ knows some statement in the language
+        of Peano arithmetic, then that statement is true.
+        \item
+        (Mathematical reasoning ability) If $X$ knows some set $S$ of mathematical
+        axioms then, given sufficient time to think about it, $X$ would eventually
+        become aware of all the consequences of $S$.
+        \item
+        (Basic mathematical exposure) $X$ knows the axioms of Peano arithmetic.
+        \item
+        (Caution) $X$ avoids infinite loops: if $X$ is commanded to play the
+        role of a predictor, then the resulting predictor $p$ will indeed
+        be a predictor (a total computable function
+        from $B^*$ to $B$). More generally, if $X$ is commanded to carry out any
+        task which involves outputting things repeatedly
+        until further notice, and the task is not impossible
+        (e.g., does not require solving the Halting Problem or doing other
+        non-computable things), then $X$ will continue outputting things (perhaps
+        after long intervals in between outputs), without ever entering into an
+        infinite period without output.
+    \end{itemize}
+\end{assumption}
 
 \section{Hibbard's original measure}
 \label{originalmeasuresection}
@@ -256,79 +358,9 @@ Let $e$ be an evader.
 
 
 \section{Do all AGIs have original Hibbard intelligence $\infty$?}
-\label{agiperspectivesection}
+\label{trivialitysection}
 
-\begin{quote}
-    ``Thus it is a property of man to be capable of learning
-    grammar; for if he is a man, then he is capable of learning
-    grammar, and if he is capable of learning grammar, then he is
-    a man.'' ---Aristotle \cite{aristotle}
-\end{quote}
-
-As yet, we are unaware of any formal mathematical definition of what an AGI
-actually is. We take the stance that an AGI should be capable of understanding
-practical conversations and instructions in a common human language (such as
-English) and, if commanded by their employers, to obey commands expressed
-therein. So if the AGI's employer said, ``Recite digits of pi until I tell you to
-stop,'' then the AGI would begin computing and reciting digits of pi, until said
-employer told it to stop (if ever). Unlike a human employee, who would eventually
-get fed up with such a task, an AGI should have no fear of tedium, and should
-never grow tired of performing whatever task it has been assigned.
-
-We think assumptions like the above are implicit in many attempts to study AGIs.
-Many authors who set out to study
-AGIs actually study not the full AGI, but rather the AGI's persona when it is
-performing some general type of task. For example:
-\begin{itemize}
-    \item
-    Legg and Hutter measure the intelligence of AGIs based on their performance
-    in reinforcement learning environments \cite{legg}. On a superficial
-    level, that approach is inappropriate because a genuine AGI is much more than
-    merely a reinforcement learning agent (however good that agent might be).
-    But at a deeper level, the approach is appropriate because although an AGI is
-    more than an RL agent, we could command the AGI to act as an RL agent, saying,
-    ``I am going to put you in a certain environment where you can take such-and-such
-    tasks, and rewards and observations will be communicated to you; please try to
-    reverse-engineer the environment and act in such a way as to maximize rewards.''
-    And while it is difficult to say anything about a full AGI, we can say quite a
-    lot about an RL agent, and thus we can study AGIs by proxy.
-    \item
-    In the Non-Axiomatic Reasoning System research program (NARS) \cite{nars},
-    AGIs are reduced to agents who are bombarded with assertions in a specific formal
-    language, each assertion being accompanied by a priority measure, and some of
-    which assertions might contradict each-other. At any time during the bombardment
-    of assertions, the agent might also be queried, at which point the agent's job is
-    to estimate the probability of the truth of a queried assertion, based on the
-    assertions and priorities it has seen so far. This is certainly not all an AGI
-    is (for an AGI should be able to reason about first- and higher-order logics
-    involving quantifiers, for example). Nevertheless, an AGI's employer could command
-    it to behave like such an agent, and in response the AGI would behave like such an
-    agent.
-    \item
-    Many philosophers and logicians reduce an AGI to a mere \emph{knowing
-    agent} who performs no actions but simply knows things in some formal language.
-    Superficially, this is inappropriate because an AGI does much more than merely
-    know things \cite{wang2007three}. But at a deeper level, this is appropriate
-    because an AGI could certainly be commanded to act as such an agent, e.g., via 
-    a command like: ``Until further notice, do nothing except enumerate consequences
-    of Peano arithmetic'' (or some other formal language). And again, while it is
-    hard to say anything about a full AGI, we can say a lot about such computably
-    enumerable theories as would be recited by an AGI in response to such a question
-    (and they would indeed be computably enumerable because an AGI, whatever else it
-    is, must be mechanical).
-\end{itemize}
-
-In the same way, an AGI is certainly more than a predictor competing in
-games of adversarial sequence prediction. But an AGI could be commanded to
-act as such a predictor. That is why it makes sense to refer to the measures
-from Definition \ref{generalintelligencemeasuredefn} as ``intelligence'' measures
-(rather than as, say, ``prediction power'' measures). In the same way that
-IQ tests are intended to measure overall human intelligence despite the fact that
-human intelligence is so much more than the ability to take IQ tests, in the same
-way, adversarial sequence prediction games can serve as a sort of intelligence
-test for AGIs.
-
-In the remainder of this section, we will argue that under certain idealizing
+In this section, we will argue that under certain idealizing
 assumptions, every AGI should have original Hibbard intelligence $\infty$.
 Thus, we would suggest that Definition \ref{classichibbardmeasuredefn} is really
 only appropriate for certain weak AIs who are strong enough that they can be
@@ -336,33 +368,6 @@ induced to participate in adversarial sequence prediction games, but who are
 not strong enough to qualify as genuine AGIs. Later in the paper, we will argue
 that suitable extensions of Hibbard's intelligence measure are more relevant
 for genuine AGIs.
-
-\begin{assumption}
-\label{idealizingassumption}
-    We make the following idealizing assumptions about an AGI $X$.
-    \begin{itemize}
-        \item
-        (Mathematical truthfulness) If $X$ knows some statement in the language
-        of Peano arithmetic, then that statement is true.
-        \item
-        (Mathematical reasoning ability) If $X$ knows some set $S$ of mathematical
-        axioms then, given sufficient time to think about it, $X$ would eventually
-        become aware of all the consequences of $S$.
-        \item
-        (Basic mathematical exposure) $X$ knows the axioms of Peano arithmetic.
-        \item
-        (Caution) $X$ avoids infinite loops: if $X$ is commanded to play the
-        role of a predictor, then the resulting predictor $p$ will indeed
-        be a predictor (a total computable function
-        from $B^*$ to $B$). More generally, if $X$ is commanded to carry out any
-        task which involves outputting things repeatedly
-        until further notice, and the task is not impossible
-        (e.g., does not require solving the Halting Problem or doing other
-        non-computable things), then $X$ will continue outputting things (perhaps
-        after long intervals in between outputs), without ever entering into an
-        infinite period without output.
-    \end{itemize}
-\end{assumption}
 
 \begin{definition}
 \label{Xspredictordefn}
