@@ -35,8 +35,8 @@ trivial to a genuine AGI. Our key insight is this: rather than
 arbitrarily choosing a function-sequence, we can delegate that choice to an AGI.
 In this way, we propose
 non-trivial variations of Hibbard's original measure, which we call
-simple Hibbard measures.
-However, simple Hibbard measures are still flawed. To repair their flaws,
+relative Hibbard measures.
+However, relative Hibbard measures are still flawed. To repair their flaws,
 we further propose what we call transfinite Hibbard measures,
 which depend on an AGI choosing a slow-growing hierarchy (from mathematical
 logic) rather than a function-sequence.
@@ -57,7 +57,7 @@ logic) rather than a function-sequence.
             f everywhere and such that X knows M' is total.
         \item Fix the definition of $t_e$ to work for predictors as well as evaders.
         \item Add a remark about temporal nature of command responses.
-        \item Redefine simple Hibbard measures so that the agent is commanded to
+        \item Redefine relative Hibbard measures so that the agent is commanded to
             enumerate faster-and-faster growing sequences. Point out a different flaw,
             related to non-Archimedeanness. This will better justify the slow-growing
             hierarchy. Put more emphasis on the fact that if X knows Y's predictor is
@@ -107,7 +107,7 @@ We will suggest two different methods to repair Hibbard's intelligence measure.
     essentially involve
     no mathematics more advanced than the mathematics used in Hibbard's original approach.
     This will yield a non-trivial family of intelligence measures,
-    which we will call \emph{simple Hibbard measures}, but these will still suffer a flaw.
+    which we will call \emph{relative Hibbard measures}, but these will still suffer a flaw.
     \item
     The second method we describe will make use of \emph{slow-growing hierarchies}
     \cite{weiermann2002slow} (an advanced notion from mathematical logic) and will
@@ -117,7 +117,7 @@ We will suggest two different methods to repair Hibbard's intelligence measure.
 Both of these methods will, rather than producing a single intelligence measure,
 rather, produce a family of intelligence measures indexed by a parameter $X$ where
 $X$ is an AGI.
-Every AGI $X$ will have a corresponding simple Hibbard measure $|\bullet|_X$
+Every AGI $X$ will have a corresponding relative Hibbard measure $|\bullet|_X$
 (for any AGI $Y$, $|Y|_X$ will be a natural-number-valued measurement of $Y$'s intelligence
 ``according to $X$'').
 Every AGI $X$ will also have a corresponding transfinite Hibbard measure
@@ -138,7 +138,7 @@ The structure of the paper is as follows.
     \item
     In Section \ref{simplemeasuresection}, we delegate an arbitrary choice
     (which Hibbard originally made by importing from a paper by Liu) to an AGI,
-    thereby obtaining what we call \emph{simple Hibbard measures}.
+    thereby obtaining what we call \emph{relative Hibbard measures}.
     \item
     In Section \ref{slowgrowinghierarchysection}, we review the \emph{slow-growing hierarchy}.
     \item
@@ -798,7 +798,7 @@ Theorem \ref{counterintuitivetheorem} is reminiscent of
 Examples \ref{counterintuitiveexample1} and \ref{counterintuitiveexample2}.
 
 
-\section{An elementary method to non-trivialize Hibbard's intelligence measure}
+\section{Relative Hibbard measures}
 \label{simplemeasuresection}
 
 In Subsection \ref{trivialitysubsection}, we argued that every AGI probably has
@@ -833,7 +833,7 @@ out a Turing machine $C^X_3$ which computes the prime number function, so that
 $g^X_3(n)$ is the $(n+1)$th prime number. And so on.
 
 \begin{definition}
-    For any AGI $X$, the \emph{simple Hibbard measure given by $X$}
+    For any AGI $X$, the \emph{relative Hibbard measure given by $X$}
     is defined to be the Hibbard measure
     $|\bullet|_{(g^X_1,g^X_2,\ldots)}$
     given by
@@ -841,16 +841,16 @@ $g^X_3(n)$ is the $(n+1)$th prime number. And so on.
     For any AGI $Y$, we will write $|Y|_X$ for $|Y|_{(g^X_1,g^X_2,\ldots)}$.
 \end{definition}
 
-\subsection{Non-triviality of the simple Hibbard measures}
+\subsection{Non-triviality of the relative Hibbard measures}
 
 We will now argue that at least for certain AGIs $X$,
-the simple Hibbard measure given by $X$ does not assign intelligence $\infty$
+the relative Hibbard measure given by $X$ does not assign intelligence $\infty$
 to every AGI: but that, at least for certain AGIs $X$, there exist AGIs $Y$
 such that $|Y|_X<\infty$.
 
 \begin{theorem}
 \label{simplehibbardnontrivialtheorem}
-    (Non-triviality of simple Hibbard measures)
+    (Non-triviality of relative Hibbard measures)
     Suppose $X$ and $Y$ are AGIs. Let $p$ be $Y$'s predictor.
     If $X$ knows that $p$ defines a total function from $B^*$ to $B$,
     then $|Y|_X<\infty$.
@@ -882,7 +882,7 @@ such that $|Y|_X<\infty$.
     Therefore, $|Y|_X<m$.
 \end{proof}
 
-\subsection{The problem with simple Hibbard measures}
+\subsection{The problem with relative Hibbard measures}
 \label{problemwithsimplehibbardsection}
 
 In Theorem \ref{simplehibbardnontrivialtheorem} we proved more than was necessary,
@@ -942,7 +942,7 @@ as in Definition \ref{functionlistdefinition}. If we want $|Y|_{X'}$ to be exact
 equal to, say, $k$, we need only contrive that $C^{X'}_1,\ldots,C^{X'}_k$
 compute the zero function and $C^{X'}_{k+1}$ computes $Y$'s predictor.
 
-The above is a crucial flaw in the simple Hibbard measures, because it shows
+The above is a crucial flaw in the relative Hibbard measures, because it shows
 that $|Y|_X$ depends just as much on the arbitrary order in which $X$
 outputs Turing machines as it does on how intelligent $Y$ is.
 
@@ -963,7 +963,7 @@ are too slow-growing.
 In Section \ref{simplemeasuresection} we generalized
 the original Hibbard measure
 by delegating the choice of a list of quickly-growing computable functions to an AGI rather
-than to a single external paper. The resulting family of simple Hibbard measures is
+than to a single external paper. The resulting family of relative Hibbard measures is
 non-trivial (Theorem \ref{simplehibbardnontrivialtheorem}), but in
 Subsection \ref{problemwithsimplehibbardsection} we argued that these
 measures still have a crucial flaw: they depend too heavily on the order in which
@@ -1347,20 +1347,21 @@ To summarize:
     well-known by any genuine AGI.
     \item
     In Section \ref{simplemeasuresection}, we introduced what we call \emph{simple Hibbard
-    measures}. For each AGI $X$, there is a corresponding simple Hibbard measure which
-    assigns an intelligence measurement $|Y|_X$ to every AGI $Y$. The simple Hibbard
+    measures}. For each AGI $X$, there is a corresponding relative Hibbard measure which
+    assigns an intelligence measurement $|Y|_X$ to every AGI $Y$. The relative Hibbard
     measure corresponding to $X$ might be thought of as a measure of ``intelligence as
-    judged by $X$''. The key insight needed to define the simple Hibbard measure corresponding
+    judged by $X$''. The key insight needed to define the
+    relative Hibbard measure corresponding
     to $X$ is as follows: rather than depend on one fixed sequence of functions (as in
     Hibbard's original definition), we can delegate the task of choosing a function-sequence
     to $X$.
     \item
-    We showed that simple Hibbard measures are less trivial than Hibbard's original measure.
+    We showed that relative Hibbard measures are less trivial than Hibbard's original measure.
     However, they still suffer a crucial flaw: the Hibbard measure corresponding to an
     AGI $X$ depends unnaturally on the \emph{order} in which $X$ can think of
     computable functions.
     \item
-    To remedy the above-mentioned flaw in the simple Hibbard measures, we reviewed
+    To remedy the above-mentioned flaw in the relative Hibbard measures, we reviewed
     \emph{slow-growing hierarchies} from mathematical logic and used them to define
     (in Section \ref{transfinitehibbardsection}) what
     we call \emph{transfinite Hibbard measures}, which lead to
