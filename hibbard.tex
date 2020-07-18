@@ -895,76 +895,138 @@ such that $|Y|_X<\infty$.
     Therefore, $|Y|_X<m$.
 \end{proof}
 
+In particular, if $X$ knew that $X$'s own predictor computed a total function
+from $B^*$ to $B$, then we would have $|X|_X<\infty$.
+But we saw in Theorem \ref{counterintuitivetheorem} that $X$ cannot know
+$X$'s own predictor computes a total function. Is it possible that $|X|_X$ could
+be $<\infty$ anyway? The following theorem answers this question negatively.
+
+\begin{theorem}
+\label{Xjudgesitselfinfinitelysmarttheorem}
+    For every AGI $X$, $|X|_X=\infty$.
+\end{theorem}
+
+\begin{proof}
+    In other words, we must show that $X$'s predictor learns every
+    evader $e\in E_{f_m}$ for every $m>0$, where
+    $f_m(k)=\max_{0<i\leq m}\max_{j\leq k}g^X_i(j)$.
+    So, fix $m\in\mathbb N$ and let $e\in E_{f_m}$.
+
+    Since $X$ knows that $C^X_1,\ldots,X^C_m$ compute total functions from $\mathbb N$
+    to $\mathbb N$, it follows that there is a Turing machine $C$ such that the following
+    hold:
+    \begin{enumerate}
+        \item
+        $C$ computes $f_m$.
+        \item
+        $X$ knows that $C$ computes a total function from $\mathbb N$ to $\mathbb N$.
+    \end{enumerate}
+    Let $M$ be the Turing machine which takes input $(x_1,\ldots,x_n)\in B^*$
+    and proceeds as follows:
+    \begin{enumerate}
+        \item
+        Run $C$ on input $n$ until it gives output $k$ (if $C$ never halts on input
+        $n$, then keep running it forever and never halt).
+        \item
+        Run $e$ for up to $k$ steps. If it halts with output $y\in\{0,1\}$ during that
+        time, then halt and output $y$. Otherwise, halt and output $0$.
+    \end{enumerate}
+    Since $X$ knows that $C$ computes a total function from $\mathbb N$ to $\mathbb N$,
+    it follows that $X$ knows that $M$ computes a total function from $B^*$ to $B$.
+    By definition of $C$, in line (2) in the definition of $M$, when $e$ is run for
+    up to $k$ steps, that means $e$ is run for up to $f_m(n)$ steps.
+    Since $e\in E_{f_m}$, this means that, except for finitely many exceptions,
+    for every input $(x_1,\ldots,x_n)\in B^*$, $M$ halts with output
+    $e(x_1,\ldots,x_n)$. Thus, it follows that there is a Turing machine $M'$
+    such that $M'$ computes $e$ and such that $X$ knows that $M'$ computes a total
+    function from $B^*$ to $B$. By Lemma \ref{knowingimplieslearninglemma},
+    $X$'s brute-force predictor learns $e$. By Assumption \ref{bruteforceassumption},
+    $X$'s predictor learns $e$.
+\end{proof}
+
 \subsection{The problem with relative Hibbard measures}
 \label{problemwithsimplehibbardsection}
 
-(Rewrite this whole section)
+Based on Theorems \ref{simplehibbardnontrivialtheorem}
+and \ref{Xjudgesitselfinfinitelysmarttheorem},
+we see that in a certain sense, for all AGIs $X$ and $Y$,
+if $X$ knows that $Y$'s predictor computes a total function from $B^*$ to $B$,
+then $X$ is more intelligent than $Y$ (more precisely: $X$ is more intelligent
+than $Y$ in the sense that $|X|_X=\infty>|Y|_X$).
 
-% In Theorem \ref{simplehibbardnontrivialtheorem} we proved more than was necessary,
-% yielding the following stronger result.
+We should therefore expect that this property should hold for bigger groups of AGIs:
+we should expect the following:
+\begin{quote}
+    (Desiderata) For any AGIs $X,Y,Z$, if $X$ knows the both $Y$'s predictor
+    and $Z$'s predictor compute total functions from $B^*$ to $B$, and if
+    $Y$ knows that $Z$'s predictor computes a total function from $B^*$ to $B$,
+    then we should expect that $|X|_X=\infty>|Y|_X>|Z|_X$.
+\end{quote}
+Unfortunately, this almost surely cannot be the case in general, and the reason has
+almost nothing to do with intelligence or with adversarial sequence prediction,
+and almost entirely to do with the structure of the natural numbers: relative Hibbard
+measures assign natural-number-valued intelligence measures to AGIs, and those
+values therefore suffer the same limitations as the natural numbers.
 
-% \begin{corollary}
-% \label{technicalcorollaryaboutsimplehibbardmeasures}
-%     Suppose $X$ and $Y$ are AGIs. Let $p$ be $Y$'s predictor.
-%     Suppose that $X$ knows that $p$ defines a total function from
-%     $B^*$ to $B$.
-%     Then there is a Turing machine $C$ such that:
-%     \begin{enumerate}
-%         \item
-%         $C$ computes the function $g:\mathbb N\to \mathbb N$ defined by
-%         $g(n)=t_e(n)+1$, where $t_e$ is as in
-%         Definition \ref{tsubedefinition}.
-%         \item
-%         $X$ knows that $C$ computes a total function from $\mathbb N$ to $\mathbb N$.
-%     \end{enumerate}
-%     Furthermore: $|Y|_X<m$ where $m$ is such that $C=C^X_m$.
-% \end{corollary}
+Let $Y_0$ be some initial AGI.
+\begin{itemize}
+    \item
+    By mechanicalness, $Y_0$'s predictor $p_0$ computes a total function from $B^*$ to $B$.
+    \item
+    If $Y_0$ is capable of being taught new facts (and thereby becoming a new AGI),
+    then we should be able to define $Y_1$ to be the AGI which would result from making
+    a clone of $Y_0$ and teaching the clone that $p_0$ computes a total function from $B^*$
+    to $B$.
+    \item
+    By mechanicalness, $Y_1$'s predictor $p_1$ computes a total function from $B^*$ to $B$.
+    \item
+    If $Y_1$ is capable of being taught new facts (and thereby becoming a new AGI),
+    then we should be able to define $Y_2$ to be the AGI which would result from making
+    a clone of $Y_1$ and teaching the clone that $p_1$ computes a total function from $B^*$
+    to $B$.
+    \item
+    Repeating the above process, we should be able to define AGIs $Y_0,Y_1,Y_2,\ldots$
+    such that if each $Y_i$ has predictor $p_i$, then each $Y_{i+1}$ knows that $p_i$
+    computes a total function from $B^*$ to $B$.
+    \item
+    Apparently nothing in the above process is non-mechanical, so by suitably formalizing
+    the above process, we should be able to define a Turing machine $M$ that enumerates
+    $p_0,p_1,\ldots$. It is then a true fact that $M$ enumerates an infinite
+    list of Turing machines
+    each one of which defines a total function from $B^*$ to $B$.
+    \item
+    If $Y_0$ is capable of being taught new facts (and thereby becoming a new AGI),
+    then we should be able to define $X$ to be the AGI which would result from making
+    a clone of $Y_0$ and teaching the clone that $M$ enumerates an infinite list of
+    Turing machines each one of which defines a total function from $B^*$ to $B$.
+    \item
+    In this way, for every $i$, $Y$ knows that $p_i$ defines a total function from $B^*$
+    to $B$. Let $p$ be $Y$'s predictor.
+    \item
+    Finally, let $X$ be the AGI which would result from making a clone of $Y$ and teaching
+    the clone that $p$ predictor computes a total function from $B^*$ to $B$.
+\end{itemize}
+So in summary: each $Y_i$ has predictor $p_i$, each $Y_{i+1}$ knows that
+$p_i$ computes a total function from $B^*$ to $B$, $Y$ has predictor $p$,
+$Y$ knows that all of the $p_i$ compute total functions from $B^*$ to $B$,
+and $X$ knows that $p$ computes a total function from $B^*$ to $B$ and that all the
+$p_i$ do too.
+If the above \emph{Desiderata} held in general, it would force $|Y|_X<\infty$
+and at the same time $|Y_0|_X<|Y_1|_X<|Y_2|_X<\cdots$ and at the same time
+each $|Y_i|_X<|Y|_X$. This cannot hold, because $|\bullet|_X$ is natural-number-valued:
+if $|Y|_X$ were, say, $999$, then $|Y_0|_X,\ldots,|Y_{1000}|_X$ would be
+a length-$1001$ increasing sequence of naturals $<999$, which is absurd.
 
-% On the other hand, the following result also holds.
+The above example shows if the \emph{Desirata} held,
+then AGI intelligence would be \emph{non-Archimedean},
+in a sense which we make formal in \cite{alexander2020archimedean}.
+In that paper, we argue that it is hopeless to try to measure non-Archimedean
+structures using natural numbers---in fact, that it is even hopeless to measure
+non-Archimedean structures using \emph{real} numbers. If AGI intelligence
+is non-Archimedean, then in order to accurately measure it, we need to use
+a non-Archimedean number system. In Section \ref{transfinitehibbardsection}
+we will do exactly that. But first, we need some machinery from mathematical logic.
 
-% \begin{lemma}
-% \label{technicallemmaaboutsimplehibbardmeasures}
-%     Suppose $X$ and $Y$ are AGIs. Suppose that for all $i=1,\ldots,k$,
-%     $g^X_i$ is identically zero: $g^X_i(n)=0$.
-%     Then $|Y|_X\geq k$.
-% \end{lemma}
-
-% \begin{proof}
-%     If $f_k:\mathbb N\to\mathbb N$
-%     is defined (as in Definition \ref{generalintelligencemeasuredefn})
-%     by $f_k(n)=\max_{0<i\leq k}\max_{j\leq n}g^X_i(j)$, then, by
-%     assumption, $f_k(n)=\max_{0<i\leq k}\max_{j\leq n}0=0$.
-%     Thus $E_{f_k}$ is empty, and so, vacuously, $Y$'s predictor learns
-%     to predict every evader in $E_{f_k}$. This shows $|Y|_X\geq m$.
-% \end{proof}
-
-% By the \emph{mathematical reasoning ability} and \emph{basic mathematical
-% exposure} assumptions from Assumption \ref{idealizingassumption},
-% for any AGI $X$, there are infinitely many Turing machines $C$ such that
-% \begin{enumerate}
-%     \item
-%     $C$ defines the zero function $g(n)=0$ defined on all of $\mathbb N$, and
-%     \item
-%     $X$ knows $C$ defines a total function from $\mathbb N$ to $\mathbb N$.
-% \end{enumerate}
-% Thus, combining Corollary \ref{technicalcorollaryaboutsimplehibbardmeasures}
-% and Lemma \ref{technicallemmaaboutsimplehibbardmeasures},
-% we see that if $X$ knows that $Y$'s predictor defines a total function
-% from $B^*$ to $B$, then we can make $|Y|_{X'}$ have any value we like,
-% by letting $X'$ be an AGI identical to $X$ in every way except that
-% $X'$ outputs Turing machines in a different order than $X$ when commanded
-% as in Definition \ref{functionlistdefinition}. If we want $|Y|_{X'}$ to be exactly
-% equal to, say, $k$, we need only contrive that $C^{X'}_1,\ldots,C^{X'}_k$
-% compute the zero function and $C^{X'}_{k+1}$ computes $Y$'s predictor.
-
-% The above is a crucial flaw in the relative Hibbard measures, because it shows
-% that $|Y|_X$ depends just as much on the arbitrary order in which $X$
-% outputs Turing machines as it does on how intelligent $Y$ is.
-
-% In Section \ref{transfinitehibbardsection},
-% we will define a more sophisticated type of Hibbard measure
-% which avoids the above problem. First, though, we need to borrow some machinery
-% from mathematical logic.
 
 \section{The slow-growing hierarchy}
 \label{slowgrowinghierarchysection}
