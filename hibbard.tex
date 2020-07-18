@@ -626,8 +626,8 @@ We formalize this in the following assumption.
 
 \begin{assumption}
 \label{bruteforceassumption}
-    For any AGI $X$, $X$'s predictor is at least as good as
-    $X$'s brute-force predictor, by which we mean that for any evader $e$,
+    For every AGI $X$, $X$'s predictor is at least as good as
+    $X$'s brute-force predictor, by which we mean that for every evader $e$,
     if $X$'s brute-force predictor learns $e$, then $X$'s predictor
     learns $e$.
 \end{assumption}
@@ -1141,35 +1141,39 @@ would be long and tedious.
 
 \begin{definition}
 \label{slowgrowinghierarchyofanagidefn}
-    Let $X$ be an AGI. The \emph{slow-growing hierarchy of $X$} is defined to be
-    the slow-growing hierarchy given by $\alpha_\infty$ and $\mathcal F_\infty$
-    (via Lemma \ref{slowgrowingtechnicallemma}) where $(\alpha_i)_{i\in\mathbb N}$
-    and $(\mathcal F_i)_{i\in\mathbb N}$ are the defined by the
-    slow-growing hierarchy notations which
-    $X$ would output if $X$ were commanded as follows:
+    Let $X$ be an AGI.
+    Let $d_0,d_1,\ldots$ be the slow-growing hierarchy notations which would result
+    if $X$ were commanded as follows:
+    \begin{quote}
     ``Until further notice, output slow-growing hierarchy
     notations of pairs $(\alpha_i,\mathcal F_i)$, such that
     the corresponding slow-growing hierarchies $\mathcal H_i$ satisfy
     the hypotheses of Lemma \ref{slowgrowingtechnicallemma}. Do this in such a way
-    that the $\alpha_i$s include computable ordinals as large as you can think of.''
+    that the $\alpha_i$s include computable ordinals as large as possible.''
+    \end{quote}
+    For each $i\in\mathbb N$, let $\alpha_i$ and $\mathcal F_i$ be the
+    computable ordinal and computable function defined by $d_i$.
+    The \emph{slow-growing hierarchy of $X$} is defined to be
+    the slow-growing hierarchy given by $\alpha=\cup_i\alpha_i$
+    and $\mathcal F=\cup_i\mathcal F_i$ (see Lemma \ref{slowgrowingtechnicallemma}).
 \end{definition}
 
 \begin{definition}
 \label{transfinitehibbardmeasuredefn}
     Suppose that $X$ is an AGI, and that
-    $\alpha_\infty$ and $\mathcal F_\infty$ are as in
+    $\alpha$ and $\mathcal F$ are as in
     Definition \ref{slowgrowinghierarchyofanagidefn}, and that
     $\{G_\beta\}_{\beta<\alpha_\infty}$ is the slow-growing hierarchy
-    given by $\alpha_\infty$ and $\mathcal F_\infty$
+    given by $\alpha$ and $\mathcal F$
     (Definition \ref{slowgrowinghierarchiesdefn}).
     The \emph{transfinite Hibbard measure given by $X$} is
     the function which assigns to each AGI $Y$ a computable ordinal (or $\infty$)
     $\|Y\|_X$
     defined as follows.
-    We define $\|Y\|_X$ to be the smallest ordinal $\alpha<\alpha_\infty$ such that
-    there is some evader $e\in E_{G_\alpha}$ such that $Y$'s predictor does not
-    learn to predict $e$ (where $E_{G_\alpha}$ is as in Definition \ref{evadersetdefinition}),
-    or we define $\|Y\|_X=\infty$ if there is no such $\alpha$.
+    We define $\|Y\|_X$ to be the smallest ordinal $\beta<\alpha$ such that
+    there is some evader $e\in E_{G_\beta}$ such that $Y$'s predictor does not
+    learn to predict $e$ (where $E_{G_\beta}$ is as in Definition \ref{evadersetdefinition}),
+    or we define $\|Y\|_X=\infty$ if there is no such $\beta<\alpha$.
 \end{definition}
 
 Definition \ref{transfinitehibbardmeasuredefn} avoids the order-dependency problem which
@@ -1194,15 +1198,15 @@ $M_i$ computes a total function from $B^*$ to $B$, and $Y$ systematically tries 
 predict the evader $e$ by first assuming that $e$ computes the same function as
 $M_1$, and if that fails, then assuming that $e$ computes the same function as
 $M_2$, and so on. In particular, suppose $Y$ knows that a certain computable ordinal
-$\alpha$ and function $\mathcal F$ give a slow-growing hierarchy
-$\{G_\beta\}_{\beta<\alpha}$. For any $\beta<\alpha$,
+$\alpha_i$ and function $\mathcal F_i$ give a slow-growing hierarchy
+$\{G_\beta\}_{\beta<\alpha_i}$. For any $\beta<\alpha_i$,
 since $Y$ is capable of mathematical reasoning, for every Turing machine $M$
 which computes a total function from $B^*$ to $B$ and which has runtime bounded by
 $G_\beta$, there should be a Turing machine $M'$ such that $M$ computes the same
 function as $M'$ and such that $Y$ knows that $M'$ computes a total function from $B^*$
 to $B$. Thus, $M_1,M_2,\ldots$ should include Turing machines that compute all the
 functions from $B^*$ to $B$ that can be so computed with runtime bounded by any such
-$G_\beta$. Thus, assuming that $Y$'s predictor is $Y$'s brute-force predictor, if
+$G_\beta$. Thus, by Assumption \ref{bruteforceassumption}, if
 $\|Y\|_X<\infty$, then it seems that $\|Y\|_X$ should in some sense measure the size
 of the supremum of the ordinals $\alpha$ such that $Y$ knows a fundamental sequence up
 to $\alpha$. This suggests a close relation between the transfinite Hibbard measure and
