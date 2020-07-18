@@ -801,7 +801,7 @@ Examples \ref{counterintuitiveexample1} and \ref{counterintuitiveexample2}.
 \section{Relative Hibbard measures}
 \label{simplemeasuresection}
 
-In Subsection \ref{trivialitysubsection}, we argued that every AGI probably has
+In Subsection \ref{trivialitysubsection}, we argued that every AGI has
 intelligence $\infty$ according to the original Hibbard measure.
 In this section, we will present a family of variations of the original Hibbard measure
 which do not assign intelligence $\infty$ to every AGI.
@@ -817,20 +817,31 @@ delegate that choice to an AGI.
 \begin{definition}
 \label{functionlistdefinition}
     If $X$ is an AGI, let $(C^X_1, C^X_2, \ldots)$ be the sequence of
-    Turing machines which would result if $X$ were commanded: ``Until further
-    notice, list all the Turing machines $C$ that you can think of such that
-    you know $C$ computes a total function from $\mathbb N$ to $\mathbb N$.''
+    Turing machines which would result if $X$ were commanded:
+    \begin{quote}
+        ``Until further notice, list Turing machines which compute faster- and
+        faster-growing total functions from $\mathbb N$ to $\mathbb N$; for every
+        Turing machine $C$ that you know computes a total
+        function $f:\mathbb N\to\mathbb N$,
+        your list should eventually
+        include a Turing machine which computes a function $g$ such that $g>f$.''
+    \end{quote}
     For each $i>0$, let $g^X_i:\mathbb N\to\mathbb N$ be the function computed by
     $C^X_i$.
 \end{definition}
 
 For example, if $X$ is an AGI, then in response to the command in Definition
 \ref{functionlistdefinition}, $X$ might think for a while, figure out a Turing
-machine $C^X_1$ which computes the constant function $g^X_1(n)=0$. Then $X$
+machine $C^X_1$ which computes the identity function $g^X_1(n)=n$. Then $X$
 might think some more and figure out a Turing machine $C^X_2$ which computes
-the identity function $g^X_2(n)=n$. Then $X$ might think some more and figure
-out a Turing machine $C^X_3$ which computes the prime number function, so that
-$g^X_3(n)$ is the $(n+1)$th prime number. And so on.
+the function $g^X_2(n)=2n$. Then $X$ might think some more and figure
+out a Turing machine $C^X_3$ which computes the function $g^X_3(n)=3n$.
+Now, $X$ might feel lazy and want to continue that pattern forever, so that
+the next functions would be $4n$, $5n$, etc., but the latter part of the command in
+Definition \ref{functionlistdefinition} rules this sort of laziness out, so $X$
+eventually has to move on to bigger functions like $n^2$, $2^n$, $n^n$, $n^{n^{n^{n}}}$,
+and so on ($X$ must know about these because we assumed $X$ has basic mathematical
+knowledge and reasoning ability).
 
 \begin{definition}
     For any AGI $X$, the \emph{relative Hibbard measure given by $X$}
@@ -867,15 +878,16 @@ such that $|Y|_X<\infty$.
     \begin{enumerate}
         \item
         $C$ computes the function $g:\mathbb N\to \mathbb N$ defined by
-        $g(n)=t_e(n)+1$, where $t_e$ is as in Definition \ref{tsubedefinition}.
+        $g(n)=t_e(n)$, where $t_e$ is as in Definition \ref{tsubedefinition}.
         \item
         $X$ knows that $C$ computes a total function from $\mathbb N$ to $\mathbb N$.
     \end{enumerate}
-    By (2), $C=C^X_m$ for some $m>0$, and thus $g^X_m=g$.
+    By (2), there is some $m$ such that $g^X_m>g$
+    (by the second part of the command in Definition \ref{functionlistdefinition}).
     So if $f_m:\mathbb N\to\mathbb N$ is defined
     (as in Definition \ref{generalintelligencemeasuredefn})
     as $f_m(k)=\max_{0<i\leq m}\max_{j\leq k}g^X_i(j)$,
-    then for every $k$, $f_m(k)\geq g^X_m(k)=g(k)=t_e(k)+1>t_e(k)$.
+    then for every $k$, $f_m(k)\geq g^X_m(k)>g(k)=t_e(k)$.
     This shows that $e\in E_{f_m}$ (from Definition \ref{evadersetdefinition}).
     Since $p$ does not learn to predict $e$,
     it is not the case that $p$ learns to predict every evader in $E_{f_m}$.
@@ -885,71 +897,73 @@ such that $|Y|_X<\infty$.
 \subsection{The problem with relative Hibbard measures}
 \label{problemwithsimplehibbardsection}
 
-In Theorem \ref{simplehibbardnontrivialtheorem} we proved more than was necessary,
-yielding the following stronger result.
+(Rewrite this whole section)
 
-\begin{corollary}
-\label{technicalcorollaryaboutsimplehibbardmeasures}
-    Suppose $X$ and $Y$ are AGIs. Let $p$ be $Y$'s predictor.
-    Suppose that $X$ knows that $p$ defines a total function from
-    $B^*$ to $B$.
-    Then there is a Turing machine $C$ such that:
-    \begin{enumerate}
-        \item
-        $C$ computes the function $g:\mathbb N\to \mathbb N$ defined by
-        $g(n)=t_e(n)+1$, where $t_e$ is as in
-        Definition \ref{tsubedefinition}.
-        \item
-        $X$ knows that $C$ computes a total function from $\mathbb N$ to $\mathbb N$.
-    \end{enumerate}
-    Furthermore: $|Y|_X<m$ where $m$ is such that $C=C^X_m$.
-\end{corollary}
+% In Theorem \ref{simplehibbardnontrivialtheorem} we proved more than was necessary,
+% yielding the following stronger result.
 
-On the other hand, the following result also holds.
+% \begin{corollary}
+% \label{technicalcorollaryaboutsimplehibbardmeasures}
+%     Suppose $X$ and $Y$ are AGIs. Let $p$ be $Y$'s predictor.
+%     Suppose that $X$ knows that $p$ defines a total function from
+%     $B^*$ to $B$.
+%     Then there is a Turing machine $C$ such that:
+%     \begin{enumerate}
+%         \item
+%         $C$ computes the function $g:\mathbb N\to \mathbb N$ defined by
+%         $g(n)=t_e(n)+1$, where $t_e$ is as in
+%         Definition \ref{tsubedefinition}.
+%         \item
+%         $X$ knows that $C$ computes a total function from $\mathbb N$ to $\mathbb N$.
+%     \end{enumerate}
+%     Furthermore: $|Y|_X<m$ where $m$ is such that $C=C^X_m$.
+% \end{corollary}
 
-\begin{lemma}
-\label{technicallemmaaboutsimplehibbardmeasures}
-    Suppose $X$ and $Y$ are AGIs. Suppose that for all $i=1,\ldots,k$,
-    $g^X_i$ is identically zero: $g^X_i(n)=0$.
-    Then $|Y|_X\geq k$.
-\end{lemma}
+% On the other hand, the following result also holds.
 
-\begin{proof}
-    If $f_k:\mathbb N\to\mathbb N$
-    is defined (as in Definition \ref{generalintelligencemeasuredefn})
-    by $f_k(n)=\max_{0<i\leq k}\max_{j\leq n}g^X_i(j)$, then, by
-    assumption, $f_k(n)=\max_{0<i\leq k}\max_{j\leq n}0=0$.
-    Thus $E_{f_k}$ is empty, and so, vacuously, $Y$'s predictor learns
-    to predict every evader in $E_{f_k}$. This shows $|Y|_X\geq m$.
-\end{proof}
+% \begin{lemma}
+% \label{technicallemmaaboutsimplehibbardmeasures}
+%     Suppose $X$ and $Y$ are AGIs. Suppose that for all $i=1,\ldots,k$,
+%     $g^X_i$ is identically zero: $g^X_i(n)=0$.
+%     Then $|Y|_X\geq k$.
+% \end{lemma}
 
-By the \emph{mathematical reasoning ability} and \emph{basic mathematical
-exposure} assumptions from Assumption \ref{idealizingassumption},
-for any AGI $X$, there are infinitely many Turing machines $C$ such that
-\begin{enumerate}
-    \item
-    $C$ defines the zero function $g(n)=0$ defined on all of $\mathbb N$, and
-    \item
-    $X$ knows $C$ defines a total function from $\mathbb N$ to $\mathbb N$.
-\end{enumerate}
-Thus, combining Corollary \ref{technicalcorollaryaboutsimplehibbardmeasures}
-and Lemma \ref{technicallemmaaboutsimplehibbardmeasures},
-we see that if $X$ knows that $Y$'s predictor defines a total function
-from $B^*$ to $B$, then we can make $|Y|_{X'}$ have any value we like,
-by letting $X'$ be an AGI identical to $X$ in every way except that
-$X'$ outputs Turing machines in a different order than $X$ when commanded
-as in Definition \ref{functionlistdefinition}. If we want $|Y|_{X'}$ to be exactly
-equal to, say, $k$, we need only contrive that $C^{X'}_1,\ldots,C^{X'}_k$
-compute the zero function and $C^{X'}_{k+1}$ computes $Y$'s predictor.
+% \begin{proof}
+%     If $f_k:\mathbb N\to\mathbb N$
+%     is defined (as in Definition \ref{generalintelligencemeasuredefn})
+%     by $f_k(n)=\max_{0<i\leq k}\max_{j\leq n}g^X_i(j)$, then, by
+%     assumption, $f_k(n)=\max_{0<i\leq k}\max_{j\leq n}0=0$.
+%     Thus $E_{f_k}$ is empty, and so, vacuously, $Y$'s predictor learns
+%     to predict every evader in $E_{f_k}$. This shows $|Y|_X\geq m$.
+% \end{proof}
 
-The above is a crucial flaw in the relative Hibbard measures, because it shows
-that $|Y|_X$ depends just as much on the arbitrary order in which $X$
-outputs Turing machines as it does on how intelligent $Y$ is.
+% By the \emph{mathematical reasoning ability} and \emph{basic mathematical
+% exposure} assumptions from Assumption \ref{idealizingassumption},
+% for any AGI $X$, there are infinitely many Turing machines $C$ such that
+% \begin{enumerate}
+%     \item
+%     $C$ defines the zero function $g(n)=0$ defined on all of $\mathbb N$, and
+%     \item
+%     $X$ knows $C$ defines a total function from $\mathbb N$ to $\mathbb N$.
+% \end{enumerate}
+% Thus, combining Corollary \ref{technicalcorollaryaboutsimplehibbardmeasures}
+% and Lemma \ref{technicallemmaaboutsimplehibbardmeasures},
+% we see that if $X$ knows that $Y$'s predictor defines a total function
+% from $B^*$ to $B$, then we can make $|Y|_{X'}$ have any value we like,
+% by letting $X'$ be an AGI identical to $X$ in every way except that
+% $X'$ outputs Turing machines in a different order than $X$ when commanded
+% as in Definition \ref{functionlistdefinition}. If we want $|Y|_{X'}$ to be exactly
+% equal to, say, $k$, we need only contrive that $C^{X'}_1,\ldots,C^{X'}_k$
+% compute the zero function and $C^{X'}_{k+1}$ computes $Y$'s predictor.
 
-In Section \ref{transfinitehibbardsection},
-we will define a more sophisticated type of Hibbard measure
-which avoids the above problem. First, though, we need to borrow some machinery
-from mathematical logic.
+% The above is a crucial flaw in the relative Hibbard measures, because it shows
+% that $|Y|_X$ depends just as much on the arbitrary order in which $X$
+% outputs Turing machines as it does on how intelligent $Y$ is.
+
+% In Section \ref{transfinitehibbardsection},
+% we will define a more sophisticated type of Hibbard measure
+% which avoids the above problem. First, though, we need to borrow some machinery
+% from mathematical logic.
 
 \section{The slow-growing hierarchy}
 \label{slowgrowinghierarchysection}
