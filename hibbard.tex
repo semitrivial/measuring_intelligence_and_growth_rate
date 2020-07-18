@@ -60,6 +60,11 @@ logic) rather than a function-sequence.
             f everywhere and such that X knows M' is total.
         \item Fix the definition of $t_e$ to work for predictors as well as evaders.
         \item Add a remark about temporal nature of command responses.
+        \item Redefine simple Hibbard measures so that the agent is commanded to
+            enumerate faster-and-faster growing sequences. Point out a different flaw,
+            related to non-Archimedeanness. This will better justify the slow-growing
+            hierarchy. Put more emphasis on the fact that if X knows Y's predictor is
+            total then X is smarter than Y.
     \end{enumerate}
 \end{quote}
 
@@ -838,15 +843,15 @@ from mathematical logic.
 The original Hibbard measure
 (Definition \ref{classichibbardmeasuredefn}) depends on a specific list of
 quickly-growing computable functions from $\mathbb N$ to $\mathbb N$, imported from
-\cite{liu1960enumeration}. In Section \ref{agiperspectivesection}, we argued
-that the original Hibbard measure is trivial because the functions thus imported
+\cite{liu1960enumeration}. In Section \ref{trivialitysection}, we argued
+that the original Hibbard measure is trivial for AGIs because the functions thus imported
 are too slow-growing.
 In Section \ref{simplemeasuresection} we generalized
 the original Hibbard measure
 by delegating the choice of a list of quickly-growing computable functions to an AGI rather
 than to a single external paper. The resulting family of simple Hibbard measures is
 non-trivial (Theorem \ref{simplehibbardnontrivialtheorem}), but in
-Subsection \ref{problemwithsimplehibbardsection} we argued that these generalized
+Subsection \ref{problemwithsimplehibbardsection} we argued that these
 measures still have a crucial flaw: they depend too heavily on the order in which
 the AGI supplies its list of computable functions.
 
@@ -856,20 +861,22 @@ a different strategy.
     \item
     In mathematical logic, there is a general recipe for obtaining
     quickly-growing computable
-    functions. This recipe is called the \emph{slow-growing hierarchy}.
+    functions, through the usage of so-called \emph{slow-growing hierarchies}.
     \item
     The recipe takes as input a computable
     ordinal number $\alpha$ along with some so-called \emph{fundamental
-    sequences} for certain ordinals $\lambda<\alpha$, and outputs
-    a quickly-growing computable function.
+    sequences} for certain ordinals $\lambda<\alpha$ (called \emph{limit ordinals}),
+    and outputs a family of functions: one function $G_{\beta}:\mathbb N\to\mathbb N$
+    for every ordinal
+    $\beta<\alpha$, and for large values of $\beta$, $G_{\beta}$ grows very quickly.
     \item
     Thus, instead of
     commanding our AGI to directly produce a list of quickly-growing computable functions,
     we can instead command our AGI to produce computable ordinal numbers and
     fundamental sequences, and then obtain a list of quickly-growing
-    computable functions indirectly, by means of the slow-growing hierarchy.
+    computable functions indirectly, via the resulting slow-growing hierarchy.
 \end{itemize}
-This solves the problem of dependence on ordering: we can completely ignore the order
+This solves the problem of order-dependence: we can completely ignore the order
 in which the AGI outputs the computable ordinals, because computable ordinals are
 \emph{themselves} ordered. In other words, if the AGI outputs a small computable ordinal
 and a large computable ordinal, we can consider the small computable ordinal to precede
@@ -890,6 +897,7 @@ the large computable ordinal, regardless of in which order the AGI outputs them.
 
 \begin{definition}
 \label{fundamentalsequencedefn}
+    (Fundamental sequences)
     If $\lambda$ is a limit ordinal, a \emph{fundamental sequence} for $\lambda$
     is a sequence $(\lambda[0],\lambda[1],\lambda[2],\ldots)$
     of ordinals, such that the following requirements hold:
@@ -897,8 +905,8 @@ the large computable ordinal, regardless of in which order the AGI outputs them.
         \item
         Each $\lambda[i]<\lambda[i+1]<\lambda$.
         \item
-        $\lim_{i\to\infty}\lambda[i]=\lambda$, by which we mean that for
-        any ordinal $\alpha<\lambda$, there is some $N\in\mathbb N$ such that
+        The supremum of the $\lambda[i]$s is $\lambda$. Or equivalently:
+        for each ordinal $\alpha<\lambda$, there is some $N\in\mathbb N$ such that
         for all $i>N$, $\lambda[i]>\alpha$.
     \end{enumerate}
 \end{definition}
@@ -910,9 +918,9 @@ the large computable ordinal, regardless of in which order the AGI outputs them.
     takes as input a limit ordinal $\lambda<\alpha$ and outputs a fundamental
     sequence $\mathcal F(\lambda)=(\lambda[0],\lambda[1],\lambda[2],\ldots)$
     for $\lambda$. The \emph{slow-growing hierarchy given by $\alpha$ and $\mathcal F$}
-    is the family of family of functions consisting of a function
+    is the family $\{G_\beta\}_{\beta<\alpha}$ of functions consisting of a function
     $G_\beta:\mathbb N\to\mathbb N$ for every
-    ordinal $\beta<\alpha$, defined by transfinite induction by the following cases.
+    ordinal $\beta<\alpha$, defined by transfinite induction according to following cases:
     \begin{enumerate}
         \item
         $G_0(x)=0$.
@@ -920,7 +928,7 @@ the large computable ordinal, regardless of in which order the AGI outputs them.
         $G_{\beta+1}(x) = G_\beta(x) + 1$.
         \item
         $G_{\lambda}(x) = G_{\lambda[x]}(x)$ (for every limit ordinal $\lambda<\alpha$),
-        where $(\lambda[0],\lambda[1],\lambda[2],\ldots)$ are the fundamental sequence
+        where $(\lambda[0],\lambda[1],\lambda[2],\ldots)$ is the fundamental sequence
         $\mathcal F(\lambda)$ of $\lambda$.
     \end{enumerate}
 \end{definition}
@@ -962,7 +970,7 @@ By Church's thesis.
         By the limit case,
         $G_\omega(x)=G_{\omega\cdot(0+1)}(x)
         =G_{(\omega\cdot(0+1))[x]}(x)=G_{(\omega\cdot 0)+x}(x)
-        =G_x(x)=x$ (by (4) above).
+        =G_x(x)=x$.
         \item
         By the successor case, $G_{\omega+1}(x)=G_{\omega}(x)+1=x+1$.
         \item
@@ -984,8 +992,8 @@ By Church's thesis.
 \begin{example}
 \label{epsilon0example}
     The ordinal $\epsilon_0$
-    (pronounced ``epsilon-nought'') is the smallest ordinal which is larger than
-    all the ordinals $\omega, \omega^\omega, \omega^{\omega^\omega}, \ldots$.
+    (pronounced ``epsilon-nought'') is the smallest ordinal larger than
+    the ordinals $\omega, \omega^\omega, \omega^{\omega^\omega}, \ldots$.
     It satisfies the equation $\epsilon_0=\omega^{\epsilon_0}$, and can be
     intuitively thought of as
     \[
@@ -999,8 +1007,8 @@ By Church's thesis.
         +\omega^{\omega^5\cdot 12 + \omega^4\cdot 9 + 1000}
         +1,
     \]
-    and so on. There is a natural way to assign fundamental sequences to ordinals
-    up to $\epsilon_0$, yielding a corresponding slow-growing hierarchy where, for example,
+    and so on. There is a natural way to assign fundamental sequences to limit ordinals
+    $<\epsilon_0$, yielding a corresponding slow-growing hierarchy where, for example,
     \begin{align*}
         G_{\omega^\omega}(x) &= x^x,\\
         G_{\omega^{\omega^\omega}+5}(x) &= x^{x^x}+5,\\
@@ -1020,10 +1028,11 @@ By Church's thesis.
     and so on.
 \end{example}
 
-Example \ref{epsilon0example} illustrates how the slow-growing hierarchy reduces
-the open-ended problem, ``Invent a quickly-growing computable function,'' into a slightly
-less open-ended and more manageable problem: ``Invent fundamental sequences up to a
-large computable ordinal.''
+Example \ref{epsilon0example} illustrates how slow-growing hierarchies reduce
+the open-ended problem
+\[\mbox{``Invent a quickly-growing computable function''}\]
+to a slightly less open-ended and more manageable problem:
+\[\mbox{``Invent fundamental sequences up to a large computable ordinal.''}\]
 
 Slow-growing hierarchies provide an elegant means of obtaining quickly-growing
 computable functions from $\mathbb N$ to $\mathbb N$.
@@ -1036,10 +1045,10 @@ Even having invented a large computable ordinal, the task of assigning fundament
 sequences to the limit ordinals below it is another difficult task in general\footnote{The
 choice of fundamental sequences can dramatically change the growth rate of the
 resulting slow-growing hierarchy---see \cite{weiermann1997sometimes}.}.
-Fortunately, this is a theoretical paper about AGI, so we can completely dodge all this
-work by delegating it to our AGI. In order to do so in a sensible way, we need a certain
+Fortunately, this is a theoretical paper about AGI, so we can avoid all these decisions
+by delegating them to an AGI. In order to do so in a sensible way, we need a certain
 technical lemma which will allow us to command the AGI to give us a slow-growing hierarchy
-one piece at a time.
+piece-by-piece.
 
 \begin{definition}
 \label{fundamentalsequenceextensiondef}
@@ -1059,6 +1068,19 @@ one piece at a time.
     \end{enumerate}
 \end{definition}
 
+In the following lemma and its proof, we will be dealing with unions of functions
+and ordinals,
+so it is important to recall the following:
+\begin{itemize}
+    \item A \emph{relation} is a set $R$ of pairs $(x,y)$. Whenever $(x,y)\in R$,
+    we write $xRy$.
+    \item A \emph{function} is a relation $f$ which satisfies the requirement
+    (sometimes called the ``vertical line test'') that whenever $(x,y_1)\in f$
+    and $(x,y_2)\in f$, then $y_1=y_2$. Whenever $(x,y)\in f$, we write $f(x)$
+    to denote $y$.
+    \item Every ordinal $\alpha$ is equal to the set of all ordinals $\beta<\alpha$.
+\end{itemize}
+
 \begin{lemma}
 \label{slowgrowingtechnicallemma}
     Suppose for every $i\in\mathbb N$,
@@ -1066,22 +1088,19 @@ one piece at a time.
     $\alpha_i$ and function $\mathcal F_i$.
     If $\mathcal H_0\prec \mathcal H_1\prec \mathcal H_2\prec\cdots$,
     then
-    $\mathcal F_\infty=\cup_i\mathcal F_i$ is a function which assigns
+    $\mathcal F=\cup_i\mathcal F_i$ is a function which assigns
     fundamental sequences
-    to all limit ordinals $\lambda<\alpha_\infty=\cup_i\alpha_i$
-    (so that together, $\alpha_\infty$ and $\mathcal F_\infty$
+    to all limit ordinals $\lambda<\alpha=\cup_i\alpha_i$
+    (so that together, $\alpha$ and $\mathcal F$
     give a slow-growing hierarchy).
 \end{lemma}
 
 \begin{proof}
-    By definition, $\mathcal F_\infty$ is a relation whose domain is
-    the union of the domains of all the $\mathcal F_i$, i.e.,
-    the set of all limit ordinals $\{\lambda\,:\,\lambda<\alpha_i\mbox{ for some $i$}\}$.
-    To show that $\mathcal F_\infty$ is a function, which must show that for any two pairs
-    $(\lambda,y_1)\in\mathcal F_\infty$ and $(\lambda,y_2)\in\mathcal F_\infty$,
+    To show that $\mathcal F$ is a function, which must show that for any two pairs
+    $(\lambda,y_1)\in\mathcal F$ and $(\lambda,y_2)\in\mathcal F$,
     $y_1=y_2$ (i.e., that
-    $\mathcal F_\infty$ ``passes the vertical line test'').
-    Assume $(\lambda,y_1)\in\mathcal F_\infty$ and $(\lambda,y_2)\in\mathcal F_\infty$.
+    $\mathcal F$ ``passes the vertical line test'').
+    Assume $(\lambda,y_1)\in\mathcal F$ and $(\lambda,y_2)\in\mathcal F$.
     This means there are some $i_1,i_2\in\mathbb N$ such that
     $\mathcal F_{i_1}(\lambda)=y_1$ and $\mathcal F_{i_2}(\lambda)=y_2$.
     If $i_1=i_2$ then $y_1=y_2$ because $\mathcal F_{i_1}=\mathcal F_{i_2}$ is a function,
@@ -1092,11 +1111,11 @@ one piece at a time.
     Thus by condition 2 of Definition \ref{fundamentalsequenceextensiondef},
     $y_1=y_2$, as desired.
 
-    It remains to let $\lambda<\alpha_\infty$ be a limit ordinal and show
+    It remains to let $\lambda<\alpha$ be a limit ordinal and show
     that conditions 1 and 2 of Definition \ref{fundamentalsequencedefn}
-    hold for $\mathcal F_\infty(\lambda)$.
-    Since $\lambda<\alpha_\infty$, that means $\lambda<\alpha_i$ for some $i\in\mathbb N$.
-    Let $(\lambda[0],\lambda[1],\ldots)=\mathcal F_\infty(\lambda)$.
+    hold for $\mathcal F(\lambda)$.
+    Since $\lambda<\alpha$, that means $\lambda<\alpha_i$ for some $i\in\mathbb N$.
+    Let $(\lambda[0],\lambda[1],\ldots)=\mathcal F(\lambda)$.
     Then $(\lambda[0],\lambda[1],\ldots)=\mathcal F_i(\lambda)$, so
     conditions 1 and 2 of Definition \ref{fundamentalsequencedefn} hold because
     $\mathcal F_i$ is a function which assigns fundamental sequences to all limit
