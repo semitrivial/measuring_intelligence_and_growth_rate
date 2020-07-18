@@ -370,7 +370,7 @@ such function-sequence.
     Suppose $(g_1,g_2,\ldots)$ is a function-sequence,
     each $g_i:\mathbb N\to\mathbb N$.
     For each $m\in\mathbb N$, define $f_m:\mathbb N\to\mathbb N$ by
-    \[f_m(k)=\max_{i\leq m}\max_{j\leq k}g_i(j).\]
+    \[f_m(k)=\max_{0<i\leq m}\max_{j\leq k}g_i(j).\]
     For any AGI $X$, we define the \emph{Hibbard intelligence of $X$
     given by $(g_1,g_2,\ldots)$}, written $|X|_{(g_1,g_2,\ldots)}$, as follows.
     Let $p$ be $X$'s predictor (Definition \ref{Xspredictordefn}).
@@ -642,7 +642,7 @@ trivial: that it assigns intelligence level $\infty$ to every AGI.
     show that $q$ learns to predict $e$ for every $e$ in $E_{f_m}$ for
     every $m\in\mathbb N$,
     where each $f_m:\mathbb N\to\mathbb N$ is defined by
-    $f_m(k)=\max_{i\leq m}\max_{j\leq k}g_i(j)$,
+    $f_m(k)=\max_{0<i\leq m}\max_{j\leq k}g_i(j)$,
     where $g_i$ is the $i$th primitive recursive function
     in Liu's enumeration
     (Definition \ref{classichibbardmeasuredefn}).
@@ -682,19 +682,18 @@ trivial: that it assigns intelligence level $\infty$ to every AGI.
 \section{An elementary method to non-trivialize Hibbard's intelligence measure}
 \label{simplemeasuresection}
 
-In Subsection \ref{trivialitysubsection}, we saw that every AGI probably has
-intelligence $\infty$ according to the original Hibbard measure. If so, this
-means the original Hibbard measure is trivial. In this section, we will present
-the first of two methods for remedying this state of affairs. Rather than define
-one single intelligence measure, we will define a family of intelligence measures:
-one intelligence measure for each AGI $X$, which one might think of informally as
+In Subsection \ref{trivialitysubsection}, we argued that every AGI probably has
+intelligence $\infty$ according to the original Hibbard measure.
+In this section, we will present a family of variations of the original Hibbard measure
+which do not assign intelligence $\infty$ to every AGI.
+This family will contain
+one intelligence measure for each AGI $X$, which measure one might think of informally as
 a measure of ``intelligence as judged by $X$''.
 
-The idea is simple. The original Hibbard measure
-(Definition \ref{classichibbardmeasuredefn}) depends on a sequence $(g_0,g_1,\ldots)$
-of total computable functions $g_i:\mathbb N\to\mathbb N$ imported from one specific
-outside source, namely Liu \cite{liu1960enumeration}. Rather than artificially depend
-on Liu, we will instead depend on an AGI $X$.
+The original Hibbard measure depends on a particular function-sequence. Hibbard chose
+one specific function-sequence, namely the enumeration from Liu \cite{liu1960enumeration}.
+Our method here is not to choose a function-sequence by ourselves, but instead to
+delegate that choice to an AGI.
 
 \begin{definition}
 \label{functionlistdefinition}
@@ -714,27 +713,21 @@ the identity function $g^X_2(n)=n$. Then $X$ might think some more and figure
 out a Turing machine $C^X_3$ which computes the prime number function, so that
 $g^X_3(n)$ is the $(n+1)$th prime number. And so on.
 
-It is philosophically interesting that although there is no apparent ordering that
-would turn the set of all total-function-from-$\mathbb N$-to-$\mathbb N$-computing
-Turing machines into a sequence, an AGI automatically acts as a kind of oracle for
-so ordering said Turing machines (or at least, those which said AGI knows to be in
-said set).
-
 \begin{definition}
     For any AGI $X$, the \emph{simple Hibbard measure given by $X$}
-    is defined to be the Hibbard measure given by
+    is defined to be the Hibbard measure
+    $|\bullet|_{(g^X_1,g^X_2,\ldots)}$
+    given by
     $(g^X_1,g^X_2,\ldots$) (see Definition \ref{generalintelligencemeasuredefn}).
-    For any AGI $Y$, we will write $|Y|_X$ for the intelligence of $Y$
-    according to the simple Hibbard measure given by $X$.
+    For any AGI $Y$, we will write $|Y|_X$ for $|Y|_{(g^X_1,g^X_2,\ldots)}$.
 \end{definition}
 
 \subsection{Non-triviality of the simple Hibbard measures}
 
-We will argue that, at least for certain AGIs $X$,
-the simple Hibbard measure given by $X$ is
-not trivial in the same way that the original Hibbard measure is:
-that at least for certain $X$, there exist $Y$ such that
-$|Y|_X$ is finite.
+We will now argue that at least for certain AGIs $X$,
+the simple Hibbard measure given by $X$ does not assign intelligence $\infty$
+to every AGI: but that, at least for certain AGIs $X$, there exist AGIs $Y$
+such that $|Y|_X<\infty$.
 
 \begin{theorem}
 \label{simplehibbardnontrivialtheorem}
@@ -755,15 +748,14 @@ $|Y|_X$ is finite.
     \begin{enumerate}
         \item
         $C$ computes the function $g:\mathbb N\to \mathbb N$ defined by
-        $g(n)=t_e(n)+1$, where $t_e$ is as in
-        Definition \ref{tsubedefinition}.
+        $g(n)=t_e(n)+1$, where $t_e$ is as in Definition \ref{tsubedefinition}.
         \item
         $X$ knows that $C$ computes a total function from $\mathbb N$ to $\mathbb N$.
     \end{enumerate}
-    By (2), $C=C^X_m$ for some $m$, and thus $g^X_m=g$.
+    By (2), $C=C^X_m$ for some $m>0$, and thus $g^X_m=g$.
     So if $f_m:\mathbb N\to\mathbb N$ is defined
     (as in Definition \ref{generalintelligencemeasuredefn})
-    as $f_m(k)=\max_{i\leq m}\max_{j\leq k}g^X_i(j)$,
+    as $f_m(k)=\max_{0<i\leq m}\max_{j\leq k}g^X_i(j)$,
     then for every $k$, $f_m(k)\geq g^X_m(k)=g(k)=t_e(k)+1>t_e(k)$.
     This shows that $e\in E_{f_m}$ (from Definition \ref{evadersetdefinition}).
     Since $p$ does not learn to predict $e$,
@@ -798,18 +790,18 @@ On the other hand, the following result also holds.
 
 \begin{lemma}
 \label{technicallemmaaboutsimplehibbardmeasures}
-    Suppose $X$ and $Y$ are AGIs. Suppose that for all $i=1,\ldots,m$,
+    Suppose $X$ and $Y$ are AGIs. Suppose that for all $i=1,\ldots,k$,
     $g^X_i$ is identically zero: $g^X_i(n)=0$.
-    Then $|Y|_X\geq m$.
+    Then $|Y|_X\geq k$.
 \end{lemma}
 
 \begin{proof}
-    If $f_m:\mathbb N\to\mathbb N$
+    If $f_k:\mathbb N\to\mathbb N$
     is defined (as in Definition \ref{generalintelligencemeasuredefn})
-    by $f_m(k)=\max_{i\leq m}\max_{j\leq k}g^X_i(j)$, then, by
-    assumption, $f_m(k)=\max_{i\leq m}\max_{j\leq k}0=0$.
-    Thus $E_{f_m}$ is empty, and so, vacuously, $Y$'s predictor learns
-    to predict every evader in $E_{f_m}$. This shows $|Y|_X\geq m$.
+    by $f_k(n)=\max_{0<i\leq k}\max_{j\leq n}g^X_i(j)$, then, by
+    assumption, $f_k(n)=\max_{0<i\leq k}\max_{j\leq n}0=0$.
+    Thus $E_{f_k}$ is empty, and so, vacuously, $Y$'s predictor learns
+    to predict every evader in $E_{f_k}$. This shows $|Y|_X\geq m$.
 \end{proof}
 
 By the \emph{mathematical reasoning ability} and \emph{basic mathematical
@@ -827,12 +819,16 @@ we see that if $X$ knows that $Y$'s predictor defines a total function
 from $B^*$ to $B$, then we can make $|Y|_{X'}$ have any value we like,
 by letting $X'$ be an AGI identical to $X$ in every way except that
 $X'$ outputs Turing machines in a different order than $X$ when commanded
-as in Definition \ref{functionlistdefinition}.
-This is a crucial flaw in the simple Hibbard measures, because it shows
+as in Definition \ref{functionlistdefinition}. If we want $|Y|_{X'}$ to be exactly
+equal to, say, $k$, we need only contrive that $C^{X'}_1,\ldots,C^{X'}_k$
+compute the zero function and $C^{X'}_{k+1}$ computes $Y$'s predictor.
+
+The above is a crucial flaw in the simple Hibbard measures, because it shows
 that $|Y|_X$ depends just as much on the arbitrary order in which $X$
 outputs Turing machines as it does on how intelligent $Y$ is.
 
-In Section ..., we will define a more sophisticated type of Hibbard measure
+In Section \ref{transfinitehibbardsection},
+we will define a more sophisticated type of Hibbard measure
 which avoids the above problem. First, though, we need to borrow some machinery
 from mathematical logic.
 
