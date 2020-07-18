@@ -236,15 +236,104 @@ even though none of them capture the full AGI.
         axioms then, given sufficient time to think about it, $X$ would eventually
         become aware of all the consequences of $S$.
         \item
-        (Caution) $X$ avoids infinite loops: If $X$ is commanded to carry out any
+        (Caution) $X$ avoids getting stuck: If $X$ is commanded to carry out any
         task which involves outputting things
         forever, and if the task is not impossible
         (e.g., does not require solving the Halting Problem or doing other
         non-computable or nonsensical things),
         then $X$ will continue outputting things (perhaps
         after long intervals of time between outputs) indefinitely.
+        \item
+        (Mechanicalness) If $X$ is commanded to carry out a task
+        which involves outputting things forever, and if those outputs depend only on
+        $X$'s own decisions (not on any external stimulus),
+        then the resulting outputs will
+        be computably enumerable (in other words, some Turing machine could
+        generate said outputs).
     \end{itemize}
 \end{assumption}
+
+Concerning the \emph{mechanicalness} part of Assumption \ref{idealizingassumption},
+it is important to keep in mind that although the assumption guarantees that if $C$
+is any such command, there exists a Turing machine $M$ which computes enumerates
+$X$'s outputs in response to command $C$, nevertheless:
+\begin{enumerate}
+    \item
+    It is not necessarily the case that $X$ knows that $M$
+    enumerates an infinite list.
+    \item
+    Even if $X$ does know that $M$ enumerates an infinite list, it is not necessarily
+    the case that $X$ knows that the list enumerated by $M$ is the list of things
+    $X$ would output in response to command $C$.
+\end{enumerate}
+We will give two examples to illustrate the above two caveats.
+
+\begin{example}
+\label{counterintuitiveexample1}
+    If $f,g:\mathbb N\to\mathbb N$, write $f>g$ as shorthand for the statement that
+    for all $x\in\mathbb N$, $f(x)>g(x)$.
+    Suppose $X$ is commanded: ``Output Turing machines $M_0,M_1,\ldots$
+    such that each $M_i$ computes a total function $f_i:\mathbb N\to\mathbb N$,
+    and such that each $f_{i+1}>f_i$, and such that for every Turing machine $M$
+    such that you know $M$ computes a total function $f:\mathbb N\to\mathbb N$,
+    there exists some $i$ such that $f_i>f$.'' By \emph{mechanicalness}, there
+    exists a Turing machine $T$ which enumerates $M_0,M_1,\ldots$.
+    But $X$ does not know that $T$ enumerates an infinite list.
+\end{example}
+
+\begin{proof}
+    Assume (for sake of contradiction) that $X$ knows that $T$ enumerates an
+    infinite list. Since $X$ is capable of basic mathematical reasoning, it follows
+    that $X$ knows that Turing machine $M$ defines a total function $f:\mathbb N\to\mathbb N$,
+    there $M$ is the Turing machine which takes input $n\in\mathbb N$ and proceeds as
+    follows:
+    \begin{enumerate}
+        \item
+        Run $T$ until it has outputted Turing machines $M_0,\ldots,M_n$. (If $T$
+        ever outputs something that is not a Turing machine, halt and output $0$.)
+        \item
+        Run $M_n$ on input $n$ until it outputs a natural number $m$.
+        \item
+        Output $m$.
+    \end{enumerate}
+    By construction, for each $n$, $f(n)=f_n(n)$. Thus, since $X$ knows that
+    $M$ computes a total function from $\mathbb N$ to $\mathbb N$, there must
+    be some $i$ such that $f_i>f$ (because $X$ was commanded to choose the $f_i$'s
+    in order to satisfy this property). Then $f_i(i)>f(i)=f_i(i)$, a contradiction.
+\end{proof}
+
+\begin{example}
+\label{counterintuitiveexample2}
+    (G\"odel's incompleteness theorem)
+    Assume $X$ knows that its own knowledge is truthful.
+    Suppose $X$ is commanded by command $C$:
+    ``Output all the true statements (in the language of
+    Peano arithmetic) that you know are true.'' Let the resulting statements be
+    $\phi_0,\phi_1,\ldots$. By \emph{mechanicalness}, there is a Turing machine $M$
+    such that $M$ enumerates $\phi_0,\phi_1,\ldots$. Then $X$ does not know
+    ``$M$ enumerates the list of things I would output in response to $C$''.
+\end{example}
+
+\begin{proof}
+    Assume (for sake of contradiction) that $X$ knows ``$M$ enumerates the
+    list of things I would output in response to $C$''.
+    Then, since $X$ knows that its own knowledge is truthful,
+    $X$ knows that $M$ enumerates a list of true statements of Peano arithmetic
+    (because $X$ knows that it knows all statements output in response to $C$).
+    Of course, this fact $\Phi$---that $M$ enumerates a list of true statements of Peano
+    arithmetic---is not itself expressible in Peano arithmetic, by Tarski's
+    undefinability theorem \cite{tarski1936wahrheitsbegriff},
+    and therefore this fact need not be one of the $\phi_i$'s.
+    However, $\Phi$ implies a weaker fact $\Phi'$, namely, that $M$ enumerates a consistent
+    list of statements of Peano Arithmetic. This consistency statement $\Phi'$ \emph{is}
+    expressible in Peano arithmetic, and thus since $X$ knows it,
+    there is some $i$ such that $\Phi'=\phi_i$. Thus, $T=\{\phi_0,\phi_1,\ldots\}$
+    is a theory (in the language of Peano arithmetic) which is true, and which
+    includes the axioms of Peano arithmetic (since $X$ knows those), and which
+    includes a statement $\Phi'$ stating its own consistency. This is a contradiction
+    because it violates G\"odel's second incompleteness theorem.
+\end{proof}
+
 
 \section{Hibbard's original measure}
 \label{originalmeasuresection}
@@ -683,6 +772,34 @@ trivial: that it assigns intelligence level $\infty$ to every AGI.
     knows that $M'$ is total. By Lemma \ref{knowingimplieslearninglemma},
     $p$ learns to predict $e$.
 \end{proof}
+
+We will finish this section by stating one other important, possibly
+counterintuitive consequence of Assumption \ref{bruteforceassumption}.
+
+\begin{theorem}
+\label{counterintuitivetheorem}
+    If $X$ is an AGI and $p$ is $X$'s predictor, then $X$ does not know that
+    $p$ defines a total function from $B^*$ to $B$.
+\end{theorem}
+
+\begin{proof}
+    Let $e$ be the evader which attempts to evade the predictor by assuming that
+    the predictor is $p$ and always playing the opposite digit which $p$ is
+    about to play. Clearly $p$ does not learn $e$.
+
+    The fact that $e$ defines a total function from $B^*$ to $B$ follows
+    by basic mathematical reasoning from the fact that $p$ defines a total
+    function from $B^*$ to $B$. Thus, if $X$ knows that $p$ defines a total
+    function from $B^*$ to $B$, then $X$ should know that $e$ defines a total
+    function from $B^*$ to $B$. If so, then $X$'s brute-force predictor learns
+    $e$ by Lemma \ref{knowingimplieslearninglemma}. But then
+    Assumption \ref{bruteforceassumption} would imply that $p$ learns $e$,
+    a contradiction.
+\end{proof}
+
+Theorem \ref{counterintuitivetheorem} is reminiscent of
+Examples \ref{counterintuitiveexample1} and \ref{counterintuitiveexample2}.
+
 
 \section{An elementary method to non-trivialize Hibbard's intelligence measure}
 \label{simplemeasuresection}
