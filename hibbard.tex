@@ -159,7 +159,13 @@ actually is. We take the stance that an AGI should be thought of like a faithful
 employee which can understand
 practical conversation in a common human language (such as
 English) and capable of (and faithfully willing to) obey commands
-expressed by its employer in said language.
+expressed by its employer in said language\footnote{Yampolskiy \cite{yampolskiy2013turing}
+nicely captures this idea when he talks about reducing the Turing Test to the
+problem of Programming, saying: `Having access to an Oracle capable of solving Programming
+allows us to solve TT via a simple reduction. For any statement $S$ presented during
+TT transform said statement into a programming assignment of the form: ``Write a
+program which would respond to $S$ with a statement indistinguishable from a statement
+provided by an average human{''}'.}.
 So if the AGI's employer said, ``Recite the digits of pi until I tell you to
 stop,'' then the AGI would begin computing and reciting digits of pi, until the
 employer told it to stop (if ever). Unlike a human employee, who would eventually
@@ -213,8 +219,14 @@ In the same way that IQ tests are intended to measure human intelligence despite
 the fact that humans are more than professional IQ-test-takers,
 likewise, the above cross-sections of AGI serve to illuminate AGI
 even though none of them capture the full AGI. Many of these kind of
-cross-sections are probably examples of so-called \emph{AI-Complete} problems
-\cite{yampolskiy2012ai}.
+cross-sections\footnote{Or rather, the task of doing \emph{good} at these
+cross sections---whatever
+that means---for anyone can easily program a Turing Test participant that just
+repeats the same phrase over and over again, but that is not an example of
+doing the Turing Test well. Anyone can program a reinforcement learning agent that
+acts pseudo-randomly, but that is not an example of doing reinforcement learning well.}
+are probably examples of so-called \emph{AI-Complete} problems
+\cite{yampolskiy2012ai} \cite{yampolskiy2013turing}.
 
 \begin{remark}
 \label{temporalremark}
