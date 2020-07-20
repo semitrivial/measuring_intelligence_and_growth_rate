@@ -56,7 +56,6 @@ logic) rather than a function-sequence.
         \item A lemma to the effect that if X knows M is a Turing machine which computes
             f at all but finitely many points, then there exists a TM M' which computes
             f everywhere and such that X knows M' is total.
-        \item Fix the definition of $t_e$ to work for predictors as well as evaders.
     \end{enumerate}
 \end{quote}
 
@@ -487,19 +486,19 @@ because of a minor (and fortunately, easy-to-fix) error there.
 
 \begin{definition}
 \label{tsubedefinition}
-    For any evader $e$ and $n\in\mathbb N$,
-    let $t_e(n)$ be the maximum number of steps that $e$ takes to run
-    on any length-$n$ sequence of binary digits.
-    In other words, $t_e(0)$ is the number of steps $e$ takes to run on
-    $\langle\rangle$, and for all $n>0$,
+    Suppose $M$ is any Turing machine which computes a total function from $B^*$ to $B$.
+    For any $n\in\mathbb N$, let $T_M(e)$ be the maximum number of steps that $M$ takes
+    to run on any length-$n$ sequence of binary digits.
+    In other words, $t_M(0)$ is the number of steps $M$ takes to run on $\langle\rangle$,
+    and for all $n>0$,
     \[
-        t_e(n) = \max_{b_1,\ldots,b_n\in \{0,1\}}
-        (\text{number of steps $e$ takes to run on $(b_1,\ldots,b_n)$}).
+        t_M(n) = \max_{b_1,\ldots,b_n\in \{0,1\}}
+        (\text{number of steps $M$ takes to run on $(b_1,\ldots,b_n)$}).
     \]
 \end{definition}
 
 \begin{example}
-Let $e$ be an evader. Then
+    Let $e$ be an evader. Then
     $t_e(2)$ is equal to the number of steps $e$ takes to run on input
     $(0,0)$, or to run on input $(0,1)$, or to run on input $(1,0)$, or to run on input
     $(1,1)$---whichever of these four possibilities is largest.
