@@ -12,6 +12,8 @@
 \newtheorem{example}[theorem]{Example}
 \newtheorem{assumption}[theorem]{Assumption}
 \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{informallemma}[theorem]{Informal Lemma}
+\newtheorem{remark}[theorem]{Remark}
 
 \title{Extending Hibbard's intelligence measure by delegating hard choices to the agent}
 \author{Samuel Alexander\thanks{The U.S.\ Securities and Exchange Commission}}
@@ -55,7 +57,6 @@ logic) rather than a function-sequence.
             f at all but finitely many points, then there exists a TM M' which computes
             f everywhere and such that X knows M' is total.
         \item Fix the definition of $t_e$ to work for predictors as well as evaders.
-        \item Add a remark about temporal nature of command responses.
     \end{enumerate}
 \end{quote}
 
@@ -212,6 +213,56 @@ In the same way that IQ tests are intended to measure human intelligence despite
 the fact that humans are more than professional IQ-test-takers,
 likewise, the above cross-sections of AGI serve to illuminate AGI
 even though none of them capture the full AGI.
+
+\begin{remark}
+\label{temporalremark}
+    Throughout this paper, whenever we speak of an AGI, we really mean the
+    state of a general-artificially intelligent agent's mind at an instant in time.
+    To illustrate this, imagine a robot which possesses artificial general intelligence.
+    Suppose at time $t$ the robot observes something which updates its knowledge.
+    Then we consider the same robot to define at least two distinct AGIs, one AGI
+    immediately before time $t$, and another
+    immediately after time $t$.
+    Whenever we speak of the outputs which an AGI would make in response to some
+    command, we implicitly mean the hypothetical outputs which the AGI would make
+    if, immediately upon receiving the command, the AGI were isolated from all
+    external stimulus.
+\end{remark}
+
+Remark \ref{temporalremark} is illustrated by the following
+informal lemma.
+
+\begin{informallemma}
+\label{teachinglemma}
+    If $X$ is an AGI and $\phi$ is a true sentence in the language of Peano arithmetic
+    such that $X$ does not know $\phi$, then there exists an AGI $Y$ such that:
+    \begin{enumerate}
+        \item
+        $Y$ knows $\phi$.
+        \item
+        For every sentence $\psi$ in the language of Peano arithmetic,
+        if $X$ knows $\psi$, then $Y$ knows $\psi$.
+    \end{enumerate}
+\end{informallemma}
+
+\begin{proof}[Informal proof]
+    Let $Y$ be the AGI which would result immediately after $X$ were given the command:
+    ``Know $\phi$; in other words, henceforward, operate under the assumption
+    that $\phi$ is true.'' Then $Y$ knows $\phi$ by construction, and $Y$ knows
+    every sentence $\psi$ in the language of Peano arithmetic that $X$ knows
+    (because the indicated command should not cause $X$ to suddenly doubt any
+    previously known arithmetical facts---note that since $\phi$ is true, $X$
+    did not previously know $\neg\phi$, or anything else inconsistent with $\phi$,
+    since knowledge is truthful).
+\end{proof}
+
+Note that part (2) of Informal Lemma \ref{teachinglemma} might fail if
+$\psi$ were not restricted to purely arithmetical formulas.
+For example, assume $P\neq NP$ and let $\phi$ express $P\neq NP$.
+It could very well be that $X$ knows that ``I do not know $\phi$''---i.e., that
+$X$ knows ``$\neg K(\phi)$'' (a formula in the language of Epistemic Arithmetic
+\cite{shapiro})---but that $Y$, having been taught that $\phi$ is true,
+no longer knows ``I do not know $\phi$''.
 
 \begin{assumption}
 \label{idealizingassumption}
