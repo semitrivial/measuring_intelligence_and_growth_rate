@@ -256,6 +256,10 @@ informal lemma.
         For every sentence $\psi$ in the language of Peano arithmetic,
         if $X$ knows $\psi$, then $Y$ knows $\psi$.
     \end{enumerate}
+    In fact, $Y$ can be obtained from $(X,\phi)$ in an effective way, by which we mean
+    that there is a computable function $F$ which takes two inputs $(x,y)$ such that
+    if $x$ encodes AGI $X$ and $y$ encodes true sentence $\phi$ of Peano arithmetic
+    then $F(x,y)$ encodes AGI $Y$ as above.
 \end{informallemma}
 
 \begin{proof}[Informal proof]
@@ -266,7 +270,8 @@ informal lemma.
     (because the indicated command should not cause $X$ to suddenly doubt any
     previously known arithmetical facts---note that since $\phi$ is true, $X$
     did not previously know $\neg\phi$, or anything else inconsistent with $\phi$,
-    since knowledge is truthful).
+    since knowledge is truthful). This process is clearly effective, so the second
+    part of the Informal Lemma follows by Church's Thesis.
 \end{proof}
 
 Note that part (2) of Informal Lemma \ref{teachinglemma} might fail if
@@ -1015,80 +1020,110 @@ Based on Theorems \ref{simplehibbardnontrivialtheorem}
 and \ref{Xjudgesitselfinfinitelysmarttheorem},
 we see that in a certain sense, for all AGIs $X$ and $Y$,
 if $X$ knows that $Y$'s predictor computes a total function from $B^*$ to $B$,
-then $X$ is more intelligent than $Y$ (more precisely: $X$ is more intelligent
+then $X$ is more intelligent than $Y$: $X$ is more intelligent
 than $Y$ in the sense that $|X|_X=\infty>|Y|_X$).
 
-We should therefore expect that this property should hold for bigger groups of AGIs:
-we should expect the following:
-\begin{quote}
-    (Desideratum) For any AGIs $X,Y,Z$, if $X$ knows the both $Y$'s predictor
-    and $Z$'s predictor compute total functions from $B^*$ to $B$, and if
-    $Y$ knows that $Z$'s predictor computes a total function from $B^*$ to $B$,
-    then we should expect that $|X|_X=\infty>|Y|_X>|Z|_X$.
-\end{quote}
-Unfortunately, this almost surely cannot be the case in general, and the reason has
-almost nothing to do with intelligence or with adversarial sequence prediction,
-and almost entirely to do with the structure of the natural numbers: relative Hibbard
-measures assign natural-number-valued intelligence measures to AGIs, and those
-values therefore suffer the same limitations as the natural numbers.
+Based on the above, we might expect that for all AGIs $X,Y,Z$, if $X$ knows
+$Y$'s predictor computes a total function from $B^*$ to $B$, and if $Y$
+knows $Z$'s predictor computes a total function from $B^*$ to $B$,
+then $|X|_X=\infty>|Y|_X>|Z|_X$. But this does \emph{not} hold in general
+(as we show in the following theorem),
+and the reason has almost nothing to do with intelligence or with adversarial
+sequence prediction, and almost entirely to do with the structure of the natural
+numbers: relative Hibbard measures assign natural-number-valued intelligence
+measures to AGIs, and those values therefore suffer the same limitations as the
+natural numbers.
 
-Let $Y_0$ be some initial AGI.
-\begin{itemize}
-    \item
-    By mechanicalness, $Y_0$'s predictor $p_0$ computes a total function from $B^*$ to $B$.
-    \item
-    If $Y_0$ is capable of being taught new facts (and thereby becoming a new AGI),
-    then we should be able to define $Y_1$ to be the AGI which would result from making
-    a clone of $Y_0$ and teaching the clone that $p_0$ computes a total function from $B^*$
-    to $B$.
-    \item
-    By mechanicalness, $Y_1$'s predictor $p_1$ computes a total function from $B^*$ to $B$.
-    \item
-    If $Y_1$ is capable of being taught new facts (and thereby becoming a new AGI),
-    then we should be able to define $Y_2$ to be the AGI which would result from making
-    a clone of $Y_1$ and teaching the clone that $p_1$ computes a total function from $B^*$
-    to $B$.
-    \item
-    Repeating the above process, we should be able to define AGIs $Y_0,Y_1,Y_2,\ldots$
-    such that if each $Y_i$ has predictor $p_i$, then each $Y_{i+1}$ knows that $p_i$
-    computes a total function from $B^*$ to $B$.
-    \item
-    Apparently nothing in the above process is non-mechanical, so by suitably formalizing
-    the above process, we should be able to define a Turing machine $M$ that enumerates
-    $p_0,p_1,\ldots$. It is then a true fact that $M$ enumerates an infinite
-    list of Turing machines
-    each one of which defines a total function from $B^*$ to $B$.
-    \item
-    If $Y_0$ is capable of being taught new facts (and thereby becoming a new AGI),
-    then we should be able to define $X$ to be the AGI which would result from making
-    a clone of $Y_0$ and teaching the clone that $M$ enumerates an infinite list of
-    Turing machines each one of which defines a total function from $B^*$ to $B$.
-    \item
-    In this way, for every $i$, $Y$ knows that $p_i$ defines a total function from $B^*$
-    to $B$. Let $p$ be $Y$'s predictor.
-    \item
-    Finally, let $X$ be the AGI which would result from making a clone of $Y$ and teaching
-    the clone that $p$ predictor computes a total function from $B^*$ to $B$.
-\end{itemize}
-So in summary: each $Y_i$ has predictor $p_i$, each $Y_{i+1}$ knows that
-$p_i$ computes a total function from $B^*$ to $B$, $Y$ has predictor $p$,
-$Y$ knows that all of the $p_i$ compute total functions from $B^*$ to $B$,
-and $X$ knows that $p$ computes a total function from $B^*$ to $B$ and that all the
-$p_i$ do too.
-If the above \emph{Desideratum} held in general, it would force $|Y|_X<\infty$
-and at the same time $|Y_0|_X<|Y_1|_X<|Y_2|_X<\cdots$ and at the same time
-each $|Y_i|_X<|Y|_X$. This cannot hold, because $|\bullet|_X$ is natural-number-valued:
-if $|Y|_X$ were, say, $999$, then $|Y_0|_X,\ldots,|Y_{1000}|_X$ would be
-a length-$1001$ increasing sequence of naturals $<999$, which is absurd.
+\begin{theorem}
+\label{nonarchimedeantheorem}
+    If any AGIs exist, then
+    there exists AGIs $X,Y,Z$ such that $X$ such that the following holds:
+    \begin{enumerate}
+        \item $X$ knows that $Y$'s predictor computes a total function from $B^*$ to $B$.
+        \item $Y$ knows that $Z$'s predictor computes a total function from $B^*$ to $B$.
+        \item It is \emph{not} the case that $|X|_X>|Y|_X>|Z|_X$.
+    \end{enumerate}
+\end{theorem}
 
-The above example shows if the \emph{Desirata} held,
-then AGI intelligence would be \emph{non-Archimedean},
-in a sense which we make formal in \cite{alexander2020archimedean}.
-In that paper, we argue that it is hopeless to try to measure non-Archimedean
-structures using natural numbers---in fact, that it is even hopeless to measure
-non-Archimedean structures using \emph{real} numbers. If AGI intelligence
-is non-Archimedean, then in order to accurately measure it, we need to use
-a non-Archimedean number system. In Section \ref{transfinitehibbardsection}
+\begin{proof}
+    By assumption, some AGIs exist, so let $Y_0$ be some initial AGI.
+
+    Let $F$ be the function from the second part of Informal Lemma \ref{teachinglemma}.
+    Define a sequence $\phi_0,\phi_1,\ldots$ of true sentences of Peano arithmetic and
+    a sequence $Y_1,Y_2,\ldots$ by simultaneous recursion as follows:
+    \begin{enumerate}
+        \item
+        For all $i\geq 0$, assuming $Y_i$ has been defined,
+        let $\phi_i$ be the statement that $A_i$'s predictor defines a computable
+        function from $B^*$ to $B$.
+        \item
+        For all $i>0$, assuming $Y_{i-1}$ and $\phi_{i-1}$ have been defined,
+        let $Y_i=F(Y_{i-1},\phi_{i-1})$.
+    \end{enumerate}
+    By construction, each $Y_{i+1}$ is an AGI which
+    knows that $Y_i$'s predictor computes a total function from $B^*$ to $B$.
+
+    Let $\phi$ be the statement that $\forall i$, $Y_i$'s predictor computes a total
+    function from $B^*$ to $B$.
+    Let $Y=F(Y_0,\phi)$.
+    Thus, $Y$ is an AGI such that for each $i$, $Y$ knows that $Y_i$'s predictor
+    computers a total function from $B^*$ to $B$.
+
+    Let $\phi'$ be the statement that $Y$'s predictor computes a total function
+    from $B^*$ to $B$ and that for each $i$, $Y_i$'s predictor computes a total
+    function from $B^*$ to $B$.
+    Let $X=F(Y,\phi')$.
+    Thus, $X$ is an AGI which knows that $Y$'s predictor computes a total function from
+    $B^*$ to $B$, and also knows (for each $i$) that $Y_i$'s predictor computes a total
+    function from $B^*$ to $B$.
+
+    Assume (for sake of contradiction) that the Theorem we are proving is false.
+    Then:
+    \begin{itemize}
+        \item
+        For each $i\geq 0$, we have:
+        \begin{itemize}
+            \item
+            $X$ knows $Y_{i+1}$'s predictor defines a total function from $B^*$ to $B$.
+            \item
+            $Y_{i+1}$ knows $Y_i$'s predictor defines a total function from $B^*$ to $B$.
+            \item
+            Thus, $|X|_X=\infty>|Y_{i+1}|_X>|Y_i|_X$ (lest the triple $(X,Y_{i+1},Y_i)$
+            would witness the Theorem).
+        \end{itemize}
+        \item
+        Also, for each $i\geq 0$, we have:
+        \begin{itemize}
+            \item
+            $X$ knows $Y$'s predictor defines a total function from $B^*$ to $B$.
+            \item
+            $Y$ knows $Y_i$'s predictor defines a total function from $B^*$ to $B$.
+            \item
+            Thus, $|X|_X=\infty>|Y|_X>|Y_i|_X$ (lest the triple $(X,Y,Y_i)$
+            would witness the Theorem).
+        \end{itemize}
+    \end{itemize}
+    Since $|Y|_X$ and each $|Y_i|_X$ are natural numbers, it follows that
+    \[
+        \left\{|Y_0|_X,|Y_1|_X,\ldots,\left|Y_{|Y|_X}\right|_X\right\}
+    \]
+    is a set of $|Y|_X+1$ distinct natural numbers,
+    all of them smaller than the natural number $|Y|_X$.
+    This is absurd, because there are only $|Y|_X$ distinct natural numbers
+    smaller than $|Y|_X$.
+\end{proof}
+
+The proof of Theorem \ref{nonarchimedeantheorem} works because if $n_0,n_1,n_2,\ldots$
+is any sequence of naturals with each $n_{i+1}\geq n_i+1$, then for every natural number
+$m$, there is some $i$ such that $n_i>m$. This property is a generalization of a
+basic property of $\mathbb R$ called the \emph{Archimedean property}. This generalized
+version of the Archimedean property debuted in \cite{alexander2020archimedean},
+where we argue that it is hopeless to try to measure non-Archimedean structures
+using natural numbers---in fact, that it is even hopeless to measure non-Archimedean
+structures using \emph{real} numbers. If AGI intelligence is non-Archimedean (as the
+proof of Theorem \ref{nonarchimedeantheorem} suggests it is), then in order to
+accurately measure it, we need to use a non-Archimedean number system.
+In Section \ref{transfinitehibbardsection}
 we will do exactly that. But first, we need some machinery from mathematical logic.
 
 
