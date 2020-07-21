@@ -1053,12 +1053,12 @@ natural numbers.
     a sequence $Y_1,Y_2,\ldots$ by simultaneous recursion as follows:
     \begin{enumerate}
         \item
-        For all $i\geq 0$, assuming $Y_i$ has been defined,
+        Assuming $Y_i$ has been defined,
         let $\phi_i$ be the statement that $A_i$'s predictor defines a computable
         function from $B^*$ to $B$.
         \item
-        For all $i>0$, assuming $Y_{i-1}$ and $\phi_{i-1}$ have been defined,
-        let $Y_i=F(Y_{i-1},\phi_{i-1})$.
+        Assuming $Y_{i}$ and $\phi_{i}$ have been defined,
+        let $Y_{i+1}=F(Y_{i},\phi_{i})$.
     \end{enumerate}
     By construction, each $Y_{i+1}$ is an AGI which
     knows that $Y_i$'s predictor computes a total function from $B^*$ to $B$.
