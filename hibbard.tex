@@ -1146,6 +1146,117 @@ we will do exactly that. But first, we need some machinery from mathematical log
     \cite{ioi1} \cite{ioi2} that more intelligent AGIs should know larger ordinal numbers.
 \end{remark}
 
+\section{Transfinite Hibbard measures}
+
+The original Hibbard measure
+(Definition \ref{classichibbardmeasuredefn}) depends on a specific list of
+quickly-growing computable functions from $\mathbb N$ to $\mathbb N$, imported from
+\cite{liu1960enumeration}. In Section \ref{trivialitysection}, we argued
+that the original Hibbard measure is trivial for AGIs because the functions thus imported
+are too slow-growing.
+In Section \ref{simplemeasuresection} we generalized
+the original Hibbard measure
+by delegating the choice of a list of quickly-growing computable functions to an AGI rather
+than to a single external paper. The resulting family of relative Hibbard measures is
+non-trivial (Theorem \ref{simplehibbardnontrivialtheorem}), but in
+Subsection \ref{problemwithsimplehibbardsection} we argued that these
+measures still have a crucial flaw: they are constrained by the structure of
+$\mathbb N$, which is inappropriate because, as Theorem \ref{nonarchimedeantheorem}
+suggests, AGI intelligence should have a more sophisticated structure than $\mathbb N$.
+In this section, we will rectify this flaw by introducing what we call \emph{transfinite
+Hibbard measures}, which assign computable-ordinal-valued intelligence levels rather than
+natural-number-valued intelligence levels. First we need some infrastructure.
+
+\subsection{Kleene's ordinal notation system $\mathcal O$}
+
+We are going to be delegating the task of notating computable
+ordinals to an AGI, so we need to fix a formal, systematic way of speaking about these things.
+The following notation system is due to Kleene \cite{kleene1938notation}.
+
+\begin{definition}
+(Kleene's $\mathcal O$)
+We define a subset $\mathcal O\subseteq \mathbb N$ and a function $|\bullet|$ which maps
+members of $\mathcal O$ to computable ordinals as follows (whenever $n\in\mathcal O$ and
+$|n|=\alpha$, we say that $n$ \emph{notates} the ordinal $\alpha$):
+\begin{enumerate}
+    \item
+        $0\in\mathcal O$ and $|0|=0$ (in other words, the natural number $0$ notates
+        the ordinal $0$).
+    \item
+        For each $n\in\mathcal O$, $2^n\in\mathcal O$ and $|2^n|=|n|+1$ (in other words,
+        if the natural number $n$ notates $\alpha$, then the natural number $2^n$
+        notates $\alpha+1$).
+    \item
+        If the $e$th Turing machine defines a total function $f:\mathbb N\to\mathbb N$
+        such that each $f(n)\in\mathcal O$ and such that each $|f(n)|<|f(n+1)|$,
+        then $3\cdot 5^e\in\mathcal O$ and $|3\cdot 5^e|=\lim_{n\in\mathbb N}|f(n)|$.
+    \item
+        $\mathcal O$ is as small as possible such that the above properties hold.
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+    (Examples of Kleene's $\mathcal O$)
+    \begin{enumerate}
+        \item
+        Let $e_1$ be such that the $e_1$th Turing machine computes the
+        function $f_1:\mathbb N\to\mathbb N$ such that
+        $f_1(0)=0$, $f_1(1)=2^0$, $f_1(2)=2^{2^0}$, $f_1(3)=2^{2^{2^0}}$, and so on.
+        Then:
+        \begin{enumerate}
+            \item
+            Each $f_1(n)\in\mathcal O$.
+            \item
+            Each $|f_1(n)|=n$.
+            \item
+            $3\cdot 5^{e_1}\in \mathcal O$.
+            \item
+            $|3\cdot 5^{e_1}|=\lim_{n\in\mathbb N}|f_1(n)|=\lim_{n\in\mathbb N}n=\omega$,
+            where $\omega$ is the smallest infinite ordinal.
+        \end{enumerate}
+        \item
+        Let $e_2$ be such that the $e$th Turing machine computes the
+        function $f_2:\mathbb N\to\mathbb N$ such that
+        $f_2(0)=3\cdot 5^{e_1}$, $f_2(1)=2^{3\cdot 5^{e_1}}$,
+        $f_2(2)=2^{2^{3\cdot 5^{e_1}}}$, and so on.
+        Then:
+        \begin{enumerate}
+            \item
+            Each $f_2(n)\in \mathcal O$.
+            \item
+            Each $|f_2(n)|=\omega+n$.
+            \item
+            $3\cdot 5^{e_2}\in\mathcal O$.
+            \item
+            $|3\cdot 5^{e_2}|=\lim_{n\in\mathbb N}|f_2(n)|=\lim_{n\in\mathbb N}\omega+n
+            =\omega+\omega=\omega\cdot 2$.
+        \end{enumerate}
+        \item
+        Similarly, we could define $e_3$ such that $|3\cdot 5^{e_3}|=\omega\cdot 3$,
+        and $e_4$ such that $|3\cdot 5^{e_4}|=\omega\cdot 4$, and so on.
+        But with sufficient creativity, the reader can short-circuit this whole process,
+        and find a single number $e$ such that the $e$th Turing machine computes
+        a function $f:\mathbb N\to\mathbb N$ such that
+        $f(0)=e_0=0$, $f(1)=e_1$, $f(2)=e_2$,
+        and in general each $f(n)=e_{n+1}$ for some such $e_1,e_2,\ldots$ as just described.
+        Then:
+        \begin{enumerate}
+            \item
+            Each $f(n)\in\mathcal O$.
+            \item
+            Each $|f(n)|=\omega\cdot n$.
+            \item
+            $3\cdot 5^e\in\mathcal O$.
+            \item
+            $|3\cdot 5^e|=\lim_{n\in\mathbb N}|f(n)|
+            =\lim_{n\in\mathbb N}\omega\cdot n
+            =\omega\cdot\omega=\omega^2$.
+        \end{enumerate}
+    \end{enumerate}
+\end{example}
+
+
+
 \section{The slow-growing hierarchy}
 \label{slowgrowinghierarchysection}
 
