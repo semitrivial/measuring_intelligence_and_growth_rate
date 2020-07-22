@@ -1318,7 +1318,23 @@ The following result is well-known and we state it without proof.
     \end{enumerate}
 \end{definition}
 
-
+\begin{definition}
+    For each AGI $X$, let $(k^X_1,M^X_1),(k^X_2,M^X_2),\ldots$ be the
+    sequence of majorization-hierarchy-encodings which would result
+    if $X$ were commanded:
+    \begin{quote}
+        ``Until further notice, list encodings of majorization hierarchies
+        $F_1,F_2,\ldots$ up to ordinals $\alpha_1,\alpha_2,\ldots$ in such a way that
+        each $\alpha_{i+1}>\alpha_i$; and in such a way that each $F_{i+1}$ extends $F_i$;
+        and in such a way that for every $k$ such that you know $k$ is a non-redundant
+        member of $\mathcal O$, there is some $i$ with $\alpha_i>|k|$;
+        and in such a way that for every Turing machine $C$ such that you know $C$
+        computes a total function $f:\mathbb N\to\mathbb N$, there is some
+        $i$ and some $\alpha<\alpha_i$ such that $F_i(\alpha)\succ f$.''
+    \end{quote}
+    Let $F^X_1:\alpha^X_1\to INC, F^X_2:\alpha^X_2\to INC, \ldots$
+    be the majorization hierarchies encoded by $(k^X_1,M^X_1),(k^X_2,M^X_2),\ldots$.
+\end{definition}
 
 \section{The slow-growing hierarchy}
 \label{slowgrowinghierarchysection}
