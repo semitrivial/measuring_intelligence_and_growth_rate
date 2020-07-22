@@ -329,10 +329,13 @@ $X$'s outputs in response to command $C$, nevertheless:
 \end{enumerate}
 We will give two examples to illustrate the above two caveats.
 
+\begin{definition}
+For any $f,g:\mathbb N\to\mathbb N$, write $f>g$ as shorthand for the statement
+that there is some $i\in\mathbb N$ such that for all $x\geq i$, $f(x)>g(x)$.
+\end{definition}
+
 \begin{example}
 \label{counterintuitiveexample1}
-    If $f,g:\mathbb N\to\mathbb N$, write $f>g$ as shorthand for the statement that
-    for all $x\in\mathbb N$, $f(x)>g(x)$.
     Suppose $X$ is commanded: ``Output Turing machines $M_0,M_1,\ldots$
     such that each $M_i$ computes a total function $f_i:\mathbb N\to\mathbb N$,
     and such that each $f_{i+1}>f_i$, and such that for every Turing machine $M$
@@ -353,14 +356,17 @@ We will give two examples to illustrate the above two caveats.
         Run $T$ until it has outputted Turing machines $M_0,\ldots,M_n$. (If $T$
         ever outputs something that is not a Turing machine, halt and output $0$.)
         \item
-        Run $M_n$ on input $n$ until it outputs a natural number $m$.
+        For each $i\leq n$, run $M_i$ on input $n$ until it outputs a natural
+        number $m_{n,i}$.
         \item
-        Output $m$.
+        Output $\max\{m_{n,0},\ldots,m_{n,n}\}+1$.
     \end{enumerate}
-    By construction, for each $n$, $f(n)=f_n(n)$. Thus, since $X$ knows that
-    $M$ computes a total function from $\mathbb N$ to $\mathbb N$, there must
-    be some $i$ such that $f_i>f$ (because $X$ was commanded to choose the $f_i$'s
-    in order to satisfy this property). Then $f_i(i)>f(i)=f_i(i)$, a contradiction.
+    Above, since each $M_i$ computes $f_i$, it follows that each $m_{n,i}=f_i(n)$.
+    Thus, for each $i$, $f>f_i$, because for all $x\geq i$,
+    $f(x)=\max\{m_{x,0},\ldots,m_{x,x}\}+1\geq m_{x,i}+1=f_i(x)+1$.
+    But by assumption, since $X$ knows that $M$ computes a total function from
+    $\mathbb N$ to $\mathbb N$, there is some $i$ such that
+    $f_i>f$. So $f>f_i$ and $f_i>f$, a contradiction.
 \end{proof}
 
 \begin{example}
