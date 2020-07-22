@@ -330,6 +330,7 @@ $X$'s outputs in response to command $C$, nevertheless:
 We will give two examples to illustrate the above two caveats.
 
 \begin{definition}
+\label{functionsuccdefn}
 For any $f,g:\mathbb N\to\mathbb N$, write $f\succ g$ as shorthand for the statement
 that there is some $i\in\mathbb N$ such that for all $x\geq i$, $f(x)>g(x)$.
 \end{definition}
@@ -896,12 +897,12 @@ delegate that choice to an AGI.
     If $X$ is an AGI, let $(C^X_1, C^X_2, \ldots)$ be the sequence of
     Turing machines which would result if $X$ were commanded:
     \begin{quote}
-        ``Until further notice, list Turing machines which compute faster- and
-        faster-growing total functions from $\mathbb N$ to $\mathbb N$; for every
-        Turing machine $C$ that you know computes a total
-        function $f:\mathbb N\to\mathbb N$,
-        your list should eventually
-        include a Turing machine which computes a function $g$ such that $g>f$.''
+        ``Until further notice, list Turing machines which compute total
+        functions $g_1,g_2,\ldots$ from $\mathbb N$ to $\mathbb N$, such that
+        each $g_{i+1}\succ g_i$ (Definition \ref{functionsuccdefn}),
+        and such that for every Turing machine $C$ that you know computes
+        a total function $f:\mathbb N\to\mathbb N$,
+        there is some $i$ such that $g_i\succ f$.''
     \end{quote}
     For each $i>0$, let $g^X_i:\mathbb N\to\mathbb N$ be the function computed by
     $C^X_i$.
@@ -916,8 +917,8 @@ out a Turing machine $C^X_3$ which computes the function $g^X_3(n)=3n$.
 Now, $X$ might feel lazy and want to continue that pattern forever, so that
 the next functions would be $4n$, $5n$, etc., but the latter part of the command in
 Definition \ref{functionlistdefinition} rules this sort of laziness out, so $X$
-eventually has to move on to bigger functions like $n^2+1$, $n^n+10$,
-$n^{n^{n^{n}}}+999$,
+eventually has to move on to bigger functions like $n^2$, $n^n$,
+$n^{n^{n^{n}}}$,
 and so on ($X$ must know about these because we assumed $X$ has basic mathematical
 knowledge and reasoning ability).
 
@@ -960,12 +961,12 @@ such that $|Y|_X<\infty$.
         \item
         $X$ knows that $C$ computes a total function from $\mathbb N$ to $\mathbb N$.
     \end{enumerate}
-    By (2), there is some $m$ such that $g^X_m>g$
+    By (2), there is some $m$ such that $g^X_m\succ g$
     (by the second part of the command in Definition \ref{functionlistdefinition}).
     So if $f_m:\mathbb N\to\mathbb N$ is defined
     (as in Definition \ref{generalintelligencemeasuredefn})
     as $f_m(k)=\max_{0<i\leq m}\max_{j\leq k}g^X_i(j)$,
-    then for every $k$, $f_m(k)\geq g^X_m(k)>g(k)=t_e(k)$.
+    then for all but finitely many $k$, $f_m(k)\geq g^X_m(k)>g(k)=t_e(k)$.
     This shows that $e\in E_{f_m}$ (from Definition \ref{evadersetdefinition}).
     Since $p$ does not learn to predict $e$,
     it is not the case that $p$ learns to predict every evader in $E_{f_m}$.
@@ -989,28 +990,19 @@ be $<\infty$ anyway? The following theorem answers this question negatively.
     $f_m(k)=\max_{0<i\leq m}\max_{j\leq k}g^X_i(j)$.
     So, fix $m\in\mathbb N$ and let $e\in E_{f_m}$.
 
-    Since $X$ knows that $C^X_1,\ldots,X^C_m$ compute total functions from $\mathbb N$
-    to $\mathbb N$, it follows that there is a Turing machine $C$ such that the following
-    hold:
-    \begin{enumerate}
-        \item
-        $C$ computes $f_m$.
-        \item
-        $X$ knows that $C$ computes a total function from $\mathbb N$ to $\mathbb N$.
-    \end{enumerate}
     Let $M$ be the Turing machine which takes input $(x_1,\ldots,x_n)\in B^*$
     and proceeds as follows:
     \begin{enumerate}
         \item
-        Run $C$ on input $n$ until it gives output $k$ (if $C$ never halts on input
-        $n$, then keep running it forever and never halt).
+        Run $C^X_m$ on input $n$ until it gives output $k$.
         \item
         Run $e$ for up to $k$ steps. If it halts with output $y\in\{0,1\}$ during that
         time, then halt and output $y$. Otherwise, halt and output $0$.
     \end{enumerate}
-    Since $X$ knows that $C$ computes a total function from $\mathbb N$ to $\mathbb N$,
+    Since $X$ knows that $C^X_m$ computes a total function from $\mathbb N$ to $\mathbb N$,
     it follows that $X$ knows that $M$ computes a total function from $B^*$ to $B$.
-    By definition of $C$, in line (2) in the definition of $M$, when $e$ is run for
+    Since $C^X_m$ computes $f_m$,
+    in line (2) in the definition of $M$, when $e$ is run for
     up to $k$ steps, that means $e$ is run for up to $f_m(n)$ steps.
     Since $e\in E_{f_m}$, this means that, except for finitely many exceptions,
     for every input $(x_1,\ldots,x_n)\in B^*$, $M$ halts with output
@@ -1035,7 +1027,7 @@ Based on the above, we might expect that for all AGIs $X,Y,Z$, if $X$ knows
 $Y$'s predictor computes a total function from $B^*$ to $B$, and if $Y$
 knows $Z$'s predictor computes a total function from $B^*$ to $B$,
 then $|X|_X=\infty>|Y|_X>|Z|_X$. But this does \emph{not} hold in general
-(as we show in the following theorem),
+(as we show in the next theorem),
 and the reason has almost nothing to do with intelligence or with adversarial
 sequence prediction, and almost entirely to do with the structure of the natural
 numbers: relative Hibbard measures assign natural-number-valued intelligence
@@ -1045,7 +1037,7 @@ natural numbers.
 \begin{theorem}
 \label{nonarchimedeantheorem}
     If any AGI exists, then
-    there exist AGIs $X,Y,Z$ such that the following requirements hold:
+    there exist AGIs $X,Y,Z$ such that:
     \begin{enumerate}
         \item $X$ knows that $Y$'s predictor computes a total function from $B^*$ to $B$.
         \item $Y$ knows that $Z$'s predictor computes a total function from $B^*$ to $B$.
@@ -1054,15 +1046,15 @@ natural numbers.
 \end{theorem}
 
 \begin{proof}
-    By assumption, some AGIs exist, so let $Y_0$ be some initial AGI.
+    By assumption, some AGI exists, so we may let $Y_0$ be some initial AGI.
 
     Let $F$ be the function from the second part of Informal Lemma \ref{teachinglemma}.
-    Define a sequence $\phi_0,\phi_1,\ldots$ of true sentences of Peano arithmetic and
-    a sequence $Y_1,Y_2,\ldots$ by simultaneous recursion as follows:
+    Define true sentences $\phi_0,\phi_1\ldots$ of Peano arithmetic and
+    AGIs $Y_1,Y_2,\ldots$ by simultaneous recursion as follows:
     \begin{enumerate}
         \item
         Assuming $Y_i$ has been defined,
-        let $\phi_i$ be the statement that $A_i$'s predictor defines a computable
+        let $\phi_i$ be the statement that $Y_i$'s predictor defines a computable
         function from $B^*$ to $B$.
         \item
         Assuming $Y_{i}$ and $\phi_{i}$ have been defined,
@@ -1112,13 +1104,10 @@ natural numbers.
         \end{itemize}
     \end{itemize}
     Since $|Y|_X$ and each $|Y_i|_X$ are natural numbers, it follows that
-    \[
-        \left\{|Y_0|_X,|Y_1|_X,\ldots,\left|Y_{|Y|_X}\right|_X\right\}
-    \]
-    is a set of $|Y|_X+1$ distinct natural numbers,
-    all of them smaller than the natural number $|Y|_X$.
+    $\{|Y_0|_X, |Y_1|_X, \ldots\}$
+    is an infinite set of distinct natural numbers, all of them $<|Y|_X$.
     This is absurd, because there are only $|Y|_X$ distinct natural numbers
-    smaller than $|Y|_X$.
+    $<|Y|_X$.
 \end{proof}
 
 The proof of Theorem \ref{nonarchimedeantheorem} works because if $n_0,n_1,n_2,\ldots$
