@@ -14,6 +14,7 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{informallemma}[theorem]{Informal Lemma}
 \newtheorem{remark}[theorem]{Remark}
+\newtheorem{openquestion}[theorem]{Open Question}
 
 \title{Extending Hibbard's intelligence measure by delegating hard choices to the agent}
 \author{Samuel Alexander\thanks{The U.S.\ Securities and Exchange Commission}}
@@ -1255,6 +1256,12 @@ $|n|=\alpha$, we say that $n$ \emph{notates} the ordinal $\alpha$):
     \end{enumerate}
 \end{example}
 
+The following result is well-known and we state it without proof.
+
+\begin{lemma}
+    An ordinal $\alpha$ is computable if and only if $\alpha=|k|$ for some $k\in\mathcal O$.
+\end{lemma}
+
 \begin{definition}
     For each $k\in\mathcal O$, we define the \emph{notations below $k$},
     written $B(k)$, inductively as follows.
@@ -1274,30 +1281,44 @@ $|n|=\alpha$, we say that $n$ \emph{notates} the ordinal $\alpha$):
 \end{definition}
 
 \begin{definition}
-    By a \emph{majorization hierarchy}, we mean a pair $(k,M)$
-    where:
+    By a \emph{non-redundant ordinal}, we mean an ordinal of the form $|k|$
+    for some non-redundant $k\in\mathcal O$.
+\end{definition}
+
+\begin{openquestion}
+    Are the non-redundant ordinals exactly the computable ordinals?
+\end{openquestion}
+
+\begin{definition}
+    (Majorization hierarchies)
     \begin{enumerate}
         \item
-        $k\in\mathcal O$.
+        By $INC$, we mean the set of all $n\in\mathbb N$ such that the
+        $n$th Turing machine computes a total computable function $f:\mathbb N\to\mathbb N$
+        such that $f$ is increasing.
         \item
-        $k$ is non-redundant.
-        \item
-        $M$ is a Turing machine which computes a
-        total computable function $f:\mathbb N\to\mathbb N$ such that:
+        Suppose $\alpha$ is a non-redundant ordinal.
+        By a \emph{majorization hierarchy up to $\alpha$}, we mean a function
+        $F:\alpha\to INC$ such that there is some non-redundant $k$ and some total
+        computable function $g:\mathbb N\to\mathbb N$ such that:
         \begin{enumerate}
             \item
-            For every $m\in B(k)$, the $f(m)$th Turing machine computes a total
-            function $g_m:\mathbb N\to\mathbb N$ such that $g_m$ is increasing.
+            $|k|=\alpha$.
             \item
-            For every $m,n\in B(k)$, if $|m|>|n|$, then
-            $g_m\succ g_n$ (Definition \ref{functionsuccdefn}).
+            For all $k_0\in B(k)$, $f(|k_0|)=g(k_0)$.
+            \item
+            For all $\gamma<\beta<\alpha$, $F(\beta)\succ F(\gamma)$
+            (Definition \ref{functionsuccdefn}).
         \end{enumerate}
+        \item
+        By an \emph{encoding} of a majorization hierarchy $F$ up to $\alpha$,
+        we mean a pair $(k,M)$ where $k\in\mathcal O$ is as above
+        and $M$ is a Turing machine that computes some $g:\mathbb N\to\mathbb N$
+        as above.
     \end{enumerate}
-    If $(k_1,M_1)$ and $(k_2,M_2)$ are two majorization hierarchies,
-    we say that $(k_2,M_2)$ \emph{extends} $(k_1,M_1)$ if
-    $k_2=3\cdot 5^e$ for some $e$ such that the $e$th Turing machine
-    computes a function $f:\mathbb N\to\mathbb N$ such that $f(0)=k_1$.
 \end{definition}
+
+
 
 \section{The slow-growing hierarchy}
 \label{slowgrowinghierarchysection}
