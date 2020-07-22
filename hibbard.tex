@@ -330,7 +330,7 @@ $X$'s outputs in response to command $C$, nevertheless:
 We will give two examples to illustrate the above two caveats.
 
 \begin{definition}
-For any $f,g:\mathbb N\to\mathbb N$, write $f>g$ as shorthand for the statement
+For any $f,g:\mathbb N\to\mathbb N$, write $f\succ g$ as shorthand for the statement
 that there is some $i\in\mathbb N$ such that for all $x\geq i$, $f(x)>g(x)$.
 \end{definition}
 
@@ -338,7 +338,7 @@ that there is some $i\in\mathbb N$ such that for all $x\geq i$, $f(x)>g(x)$.
 \label{counterintuitiveexample1}
     Suppose $X$ is commanded: ``Output Turing machines $M_0,M_1,\ldots$
     such that each $M_i$ computes a total function $f_i:\mathbb N\to\mathbb N$,
-    and such that each $f_{i+1}>f_i$, and such that for every Turing machine $M$
+    and such that each $f_{i+1}\succ f_i$, and such that for every Turing machine $M$
     such that you know $M$ computes a total function $f:\mathbb N\to\mathbb N$,
     there exists some $i$ such that $f_i>f$.'' By \emph{mechanicalness}, there
     exists a Turing machine $T$ which enumerates $M_0,M_1,\ldots$.
@@ -362,11 +362,11 @@ that there is some $i\in\mathbb N$ such that for all $x\geq i$, $f(x)>g(x)$.
         Output $\max\{m_{n,0},\ldots,m_{n,n}\}+1$.
     \end{enumerate}
     Above, since each $M_i$ computes $f_i$, it follows that each $m_{n,i}=f_i(n)$.
-    Thus, for each $i$, $f>f_i$, because for all $x\geq i$,
+    Thus, for each $i$, $f\succ f_i$, because for all $x\geq i$,
     $f(x)=\max\{m_{x,0},\ldots,m_{x,x}\}+1\geq m_{x,i}+1=f_i(x)+1$.
     But by assumption, since $X$ knows that $M$ computes a total function from
     $\mathbb N$ to $\mathbb N$, there is some $i$ such that
-    $f_i>f$. So $f>f_i$ and $f_i>f$, a contradiction.
+    $f_i\succ f$. So $f\succ f_i$ and $f_i\succ f$, a contradiction.
 \end{proof}
 
 \begin{example}
