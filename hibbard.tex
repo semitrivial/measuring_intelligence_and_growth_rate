@@ -1167,7 +1167,7 @@ In this section, we will rectify this flaw by introducing what we call \emph{tra
 Hibbard measures}, which assign computable-ordinal-valued intelligence levels rather than
 natural-number-valued intelligence levels. First we need some infrastructure.
 
-\subsection{Kleene's ordinal notation system $\mathcal O$}
+\subsection{Majorization hierarchies and Kleene's $\mathcal O$}
 
 We are going to be delegating the task of notating computable
 ordinals to an AGI, so we need to fix a formal, systematic way of speaking about these things.
@@ -1255,7 +1255,49 @@ $|n|=\alpha$, we say that $n$ \emph{notates} the ordinal $\alpha$):
     \end{enumerate}
 \end{example}
 
+\begin{definition}
+    For each $k\in\mathcal O$, we define the \emph{notations below $k$},
+    written $B(k)$, inductively as follows.
+    \begin{enumerate}
+        \item
+        If $k=0$, then $B(n)=\emptyset$, the empty set.
+        \item
+        If $k=2^m$, then $B(n)=B(m)\cup\{m\}$.
+        \item
+        If $k=3\cdot 5^e$ where the $e$th Turing machine computes the
+        function $f:\mathbb N\to\mathbb N$, then
+        $B(k)=\cup_{n\in\mathbb N}B(f(n))$.
+    \end{enumerate}
+    For $k\in\mathcal O$, we say that $k$ is \emph{non-redundant} if
+    for every $\alpha<|k|$, there is exactly one element $k_0\in B(k)$
+    such that $|k_0|=\alpha$.
+\end{definition}
 
+\begin{definition}
+    By a \emph{majorization hierarchy}, we mean a pair $(k,M)$
+    where:
+    \begin{enumerate}
+        \item
+        $k\in\mathcal O$.
+        \item
+        $k$ is non-redundant.
+        \item
+        $M$ is a Turing machine which computes a
+        total computable function $f:\mathbb N\to\mathbb N$ such that:
+        \begin{enumerate}
+            \item
+            For every $m\in B(k)$, the $f(m)$th Turing machine computes a total
+            function $g_m:\mathbb N\to\mathbb N$ such that $g_m$ is increasing.
+            \item
+            For every $m,n\in B(k)$, if $|m|>|n|$, then
+            $g_m\succ g_n$ (Definition \ref{functionsuccdefn}).
+        \end{enumerate}
+    \end{enumerate}
+    If $(k_1,M_1)$ and $(k_2,M_2)$ are two majorization hierarchies,
+    we say that $(k_2,M_2)$ \emph{extends} $(k_1,M_1)$ if
+    $k_2=3\cdot 5^e$ for some $e$ such that the $e$th Turing machine
+    computes a function $f:\mathbb N\to\mathbb N$ such that $f(0)=k_1$.
+\end{definition}
 
 \section{The slow-growing hierarchy}
 \label{slowgrowinghierarchysection}
