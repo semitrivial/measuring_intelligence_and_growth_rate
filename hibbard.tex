@@ -1297,13 +1297,12 @@ The following result is well-known and we state it without proof.
 \end{definition}
 
 \begin{definition}
-By $INC$, we mean the set of all $n\in\mathbb N$ such that the $n$th
-Turing machine defines a total computable increasing function from $\mathbb N$
-to $\mathbb N$.
+By $INC$, we mean the set of all total computable increasing functions from
+$\mathbb N$ to $\mathbb N$.
 \end{definition}
 
 \begin{definition}
-    By a \emph{syntactic majorization hierarchy}, we mean a pair $(k,F)$
+    By a \emph{majorization hierarchy}, we mean a pair $(k,F)$
     where $k\in\mathbb O$ and $F$ is a computable function from $B(k)$ to $INC$,
     satisfying the following property:
     \begin{itemize}
@@ -1311,15 +1310,6 @@ to $\mathbb N$.
         For any $k_0,k_1\in B(k)$, if $|k_1|>|k_0|$, then
         $F(k_1)\succ F(k_0)$ (Definition \ref{functionsuccdefn}).
     \end{itemize}
-\end{definition}
-
-\begin{definition}
-    If $(k,F)$ is a syntactic majorization hierarchy, we define the
-    \emph{semantic majorization hierarchy defined by $(k,F)$},
-    written $\mathscr S(k,F)$,
-    to be the function $F:|k|\to INC$
-    defined as follows: for any $\alpha<|k|$,
-    $\mathscr F(\alpha)=F(c(\alpha, k))$.
 \end{definition}
 
 \begin{definition}
@@ -1336,7 +1326,7 @@ to $\mathbb N$.
             \item
             Each $|k_{i+1}|>|k_i|$.
             \item
-            Each $\mathscr S(k_{i+1},F_{i+1})$ extends $S(k_i,F_i)$.
+            Each $F_{i+1}$ extends $F_i$.
             \item
             For every $k$ such that you know $k\in\mathcal O$, there is some $i$
             such that $|k_i|>|k|$.
