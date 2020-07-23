@@ -1316,7 +1316,7 @@ $\mathbb N$ to $\mathbb N$.
 \subsection{The majorization hierarchy of an AGI}
 
 \begin{definition}
-\label{majorizationhierarchyofanagidefn}
+\label{majorizationhierarchiesofanagidefn}
     For each AGI $X$, let $(k^X_1,F^X_1),(k^X_2,F^X_2),\ldots$ be the sequence
     of majorization hierarchies which would result if $X$ were commanded:
     \begin{quote}
@@ -1328,6 +1328,8 @@ $\mathbb N$ to $\mathbb N$.
             Each $k_i=3\cdot 5^e$ for some $e$.
             \item
             Each $|k_{i+1}|>|k_i|$.
+            \item
+            Each $B(k_i)\subseteq B(k_{i+1})$.
             \item
             Each $F_{i+1}$ extends $F_i$.
             \item
@@ -1343,7 +1345,7 @@ $\mathbb N$ to $\mathbb N$.
 
 \begin{proposition}
     Let $X$ be an AGI. It is possible for $X$ to carry out the command in
-    Definition \ref{majorizationhierarchyofanagidefn}.
+    Definition \ref{majorizationhierarchiesofanagidefn}.
 \end{proposition}
 
 \begin{proof}
@@ -1369,8 +1371,8 @@ $\mathbb N$ to $\mathbb N$.
     $F(k)(x)=|k|$ for all $k\in B(k_0)$ and all $x\in\mathbb N$).
 
     Now inductively, for any $i$, suppose we have defined $(k_j,F_j)$ for all $j\leq i$,
-    satisfying conditions 1--3 of the command in
-    Definition \ref{majorizationhierarchyofanagidefn}.
+    satisfying conditions 1--4 of the command in
+    Definition \ref{majorizationhierarchiesofanagidefn}.
     We will define $(k_{i+1},F_{i+1})$.
 
     Let $k_{i+1}=k_i\oplus \ell_{i+1}$. Define $F_{i+1}(k)=F_i(k)$ for all $k\in B(k_i)$.
@@ -1405,31 +1407,48 @@ $\mathbb N$ to $\mathbb N$.
         for every $x$).
     \end{enumerate}
     It is easy to check that $k_1,\ldots,k_{i+1}$ and $F_1,\ldots,F_{i+1}$
-    still satisfy conditions 1--3 of the command in
-    Definition \ref{majorizationhierarchyofanagidefn}.
+    still satisfy conditions 1--4 of the command in
+    Definition \ref{majorizationhierarchiesofanagidefn}.
 
     In this way, we inductively have defined infinite sequences
     $k_1,k_2,\ldots\in\mathcal O$ and $F_1,F_2,\ldots$ (each $F_i:B(k_i)\to INC$)
-    satisfying conditions 1--3 of the command in
-    Definition \ref{majorizationhierarchyofanagidefn}. 
+    satisfying conditions 1--4 of the command in
+    Definition \ref{majorizationhierarchiesofanagidefn}.
     
     Because we chose each $k_{i+1}=k_i\oplus \ell_{i+1}$,
-    it follows (by choice of $\ell_1,\ell_2,\ldots$) that condition 4 of the command from
-    Definition \ref{majorizationhierarchyofanagidefn} is satisfied.
+    it follows (by choice of $\ell_1,\ell_2,\ldots$) that condition 5 of the command from
+    Definition \ref{majorizationhierarchiesofanagidefn} is satisfied.
     
     Because we ensured that each $F_{i+1}(k_i\oplus 0)\succ f_{i+1}$,
     it follows (by choice of $M_1,M_2,\ldots$ and definition of $f_1,f_2,\ldots$)
-    that condition 5 of the command from
-    Definition \ref{majorizationhierarchyofanagidefn} is satisfied.
+    that condition 6 of the command from
+    Definition \ref{majorizationhierarchiesofanagidefn} is satisfied.
 
     So $(k_1,F_1),(k_2,F_2),\ldots$, as defined above, satisfy all the requirements
-    of the command from Definition \ref{majorizationhierarchyofanagidefn}.
+    of the command from Definition \ref{majorizationhierarchiesofanagidefn}.
     Now, in the above argument, we never used any mathematics which should not be
     known by $X$. Therefore, $X$ would be perfectly capable of using the above
     strategy to obey the command in question. Whether $X$ uses the above strategy
     or some other strategy to obey the command, we do not know, but we have shown that
     it is possible for $X$ to obey the command.
 \end{proof}
+
+\begin{definition}
+    Suppose $X$ is an AGI. We define the \emph{majorization hierarchy of $X$} as follows.
+    Let $(k^X_1,F^X_1),(k^X_2,F^X_2),\ldots$ be as in
+    Definition \ref{majorizationhierarchiesofanagidefn}.
+    Let $k=3\cdot 5^e$ where $e$ is such that the $e$th Turing machine defines the
+    function $f:\mathbb N\to\mathbb N$ given by $f(n)=k^X_{n+1}$ (such an $e$ exists
+    by the \emph{mechanicalness} part of Assumption \ref{idealizingassumption}).
+    Define $F:B(k)\to INC$ so that for each $k'\in B(k)$ and each $g\in INC$,
+    $F(k')=g$ if and only if $F^X_i(k')=g$ for some $i$ (this makes $F$ a
+    function from $B(k)$ to $INC$ by conditions 3--4 of the command in Definition
+    \ref{majorizationhierarchiesofanagidefn}, and $F$ is computable because
+    the $F^X_1,F^X_2,\ldots$ can be dovetailed until one of them halts on input
+    $k'$). The majorization hierarchy of $X$ is defined to be the majorization
+    hierarchy $(k,F)$.
+\end{definition}
+
 
 
 \section{The slow-growing hierarchy}
