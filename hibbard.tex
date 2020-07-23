@@ -12,6 +12,7 @@
 \newtheorem{example}[theorem]{Example}
 \newtheorem{assumption}[theorem]{Assumption}
 \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{informallemma}[theorem]{Informal Lemma}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{openquestion}[theorem]{Open Question}
@@ -1315,9 +1316,9 @@ $\mathbb N$ to $\mathbb N$.
 \begin{definition}
 \label{majorizationhierarchyofanagidefn}
     For each AGI $X$, let $(k^X_1,F^X_1),(k^X_2,F^X_2),\ldots$ be the sequence
-    of syntactic majorization hierarchies which would result if $X$ were commanded:
+    of majorization hierarchies which would result if $X$ were commanded:
     \begin{quote}
-        ``Until further notice, list syntactic majorization hierarchies
+        ``Until further notice, list majorization hierarchies
         $(k_1,F_1),(k_2,F_2),\ldots$ in such a way that the following requirements
         hold:
         \begin{enumerate}
@@ -1338,10 +1339,10 @@ $\mathbb N$ to $\mathbb N$.
     \end{quote}
 \end{definition}
 
-\begin{lemma}
+\begin{proposition}
     Let $X$ be an AGI. It is possible for $X$ to carry out the command in
     Definition \ref{majorizationhierarchyofanagidefn}.
-\end{lemma}
+\end{proposition}
 
 \begin{proof}
     Let $\ell_1,\ell_2,\ldots$ be the sequence of naturals which would result if
