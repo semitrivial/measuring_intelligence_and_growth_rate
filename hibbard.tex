@@ -1275,79 +1275,76 @@ The following result is well-known and we state it without proof.
         function $f:\mathbb N\to\mathbb N$, then
         $B(k)=\cup_{n\in\mathbb N}B(f(n))$.
     \end{enumerate}
-    For $k\in\mathcal O$, we say that $k$ is \emph{non-redundant} if
-    for every $\alpha<|k|$, there is exactly one element $k_0\in B(k)$
-    such that $|k_0|=\alpha$.
 \end{definition}
 
 \begin{definition}
-    By a \emph{non-redundant ordinal}, we mean an ordinal of the form $|k|$
-    for some non-redundant $k\in\mathcal O$.
-\end{definition}
-
-\begin{openquestion}
-    Are the non-redundant ordinals exactly the computable ordinals?
-\end{openquestion}
-
-\begin{definition}
-    (Majorization hierarchies)
+    For any $k\in\mathcal O$ and any ordinal $\beta\leq |k|$, we define
+    \emph{the canonical code of $\beta$ according to $k$}, written $c(\beta,k)$,
+    by induction as follows.
     \begin{enumerate}
         \item
-        By $INC$, we mean the set of all $n\in\mathbb N$ such that the
-        $n$th Turing machine computes a total computable function $f:\mathbb N\to\mathbb N$
-        such that $f$ is increasing.
+        If $\beta=|k|$, then $c(\beta,k)=k$.
         \item
-        Suppose $\alpha$ is a non-redundant ordinal.
-        By a \emph{majorization hierarchy up to $\alpha$}, we mean a function
-        $F:\alpha\to INC$ such that there is some non-redundant $k$ and some total
-        computable function $g:\mathbb N\to\mathbb N$ such that:
-        \begin{enumerate}
-            \item
-            $|k|=\alpha$.
-            \item
-            For all $k_0\in B(k)$, $f(|k_0|)=g(k_0)$.
-            \item
-            For all $\gamma<\beta<\alpha$, $F(\beta)\succ F(\gamma)$
-            (Definition \ref{functionsuccdefn}).
-        \end{enumerate}
+        If $\beta<|k|$ and $k=2^{k_0}$, then $c(\beta,k)=c(\beta,k_0)$.
         \item
-        By an \emph{encoding} of a majorization hierarchy $F$ up to $\alpha$,
-        we mean a pair $(k,M)$ where $k\in\mathcal O$ is as above
-        and $M$ is a Turing machine that computes some $g:\mathbb N\to\mathbb N$
-        as above.
+        If $\beta<|k|$ and $k=3\cdot 5^e$, where the $e$th Turing machine computes
+        a total function $f:\mathbb N\to \mathcal O$, then we define
+        $c(\beta,k)$ to be $c(\beta,f(i))$ where $i$ is minimal such that
+        $\beta\leq |f(i)|$.
     \end{enumerate}
 \end{definition}
 
 \begin{definition}
-\label{majorizationhierarchiesofanagidefn}
-    For each AGI $X$, let $(k^X_1,M^X_1),(k^X_2,M^X_2),\ldots$ be the
-    sequence of majorization-hierarchy-encodings which would result
-    if $X$ were commanded:
-    \begin{quote}
-        ``Until further notice, list encodings of majorization hierarchies
-        $F_1,F_2,\ldots$ up to ordinals $\alpha_1,\alpha_2,\ldots$ in such a way that
-        each $\alpha_{i+1}>\alpha_i$; and in such a way that each $F_{i+1}$ extends $F_i$;
-        and in such a way that for every $k$ such that you know $k$ is a non-redundant
-        member of $\mathcal O$, there is some $i$ with $\alpha_i>|k|$;
-        and in such a way that for every Turing machine $C$ such that you know $C$
-        computes a total function $f:\mathbb N\to\mathbb N$, there is some
-        $i$ and some $\alpha<\alpha_i$ such that $F_i(\alpha)\succ f$.''
-    \end{quote}
-    Let $F^X_1:\alpha^X_1\to INC, F^X_2:\alpha^X_2\to INC, \ldots$
-    be the majorization hierarchies encoded by $(k^X_1,M^X_1),(k^X_2,M^X_2),\ldots$.
+By $INC$, we mean the set of all $n\in\mathbb N$ such that the $n$th
+Turing machine defines a total computable increasing function from $\mathbb N$
+to $\mathbb N$.
 \end{definition}
 
-A priori, the reader would be justified in questioning whether the task above is
-necessarily \emph{possible} for an AGI to carry out. The following lemma will show that it is.
+\begin{definition}
+    By a \emph{syntactic majorization hierarchy}, we mean a pair $(k,F)$
+    where $k\in\mathbb O$ and $F$ is a computable function from $B(k)$ to $INC$,
+    satisfying the following property:
+    \begin{itemize}
+        \item
+        For any $k_0,k_1\in B(k)$, if $|k_1|>|k_0|$, then
+        $F(k_1)\succ F(k_0)$ (Definition \ref{functionsuccdefn}).
+    \end{itemize}
+\end{definition}
 
-\begin{lemma}
-    Let $X$ be an AGI. It is possible for $X$ to carry out the command in
-    Definition \ref{majorizationhierarchiesofanagidefn}.
-\end{lemma}
+\begin{definition}
+    If $(k,F)$ is a syntactic majorization hierarchy, we define the
+    \emph{semantic majorization hierarchy defined by $(k,F)$},
+    written $\mathscr S(k,F)$,
+    to be the function $F:|k|\to INC$
+    defined as follows: for any $\alpha<|k|$,
+    $\mathscr F(\alpha)=F(c(\alpha, k))$.
+\end{definition}
 
-\begin{proof}
-    
-\end{proof}
+\begin{definition}
+    For each AGI $X$, let $(k^X_1,F^X_1),(k^X_2,F^X_2),\ldots$ be the sequence
+    of syntactic majorization hierarchies which would result if $X$ were commanded:
+    \begin{quote}
+        ``Until further notice, list syntactic majorization hierarchies
+        $(k_1,F_1),(k_2,F_2),\ldots$ in such a way that the following requirements
+        hold:
+        \begin{enumerate}
+            \item
+            Each $|k_{i+1}|>|k_i|$.
+            \item
+            Each $\mathscr S(k_{i+1},F_{i+1})$ extends $S(k_i,F_i)$.
+            \item
+            For every $k$ such that you know $k\in\mathcal O$, there is some $i$
+            such that $|k_i|>|k|$.
+            \item
+            For every $n$ such that you know the $n$th Turing machine computes
+            a total computable function $f:\mathbb N\to\mathbb N$, there is some
+            $i$ and some $\ell \in B(k_i)$ such that $F(\ell)\succ f$.''
+        \end{enumerate}
+    \end{quote}
+\end{definition}
+
+
+
 
 \section{The slow-growing hierarchy}
 \label{slowgrowinghierarchysection}
