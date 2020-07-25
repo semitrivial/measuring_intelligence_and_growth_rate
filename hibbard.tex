@@ -1169,6 +1169,39 @@ In this section, we will rectify this flaw by introducing what we call \emph{tra
 Hibbard measures}, which assign computable-ordinal-valued intelligence levels rather than
 natural-number-valued intelligence levels. First we need some infrastructure.
 
+\subsection{Transfinite Hibbard Measures}
+
+\begin{definition}
+    Suppose $X$ is an AGI. By $h^X_1,h^X_2,\ldots$, we mean the total computable
+    increasing functions
+    from $\mathbb N$ to $\mathbb N$ which $X$ would output if $X$ were commanded:
+    \begin{quote}
+        ``Until further notice, output (codes of) total computable increasing
+        functions $h_1,h_2,\ldots$ from $\mathbb N$ to $\mathbb N$ satisfying the
+        following constraints:
+        \begin{enumerate}
+            \item (Linear ordering) For any two $i,j\in\mathbb N$ with $i\neq j$, either
+            $h_i\succ h_j$ or $h_j\succ h_i$ (Definition \ref{functionsuccdefn}).
+            \item (Well-foundedness) There is no sequence $i_1,i_2,\ldots$ such that
+            $h_{i_1}\succ h_{i_2}\succ\cdots$.
+            \item (Largeness) For any Turing machine $M$ such that you know
+            $M$ computes a total computable function $h:\mathbb N\to\mathbb N$,
+            there is some $i$ such that $h_i\succ h$.
+            \item (Fullness) For every $i\in\mathbb N$, there is some $j>i$
+            such that:
+            \begin{enumerate}
+                \item
+                There is some $k<j$ such that $h_k\succ h_i$.
+                \item
+                $h_k\succ h_j\succ h_i$ where $k$ is the minimum number $<j$
+                such that $h_k\succ h_i$.''
+            \end{enumerate}
+        \end{enumerate}
+    \end{quote}
+\end{definition}
+
+
+
 \subsection{Majorization hierarchies and Kleene's $\mathcal O$}
 
 We are going to be delegating the task of notating computable
@@ -1449,7 +1482,10 @@ $\mathbb N$ to $\mathbb N$.
     hierarchy $(k,F)$.
 \end{definition}
 
+\subsection{The transfinite Hibbard measure defined by an AGI}
 
+\begin{definition}
+\end{definition}
 
 \section{The slow-growing hierarchy}
 \label{slowgrowinghierarchysection}
