@@ -1200,34 +1200,66 @@ natural-number-valued intelligence levels. First we need some infrastructure.
     \end{quote}
 \end{definition}
 
+\begin{definition}
+\label{alphaidefn}
+    Let $X$ be an AGI. We define a sequence $\alpha^X_1,\alpha^X_2,\ldots$
+    of ordinals by recursion as follows. Note that at first glance,
+    the following recursive definition looks too circular to work.
+    We will show in Lemma \ref{transfiniterecursionmagiclemma} that
+    it avoids infinite regress and thus
+    it does work. For each $i$, let $\alpha^X_i$ be the the smallest
+    ordinal which is larger than every ordinal $\alpha^X_j$ such that
+    $h^X_i\succ h^X_j$.
+\end{definition}
+
 \begin{lemma}
-\label{fairsequencelemma}
-    For every AGI $X$, $h^X_1,h^X_2,\ldots$ are isomorphic to an ordinal,
-    by which we mean the following. Let $S=\{h^X_1,h^X_2,\ldots\}$.
-    There is some computable ordinal $\alpha$ and some function $f:S\to \alpha$
-    such that:
-    \begin{enumerate}
-        \item
-        For every $\beta<\alpha$, there is exactly one $i$ such that $f(h^X_i)=\beta$.
-        \item
-        For all $i,j>0$, $h^X_i\succ h^X_j$ if and only if $f(h^X_i)>f(h^X_j)$.
-    \end{enumerate}
+\label{transfiniterecursionmagiclemma}
+    Definition \ref{alphaidefn} works (it does not lead to infinite regress).
 \end{lemma}
 
 \begin{proof}
-    Immediate by the \emph{linear ordering} and \emph{well-foundedness} conditions
-    in the command from Definition \ref{fairsequencedefn}.
+    Assume, for the sake of contradiction, that Definition \ref{alphaidefn}
+    leads to infinite regress. This means there is some $i_1$ such that
+    in order to define $\alpha^X_{i_1}$ we must first define $\alpha^X_{i_2}$
+    for some $i_2$, and in order to define $\alpha^X_{i_2}$ we must first
+    define $\alpha^X_{i_3}$ for some $i_3$, and in order to define
+    $\alpha^X_{i_3}$ we must first define $\alpha^X_{i_4}$ for some $i_4$,
+    and so on forever. Thus, there is an infinite sequence $i_1,i_2,\ldots$
+    such that in order to define each $\alpha^X_{i_j}$, we must first
+    define $\alpha^X_{i_{j+1}}$. Now, each $\alpha^X_{i_j}$ is defined as
+    the smallest ordinal larger than every ordinal $\alpha^X_j$ such that
+    $h^X_{i_j}\succ h^X_j$. So, since defining $\alpha^X_{i_j}$ requires
+    us to first define $\alpha^X_{i_{j+1}}$, this implies $i_{j+1}$ is
+    such a $j$, i.e., that $h^X_{i_j}\succ h^X_{i_{j+1}}$.
+    Thus $h^X_{i_1}\succ h^X_{i_2}\succ h^X_{i_3}\succ\cdots$,
+    but this contradicts the \emph{well-foundedness} part of the command
+    from Definition \ref{fairsequencedefn}.
+\end{proof}
+
+\begin{lemma}
+    Let $X$ be an AGI. For all $i,j$,
+    $h^X_i\succ h^X_j$ if and only if $\alpha^X_i>\alpha^X_j$.
+\end{lemma}
+
+\begin{proof}
+    Fix $i$ and $j$.
+    By the \emph{linear ordering} part of the command in Definition
+    \ref{fairsequencedefn}, either $h^X_i\succ h^X_j$ or $h^X_j\succ h^X_i$.
+    Assume $h^X_i\succ h^X_j$, the other case is similar.
+    By definition, $\alpha^X_i$ is defined to be the smallest ordinal
+    which is larger than $\alpha^X_{j'}$ for every $j'$ such that
+    $h^X_i\succ h^X_{j'}$. One such $j'$ is $j$ itself,
+    so by definition $\alpha^X_i$ is larger than $\alpha^X_j$, as desired.
 \end{proof}
 
 \begin{definition}
     (Transfinite Hibbard measures)
     Suppose $X$ is an AGI. By the \emph{transfinite Hibbard measure given by $X$},
     we mean the measure $\|\bullet\|_X$ which assigns to every AGI $Y$ an
-    intelligence measure $\|Y\|_X$ defined as follows. Let $f$ be as in
-    Lemma \ref{fairsequencelemma}. We define $\|Y\|_X$ to be
-    \[
-        \|Y\|_X=\sup\{f(i)\,:\,\mbox{$Y$ learns every evader in $E_{h^X_i}$}\}.
-    \]
+    intelligence measure $\|Y\|_X$ defined as follows.
+    $\|Y\|_X$ is defined to be the smallest ordinal which is larger than
+    $\alpha^X_i$ for every $i$ such that $Y$ learns every evader in
+    $E_{h^X_i}$.
 \end{definition}
 
 
