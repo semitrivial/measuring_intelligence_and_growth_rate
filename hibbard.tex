@@ -751,6 +751,7 @@ is also computationally impractical. However, it could potentially be useful for
 proving theoretical properties about AGIs.
 
 \begin{definition}
+\label{hyperrealhibbardintelligencedefn}
     (Hyperreal Hibbard intelligence)
     Suppose $r$ is a hyperreal number. We say that an AGI $X$ has \emph{hyperreal
     Hibbard intelligence $\geq r$} if the following property holds.
@@ -760,6 +761,31 @@ proving theoretical properties about AGIs.
 \end{definition}
 
 \subsection{Surreal Hibbard intelligence}
+
+The surreal number system is a number system discovered by John Conway. It is even
+more flexible than the hyperreal number system.
+There are many ways to embed the hyperreals into the surreals, and there is no
+standard or canonical way which stands out. In this subsection, fix some embedding
+of the hyperreals into the surreals.
+
+A key property of the surreals
+is that they are complete. Thus, given any set $S$ of surreals with a surreal upper bound,
+there is a \emph{least} surreal upper bound of $S$, called the \emph{supremum} of $S$
+(written $\sup S$). This allows for a Hibbard-style intelligence measure which is more
+exact than Definition \ref{hyperrealhibbardintelligencedefn}.
+
+\begin{definition}
+    (Surreal Hibbard intelligence)
+    Suppose $X$ is an AGI. Let $S_0$ be the set of all functions $f:\mathbb N\to\mathbb N$
+    such that $X$'s predictor learns every evader in $E_f$.
+    Let $S$ be the set of hyperreals corresponding to members of $S_0$ (that is,
+    for each $f\in S_0$, $S$ contains the hyperreal represented by $(f(0),f(1),f(2),\ldots)$).
+    We define the \emph{surreal Hibbard intelligence} of $X$ to be
+    $\sup S$.
+\end{definition}
+
+
+
 
 
 
