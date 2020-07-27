@@ -128,7 +128,17 @@ The structure of the paper is as follows.
     \item
     In Section \ref{originalmeasuresection}, we review the original Hibbard measure.
     \item
-    In Section \ref{trivialitysection}, argue that
+    In Section \ref{growthratesection}, we argue that Hibbard's idea essentially
+    boils down to trying to
+    solve a problem that computer scientists have already solved via Big-O notation.
+    We propose a Hibbard-style method for quantifying AGI intelligence using Big-O
+    notation.
+    \item
+    In Section ..., we consider several other solutions to the problem which computer
+    scientists solve using Big-O notation, and the Hibbard-style measures which
+    correspond to these solutions.
+    \item
+    In Section \ref{trivialitysection}, we argue that
     under certain idealizing assumptions, \emph{every} AGI probably has
     original Hibbard intelligence $\infty$.
     \item
@@ -556,6 +566,72 @@ such function-sequence.
     Liu's \cite{liu1960enumeration} enumeration of the primitive recursive
     functions.
 \end{definition}
+
+
+\section{Quantifying growth rates of functions}
+\label{growthratesection}
+
+The following is a very general and open-ended problem.
+
+\begin{problem}
+\label{bigoproblem}
+    Quantify the growth-rate of functions from $\mathbb N$ to $\mathbb N$.
+\end{problem}
+
+The standard solution to Problem \ref{bigoproblem} in computer science is to quantify
+growth rates of arbitrary functions by comparing them to more familiar functions using
+Big-O notation, Big-$\Omega$ notation, or Big-$\Theta$ notation.
+Knuth defines \cite{knuth1976big} these as follows (we modify the definition slightly because
+we are only concerned here with functions from $\mathbb N$ to $\mathbb N$).
+
+\begin{definition}
+    Suppose $f:\mathbb N\to\mathbb N$. We define the following the following function-sets.
+    \begin{itemize}
+        \item
+        $O(f(n))$ is the set of all $g:\mathbb N\to\mathbb N$ such that
+        there is some real $C>0$ and some natural number $n_0$ such that
+        for all $n\geq n_0$, $g(n)\leq Cf(n)$.
+        \item
+        $\Omega(f(n))$ is the set of all $g:\mathbb N\to\mathbb N$ such that
+        there is some real $C>0$ and some natural $n_0$ such that
+        for all $n\geq n_0$, $g(n)\geq Cf(n)$.
+        \item
+        $\Theta(f(n))$ is the set of all $g:\mathbb N\to\mathbb N$ such that
+        there are some real $C>0$ and $C'>0$ and some natural $n_0$ such that
+        for all $n\geq n_0$, $Cf(n)\leq g(n)\leq C'f(n)$.
+    \end{itemize}
+\end{definition}
+
+The original Hibbard measure (Definition \ref{classichibbardmeasuredefn}) measures
+intelligence by seeing how far along a certain specific function-sequence we must go
+before we reach functions which grow so fast that an AGI's predictor does not learn
+all evaders whose computation-time grows so fast. This strategy could be applied to
+Problem \ref{bigoproblem} as well, and would yield a solution, but a solution which we
+would argue is not very useful. Namely, adapting Hibbard's measure to
+Problem \ref{bigoproblem} would yield the following solution.
+
+\begin{definition}
+\label{originalhibbardcomplexitydefn}
+    Suppose $f:\mathbb N\to\mathbb N$.
+    Let $g_1,g_2,\ldots$ be as in Definition \ref{classichibbardmeasuredefn}, and let
+    $f_1,f_2,\ldots$ be as in Definition \ref{generalintelligencemeasuredefn}.
+    We define the \emph{original Hibbard complexity}
+    of $f$ to be the maximum $n$ such that $f_n\not\succ f$. If there is no such
+    $n$, then we say $f$ \emph{has original Hibbard complexity $\infty$}.
+\end{definition}
+
+Definition \ref{originalhibbardcomplexitydefn} would clearly not be much use in
+practice. It is much more useful to say that an algorithm has, say, asymptotic
+runtime $O(n^3)$ than to say that said algorithm's runtime has original Hibbard
+complexity (say) $835$. If someone were told that an algorithm's runtime had
+original Hibbard complexity (say) $835$, that number would be totally meaningless
+to them except as a key which they could use to look up which function $f_{835}$
+happens to be (in Definition \ref{originalhibbardcomplexitydefn}). The number
+$835$ would merely serve to obfuscate, it would merely play the role of a worthless
+middleman.
+
+
+
 
 
 \section{Do all AGIs have original Hibbard intelligence $\infty$?}
@@ -1145,6 +1221,7 @@ we will do exactly that. But first, we need some machinery from mathematical log
     We would submit this as evidence of our thesis
     \cite{ioi1} \cite{ioi2} that more intelligent AGIs should know larger ordinal numbers.
 \end{remark}
+
 
 \section{Transfinite Hibbard measures}
 \label{transfinitehibbardsection}
