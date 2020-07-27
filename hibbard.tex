@@ -134,7 +134,8 @@ The structure of the paper is as follows.
     We propose a Hibbard-style method for quantifying AGI intelligence using Big-O
     notation.
     \item
-    In Section ..., we consider several other solutions to the problem which computer
+    In Section \ref{exoticsection}, we consider several other solutions to
+    the problem which computer
     scientists solve using Big-O notation, and the Hibbard-style measures which
     correspond to these solutions.
     \item
@@ -585,6 +586,7 @@ Knuth defines \cite{knuth1976big} these as follows (we modify the definition sli
 we are only concerned here with functions from $\mathbb N$ to $\mathbb N$).
 
 \begin{definition}
+\label{bigodefn}
     Suppose $f:\mathbb N\to\mathbb N$. We define the following the following function-sets.
     \begin{itemize}
         \item
@@ -635,6 +637,7 @@ idea can be imporved upon to become more useful, more practical, and more famili
 to computer scientists.
 
 \begin{definition}
+\label{bigointelligencedefn}
     Suppose $X$ is an AGI, and suppose $f:\mathbb N\to\mathbb N$.
     \begin{itemize}
         \item
@@ -650,6 +653,113 @@ to computer scientists.
         every $g\in\Theta(f(n))$, $X$'s predictor learns every evader in $E_g$.
     \end{itemize}
 \end{definition}
+
+At first glance, Definition \ref{bigointelligencedefn} might seem inferior to
+Definition \ref{classichibbardmeasuredefn} because
+Definition \ref{classichibbardmeasuredefn} assigns \emph{numerical} intelligence levels.
+However, as we pointed out above, those numbers are meaningless except as indices for
+a dictionary-lookup making them equivalent to (a more limited version of)
+Definition \ref{bigointelligencedefn}. We could imagine someone declaring:
+\begin{quote}
+    From now on, $f(n)=n$ is complexity $5$, $f(n)=n^2$ is complexity $6$,
+    $f(n)=2^n$ is complexity $203$,
+    $f(n)=n!$ is complexity $8022$, ..., and from now on, instead of saying a
+    function is $\Theta(n)$, we will say that function has growth rate $5$,
+    and instead of saying a function is $\Theta(n^2)$, we will say that function
+    has growth rate $6$, and instead of saying a function is $\Theta(2^n)$, we will
+    say that function has growth rate $203$, and instead of saying a function is
+    $\Theta(n!)$, we shall say that function has growth rate $8022$, and ...
+\end{quote}
+Superficially, this would ``improve'' upon Big-$\Theta$ by giving a more quantitative
+solution to Problem \ref{bigoproblem} in one sense, however, it is clear
+that this would just be sleight of hand and there would be no actual improvement.
+
+The reader might object that the multiplicative constants $C$ and $C'$ in
+Definition \ref{bigodefn} (and implicitly in Definition \ref{bigointelligencedefn})
+have no counterpart in the definition of the original Hibbard measure
+(Definition \ref{classichibbardmeasuredefn}). However, since AGIs are assumed to
+be capable of mathematical reasoning (Assumption \ref{idealizingassumption}), it
+follows that if an AGI is smart enough to know that it is safe to run Turing
+machines for $f(n)$ steps, then that AGI should also be smart enough to know that
+it is safe to run Turing machines for $Cf(n)$ steps.
+
+\section{Hibbard measures using exotic number systems}
+\label{exoticsection}
+
+We have argued above that it is silly to try to replace asymptotic complexity classes
+with natural numbers. In \cite{alexander2020archimedean}, we go further, and cite
+asymptotic runtime complexity as an example of a \emph{non-Archimedean} measure which,
+we argue, implies that it is silly to replace asymptotic complexity classes
+even with \emph{real} numbers. There are, however, more exotic non-Archimedean number systems
+flexible enough to measure some or all growth rates, and these alternative solutions to
+Problem \ref{bigoproblem} would in turn yield Hibbard-style intelligence measures taking
+values from said exotic number systems.
+\begin{itemize}
+    \item
+    Hyperreal numbers, studied in the field of nonstandard analysis,
+    are equivalence classes of infinite sequences of reals,
+    so for every sequence $(r_0,r_1,r_2,\ldots)$ of reals, there is a corresponding
+    hyperreal represented by that sequence.
+    Thus, there is a natural and elegant way to solve Problem \ref{bigoproblem}
+    using hyperreal numbers. Namely: the growth rate of $f(n)$ is the hyperreal number
+    represented by $(f(0),f(1),f(2),\ldots)$. This solution to Problem \ref{bigoproblem}
+    will yield an approximate Hibbard-style intelligence measure similar to
+    Definition \ref{bigointelligencedefn} (the reason this only yields an approximate
+    Hibbard-style intelligence measure is because the hyperreals are not complete).
+    \item
+    The hyperreal numbers can be embedded into the surreal numbers.
+    Thus, there is another natural and elegant way to solve Problem \ref{bigoproblem},
+    namely: the growth rate of $f(n)$ is the surreal number corresponding to the
+    hyperreal number represented by $(f(0),f(1),f(2),\ldots)$ under the embedding.
+    The advantage of the surreal numbers is that they are complete, which will allow
+    the corresponding Hibbard-style measure to be exact, not approximate.
+    \item
+    Another natural way to measure growth rate is using majorization hierarchies
+    (such as the slow-growing hierarchy or the fast-growing hierarchy) from mathematical
+    logic. A majorization hierarchy assigned ordinal number values to growth rates of
+    functions (but not to all functions---for any particular majorization hierarchy, there
+    are functions which grow too fast for that hierarchy). These yield corresponding
+    Hibbard-style intelligence measures which are ordinal-number-valued.
+    \item
+    In order to reduce the arbitrary limitations of traditional majorization
+    hierarchies, we could delegate the problem of defining a majorization hierarchy to
+    an AGI $X$. This leads to a family of Hibbard-style measures---one measure
+    $|\bullet|_X$ for each AGI $X$, so that for any particular AGI $X$, for any
+    AGI $Y$, there is a corresponding intelligence measure $|Y|_X$ which might be
+    thought of as ``$Y$'s intelligence as judged by $X$''.
+\end{itemize}
+
+\subsection{Hyperreal Hibbard intelligence}
+
+The so-called \emph{ultrapower construction} of the hyperreals depends on an object
+called a \emph{free ultrafilter}, which is a set of subsets of $\mathbb N$ satisfying
+certain requirements. It is not important for the purposes of this paper to define what
+a free ultrafilter is here. The only important things to know are:
+\begin{itemize}
+    \item
+    A free ultrafilter $\mathscr U$ provides a notion of what it means for a subset
+    $S\subseteq\mathbb N$ to be ``large''. Namely: $S$ is considered to be ``large''
+    if and only if $S\in \mathscr U$.
+    \item
+    Mathematical logicians have proven that free ultrafilters exist, but that it is
+    impossible to constructively exhibit one. This makes definitions based on free
+    ultrafilters non-constructive, and computationally impractical.
+\end{itemize}
+
+Because of the computational impracticality of free ultrafilters, the following notion
+is also computationally impractical. However, it could potentially be useful for
+proving theoretical properties about AGIs.
+
+\begin{definition}
+    (Hyperreal Hibbard intelligence)
+    Suppose $r$ is a hyperreal number. We say that an AGI $X$ has \emph{hyperreal
+    Hibbard intelligence $\geq r$} if the following property holds.
+    For every $f:\mathbb N\to\mathbb N$, if the hyperreal represented by
+    $(f(0),f(1),f(2),\ldots)$ is $\leq r$, then $X$'s predictor learns every
+    evader in $E_f$.
+\end{definition}
+
+\subsection{Surreal Hibbard intelligence}
 
 
 
