@@ -785,8 +785,103 @@ exact than Definition \ref{hyperrealhibbardintelligencedefn}.
     $\sup S$.
 \end{definition}
 
+\subsection{Hibbard intelligence and the traditional majorization hierarchies}
+
+Majorization hierarchies \cite{weiermann2002slow}
+provide ordinal-number-valued measures for the growth
+rate of certain functions. A majorization hierarchy depends
+on many infinite-dimensional parameters. For illustrative purposes,
+we will describe the slow-growing hierarchy up to the ordinal $\epsilon_0$,
+using standard choices for the parameters.
+
+\begin{definition}
+    (Classification of ordinal numbers)
+    Ordinal numbers are divided into three types:
+    \begin{enumerate}
+        \item Zero: The ordinal $0$.
+        \item Successor ordinals: Ordinals of the form $\alpha+1$ for some ordinal $\alpha$.
+        \item Limit ordinals: Ordinals which are not successor ordinals nor $0$.
+    \end{enumerate}
+\end{definition}
+
+For example, the smallest infinite ordinal, $\omega$, is a limit ordinal. It is not zero,
+nor can it be a successor ordinal, because if it were a successor ordinal, say, $\alpha+1$,
+then $\alpha$ would be finite (since $\omega$ is the \emph{smallest} infinite ordinal),
+but then $\alpha+1$ would be finite as well.
+
+The ordinal $\epsilon_0$ is the smallest ordinal bigger than the ordinals
+$\omega,\omega^\omega,\omega^{\omega^\omega},\ldots$. It satisfies the equation
+$\epsilon_0=\omega^{\epsilon_0}$ and can be intuitively thought of as
+\[
+    \epsilon_0 = \omega^{\omega^{\omega^{iddots}}}.
+\]
+Ordinals below $\epsilon_0$ include such ordinals as $\omega$,
+$\omega^{\omega+1}+\omega^{\omega}+\omega^5+3$,
+\[
+\omega^{\omega^{\omega^{\omega^\omega}}}+
+\omega^{\omega^{\omega^\omega}+\omega^{\omega\cdot 2+1}+\omega^4 + 3}
++ \omega^{\omega^5+\omega^3}+\omega^8+1,
+\]
+and so on.
+Any ordinal below $\epsilon_0$ can be uniquely written in the form
+\[
+    \omega^{\alpha_1}+\omega^{\alpha_2}+\cdots + \omega^{\alpha_k}
+\]
+where $\alpha_1\geq\cdots\geq\alpha_k$ are smaller ordinals below $\epsilon_0$---this form
+for an ordinal below $\epsilon_0$ is called its \emph{Cantor normal form}.
+For example, the Cantor normal form for $\omega^{\omega\cdot 2}\cdot 2+\omega\cdot 3+2$
+is
+\[
+\omega^{\omega\cdot 2}\cdot 2+\omega\cdot 3+2
+=
+\omega^{\omega\cdot 2} + \omega^{\omega\cdot 2} + \omega^1 + \omega^1 + \omega^1
++\omega^0 + \omega^0.
+\]
 
 
+\begin{definition}
+    (Standard fundamental sequences for limit ordinals $\leq\epsilon_0$)
+    Suppose $\lambda$ is a limit ordinal $\leq\epsilon_0$. We define a
+    \emph{fundamental sequence for $\lambda$},
+    written $(\lambda[0],\lambda[1],\lambda[2],\ldots)$, inductively as follows.
+    \begin{itemize}
+        \item
+        If $\lambda=\epsilon_0$, then $\lambda[0]=0$,
+        $\lambda[1]=\omega^0$, $\lambda[2]=\omega^{\omega^0}$, and so on.
+        \item
+        If $\lambda$ has Cantor normal form
+        $\omega^{\alpha_1}+\cdots+\omega^{\alpha_k}$ where $k>1$,
+        then
+        each
+        \[
+            \lambda[i] = (\omega^{\alpha_1}+\cdots+\omega^{\alpha_{k-1}})
+            + (\omega^{\alpha_k})[i].
+        \]
+        \item
+        If $\lambda$ has Cantor normal form $\omega^0$, then each $\lambda[i]=i$.
+        \item
+        If $\lambda$ has Cantor normal form $\omega^{\alpha+1}$,
+        then each $\lambda[i]=\omega^{\alpha}\cdot i$.
+        \item
+        If $\lambda$ has Cantor normal form $\omega^{\lambda_0}$ where $\lambda_0$
+        is a limit ordinal, then each $\lambda[i]=\omega^{\lambda_0[i]}$.
+    \end{itemize}
+\end{definition}
+
+\begin{example}
+    (Fundamental sequence examples)
+    \begin{itemize}
+        \item
+        The fundamental sequence for $\lambda=\omega^5$ is
+        $0,\omega^4,\omega^4\cdot 2,\omega^4\cdot 3,\ldots$.
+        \item
+        The fundamental sequence for $\lambda=\omega^\omega$ is
+        $\omega^0,\omega^1,\omega^2,\ldots$.
+        \item
+        The fundamental sequence for $\lambda=\omega^\omega+\omega$ is
+        $\omega^\omega+0,\omega^\omega+1,\omega^\omega+2,\ldots$.
+    \end{itemize}
+\end{example}
 
 
 
