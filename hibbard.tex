@@ -1187,15 +1187,10 @@ natural-number-valued intelligence levels. First we need some infrastructure.
             \item (Largeness) For any Turing machine $M$ such that you know
             $M$ computes a total computable function $h:\mathbb N\to\mathbb N$,
             there is some $i$ such that $h_i\succ h$.
-            \item (Fullness) For every $i\in\mathbb N$, there is some $j>i$
-            such that:
-            \begin{enumerate}
-                \item
-                There is some $k<j$ such that $h_k\succ h_i$.
-                \item
-                $h_k\succ h_j\succ h_i$ where $k$ is the minimum number $<j$
-                such that $h_k\succ h_i$.''
-            \end{enumerate}
+            \item (Fullness)
+            $h_1,h_2,\ldots$ includes, in some sense, functions with a representative
+            range of growth rates: it is up to your discretion how to interpret this
+            constraint, as long as you satisfy the above three constraints.''
         \end{enumerate}
     \end{quote}
 \end{definition}
