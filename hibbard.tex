@@ -245,6 +245,49 @@ The following is a very general and open-ended problem.
     Quantify the growth-rate of functions from $\mathbb N$ to $\mathbb N$.
 \end{problem}
 
+The definition of the original Hibbard measure (Definition \ref{classichibbardmeasuredefn})
+can be thought of as implicitly depending on a specific solution to Problem
+\ref{bigoproblem}, which we make explicit in Definition \ref{hibbardgrowthratedefn} below.
+First, we introduce a piece of notation.
+
+\begin{definition}
+\label{functionsuccdefn}
+    Suppose $f:\mathbb N\to\mathbb N$ and $g:\mathbb N\to\mathbb N$.
+    We say $f\succ g$ if there is some $n_0\in \mathbb N$ such that for all
+    $n>n_0$, $f(n)>g(n)$.
+\end{definition}
+
+\begin{definition}
+\label{hibbardgrowthratedefn}
+    For each $m\in\mathbb N$, let $f_m$ be as in Definition \ref{classichibbardmeasuredefn}.
+    Suppose $f:\mathbb N\to\mathbb N$. By the \emph{original Hibbard growth-rate
+    of $f$}, written $H(f)$, we mean:
+    \begin{itemize}
+        \item
+        The maximum $m$ such that $f\succ f_m$, if there is such a maximum $m$.
+        \item
+        $0$, if there is no $m$ such that $f\succ f_m$.
+        \item
+        $\infty$, if $f\succ f_m$ for every $m$.
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}
+    Let $p$ be a predictor. The original Hibbard measure of $p$
+    is equal to the largest value $v$ in $\mathbf{range}(H)$
+    such that $p$ learns every predictor $e$ such that
+    $f\succ t_e$ for every function $f:\mathbb N\to\mathbb N$ such
+    that $H(f)=v$.
+\end{proposition}
+
+\begin{proof}
+    Let $v$ be as in the proposition.
+
+    Case 1: $v=\infty$. Then $p$ learns every predictor $e$ such that
+    $f\succ t_e$ for every function $f:\mathbb N\to\mathbb N$ such that
+    $H(f)=\infty$. 
+\end{proof}
+
 The standard solution to Problem \ref{bigoproblem} in computer science is to quantify
 growth rates of arbitrary functions by comparing them to more familiar functions using
 Big-O notation, Big-$\Omega$ notation, or Big-$\Theta$ notation.
@@ -269,6 +312,8 @@ we are only concerned here with functions from $\mathbb N$ to $\mathbb N$).
         for all $n\geq n_0$, $Cf(n)\leq g(n)\leq C'f(n)$.
     \end{itemize}
 \end{definition}
+
+
 
 The original Hibbard measure (Definition \ref{classichibbardmeasuredefn}) measures
 intelligence by seeing how far along a certain specific function-sequence we must go
