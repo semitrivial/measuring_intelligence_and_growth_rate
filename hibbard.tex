@@ -144,6 +144,9 @@ The structure of the paper is as follows.
     under certain idealizing assumptions, \emph{every} AGI probably has
     original Hibbard intelligence $\infty$.
     \item
+    In Section \ref{prosandconssection}, we give pros and cons of different
+    Hibbard-style measures.
+    \item
     In Section \ref{conclusionsection}, we summarize and make concluding remarks.
 \end{itemize}
 
@@ -769,6 +772,7 @@ there is a \emph{least} surreal upper bound of $S$, called the \emph{supremum} o
 exact than Definition \ref{hyperrealhibbardintelligencedefn}.
 
 \begin{definition}
+\label{surrealhibbardintelligencedefn}
     (Surreal Hibbard intelligence)
     Suppose $X$ is an AGI. Let $S_0$ be the set of all functions $f:\mathbb N\to\mathbb N$
     such that $X$'s predictor learns every evader in $E_f$.
@@ -972,6 +976,7 @@ that $g_\alpha\succ f$ (or $\infty$ if no such $\alpha$ exists).
 This in turn provides a corresponding Hibbard-style measure.
 
 \begin{definition}
+\label{tradmajorizationhierarchyhibbardmeasuredefn}
     If $X$ is an AGI, the \emph{Hibbard measure of $X$ given by the standard
     slow-growing hierarchy up to $\epsilon_0$} is defined to be the
     the supremum of all ordinals $\alpha\leq\epsilon_0$ such that
@@ -1397,6 +1402,7 @@ we are now ready to argue that the original Hibbard measure is
 trivial: that it assigns intelligence level $\infty$ to every AGI.
 
 \begin{theorem}
+\label{everyagihasoriginalhibbardintinfinitytheorem}
     Every AGI $X$ has original Hibbard intelligence $\infty$.
 \end{theorem}
 
@@ -1444,6 +1450,22 @@ trivial: that it assigns intelligence level $\infty$ to every AGI.
     $p$ learns to predict $e$.
 \end{proof}
 
+\begin{corollary}
+\label{trivialityofslowgrowinghierarchycorollary}
+    Every AGI $X$ has intelligence $\infty$ according to
+    the Hibbard measure given by the standard slow-growing hierarchy
+    up to $\epsilon_0$
+    (Definition \ref{tradmajorizationhierarchyhibbardmeasuredefn}).
+\end{corollary}
+
+\begin{proof}
+    Similar to the proof of Theorem \ref{everyagihasoriginalhibbardintinfinitytheorem}
+    (just like a genuine AGI should know totality of functions outgrowing all
+    primitive recursive functions, likewise a genuine AGI should have no problem
+    knowing the totality of functions outgrowing all levels of the standard
+    slow-growing hierarchy up to $\epsilon_0$).
+\end{proof}
+
 We will finish this section by stating one other important, possibly
 counterintuitive consequence of Assumption \ref{bruteforceassumption}.
 
@@ -1471,7 +1493,110 @@ counterintuitive consequence of Assumption \ref{bruteforceassumption}.
 Theorem \ref{counterintuitivetheorem} is reminiscent of
 Examples \ref{counterintuitiveexample1} and \ref{counterintuitiveexample2}.
 
+\section{Pros and cons of different Hibbard-style measures}
+\label{prosandconssection}
 
+Here are pros and cons of the Hibbard measures which arise from different solutions
+to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of functions.
+
+\begin{itemize}
+    \item
+    The original Hibbard measure (Definition \ref{classichibbardmeasuredefn}),
+    which arises by measuring growth rate by comparing
+    a function with one particular enumeration \cite{liu1960enumeration} of the primitive
+    recursive functions:
+    \begin{itemize}
+        \item
+        Pro: Relatively concrete.
+        \item
+        Pro: Measures intelligence using a familiar number system (the natural numbers).
+        \item
+        Con: The numbers which the measure outputs are not very meaningful, in the sense
+        that AGI $X$ having a measure of just $+1$ higher than AGI $Y$ tells us absolutely
+        nothing about how \emph{much} more computationally complex the evaders which $X$'s
+        predictor learns are, versus the evaders which $Y$'s predictor learns.
+        \item
+        Con: In Theorem \ref{everyagihasoriginalhibbardintinfinitytheorem}, we argued
+        that the original Hibbard measure assigns intelligence $\infty$ to every AGI.
+    \end{itemize}
+    \item
+    Big-O/Big-$\Theta$/Big-$\Omega$ (Definition \ref{bigointelligencedefn}),
+    in which, rather than directly measuring the intelligence of an AGI, instead, we
+    would talk of an AGI's intelligence being $O(f(n))$, or $\Theta(f(n))$, or
+    $\Omega(f(n))$, for various functions $f:\mathbb N\to\mathbb N$:
+    \begin{itemize}
+        \item
+        Pro: Gets directly at the underlying concept, without obfuscation.
+        \item
+        Pro: Computer scientists already use Big-O/Big-$\Theta$/Big-$\Omega$ routinely
+        and are comfortable with them.
+        \item
+        Con: This option is not really a measure, but more of a taxonomy---and a non-numerical
+        taxonomy at that.
+    \end{itemize}
+    \item
+    Hyperreal intelligence (Definition \ref{hyperrealhibbardintelligencedefn}):
+    \begin{itemize}
+        \item
+        Pro: A taxonomy like Big-O/Big-$\Theta$/Big-$\Omega$, but with the added benefit
+        that the taxons are numerical (hyperreal numerical, to be more precise).
+        \item
+        Con: Depends on a non-constructive choice of a free ultrafilter (rendering it
+        impractical for any actual computation).
+    \end{itemize}
+    \item
+    Surreal intelligence (Definition \ref{surrealhibbardintelligencedefn}):
+    \begin{itemize}
+        \item
+        Pro: An actual numerical measure (not just a taxonomy), with the same perfect
+        precision as the Big-O/Big-$\Theta$/Big-$\Omega$ approach.
+        \item
+        Con: Abstract and impractical: depends not only on a
+        non-constructive choice of
+        a free ultrafilter, but also on an embedding of the hyperreals into the surreals.
+        \item
+        Con: The numbers which the measure outputs are surreal numbers, which may be
+        unfamiliar to some users.
+    \end{itemize}
+    \item
+    Intelligence based on a standard majorization hierarchy such as the
+    standard slow-growing hierarchy up to $\epsilon_0$
+    (Definition \ref{tradmajorizationhierarchyhibbardmeasuredefn}):
+    \begin{itemize}
+        \item
+        Pro: A numerical measure, albeit without as much precision as the
+        Big-O/Big-$\Theta$/Big-$\Omega$ taxonomy.
+        \item
+        Pro: Relatively concrete.
+        \item
+        Pro: The numbers which the measure outputs are meaningful, in the sense that
+        the degree to which an AGI $X$ is more intelligent than an AGI $Y$ is reflected
+        in the degree to which $X$'s intelligence-measure is larger than $Y$'s.
+        \item
+        Con: The numbers which the measure outputs are ordinal numbers, which may be
+        unfamiliar to some users.
+        \item
+        Con: In Corollary \ref{trivialityofslowgrowinghierarchycorollary}, we argued
+        that the original Hibbard measure assigns intelligence $\infty$ to every AGI.
+    \end{itemize}
+    \item
+    Intelligence based on a generalized majorization hierarchy
+    (Definition \ref{generalizedmajorizationhierarchydefn}):
+    \begin{itemize}
+        \item
+        Pro: A numerical measure, albeit without as much precision as the
+        Big-O/Big-$\Theta$/Big-$\Omega$ taxonomy.
+        \item
+        Pro: The numbers which the measure outputs are meaningful, in the sense that
+        the degree to which an AGI $X$ is more intelligent than an AGI $Y$ is reflected
+        in the degree to which $X$'s intelligence-measure is larger than $Y$'s.
+        \item
+        Con: The numbers which the measure outputs are ordinal numbers, which may be
+        unfamiliar to some users.
+        \item
+        Con: Actually realizing one of these measures would require access to an AGI.
+    \end{itemize}
+\end{itemize}
 
 \section{Summary and Conclusion}
 \label{conclusionsection}
@@ -1482,35 +1607,24 @@ To summarize:
     Hibbard proposed \cite{hibbard} an intelligence measure for predictors (and, implicitly,
     for AGIs capable of acting as predictors) in games of adversarial sequence prediction.
     \item
-    Hibbard's measure depends on one specific sequence of computable functions
-    from $\mathbb N$ to $\mathbb N$.
+    We argued that Hibbard's idea actually splits into two orthogonal sub-ideas.
+    Firstly: that intelligence can be measured via the growth-rate of the run-times
+    of evaders that an AGI can learn to predict. Secondly: that such growth-rate can
+    be measured in one specific way (involving an enumeration of the primitive recursive
+    functions). We argue that there are other, more standard ways to measure growth-rates,
+    and that each method of measuring growth-rates yields a corresponding Hibbard-style
+    intelligence measure.
     \item
-    In Section \ref{agiperspectivesection}, we argued that all AGIs probably have
+    We considered several specific ways of measuring growth-rate of functions, and exhibited
+    corresponding Hibbard-style intelligence measures. The growth-rate-measuring methods
+    which we considered were: Big-O/Big-$\Theta$/Big-$\Omega$ notation; hyperreal numbers;
+    surreal numbers; standard majorization hierarchies; and (in their debut appearance here)
+    generalized majorization hierarchies.
+    \item
+    Finally, in Section \ref{trivialitysection}, we argued that all AGIs probably have
     intelligence $\infty$ according to Hibbard's definition. Essentially, this is because
     the specific functions that Hibbard's definition is based on should all be trivially
     well-known by any genuine AGI.
-    \item
-    In Section ..., we introduced what we call \emph{simple Hibbard
-    measures}. For each AGI $X$, there is a corresponding relative Hibbard measure which
-    assigns an intelligence measurement $|Y|_X$ to every AGI $Y$. The relative Hibbard
-    measure corresponding to $X$ might be thought of as a measure of ``intelligence as
-    judged by $X$''. The key insight needed to define the
-    relative Hibbard measure corresponding
-    to $X$ is as follows: rather than depend on one fixed sequence of functions (as in
-    Hibbard's original definition), we can delegate the task of choosing a function-sequence
-    to $X$.
-    \item
-    We showed that relative Hibbard measures are less trivial than Hibbard's original measure.
-    However, they still suffer a crucial flaw: the Hibbard measure corresponding to an
-    AGI $X$ depends unnaturally on the \emph{order} in which $X$ can think of
-    computable functions.
-    \item
-    To remedy the above-mentioned flaw in the relative Hibbard measures, we reviewed
-    \emph{slow-growing hierarchies} from mathematical logic and used them to define
-    (in Section ...) what
-    we call \emph{transfinite Hibbard measures}, which lead to
-    computable-ordinal-number-valued
-    intelligence measures rather than real-number-valued intelligence measures.
 \end{itemize}
 
 This paper exemplifies a useful technique for theoretical AGI research.
@@ -1518,9 +1632,10 @@ By viewing an AGI as an employee who is capable of engaging in casual human
 language communication with its employer, and which can be commanded (using said
 casual human language) to perform mathematical tasks, the AGI becomes a useful
 black box to which many arbitrary decisions can be delegated. For example, instead
-of arbitrarily choosing one particular function-sequence (as Hibbard did in order
-to define his original measure), we can short-circuit the task of
-function-sequence-selection by delegating it to an AGI.
+of arbitrarily choosing one particular majorization hierarchy (a difficult task
+because there are many majorization hierarchies and there is no consensus about
+which majorization hierarchies are canonical), we can short-circuit the decision
+by delegating it to an AGI.
 
 
 \bibliographystyle{plain}
