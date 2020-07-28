@@ -838,7 +838,6 @@ is
 +\omega^0 + \omega^0.
 \]
 
-
 \begin{definition}
     (Standard fundamental sequences for limit ordinals $\leq\epsilon_0$)
     Suppose $\lambda$ is a limit ordinal $\leq\epsilon_0$. We define a
@@ -883,6 +882,283 @@ is
     \end{itemize}
 \end{example}
 
+\begin{definition}
+\label{slowgrowinghierarchydefn}
+    (The standard slow-growing hierarchy up to $\epsilon_0$)
+    We define functions $g_\beta:\mathbb N\to\mathbb N$ (for all ordinals
+    $\beta\leq \epsilon_0$) by transfinite induction as follows.
+    \begin{itemize}
+        \item
+        $g_0(n)=0$.
+        \item
+        $g_{\alpha+1}(n) = g_\alpha(n) + 1$.
+        \item
+        $g_{\lambda}(n) = g_{\lambda[n]}(n)$ if $\lambda$ is a limit ordinal.
+    \end{itemize}
+\end{definition}
+
+Here are some early levels in the slow-growing hierarchy, spelled out in detail.
+
+\begin{example}
+\label{highdetailslowgrowingexample}
+    (Early examples of functions in the slow-growing hierarchy)
+    \begin{enumerate}
+        \item
+        $g_1(n)=g_{0+1}(n)=g_0(n)+1=0+1=1$.
+        \item
+        $g_2(n)=g_{1+1}(n)=g_1(n)+1=1+1=2$.
+        \item
+        More generally, for all $m\in\mathbb N$,
+        $g_m(n)=m$.
+        \item
+        $g_\omega(n)=g_{\omega[n]}(n)=g_n(n)=n$.
+        \item
+        $g_{\omega+1}(n)=g_{\omega}(n)+1=n+1$.
+        \item
+        $g_{\omega+2}(n)=g_{\omega+1}(n)+1=(n+1)+1=n+2$.
+        \item
+        More generally, for all $m\in\mathbb N$,
+        $g_{\omega+m}(n)=n+m$.
+        \item
+        $g_{\omega\cdot 2}(n)=g_{(\omega\cdot 2)[n]}(n)
+        =g_{\omega+n}(n)=n+n=n\cdot 2$.
+    \end{enumerate}
+\end{example}
+
+Following Example \ref{highdetailslowgrowingexample}, the reader should be able
+to fill in the details in the following example.
+
+\begin{example}
+    (More examples from the slow-growing hierarchy)
+    \begin{enumerate}
+        \item
+        $g_{\omega^2}(n)=n^2$.
+        \item
+        $g_{\omega^3}(n)=n^3$.
+        \item
+        $g_{\omega^\omega}(n)=n^n$.
+        \item
+        $g_{\omega^{\omega\cdot 3+1}+\omega+5}(n)=n^{3n+1}+n+5$.
+        \item
+        $g_{\omega^{\omega^{\omega}}}=n^{n^n}$.
+    \end{enumerate}
+\end{example}
+
+What about $g_{\epsilon_0}$? Thinking of $\epsilon_0$ as $\omega^{\omega^{\omega^\iddots}}$,
+one might expect $g_{\epsilon_0}(n)$ to be $n^{n^{n^\iddots}}$, but such an infinite tower
+of exponents makes no sense if $n>1$. Instead, the answer defies familiar mathematical
+notation.
+
+\begin{example}
+\label{epsilon0example}
+(Level $\epsilon_0$ in the slow-growing hierarchy)
+The values of $g_{\epsilon_0}$ are as follows:
+\begin{itemize}
+    \item
+    $g_{\epsilon_0}(0)=0$.
+    \item
+    $g_{\epsilon_0}(1)=1^1$.
+    \item
+    $g_{\epsilon_0}(2)=2^{2^2}$.
+    \item
+    $g_{\epsilon_0}(3)=3^{3^{3^3}}$.
+    \item
+    And so on.
+\end{itemize}
+\end{example}
+
+Example \ref{epsilon0example} illustrates how the slow-growing hierarchy can systematically
+lead to fast-growing computable functions. By extending the slow-growing hierarchy to
+larger ordinals (and choosing appropriate fundamental sequences for those larger ordinals),
+one can obtain stupendously fast-growing functions in this way. These in turn serve as
+a partial solution to Problem \ref{bigoproblem}: we can say that the growth rate of
+an arbitrary function $f:\mathbb N\to\mathbb N$
+is equal to $\alpha$, where $\alpha$ is the smallest ordinal such
+that $g_\alpha\succ f$ (or $\infty$ if no such $\alpha$ exists).
+This in turn provides a corresponding Hibbard-style measure.
+
+\begin{definition}
+    If $X$ is an AGI, the \emph{Hibbard measure of $X$ given by the standard
+    slow-growing hierarchy up to $\epsilon_0$} is defined to be the
+    the supremum of all ordinals $\alpha\leq\epsilon_0$ such that
+    $X$'s predictor learns all evaders in $E_{g_\alpha}$ (or $\infty$ if
+    $X$'s predictor learns all evaders in $E_{g_\alpha}$ for all $\alpha\leq\epsilon_0$).
+\end{definition}
+
+\subsection{Generalized majorization hierarchies}
+
+There are many other majorization hierarchies besides the slow-growing hierarchy.
+In Definition \ref{slowgrowinghierarchydefn},
+there is nothing special about defining $g_{\alpha+1}(n)=g_{\alpha}(n)+1$.
+Many other definitions for $g_{\alpha+1}$ would work, provided $g_{\alpha+1}$ ends
+up being faster-growing than $g_\alpha$.
+For example, in the so-called \emph{fast-growing hierarchy},
+$g_{\alpha+1}(n)$ is defined to be $g^n_\alpha(n)$, where the $g^n_\alpha$
+denotes the result of iterating $g_\alpha$ $n$ times, that is,
+$g^1_\alpha(n)=g_\alpha(n)$, $g^2_\alpha(n)=g_\alpha(g_\alpha(n))$,
+$g^3_\alpha(n)=g_\alpha(g_\alpha(g_\alpha(n)))$, and so on.
+In the early levels, this produces much faster-growing functions much more quickly,
+but astonishingly, at sufficiently high ordinals, the slow-growing hierarchy
+actually catches up with the fast-growing hierarchy \cite{girard1981pi12}
+(a beautiful illustration of how counter-intuitive large ordinal numbers can be).
+One of the earliest majorization hierarchies is the Hardy
+hierarchy \cite{hardy1904theorem}, where $g_{\alpha+1}(n)=g_\alpha(n+1)$.
+
+Likewise, there is also much flexibility in choosing fundamental sequences.
+For small ordinals such as the ordinals below $\epsilon_0$, there are very clear
+canonical fundamental sequences, but the larger the ordinals become, the harder
+it becomes to single out any choice of fundamental sequences as canonical.
+And even at low levels, choosing non-canonical fundamental sequences can
+drastically alter the resulting majorization hierarchy \cite{weiermann1997sometimes}.
+
+In short, there is no consensus at all about which majorization hierarchies are
+most canonical. If anything, there is consensus that there is no consensus.
+Fortunately, we are working here in a context where we can refer to AGIs.
+Rather than attempt the futile task of choosing a canonical majorization hierarchy
+ourselves, we can instead delegate the task to an AGI.
+
+
+\begin{definition}
+\label{fairsequencedefn}
+    Suppose $X$ is an AGI. By $h^X_1,h^X_2,\ldots$, we mean the total computable
+    increasing functions
+    from $\mathbb N$ to $\mathbb N$ which $X$ would output if $X$ were commanded:
+    \begin{quote}
+        ``Until further notice, output (codes of) total computable increasing
+        functions $h_1,h_2,\ldots$ from $\mathbb N$ to $\mathbb N$ satisfying the
+        following constraints:
+        \begin{enumerate}
+            \item (Linear ordering) For any two $i,j\in\mathbb N$ with $i\neq j$, either
+            $h_i\succ h_j$ or $h_j\succ h_i$ (Definition \ref{functionsuccdefn}).
+            \item (Largeness) For every Turing machine $M$ such that you know
+            $M$ computes a total computable function $h:\mathbb N\to\mathbb N$,
+            there is some $i$ such that $h_i\succ h$.
+            \item (Well-foundedness) There is no sequence $i_1,i_2,\ldots$ such that
+            $h_{i_1}\succ h_{i_2}\succ\cdots$.
+            \item (Pseudo-density)
+            The $h_i$'s are to be as close as possible to being \emph{dense}---that is
+            to say, they are to be as close as possible to having the property that
+            for all $i,k\in\mathbb N$ with $h_k\succ h_i$, there is some $j\in\mathbb N$
+            such that $h_k\succ h_j\succ h_i$---without violating the above
+            well-foundedness constraint; you are to use your judgment and discretion
+            to interpret this pseudo-density requirement.''
+        \end{enumerate}
+    \end{quote}
+\end{definition}
+
+The above pseudo-density constraint is intentionally vague, which we can get away
+with because the definition does not depend on what pseudo-density actually means,
+but only on how the AGI interprets the \emph{words} (i.e., how the AGI responds to a
+specific well-defined stimulus, regardless of how vague the semantics of that stimulus
+may be).
+Thus, we are taking advantage of the AGI's ability to ``adapt with insufficient
+knowledge and resources'' \cite{wang2019defining}. Note that the resulting $h_i$'s
+cannot actually be dense, as that would violate well-foundedness: given any $i,j$
+with $h_j\succ h_i$, there would be some $k_1$ such that $h_j\succ h_{k_1}\succ h_i$,
+and then there would be some $k_2$ such that $h_{k_1}\succ h_{k_2}\succ h_i$,
+and then there would be some $k_3$ such that $h_{k_2}\succ h_{k_3}\succ h_i$, and so
+on, but then $h_{k_1}\succ h_{k_2}\succ \cdots$ would violate well-foundedness.
+We will offer some motivation for pseudo-density below in
+Remark \ref{pseudodensityremark}.
+
+\begin{definition}
+\label{alphaidefn}
+    \begin{enumerate}
+    Let $X$ be an AGI. We define a sequence $\alpha^X_1,\alpha^X_2,\ldots$
+    of ordinals by recursion as follows. Note that at first glance,
+    the following recursive definition looks too circular to work.
+    We will show in Lemma \ref{transfiniterecursionmagiclemma} that
+    it avoids infinite regress and thus
+    it does work. For each $i$, let $\alpha^X_i$ be the the smallest
+    ordinal which is larger than every ordinal $\alpha^X_j$ such that
+    $h^X_i\succ h^X_j$.
+\end{definition}
+
+\begin{lemma}
+\label{transfiniterecursionmagiclemma}
+    Definition \ref{alphaidefn} works (it does not lead to infinite regress).
+\end{lemma}
+
+\begin{proof}
+    Assume, for the sake of contradiction, that Definition \ref{alphaidefn}
+    leads to infinite regress. This means there is some $i_1$ such that
+    in order to define $\alpha^X_{i_1}$ we must first define $\alpha^X_{i_2}$
+    for some $i_2$, and in order to define $\alpha^X_{i_2}$ we must first
+    define $\alpha^X_{i_3}$ for some $i_3$, and in order to define
+    $\alpha^X_{i_3}$ we must first define $\alpha^X_{i_4}$ for some $i_4$,
+    and so on forever. Thus, there is an infinite sequence $i_1,i_2,\ldots$
+    such that in order to define each $\alpha^X_{i_j}$, we must first
+    define $\alpha^X_{i_{j+1}}$. Now, each $\alpha^X_{i_j}$ is defined as
+    the smallest ordinal larger than every ordinal $\alpha^X_j$ such that
+    $h^X_{i_j}\succ h^X_j$. So, since defining $\alpha^X_{i_j}$ requires
+    us to first define $\alpha^X_{i_{j+1}}$, this implies $i_{j+1}$ is
+    such a $j$, i.e., that $h^X_{i_j}\succ h^X_{i_{j+1}}$.
+    Thus $h^X_{i_1}\succ h^X_{i_2}\succ h^X_{i_3}\succ\cdots$,
+    but this contradicts the \emph{well-foundedness} part of the command
+    from Definition \ref{fairsequencedefn}.
+\end{proof}
+
+\begin{lemma}
+\label{technicallemmaaboutalphaXi}
+    Let $X$ be an AGI. For all $i,j$,
+    $h^X_i\succ h^X_j$ if and only if $\alpha^X_i>\alpha^X_j$.
+\end{lemma}
+
+\begin{proof}
+    Fix $i$ and $j$.
+    By the \emph{linear ordering} part of the command in Definition
+    \ref{fairsequencedefn}, either $h^X_i\succ h^X_j$ or $h^X_j\succ h^X_i$.
+    Assume $h^X_i\succ h^X_j$, the other case is similar.
+    By definition, $\alpha^X_i$ is defined to be the smallest ordinal
+    which is larger than $\alpha^X_{j'}$ for every $j'$ such that
+    $h^X_i\succ h^X_{j'}$. One such $j'$ is $j$ itself,
+    so by definition $\alpha^X_i$ is larger than $\alpha^X_j$, as desired.
+\end{proof}
+
+\begin{definition}
+\label{generalizedmajorizationhierarchydefn}
+(Generalized majorization hierarchies)
+    Let $X$ be an AGI. Let $\alpha=\sup_i \alpha^X_i$ be the smallest ordinal
+    bigger than all of the $\alpha^X_i$'s. The \emph{generalized majorization
+    hierarchy given by $X$} is the family $(g_\beta)_{\beta<\alpha}$ of functions
+    labelled by ordinals below $\alpha$, where each $g_{\beta}$ is defined
+    such that $g_{\beta}=h^X_i$ where $i$ is such that $\beta=\alpha^X_i$.
+\end{definition}
+
+\begin{remark}
+\label{pseudodensityremark}
+With Definition \ref{generalizedmajorizationhierarchydefn} in view,
+the pseudo-density
+constraint in Definition \ref{fairsequencedefn} can be better motivated:
+the point of pseudo-density is to ensure that the ordinal
+$\sup_i \alpha^X_i$ is as large as possible. An alternative to pseudo-density would
+be to directly command (in Definition \ref{fairsequencedefn}) that the $h_i$'s should
+be chosen in such a way as to make $\alpha=\sup_i\alpha^X_i$ large (leaving it up
+to the AGI's judgment and discretion how to interpret that), but this would be
+difficult because it would mean that Definition \ref{generalizedmajorizationhierarchydefn}
+(and its dependencies) would need to be embedded into the command in
+Definition \ref{fairsequencedefn}, which would require some significant acrobatics.
+\end{remark}
+
+A generalized majorization hierarchy (Definition \ref{generalizedmajorizationhierarchydefn})
+serves as a partial solution to Problem \ref{bigoproblem}: given any AGI $X$, we can say
+that a function $f:\mathbb N\to\mathbb N$ has growth rate
+$\beta$ where $\beta$ is the smallest ordinal $<\sup_i \alpha^X_i$
+such that $g_\beta\succ f$---or $f$ has growth rate $\infty$ if there is no
+such $\beta$. To this solution to Problem \ref{bigoproblem}, there is a corresponding
+Hibbard-style intelligence measure.
+
+\begin{definition}
+    (Transfinite Hibbard measures)
+    Suppose $X$ is an AGI. By the \emph{transfinite Hibbard measure given by $X$},
+    we mean the measure $\|\bullet\|_X$ which assigns to every AGI $Y$ an
+    intelligence measure $\|Y\|_X$ defined as follows.
+    $\|Y\|_X$ is defined to be the smallest $\beta<\sup_i\alpha^X_i$
+    such that for all $\gamma<\beta$,
+    $Y$'s predictor learns every evader $e\in E_\gamma$ (or $\|Y\|_X=\infty$ if
+    $Y$'s predictor learns every evader $e\in E_\gamma$ for all
+    $\gamma<\sup_i \alpha^X_i$).
+\end{definition}
 
 
 \section{Do all AGIs have original Hibbard intelligence $\infty$?}
@@ -1201,388 +1477,6 @@ counterintuitive consequence of Assumption \ref{bruteforceassumption}.
 
 Theorem \ref{counterintuitivetheorem} is reminiscent of
 Examples \ref{counterintuitiveexample1} and \ref{counterintuitiveexample2}.
-
-
-\section{Relative Hibbard measures}
-\label{simplemeasuresection}
-
-In Subsection \ref{trivialitysubsection}, we argued that every AGI has
-intelligence $\infty$ according to the original Hibbard measure.
-In this section, we will present a family of variations of the original Hibbard measure
-which do not assign intelligence $\infty$ to every AGI.
-This family will contain
-one intelligence measure for each AGI $X$, which measure one might think of informally as
-a measure of ``intelligence as judged by $X$''.
-
-The original Hibbard measure depends on a particular function-sequence. Hibbard chose
-one specific function-sequence, namely the enumeration from Liu \cite{liu1960enumeration}.
-Our method here is not to choose a function-sequence by ourselves, but instead to
-delegate that choice to an AGI.
-
-\begin{definition}
-\label{functionlistdefinition}
-    If $X$ is an AGI, let $(C^X_1, C^X_2, \ldots)$ be the sequence of
-    Turing machines which would result if $X$ were commanded:
-    \begin{quote}
-        ``Until further notice, list Turing machines which compute total
-        functions $g_1,g_2,\ldots$ from $\mathbb N$ to $\mathbb N$, such that
-        each $g_{i+1}\succ g_i$ (Definition \ref{functionsuccdefn}),
-        and such that for every Turing machine $C$ that you know computes
-        a total function $f:\mathbb N\to\mathbb N$,
-        there is some $i$ such that $g_i\succ f$.''
-    \end{quote}
-    For each $i>0$, let $g^X_i:\mathbb N\to\mathbb N$ be the function computed by
-    $C^X_i$.
-\end{definition}
-
-For example, if $X$ is an AGI, then in response to the command in Definition
-\ref{functionlistdefinition}, $X$ might think for a while, figure out a Turing
-machine $C^X_1$ which computes the identity function $g^X_1(n)=n$. Then $X$
-might think some more and figure out a Turing machine $C^X_2$ which computes
-the function $g^X_2(n)=2n$. Then $X$ might think some more and figure
-out a Turing machine $C^X_3$ which computes the function $g^X_3(n)=3n$.
-Now, $X$ might feel lazy and want to continue that pattern forever, so that
-the next functions would be $4n$, $5n$, etc., but the latter part of the command in
-Definition \ref{functionlistdefinition} rules this sort of laziness out, so $X$
-eventually has to move on to bigger functions like $n^2$, $n^n$,
-$n^{n^{n^{n}}}$,
-and so on ($X$ must know about these because we assumed $X$ has basic mathematical
-knowledge and reasoning ability).
-
-\begin{definition}
-    For any AGI $X$, the \emph{relative Hibbard measure given by $X$}
-    is defined to be the Hibbard measure
-    $|\bullet|_{(g^X_1,g^X_2,\ldots)}$
-    given by
-    $(g^X_1,g^X_2,\ldots$) (see Definition \ref{generalintelligencemeasuredefn}).
-    For any AGI $Y$, we will write $|Y|_X$ for $|Y|_{(g^X_1,g^X_2,\ldots)}$.
-\end{definition}
-
-\subsection{Non-triviality of the relative Hibbard measures}
-
-We will now argue that at least for certain AGIs $X$,
-the relative Hibbard measure given by $X$ does not assign intelligence $\infty$
-to every AGI: but that, at least for certain AGIs $X$, there exist AGIs $Y$
-such that $|Y|_X<\infty$.
-
-\begin{theorem}
-\label{simplehibbardnontrivialtheorem}
-    (Non-triviality of relative Hibbard measures)
-    Suppose $X$ and $Y$ are AGIs. Let $p$ be $Y$'s predictor.
-    If $X$ knows that $p$ defines a total function from $B^*$ to $B$,
-    then $|Y|_X<\infty$.
-\end{theorem}
-
-\begin{proof}
-    Let $e$ be the evader which attempts to evade the predictor by assuming
-    that the predictor is $p$ and always outputting the opposite of what
-    the predictor will output based on that assumption. Clearly, $p$ does
-    not learn to predict $e$.
-
-    Since $X$ knows that $p$ defines a total function from $B^*$ to $B$,
-    it follows that there is a Turing machine $C$ such that:
-    \begin{enumerate}
-        \item
-        $C$ computes the function $g:\mathbb N\to \mathbb N$ defined by
-        $g(n)=t_e(n)$, where $t_e$ is as in Definition \ref{tsubedefinition}.
-        \item
-        $X$ knows that $C$ computes a total function from $\mathbb N$ to $\mathbb N$.
-    \end{enumerate}
-    By (2), there is some $m$ such that $g^X_m\succ g$
-    (by the second part of the command in Definition \ref{functionlistdefinition}).
-    So if $f_m:\mathbb N\to\mathbb N$ is defined
-    (as in Definition \ref{generalintelligencemeasuredefn})
-    as $f_m(k)=\max_{0<i\leq m}\max_{j\leq k}g^X_i(j)$,
-    then for all but finitely many $k$, $f_m(k)\geq g^X_m(k)>g(k)=t_e(k)$.
-    This shows that $e\in E_{f_m}$ (from Definition \ref{evadersetdefinition}).
-    Since $p$ does not learn to predict $e$,
-    it is not the case that $p$ learns to predict every evader in $E_{f_m}$.
-    Therefore, $|Y|_X<m$.
-\end{proof}
-
-In particular, if $X$ knew that $X$'s own predictor computed a total function
-from $B^*$ to $B$, then we would have $|X|_X<\infty$.
-But we saw in Theorem \ref{counterintuitivetheorem} that $X$ cannot know
-$X$'s own predictor computes a total function. Is it possible that $|X|_X$ could
-be $<\infty$ anyway? The following theorem answers this question negatively.
-
-\begin{theorem}
-\label{Xjudgesitselfinfinitelysmarttheorem}
-    For every AGI $X$, $|X|_X=\infty$.
-\end{theorem}
-
-\begin{proof}
-    In other words, we must show that $X$'s predictor learns every
-    evader $e\in E_{f_m}$ for every $m>0$, where
-    $f_m(k)=\max_{0<i\leq m}\max_{j\leq k}g^X_i(j)$.
-    So, fix $m\in\mathbb N$ and let $e\in E_{f_m}$.
-
-    Let $M$ be the Turing machine which takes input $(x_1,\ldots,x_n)\in B^*$
-    and proceeds as follows:
-    \begin{enumerate}
-        \item
-        Run $C^X_m$ on input $n$ until it gives output $k$.
-        \item
-        Run $e$ for up to $k$ steps. If it halts with output $y\in\{0,1\}$ during that
-        time, then halt and output $y$. Otherwise, halt and output $0$.
-    \end{enumerate}
-    Since $X$ knows that $C^X_m$ computes a total function from $\mathbb N$ to $\mathbb N$,
-    it follows that $X$ knows that $M$ computes a total function from $B^*$ to $B$.
-    Since $C^X_m$ computes $f_m$,
-    in line (2) in the definition of $M$, when $e$ is run for
-    up to $k$ steps, that means $e$ is run for up to $f_m(n)$ steps.
-    Since $e\in E_{f_m}$, this means that, except for finitely many exceptions,
-    for every input $(x_1,\ldots,x_n)\in B^*$, $M$ halts with output
-    $e(x_1,\ldots,x_n)$. Thus, it follows that there is a Turing machine $M'$
-    such that $M'$ computes $e$ and such that $X$ knows that $M'$ computes a total
-    function from $B^*$ to $B$. By Lemma \ref{knowingimplieslearninglemma},
-    $X$'s brute-force predictor learns $e$. By Assumption \ref{bruteforceassumption},
-    $X$'s predictor learns $e$.
-\end{proof}
-
-\subsection{The problem with relative Hibbard measures}
-\label{problemwithsimplehibbardsection}
-
-Based on Theorems \ref{simplehibbardnontrivialtheorem}
-and \ref{Xjudgesitselfinfinitelysmarttheorem},
-we see that in a certain sense, for all AGIs $X$ and $Y$,
-if $X$ knows that $Y$'s predictor computes a total function from $B^*$ to $B$,
-then $X$ is more intelligent than $Y$: $X$ is more intelligent
-than $Y$ in the sense that $|X|_X=\infty>|Y|_X$).
-
-Based on the above, we might expect that for all AGIs $X,Y,Z$, if $X$ knows
-$Y$'s predictor computes a total function from $B^*$ to $B$, and if $Y$
-knows $Z$'s predictor computes a total function from $B^*$ to $B$,
-then $|X|_X=\infty>|Y|_X>|Z|_X$. But this does \emph{not} hold in general
-(as we show in the next theorem),
-and the reason has almost nothing to do with intelligence or with adversarial
-sequence prediction, and almost entirely to do with the structure of the natural
-numbers: relative Hibbard measures assign natural-number-valued intelligence
-measures to AGIs, and those values therefore suffer the same limitations as the
-natural numbers.
-
-\begin{theorem}
-\label{nonarchimedeantheorem}
-    If any AGI exists, then
-    there exist AGIs $X,Y,Z$ such that:
-    \begin{enumerate}
-        \item $X$ knows that $Y$'s predictor computes a total function from $B^*$ to $B$.
-        \item $Y$ knows that $Z$'s predictor computes a total function from $B^*$ to $B$.
-        \item It is \emph{not} the case that $|X|_X>|Y|_X>|Z|_X$.
-    \end{enumerate}
-\end{theorem}
-
-\begin{proof}
-    By assumption, some AGI exists, so we may let $Y_0$ be some initial AGI.
-
-    Let $F$ be the function from the second part of Informal Lemma \ref{teachinglemma}.
-    Define true sentences $\phi_0,\phi_1\ldots$ of Peano arithmetic and
-    AGIs $Y_1,Y_2,\ldots$ by simultaneous recursion as follows:
-    \begin{enumerate}
-        \item
-        Assuming $Y_i$ has been defined,
-        let $\phi_i$ be the statement that $Y_i$'s predictor defines a computable
-        function from $B^*$ to $B$.
-        \item
-        Assuming $Y_{i}$ and $\phi_{i}$ have been defined,
-        let $Y_{i+1}=F(Y_{i},\phi_{i})$.
-    \end{enumerate}
-    By construction, each $Y_{i+1}$ is an AGI which
-    knows that $Y_i$'s predictor computes a total function from $B^*$ to $B$.
-
-    Let $\phi$ be the statement that $\forall i$, $Y_i$'s predictor computes a total
-    function from $B^*$ to $B$.
-    Let $Y=F(Y_0,\phi)$.
-    Thus, $Y$ is an AGI such that for each $i$, $Y$ knows that $Y_i$'s predictor
-    computers a total function from $B^*$ to $B$.
-
-    Let $\phi'$ be the statement that $Y$'s predictor computes a total function
-    from $B^*$ to $B$ and that for each $i$, $Y_i$'s predictor computes a total
-    function from $B^*$ to $B$.
-    Let $X=F(Y,\phi')$.
-    Thus, $X$ is an AGI which knows that $Y$'s predictor computes a total function from
-    $B^*$ to $B$, and also knows (for each $i$) that $Y_i$'s predictor computes a total
-    function from $B^*$ to $B$.
-
-    Assume (for sake of contradiction) that the Theorem we are proving is false.
-    Then:
-    \begin{itemize}
-        \item
-        For each $i\geq 0$, we have:
-        \begin{itemize}
-            \item
-            $X$ knows $Y_{i+1}$'s predictor defines a total function from $B^*$ to $B$.
-            \item
-            $Y_{i+1}$ knows $Y_i$'s predictor defines a total function from $B^*$ to $B$.
-            \item
-            Thus, $|X|_X=\infty>|Y_{i+1}|_X>|Y_i|_X$ (lest the triple $(X,Y_{i+1},Y_i)$
-            would witness the Theorem).
-        \end{itemize}
-        \item
-        Also, for each $i\geq 0$, we have:
-        \begin{itemize}
-            \item
-            $X$ knows $Y$'s predictor defines a total function from $B^*$ to $B$.
-            \item
-            $Y$ knows $Y_i$'s predictor defines a total function from $B^*$ to $B$.
-            \item
-            Thus, $|X|_X=\infty>|Y|_X>|Y_i|_X$ (lest the triple $(X,Y,Y_i)$
-            would witness the Theorem).
-        \end{itemize}
-    \end{itemize}
-    Since $|Y|_X$ and each $|Y_i|_X$ are natural numbers, it follows that
-    $\{|Y_0|_X, |Y_1|_X, \ldots\}$
-    is an infinite set of distinct natural numbers, all of them $<|Y|_X$.
-    This is absurd, because there are only $|Y|_X$ distinct natural numbers
-    $<|Y|_X$.
-\end{proof}
-
-The proof of Theorem \ref{nonarchimedeantheorem} works because if $n_0,n_1,n_2,\ldots$
-is any sequence of naturals with each $n_{i+1}\geq n_i+1$, then for every natural number
-$m$ (such as $m=|Y|_X$),
-there is some $i$ such that $n_i>m$. This property is a generalization of a
-basic property of $\mathbb R$ called the \emph{Archimedean property}. This generalized
-version of the Archimedean property debuted in \cite{alexander2020archimedean},
-where we argue that it is hopeless to try to measure non-Archimedean structures
-using natural numbers---in fact, that it is even hopeless to measure non-Archimedean
-structures using \emph{real} numbers. If AGI intelligence is non-Archimedean (as the
-proof of Theorem \ref{nonarchimedeantheorem} suggests), then in order to
-accurately measure it, we need to use a non-Archimedean number system.
-In Section \ref{transfinitehibbardsection}
-we will do exactly that. But first, we need some machinery from mathematical logic.
-
-\begin{remark}
-    At a low level, the proof of Theorem \ref{nonarchimedeantheorem} involves a
-    lot of tedious work. But at a high-level, what we are doing in that proof is
-    that we are constructing a sequence of AGIs $Y_0,Y_1,\ldots,Y,X$
-    ordered like the ordinals $0,1,\ldots,\omega,\omega+1$
-    (where $\omega$ is the smallest infinite ordinal).
-    Each $Y_i$ corresponds to the finite ordinal number $i$; $Y$ corresponds to $\omega$;
-    and $X$ corresponds to $\omega+1$, the next
-    ordinal after $\omega$. More generally, given any ordinal notation, one could
-    use the same technique from the proof of Theorem \ref{nonarchimedeantheorem} to
-    construct a set of AGIs isomorphic that ordinal\footnote{This
-    resembles the technique suggested in \cite{good1969godel}.}.
-    This is a general theoretical
-    recipe\footnote{Unfortunately,
-    the recipe requires an initial AGI $Y_0$ to kick the process off, so it will not be
-    of much use pre-singularity.} for transforming any ordinal notation into a very intelligent
-    AGI---``and the larger the ordinal, the fitter the organism'',
-    to quote Chaitin \cite{chaitin}.
-    We would submit this as evidence of our thesis
-    \cite{ioi1} \cite{ioi2} that more intelligent AGIs should know larger ordinal numbers.
-\end{remark}
-
-
-\section{Transfinite Hibbard measures}
-\label{transfinitehibbardsection}
-
-The original Hibbard measure
-(Definition \ref{classichibbardmeasuredefn}) depends on a specific list of
-quickly-growing computable functions from $\mathbb N$ to $\mathbb N$, imported from
-\cite{liu1960enumeration}. In Section \ref{trivialitysection}, we argued
-that the original Hibbard measure is trivial for AGIs because the functions thus imported
-are too slow-growing.
-In Section \ref{simplemeasuresection} we generalized
-the original Hibbard measure
-by delegating the choice of a list of quickly-growing computable functions to an AGI rather
-than to a single external paper. The resulting family of relative Hibbard measures is
-non-trivial (Theorem \ref{simplehibbardnontrivialtheorem}), but in
-Subsection \ref{problemwithsimplehibbardsection} we argued that these
-measures still have a crucial flaw: they are constrained by the structure of
-$\mathbb N$, which is inappropriate because, as Theorem \ref{nonarchimedeantheorem}
-suggests, AGI intelligence should have a more sophisticated structure than $\mathbb N$.
-In this section, we will rectify this flaw by introducing what we call \emph{transfinite
-Hibbard measures}, which assign computable-ordinal-valued intelligence levels rather than
-natural-number-valued intelligence levels. First we need some infrastructure.
-
-\subsection{Transfinite Hibbard Measures}
-
-\begin{definition}
-\label{fairsequencedefn}
-    Suppose $X$ is an AGI. By $h^X_1,h^X_2,\ldots$, we mean the total computable
-    increasing functions
-    from $\mathbb N$ to $\mathbb N$ which $X$ would output if $X$ were commanded:
-    \begin{quote}
-        ``Until further notice, output (codes of) total computable increasing
-        functions $h_1,h_2,\ldots$ from $\mathbb N$ to $\mathbb N$ satisfying the
-        following constraints:
-        \begin{enumerate}
-            \item (Linear ordering) For any two $i,j\in\mathbb N$ with $i\neq j$, either
-            $h_i\succ h_j$ or $h_j\succ h_i$ (Definition \ref{functionsuccdefn}).
-            \item (Well-foundedness) There is no sequence $i_1,i_2,\ldots$ such that
-            $h_{i_1}\succ h_{i_2}\succ\cdots$.
-            \item (Largeness) For any Turing machine $M$ such that you know
-            $M$ computes a total computable function $h:\mathbb N\to\mathbb N$,
-            there is some $i$ such that $h_i\succ h$.
-            \item (Fullness)
-            For every $i$, there is some $j$ such that for all $x$,
-            $h_j(x)=h_i(x)+1$.''
-        \end{enumerate}
-    \end{quote}
-\end{definition}
-
-\begin{definition}
-\label{alphaidefn}
-    Let $X$ be an AGI. We define a sequence $\alpha^X_1,\alpha^X_2,\ldots$
-    of ordinals by recursion as follows. Note that at first glance,
-    the following recursive definition looks too circular to work.
-    We will show in Lemma \ref{transfiniterecursionmagiclemma} that
-    it avoids infinite regress and thus
-    it does work. For each $i$, let $\alpha^X_i$ be the the smallest
-    ordinal which is larger than every ordinal $\alpha^X_j$ such that
-    $h^X_i\succ h^X_j$.
-\end{definition}
-
-\begin{lemma}
-\label{transfiniterecursionmagiclemma}
-    Definition \ref{alphaidefn} works (it does not lead to infinite regress).
-\end{lemma}
-
-\begin{proof}
-    Assume, for the sake of contradiction, that Definition \ref{alphaidefn}
-    leads to infinite regress. This means there is some $i_1$ such that
-    in order to define $\alpha^X_{i_1}$ we must first define $\alpha^X_{i_2}$
-    for some $i_2$, and in order to define $\alpha^X_{i_2}$ we must first
-    define $\alpha^X_{i_3}$ for some $i_3$, and in order to define
-    $\alpha^X_{i_3}$ we must first define $\alpha^X_{i_4}$ for some $i_4$,
-    and so on forever. Thus, there is an infinite sequence $i_1,i_2,\ldots$
-    such that in order to define each $\alpha^X_{i_j}$, we must first
-    define $\alpha^X_{i_{j+1}}$. Now, each $\alpha^X_{i_j}$ is defined as
-    the smallest ordinal larger than every ordinal $\alpha^X_j$ such that
-    $h^X_{i_j}\succ h^X_j$. So, since defining $\alpha^X_{i_j}$ requires
-    us to first define $\alpha^X_{i_{j+1}}$, this implies $i_{j+1}$ is
-    such a $j$, i.e., that $h^X_{i_j}\succ h^X_{i_{j+1}}$.
-    Thus $h^X_{i_1}\succ h^X_{i_2}\succ h^X_{i_3}\succ\cdots$,
-    but this contradicts the \emph{well-foundedness} part of the command
-    from Definition \ref{fairsequencedefn}.
-\end{proof}
-
-\begin{lemma}
-    Let $X$ be an AGI. For all $i,j$,
-    $h^X_i\succ h^X_j$ if and only if $\alpha^X_i>\alpha^X_j$.
-\end{lemma}
-
-\begin{proof}
-    Fix $i$ and $j$.
-    By the \emph{linear ordering} part of the command in Definition
-    \ref{fairsequencedefn}, either $h^X_i\succ h^X_j$ or $h^X_j\succ h^X_i$.
-    Assume $h^X_i\succ h^X_j$, the other case is similar.
-    By definition, $\alpha^X_i$ is defined to be the smallest ordinal
-    which is larger than $\alpha^X_{j'}$ for every $j'$ such that
-    $h^X_i\succ h^X_{j'}$. One such $j'$ is $j$ itself,
-    so by definition $\alpha^X_i$ is larger than $\alpha^X_j$, as desired.
-\end{proof}
-
-\begin{definition}
-    (Transfinite Hibbard measures)
-    Suppose $X$ is an AGI. By the \emph{transfinite Hibbard measure given by $X$},
-    we mean the measure $\|\bullet\|_X$ which assigns to every AGI $Y$ an
-    intelligence measure $\|Y\|_X$ defined as follows.
-    $\|Y\|_X$ is defined to be the smallest ordinal which is larger than
-    $\alpha^X_i$ for every $i$ such that $Y$ learns every evader in
-    $E_{h^X_i}$.
-\end{definition}
 
 
 
