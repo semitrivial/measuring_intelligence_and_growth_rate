@@ -18,7 +18,8 @@
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{openquestion}[theorem]{Open Question}
 
-\title{Extending Hibbard's intelligence measure by delegating hard choices to the agent}
+\title{Measuring intelligence and growth rate: variations on
+Hibbard's intelligence measure}
 \author{Samuel Alexander\thanks{The U.S.\ Securities and Exchange Commission}}
 \date{2020}
 
@@ -27,62 +28,28 @@
 \maketitle
 
 \begin{abstract}
-When studying the theory of agents with Artificial General Intelligence
-(the theory of AGIs), one can sometimes avoid arbitrary decisions by
-delegating those decisions to the AGIs under investigation.
-In 2011, Hibbard suggested an intelligence measure for AGIs acting as
-predictors in adversarial sequence prediction games. Hibbard's measure
-depends arbitrarily on a function-sequence
-imported from a paper by Liu. We argue that Hibbard's measure is trivial:
-any genuine AGI should have Hibbard intelligence $\infty$,
-because the functions in Liu's paper are
-trivial to a genuine AGI. Our key insight is this: rather than
-arbitrarily choosing a function-sequence, we can delegate that choice to an AGI.
-In this way, we propose
-non-trivial variations of Hibbard's original measure, which we call
-relative Hibbard measures.
-However, relative Hibbard measures are still flawed. To repair their flaws,
-we further propose what we call transfinite Hibbard measures,
-which depend on an AGI choosing a slow-growing hierarchy (from mathematical
-logic) rather than a function-sequence.
+    In 2011, Hibbard suggested an intelligence measure for agents
+    who compete in an adversarial sequence prediction game. We argue
+    that Hibbard's idea should actually be considered as two separate
+    ideas: first, that the intelligence of such agents can be measured
+    based on the growth rates of the runtimes of the competitors that
+    they defeat; and second, one specific method for measuring said
+    growth rates. Hibbard combined these ideas to propose an intelligence
+    measure based on one particular method of measuring function growth
+    rates. We survey some more standard methods for measuring function
+    growth rates, and exhibit the Hibbard-like intelligence measures
+    which result.
 \end{abstract}
 
 \section{Introduction}
 
-\begin{quote}
-    Todo:
-    \begin{enumerate}
-        \item Formal theorem suggesting THM/IOI connection.
-        \item More background about fast- and slow-growing hierarchies.
-        \item In Example bruteforcenottotallyoptimalexample, we choose a function which
-            the AGI does not know. Add a lemma showing that such functions must exist.
-        \item A lemma to the effect that if X knows M is a Turing machine which computes
-            f at all but finitely many points, then there exists a TM M' which computes
-            f everywhere and such that X knows M' is total.
-    \end{enumerate}
-\end{quote}
-
-At a high-level, this paper is about a meta-technique in theoretical research
-on agents with Artificial General Intelligence (that is, on AGIs), namely:
-avoiding difficult and arbitrary decisions by delegating those decisions to the
-very AGIs we are studying. To speak metaphorically, suppose we were fighting about
-what clothes the Oracle of Delphi should wear: such fighting could be avoided
-by asking the oracle herself what clothes an Oracle of Delphi should wear. At
-a low-level, this paper is about a certain specific intelligence measure, and
-improvements thereon: these serve as a kind of proving ground for the
-higher-level meta-technique.
-
 In his insightful paper \cite{hibbard}, Bill Hibbard introduces a novel
 intelligence measure (which we will here refer to as the \emph{original Hibbard measure})
-for AGIs.
-Hibbard's measure is based on a game of adversarial sequence
-prediction \cite{hibbard2008adversarial}
+for agents who play a game of adversarial sequence prediction
+\cite{hibbard2008adversarial}
 ``against a hierarchy of increasingly difficult sets of'' evaders (environments that attempt
 to emit $1$s and $0$s in such a way as to evade prediction).
-The levels of Hibbard's hierarchy are labelled by natural numbers\footnote{Technically,
-Hibbard's hierarchy begins at level $1$ and he separately defines what it means for
-an agent to have intelligence $0$, but that definition is equivalent to what would result
-by declaring that the $0$th level of the hierarchy consists of the empty set of evaders.}, and
+The levels of Hibbard's hierarchy are labelled by natural numbers, and
 an agent's original Hibbard measure is the maximum $n\in\mathbb N$ such that
 said agent learns to predict all the evaders in the $n$th level of the hierarchy,
 or implicitly\footnote{Hibbard does not explicitly include the $\infty$ case in his
@@ -91,58 +58,40 @@ it is clear from context that by this he means agents who fail to predict some e
 somewhere in the hierarchy.} an agent's original Hibbard measure is $\infty$
 if said agent learns to predict all the evaders in all levels of Hibbard's hierarchy.
 
+The hierarchy which Hibbard uses to measure intelligence is based on the growth
+rate of the runtime complexity of evaders as the adversarial sequence prediction
+progresses. We will argue that Hibbard's idea is really a combination of two
+orthogonal ideas. First: that in some sense the intelligence of a predicting agent
+can be measured based on the growth rates of the runtimes of the evaders whom that
+predictor learns to predict. Second: Hibbard proposed one particular method for
+measuring said growth rates. The growth rate measurement which Hibbard proposed yields
+a corresponding intelligence measure for these agents. We will argue that \emph{any}
+method for measuring growth rates of functions yields a corresponding Hibbard measure.
+
+The particular method which Hibbard used to measure function growth rates is
+not very standard, nor (in our opinion) very useful. We will survey standard
+ways of measuring function growth rates, and these will yield corresponding
+Hibbard-like intelligence measures.
+
 In this paper, we will argue that the original Hibbard measure is
 trivial: we will argue that \emph{all} suitably idealized AGIs should have
 original Hibbard intelligence $\infty$. This is because Hibbard's hierarchy
 depends on a function-sequence which is (we would argue) arbitrarily chosen,
 and which happens to consist of functions which should be trivial to a genuine AGI.
 
-We will suggest two different methods to repair Hibbard's intelligence measure.
-\begin{itemize}
-    \item
-    The first method we describe will be elementary, in that it will
-    essentially involve
-    no mathematics more advanced than the mathematics used in Hibbard's original approach.
-    This will yield a non-trivial family of intelligence measures,
-    which we will call \emph{relative Hibbard measures}, but these will still suffer a flaw.
-    \item
-    The second method we describe will make use of \emph{slow-growing hierarchies}
-    \cite{weiermann2002slow} (an advanced notion from mathematical logic) and will
-    produce a family of ordinal-number-valued intelligence measures, which we will
-    call \emph{transfinite Hibbard measures}, to avoid the above-mentioned flaw.
-\end{itemize}
-Both of these methods will, rather than producing a single intelligence measure,
-rather, produce a family of intelligence measures indexed by a parameter $X$ where
-$X$ is an AGI.
-Every AGI $X$ will have a corresponding relative Hibbard measure $|\bullet|_X$
-(for any AGI $Y$, $|Y|_X$ will be a natural-number-valued measurement of $Y$'s intelligence
-``according to $X$'').
-Every AGI $X$ will also have a corresponding transfinite Hibbard measure
-$\|\bullet\|_X$
-(for any AGI $Y$, $\|Y\|_X$ will be a computable-ordinal-valued measurement of $Y$'s
-intelligence ``according to $X$'').
-
 The structure of the paper is as follows.
 \begin{itemize}
     \item
-    In Section \ref{agiperspectivesection}, we present an idealized viewpoint of AGIs.
-    \item
     In Section \ref{originalmeasuresection}, we review the original Hibbard measure.
     \item
-    In Section \ref{growthratesection}, we argue that Hibbard's idea essentially
-    boils down to trying to
-    solve a problem that computer scientists have already solved via Big-O notation.
-    We propose a Hibbard-style method for quantifying AGI intelligence using Big-O
-    notation.
+    In Section \ref{growthratesection}, we argue that any method of measuring
+    the growth rate of functions yields a Hibbard-like intelligence measure,
+    and that the original Hibbard measure is just a special case resulting from
+    one particular method of measuring function growth rate.
     \item
     In Section \ref{exoticsection}, we consider several other solutions to
-    the problem which computer
-    scientists solve using Big-O notation, and the Hibbard-style measures which
-    correspond to these solutions.
-    \item
-    In Section \ref{trivialitysection}, we argue that
-    under certain idealizing assumptions, \emph{every} AGI probably has
-    original Hibbard intelligence $\infty$.
+    the problem of measuring the growth rate of functions, and the
+    corresponding Hibbard-like measures of intelligence.
     \item
     In Section \ref{prosandconssection}, we give pros and cons of different
     Hibbard-style measures.
