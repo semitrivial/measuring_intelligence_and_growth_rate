@@ -416,7 +416,8 @@ Problem \ref{bigoproblem} would in turn yield Hibbard-style intelligence measure
 values from said non-Archimedean number systems.
 \begin{itemize}
     \item
-    Hyperreal numbers, studied in the field of nonstandard analysis,
+    Hyperreal numbers, studied in the field of non-standard analysis \cite{robinson}
+    \cite{goldblatt2012lectures},
     are equivalence classes of infinite sequences of reals,
     so for every sequence $(r_0,r_1,r_2,\ldots)$ of reals, there is a corresponding
     hyperreal represented by that sequence.
@@ -427,7 +428,9 @@ values from said non-Archimedean number systems.
     Definition \ref{bigointelligencedefn} (the reason this only yields an approximate
     Hibbard-style intelligence measure is because the hyperreals are not complete).
     \item
-    The hyperreal numbers can be embedded into the surreal numbers.
+    The surreal numbers \cite{conway} \cite{knuth} are an even larger extension
+    of the real numbers, into which the hyperreals can be embedded
+    \cite{ehrlich2012absolute}.
     Thus, for any such embedding,
     there is another natural and elegant way to solve Problem \ref{bigoproblem},
     namely: the growth rate of $f(n)$ is the surreal number corresponding to the
@@ -436,18 +439,20 @@ values from said non-Archimedean number systems.
     the corresponding Hibbard-style measure to be exact, not approximate.
     \item
     Another natural way to measure growth rate is using majorization hierarchies
-    (such as the slow-growing hierarchy or the fast-growing hierarchy) from mathematical
-    logic. A majorization hierarchy assigned ordinal number values to growth rates of
+    (such as the slow-growing hierarchy or the fast-growing hierarchy
+    \cite{weiermann2002slow}) from mathematical
+    logic. A majorization hierarchy assigns ordinal number values to growth rates of
     functions (but not to all functions---for any particular majorization hierarchy, there
     are functions which grow too fast for that hierarchy). These yield corresponding
     Hibbard-style intelligence measures which are ordinal-number-valued.
     \item
     In order to reduce the arbitrary limitations of traditional majorization
     hierarchies, we could delegate the problem of defining a majorization hierarchy to
-    an AGI $X$. This leads to a family of Hibbard-style measures---one measure
+    an Artificial General Intelligence (or AGI). This leads to a family of Hibbard-style
+    measures---one measure
     $|\bullet|_X$ for each AGI $X$, so that for any particular AGI $X$, for any
-    AGI $Y$, there is a corresponding intelligence measure $|Y|_X$ which might be
-    thought of as ``$Y$'s intelligence as judged by $X$''.
+    predictor $p$, there is a corresponding intelligence measure $|p|_X$ which might be
+    thought of as ``$p$'s intelligence as judged by $X$''.
 \end{itemize}
 
 \subsection{Hyperreal Hibbard intelligence}
@@ -455,7 +460,7 @@ values from said non-Archimedean number systems.
 The so-called \emph{ultrapower construction} of the hyperreals depends on an object
 called a \emph{free ultrafilter}, which is a set of subsets of $\mathbb N$ satisfying
 certain requirements. It is not important for the purposes of this paper to define what
-a free ultrafilter is here. The only important things to know are:
+a free ultrafilter is here. The important things to know are:
 \begin{itemize}
     \item
     A free ultrafilter $\mathscr U$ provides a notion of what it means for a subset
@@ -469,24 +474,26 @@ a free ultrafilter is here. The only important things to know are:
 
 Because of the computational impracticality of free ultrafilters, the following notion
 is also computationally impractical. However, it could potentially be useful for
-proving theoretical properties about AGIs.
+proving theoretical properties about the intelligence of predictors. In the following
+definition, rather than assigning a particular hyperreal number intelligence to every
+predictor, rather, we categorize predictors into classes. This is necessary because
+the hyperreals are not complete, so Corollary \ref{rephrasinghibbardsmeasurecorollary}
+cannot directly be mimicked either with ``maximum'' or with ``supremum''.
 
 \begin{definition}
-\label{hyperrealhibbardintelligencedefn}
     (Hyperreal Hibbard intelligence)
-    Suppose $r$ is a hyperreal number. We say that an AGI $X$ has \emph{hyperreal
-    Hibbard intelligence $\geq r$} if the following property holds.
-    For every $f:\mathbb N\to\mathbb N$, if the hyperreal represented by
-    $(f(0),f(1),f(2),\ldots)$ is $\leq r$, then $X$'s predictor learns every
-    evader in $E_f$.
+    The \emph{hyperreal Hibbard intelligence} of a predictor $p$ is defined to be
+    $\geq$ a hyperreal number $r$ if and only if $p$ learns every evader $e$
+    such that if $r'$ is the hyperreal number represented by
+    $(t_e(0), t_e(1), t_e(2), \ldots)$ then $r'<r$.
 \end{definition}
 
 \subsection{Surreal Hibbard intelligence}
 
-The surreal number system is a number system discovered by John Conway. It is even
+The surreal number system is even
 more flexible than the hyperreal number system.
 There are many ways to embed the hyperreals into the surreals, and there is no
-standard or canonical way which stands out. In this subsection, fix some embedding
+standard or canonical way which stands out. In this subsection, we fix some embedding
 of the hyperreals into the surreals.
 
 A key property of the surreals
@@ -498,12 +505,10 @@ exact than Definition \ref{hyperrealhibbardintelligencedefn}.
 \begin{definition}
 \label{surrealhibbardintelligencedefn}
     (Surreal Hibbard intelligence)
-    Suppose $X$ is an AGI. Let $S_0$ be the set of all functions $f:\mathbb N\to\mathbb N$
-    such that $X$'s predictor learns every evader in $E_f$.
-    Let $S$ be the set of hyperreals corresponding to members of $S_0$ (that is,
-    for each $f\in S_0$, $S$ contains the hyperreal represented by $(f(0),f(1),f(2),\ldots)$).
-    We define the \emph{surreal Hibbard intelligence} of $X$ to be
-    $\sup S$.
+    For every predictor $p$, the \emph{surreal Hibbard intelligence} of $p$
+    is equal to the supremum of all surreal numbers $r$ such that
+    $p$ learns $e$ whenever the surreal number corresponding to
+    $(t_e(0),t_e(1),t_e(2),\ldots)$ is $<r$.
 \end{definition}
 
 \subsection{Hibbard intelligence and the traditional majorization hierarchies}
@@ -525,7 +530,8 @@ using standard choices for the parameters.
     \end{enumerate}
 \end{definition}
 
-For example, the smallest infinite ordinal, $\omega$, is a limit ordinal. It is not zero,
+For example, the smallest infinite ordinal, $\omega$, is a limit ordinal. It is not zero
+(because zero is finite),
 nor can it be a successor ordinal, because if it were a successor ordinal, say, $\alpha+1$,
 then $\alpha$ would be finite (since $\omega$ is the \emph{smallest} infinite ordinal),
 but then $\alpha+1$ would be finite as well.
@@ -666,8 +672,10 @@ to fill in the details in the following example.
 \end{example}
 
 What about $g_{\epsilon_0}$? Thinking of $\epsilon_0$ as
-$\omega^{\omega^{\omega^{\iddots}}}$,
-one might expect $g_{\epsilon_0}(n)$ to be $n^{n^{n^{\iddots}}}$, but such an infinite tower
+\[\omega^{\omega^{\omega^{\iddots}}},\]
+one might expect $g_{\epsilon_0}(n)$ to be
+\[n^{n^{n^{\iddots}}},\]
+but such an infinite tower
 of exponents makes no sense if $n>1$. Instead, the answer defies familiar mathematical
 notation.
 
@@ -699,13 +707,22 @@ is equal to $\alpha$, where $\alpha$ is the smallest ordinal such
 that $g_\alpha\succ f$ (or $\infty$ if no such $\alpha$ exists).
 This in turn provides a corresponding Hibbard-style measure.
 
+\begin{corollary}
+\label{rephrasinghibbardsmeasurecorollary}
+    For every predictor $p$, the original Hibbard measure of $p$
+    is equal to the maximum natural $m>0$ such that
+    $p$ learns $e$ whenever $e\in E^H_m$, or is equal to $0$ if there are no such
+    $m>0$, or is equal to $\infty$ if $p$ learns $e$ whenever $e\in E^H_m$ for
+    all $m>0$.
+\end{corollary}
+
 \begin{definition}
 \label{tradmajorizationhierarchyhibbardmeasuredefn}
-    If $X$ is an AGI, the \emph{Hibbard measure of $X$ given by the standard
-    slow-growing hierarchy up to $\epsilon_0$} is defined to be the
-    the supremum of all ordinals $\alpha\leq\epsilon_0$ such that
-    $X$'s predictor learns all evaders in $E_{g_\alpha}$ (or $\infty$ if
-    $X$'s predictor learns all evaders in $E_{g_\alpha}$ for all $\alpha\leq\epsilon_0$).
+    If $p$ is a predictor, the \emph{Hibbard intelligence of $X$ given by the
+    standard slow-growing hierarchy up to $\epsilon_0$} is defined to be the
+    supremum of all ordinals $\alpha<\epsilon_0$ such that
+    $p$ learns every evader $e$ such that $g_\alpha\succ t_e$ (or to
+    $\infty$ if said property holds for all ordinals $\alpha\leq\epsilon_0$).
 \end{definition}
 
 \subsection{Generalized majorization hierarchies}
