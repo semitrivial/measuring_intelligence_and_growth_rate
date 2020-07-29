@@ -737,7 +737,7 @@ $g_{\alpha+1}(n)$ is defined to be $g^n_\alpha(n)$, where the $g^n_\alpha$
 denotes the result of iterating $g_\alpha$ $n$ times, that is,
 $g^1_\alpha(n)=g_\alpha(n)$, $g^2_\alpha(n)=g_\alpha(g_\alpha(n))$,
 $g^3_\alpha(n)=g_\alpha(g_\alpha(g_\alpha(n)))$, and so on.
-In the early levels, this produces much faster-growing functions much more quickly,
+In the early levels, this produces much faster-growing functions,
 but astonishingly, at sufficiently high ordinals, the slow-growing hierarchy
 actually catches up with the fast-growing hierarchy \cite{girard1981pi12}
 (a beautiful illustration of how counter-intuitive large ordinal numbers can be).
@@ -753,10 +753,18 @@ drastically alter the resulting majorization hierarchy \cite{weiermann1997someti
 
 In short, there is no consensus at all about which majorization hierarchies are
 most canonical. If anything, there is consensus that there is no consensus.
-Fortunately, we are working here in a context where we can refer to AGIs.
-Rather than attempt the futile task of choosing a canonical majorization hierarchy
-ourselves, we can instead delegate the task to an AGI.
+However, Hibbard-style intelligence measures are primarily of interest to researchers
+interested in agents with Artificial General Intelligence (that is, researchers
+interested in AGIs). No-one knows what exactly an AGI is, but presumably an AGI can
+be thought of as a patient, obedient, careful, mechanical employee who can
+be given commands in English, and who will follow those commands (at least when
+the commands are \emph{possible} to follow---one could command an AGI to act as a
+Halting Problem solver, but it is unclear how the AGI would respond to such a command,
+since no mechanical agent can solve the Halting Problem).
 
+Rather than attempt the futile task of choosing a canonical majorization hierarchy
+ourselves, we can instead delegate that task to an AGI. By doing so for an arbitrary
+AGI, we will obtain an AGI-indexed family of semi-canonical majorization hierarchies.
 
 \begin{definition}
 \label{fairsequencedefn}
@@ -769,7 +777,7 @@ ourselves, we can instead delegate the task to an AGI.
         following constraints:
         \begin{enumerate}
             \item (Linear ordering) For any two $i,j\in\mathbb N$ with $i\neq j$, either
-            $h_i\succ h_j$ or $h_j\succ h_i$ (Definition \ref{functionsuccdefn}).
+            $h_i\succ h_j$ or $h_j\succ h_i$.
             \item (Largeness) For every Turing machine $M$ such that you know
             $M$ computes a total computable function $h:\mathbb N\to\mathbb N$,
             there is some $i$ such that $h_i\succ h$.
@@ -792,14 +800,20 @@ but only on how the AGI interprets the \emph{words} (i.e., how the AGI responds 
 specific well-defined stimulus, regardless of how vague the semantics of that stimulus
 may be).
 Thus, we are taking advantage of the AGI's ability to ``adapt with insufficient
-knowledge and resources'' \cite{wang2019defining}. Note that the resulting $h_i$'s
+knowledge and resources'' \cite{wang2019defining}.
+We assume the AGI understands and obeys the commands, so $h^X_1,h^X_2,\ldots$ really are
+total computable increasing functions from $\mathbb N$ to $\mathbb N$ satisfying the
+linear ordering, largeness\footnote{Note that the largeness requirement is defined in
+terms of the AGI's knowledge. See \cite{alexanderinprep} for a definition of what
+it means for an AGI to know a mathematical fact.}, and well-foundedness requirements.
+Note that the resulting $h_i$'s
 cannot actually be dense, as that would violate well-foundedness: given any $i,j$
 with $h_j\succ h_i$, there would be some $k_1$ such that $h_j\succ h_{k_1}\succ h_i$,
 and then there would be some $k_2$ such that $h_{k_1}\succ h_{k_2}\succ h_i$,
 and then there would be some $k_3$ such that $h_{k_2}\succ h_{k_3}\succ h_i$, and so
 on, but then $h_{k_1}\succ h_{k_2}\succ \cdots$ would violate well-foundedness.
 We will offer some motivation for pseudo-density below in
-Remark \ref{pseudodensityremark}.
+Remark \ref{pseudodensityremark} below.
 
 \begin{definition}
 \label{alphaidefn}
@@ -860,7 +874,7 @@ Remark \ref{pseudodensityremark}.
     Let $X$ be an AGI. Let $\alpha=\sup_i \alpha^X_i$ be the smallest ordinal
     bigger than all of the $\alpha^X_i$'s. The \emph{generalized majorization
     hierarchy given by $X$} is the family $(g_\beta)_{\beta<\alpha}$ of functions
-    labelled by ordinals below $\alpha$, where each $g_{\beta}$ is defined
+    labeled by ordinals below $\alpha$, where each $g_{\beta}$ is defined
     such that $g_{\beta}=h^X_i$ where $i$ is such that $\beta=\alpha^X_i$.
 \end{definition}
 
@@ -880,7 +894,7 @@ Definition \ref{fairsequencedefn}, which would require some significant acrobati
 \end{remark}
 
 A generalized majorization hierarchy (Definition \ref{generalizedmajorizationhierarchydefn})
-serves as a partial solution to Problem \ref{bigoproblem}: given any AGI $X$, we can say
+serves as a solution to Problem \ref{bigoproblem}: given any AGI $X$, we can say
 that a function $f:\mathbb N\to\mathbb N$ has growth rate
 $\beta$ where $\beta$ is the smallest ordinal $<\sup_i \alpha^X_i$
 such that $g_\beta\succ f$---or $f$ has growth rate $\infty$ if there is no
@@ -890,12 +904,13 @@ Hibbard-style intelligence measure.
 \begin{definition}
     (Transfinite Hibbard measures)
     Suppose $X$ is an AGI. By the \emph{transfinite Hibbard measure given by $X$},
-    we mean the measure $\|\bullet\|_X$ which assigns to every AGI $Y$ an
-    intelligence measure $\|Y\|_X$ defined as follows.
-    $\|Y\|_X$ is defined to be the smallest $\beta<\sup_i\alpha^X_i$
+    we mean the measure $\|\bullet\|_X$ which assigns to every predictor $p$ an
+    intelligence measure $\|p\|_X$ defined as follows.
+    $\|p\|_X$ is defined to be the smallest $\beta<\sup_i\alpha^X_i$
     such that for all $\gamma<\beta$,
-    $Y$'s predictor learns every evader $e\in E_\gamma$ (or $\|Y\|_X=\infty$ if
-    $Y$'s predictor learns every evader $e\in E_\gamma$ for all
+    $p$ learns every evader $e$ such that $g_\gamma\succ e$
+    (or $\|p\|_X=\infty$ if
+    $p$ learns every evader $e$ such that $g_\gamma\succ e$ for any
     $\gamma<\sup_i \alpha^X_i$).
 \end{definition}
 
