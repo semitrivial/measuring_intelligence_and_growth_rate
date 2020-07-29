@@ -915,340 +915,6 @@ Hibbard-style intelligence measure.
 \end{definition}
 
 
-\section{Do all AGIs have original Hibbard intelligence $\infty$?}
-\label{trivialitysection}
-
-In this section, we will argue that under certain idealizing
-assumptions, every AGI should have original Hibbard intelligence $\infty$.
-Thus, we would suggest that Definition \ref{classichibbardmeasuredefn} is really
-only appropriate for certain weak AIs who are strong enough that they can be
-induced to participate in adversarial sequence prediction games, but who are
-too weak to qualify as genuine AGIs.
-
-
-\subsection{A semi-optimal predictor}
-\label{semioptimalpredictorsubsection}
-
-The most obvious way to try to predict an evader would be to
-enumerate some list $M_1,M_2,\ldots$ of Turing machines and
-sequentially try to predict $e$ by assuming $e$ computes the same
-function as $M_1$, and if that ever fails, then predict $e$ by
-assuming $e$ computes the same function as $M_2$, and if that ever
-fails, then predict $e$ by assuming $e$ computes the same function
-as $M_3$, and so on. In doing so, we should limit ourselves
-to Turing machines $M_i$ which define total functions, lest
-we end up waiting forever for a non-terminating computation
-and never getting around to making our next
-prediction. Unfortunately, the set of total Turing machines is
-not computably enumerable, so the best we can hope for is to enumerate
-some subset of the total Turing machines. But which subset? This is
-a tricky and arbitrary decision---thankfully, we do not need to
-decide it ourselves, we can let the AGI decide for us.
-
-\begin{definition}
-\label{bruteforcepredictordefn}
-    (Brute-Force Predictors)
-    Suppose $X$ is an AGI. Let $M_1,M_2,\ldots$ be the list of Turing machines
-    which $X$ would enumerate if $X$ were commanded: ``Enumerate all the Turing
-    machines which you know define total functions from $B^*$ to $B$''.
-    By \emph{$X$'s brute-force predictor}, we mean the predictor $p$ defined
-    as follows.
-    \begin{enumerate}
-        \item
-        Initially, $p$ shall attempt to predict the evader $e$ by assuming that $e$
-        defines the same function as $M_1$. When (if ever) this fails,
-        say that \emph{$M_1$ is ruled out from being the evader}.
-        \item
-        Once $M_1$ has been ruled out from being the evader (if ever),
-        $p$ shall attempt to predict $e$ by assuming that $e$ defines the same
-        function as $M_2$. When (if ever) this fails,
-        say that \emph{$M_2$ is ruled out from being the evader}.
-        \item
-        Once $M_2$ has been ruled out from being the evader (if ever),
-        $p$ shall attempt to predict $e$ by assuming that $e$ defines the same
-        function as $M_3$. When (if ever) this fails,
-        say that \emph{$M_3$ is ruled out from being the evader}.
-        \item
-        And so on forever...
-    \end{enumerate}
-\end{definition}
-
-Note that $X$'s brute-force predictor
-is total precisely because of the mathematical truthfulness assumption
-(from Definition \ref{idealizingassumption}): whenever $X$ knows that
-$M_i$ defines a total function from $B^*$ to $B$, $M_i$ really \emph{does}
-define a total function from $B^*$ to $B$ (hereafter, we will suppress
-remarks like this and routinely use the mathematical truthfulness assumption
-without explicit mention).
-
-\begin{lemma}
-\label{knowingimplieslearninglemma}
-    Let $X$ be an AGI and let $e$ be an evader (so $e$ is a Turing machine which
-    computes a function from $B^*$ to $B$).
-    Let $M$ be any Turing machine which computes the same function from $B^*$ to $B$
-    as $e$ computes.
-    If $X$ knows that $M$ defines a total function from $B^*$ to $B$,
-    then $X$'s brute-force predictor learns to predict $e$.
-\end{lemma}
-
-\begin{proof}
-    Let $p$ be $X$'s brute-force predictor.
-    Let $M_1,M_2,\ldots$ be as in Definition \ref{bruteforcepredictordefn}.
-    Since $X$ knows that $M$ defines a total
-    function from $B^*$ to $B$,
-    it follows that $M=M_k$ for some $k$.
-    When $p$ plays against $e$, it cannot occur that $M_k$ is ruled out
-    from being the evader, because in order for that to occur, $p$ would have
-    to fail at predicting $e$ when $p$ assumes that $e$ computes the same
-    function as $M_k$, but that cannot fail because that assumption is true.
-    Since $M_k$ cannot be ruled out from being the evader, it follows that
-    step $k+1$ of Definition \ref{bruteforcepredictordefn} will never be
-    reached, which in turn implies that $p$ stops failing at predicting $e$
-    after finitely many initial failures, in other words, $p$ learns to
-    predict $e$.
-\end{proof}
-
-For any AGI $X$, we would like to claim that $X$'s brute-force predictor is
-optimal among all predictors $X$ could act as; unfortunately this
-is not true in the strongest sense it possibly could be true, as the following
-example shows.
-
-\begin{example}
-\label{bruteforcenottotallyoptimalexample}
-    Let $X$ be an AGI. Let $f:\mathbb N\to B$ be a total computable function
-    which is not computed\footnote{Such an $f$ must exist because
-    otherwise, $X$ could enumerate all the total
-    computable functions from $\mathbb N$ to $B$, which is absurd because those functions
-    are not computably enumerable.} by any Turing machine $M$ such that $X$ knows $X$ computes
-    a total function from $\mathbb N$ to $B$.
-    For each $i\in\{0,1\}$, let $e_i$ be an evader such that:
-    \begin{align*}
-        e_i(\langle\rangle) &= i,\\
-        e_i(y_1,\ldots,y_n) &=
-        \begin{cases}
-            i &\mbox{if $y_1=\cdots=y_n=i$,}\\
-            f(n) &\mbox{otherwise.}
-        \end{cases}
-    \end{align*}
-    For each $i\in\{0,1\}$, let $p_i$ be a
-    constantly-$i$ predictor, $p_i(x_1,\ldots,x_n)=i$.
-    Then $p_0$ learns to predict $e_0$ and $p_1$ learns to predict $e_1$,
-    but $X$'s brute-force predictor learns to predict at most one of $e_0$ or $e_1$.
-\end{example}
-
-\begin{proof}
-    Clearly the result of $p_0$ playing against $e_0$ is
-    $(x_0,y_0,x_1,y_1,\ldots)=(0,0,0,0,\ldots)$, so $p_0$ learns to predict $e_0$.
-    Likewise, the result of $p_1$ playing against $e_1$ is
-    $(x_0,y_0,x_1,y_1,\ldots)=(1,1,1,1,\ldots)$, so $p_1$ learns to predict $e_1$.
-    It remains to show that $X$'s brute-force predictor $p$ cannot learn to predict
-    both $e_0$ and $e_1$.
-
-    Let $M_1,M_2,\ldots$ be as in Definition \ref{bruteforcepredictordefn}.
-    Let $g:B^*\to B$ be the function computed by $M_1$.
-
-    Case 1: $g(\langle\rangle)=1$. Then when $p$ plays against $e_0$,
-    after the first step, it will never be the case that
-    $y_1=\cdots=y_n=0$ (because $y_1=g(\langle\rangle)=1$).
-    Thus, for all $n>0$, $e_0(y_1,\ldots,y_n)=f(n)$.
-    I claim that $p$ does not learn $e_0$.
-    To see this, assume (for the sake of contradiction)
-    that $p$ learns $e_0$. It follows that there is some $k$ (which we may take
-    as small as possible) such that $M_k$ never gets ruled out from being the
-    evader (Definition \ref{bruteforcepredictordefn}). Let $h:B^*\to B$ be the
-    function defined by $M_k$.
-    Let $(x_0,y_0,x_1,y_1,\ldots)$ be the result of $p$ playing against $e_0$.
-    It follows that there is some $j$ such that for all $i>j$,
-    $h(y_1,\ldots,y_{i-1})=x_i=y_i=f(i)$.
-    This shows that for all but finitely many $i\in\mathbb N$,
-    $f(i)=h(y_1,\ldots,y_{i-1})$. Since $X$ knows that $M_k$ defines a total
-    function from $B^*$ to $B$, it follows that
-    there is a Turing machine $M$ such that $M$ computes $f$ and $X$ knows
-    $M$ computes a total function from $\mathbb N$ to $B$. Absurd, this
-    contradicts our choice of $f$.
-
-    Case 2: $g(\langle\rangle)=0$. Then by similar reasoning as in Case 1,
-    it can be shown that $p$ does not learn $e_1$.
-\end{proof}
-
-Example \ref{bruteforcenottotallyoptimalexample} shows that we cannot
-hope for the brute-force to be totally optimal in the most extreme possible sense:
-there will always be evaders that the AGI's brute-force predictor
-fails to learn, but which other
-predictors (which the AGI is capable of acting as)
-do nevertheless learn. Example \ref{bruteforcenottotallyoptimalexample} involves
-highly contrived evaders which are custom-made to act stupidly in one specific case
-(allowing them to be learned by stupid predictors), while being
-highly sophisticated in other cases. In the following definition, we rule out
-situations where a less sophisticated predictor manages to learn a
-more sophisticated evader due to the evader concealing its true sophistication from
-the predictor.
-
-\begin{definition}
-\label{notwithoutafightdefn}
-    Suppose $p$ is a predictor and $e$ is an evader.
-    We say that \emph{$p$ learns $e$ but-not-without-a-fight}
-    if the following conditions hold:
-    \begin{enumerate}
-        \item $p$ learns $e$.
-        \item For each $i$, $t_p(i)\geq t_e(i)$.
-    \end{enumerate}
-\end{definition}
-
-Armed with Definition \ref{notwithoutafightdefn}, we can now state a theorem
-which shows the semi-optimality of the brute-force predictor.
-
-\begin{theorem}
-\label{semioptimalitytheorem}
-    (Semi-optimality of brute force)
-    Let $X$ be an AGI and let $p$ be any predictor.
-    If $X$ knows that $p$ computes a total function from $B^*$ to $B$,
-    and if $p$ learns an evader $e$ but-not-without-a-fight,
-    then $X$'s brute-force predictor learns $e$.
-\end{theorem}
-
-\begin{proof}
-    Since $X$ knows $p$ computes a total
-    function from $B^*$ to $B$, $X$ knows that $e'$ is a total
-    computable function from $B^*$ to $B$, where $e'$ is the Turing machine which
-    takes an input $b\in B^*$ and operates as follows:
-    \begin{enumerate}
-        \item
-        Calculate $t_p(i)$ (by running $p$ on all length-$i$ binary sequences).
-        \item
-        Run $e$ on $b$ for up to $t_p(i)$ steps. If $e$ outputs a result $x$ within that
-        time, then output $x$. Otherwise, output $0$.
-    \end{enumerate}
-    Since $p$ learns $e$ but-not-without-a-fight, each $t_p(i)\geq t_e(i)$,
-    so in fact $e'$ computes the same function as $e$.
-    By Lemma \ref{knowingimplieslearninglemma}, $X$'s brute-force predictor
-    learns $e'$. Since $e'$ and $e$ compute the same function, this implies
-    $X$'s brute-force predictor learns $e$.
-\end{proof}
-
-\subsection{Triviality of the original Hibbard measure}
-\label{trivialitysubsection}
-
-Although Example \ref{bruteforcenottotallyoptimalexample} showed that
-an AGI $X$'s brute-force predictor
-is not optimal in the strongest possible sense, Theorem \ref{semioptimalitytheorem}
-shows that $X$'s brute-force predictor is still semi-optimal. In some sense,
-$X$'s brute-force predictor learns every evader which any other predictor $p$ (that $X$
-knows is a predictor) would learn, except possibly for cases where $p$ only learns
-an evader $e$ because $e$ conceals its full sophistication from $p$.
-
-Since we only used basic mathematics to prove Theorem \ref{semioptimalitytheorem},
-any genuine AGI should also eventually figure out Theorem \ref{semioptimalitytheorem}.
-Thus, when an AGI is commanded to compete as a predictor in the adversarial
-sequence prediction game, the resulting predictor which the AGI acts as should be
-at least as good as the brute-force predictor, because why would the AGI act as
-a worse predictor if it can figure out that brute-force is semi-optimal?
-We formalize this in the following assumption.
-
-\begin{assumption}
-\label{bruteforceassumption}
-    For every AGI $X$, $X$'s predictor is at least as good as
-    $X$'s brute-force predictor, by which we mean that for every evader $e$,
-    if $X$'s brute-force predictor learns $e$, then $X$'s predictor
-    learns $e$.
-\end{assumption}
-
-Based on Assumption \ref{bruteforceassumption},
-we are now ready to argue that the original Hibbard measure is
-trivial: that it assigns intelligence level $\infty$ to every AGI.
-
-\begin{theorem}
-\label{everyagihasoriginalhibbardintinfinitytheorem}
-    Every AGI $X$ has original Hibbard intelligence $\infty$.
-\end{theorem}
-
-\begin{proof}
-    Let $p$ be $X$'s brute-force predictor, and let $q$ be $X$'s predictor.
-    By Definition \ref{generalintelligencemeasuredefn}, in order
-    to show $X$ has original Hibbard intelligence $\infty$, we must
-    show that $q$ learns to predict $e$ for every $e$ in $E_{f_m}$ for
-    every $m\in\mathbb N$,
-    where each $f_m:\mathbb N\to\mathbb N$ is defined by
-    $f_m(k)=\max_{0<i\leq m}\max_{j\leq k}g_i(j)$,
-    where $g_i$ is the $i$th primitive recursive function
-    in Liu's enumeration
-    (Definition \ref{classichibbardmeasuredefn}).
-    By Assumption \ref{bruteforceassumption}, it suffices to show that
-    $q$ learns all such $e$, for then Assumption \ref{bruteforceassumption}
-    says that $p$ learns all such $e$ as well.
-
-    Let $m\in\mathbb N$ be arbitrary and let $e\in E_{f_m}$ be arbitrary.
-    By Definition \ref{evadersetdefinition},
-    for all but finitely many $n\in\mathbb N$, $t_e(n)<f_m(n)$.
-    We will show that $p$ learns to predict $e$.
-
-    Let $M$ be a Turing machine which takes an input
-    $(y_1,\ldots,y_n)\in B^*$ and
-    operates as follows:
-    \begin{itemize}
-        \item
-        Spend up to $f_m(n)$ steps computing $e(y_1,\ldots,y_n)$.
-        If $e$ halts (with output $x$) during that time, then output $x$.
-        Otherwise, output $0$.
-    \end{itemize}
-    Since, for all but finitely many $n\in\mathbb N$, $t_e(n)<f_m(n)$,
-    it follows that $M$ computes the same function as $e$ except for finitely
-    many exceptions.
-
-    It is well-known that for every primitive recursive function $g$, Peano
-    arithmetic proves that $g$ is total. Thus, by the \emph{basic mathematical
-    exposure} and \emph{mathematical reasoning ability} assumptions from
-    Assumption \ref{idealizingassumption}, it follows that $X$ knows that
-    $M$ is total. Since $M$ computes the same function as $e$ except for
-    finitely many exceptions, it follows that there is a Turing machine $M'$
-    which computes the same function as $e$, and such that $X$
-    knows that $M'$ is total. By Lemma \ref{knowingimplieslearninglemma},
-    $p$ learns to predict $e$.
-\end{proof}
-
-\begin{corollary}
-\label{trivialityofslowgrowinghierarchycorollary}
-    Every AGI $X$ has intelligence $\infty$ according to
-    the Hibbard measure given by the standard slow-growing hierarchy
-    up to $\epsilon_0$
-    (Definition \ref{tradmajorizationhierarchyhibbardmeasuredefn}).
-\end{corollary}
-
-\begin{proof}
-    Similar to the proof of Theorem \ref{everyagihasoriginalhibbardintinfinitytheorem}
-    (just like a genuine AGI should know totality of functions outgrowing all
-    primitive recursive functions, likewise a genuine AGI should have no problem
-    knowing the totality of functions outgrowing all levels of the standard
-    slow-growing hierarchy up to $\epsilon_0$).
-\end{proof}
-
-We will finish this section by stating one other important, possibly
-counterintuitive consequence of Assumption \ref{bruteforceassumption}.
-
-\begin{theorem}
-\label{counterintuitivetheorem}
-    If $X$ is an AGI and $p$ is $X$'s predictor, then $X$ does not know that
-    $p$ defines a total function from $B^*$ to $B$.
-\end{theorem}
-
-\begin{proof}
-    Let $e$ be the evader which attempts to evade the predictor by assuming that
-    the predictor is $p$ and always playing the opposite digit which $p$ is
-    about to play. Clearly $p$ does not learn $e$.
-
-    The fact that $e$ defines a total function from $B^*$ to $B$ follows
-    by basic mathematical reasoning from the fact that $p$ defines a total
-    function from $B^*$ to $B$. Thus, if $X$ knows that $p$ defines a total
-    function from $B^*$ to $B$, then $X$ should know that $e$ defines a total
-    function from $B^*$ to $B$. If so, then $X$'s brute-force predictor learns
-    $e$ by Lemma \ref{knowingimplieslearninglemma}. But then
-    Assumption \ref{bruteforceassumption} would imply that $p$ learns $e$,
-    a contradiction.
-\end{proof}
-
-Theorem \ref{counterintuitivetheorem} is reminiscent of
-Examples \ref{counterintuitiveexample1} and \ref{counterintuitiveexample2}.
-
 \section{Pros and cons of different Hibbard-style measures}
 \label{prosandconssection}
 
@@ -1268,17 +934,15 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
         Pro: Measures intelligence using a familiar number system (the natural numbers).
         \item
         Con: The numbers which the measure outputs are not very meaningful, in the sense
-        that AGI $X$ having a measure of just $+1$ higher than AGI $Y$ tells us absolutely
-        nothing about how \emph{much} more computationally complex the evaders which $X$'s
-        predictor learns are, versus the evaders which $Y$'s predictor learns.
-        \item
-        Con: In Theorem \ref{everyagihasoriginalhibbardintinfinitytheorem}, we argued
-        that the original Hibbard measure assigns intelligence $\infty$ to every AGI.
+        that predictor $p$ having a measure of
+        just $+1$ higher than predictor $q$ tells us absolutely
+        nothing about how \emph{much} more computationally complex the evaders which $p$
+        learns are, versus the evaders which $q$ learns.
     \end{itemize}
     \item
     Big-O/Big-$\Theta$/Big-$\Omega$ (Definition \ref{bigointelligencedefn}),
-    in which, rather than directly measuring the intelligence of an AGI, instead, we
-    would talk of an AGI's intelligence being $O(f(n))$, or $\Theta(f(n))$, or
+    in which, rather than directly measuring the intelligence of a predictor, instead, we
+    would talk of a predictor's intelligence being $O(f(n))$, or $\Theta(f(n))$, or
     $\Omega(f(n))$, for various functions $f:\mathbb N\to\mathbb N$:
     \begin{itemize}
         \item
@@ -1331,9 +995,6 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
         \item
         Con: The numbers which the measure outputs are ordinal numbers, which may be
         unfamiliar to some users.
-        \item
-        Con: In Corollary \ref{trivialityofslowgrowinghierarchycorollary}, we argued
-        that the original Hibbard measure assigns intelligence $\infty$ to every AGI.
     \end{itemize}
     \item
     Intelligence based on a generalized majorization hierarchy
@@ -1346,6 +1007,11 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
         Pro: The numbers which the measure outputs are meaningful, in the sense that
         the degree to which an AGI $X$ is more intelligent than an AGI $Y$ is reflected
         in the degree to which $X$'s intelligence-measure is larger than $Y$'s.
+        \item
+        Pro: Potentially capable of assigning non-$\infty$ intelligence measures to
+        very advanced predictors (the more intelligent the AGI used to generate the
+        generalized majorization hierarchy, the more advanced the predictors can be
+        and still receive non-$\infty$ intelligence).
         \item
         Con: The numbers which the measure outputs are ordinal numbers, which may be
         unfamiliar to some users.
@@ -1360,12 +1026,12 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
 To summarize:
 \begin{itemize}
     \item
-    Hibbard proposed \cite{hibbard} an intelligence measure for predictors (and, implicitly,
-    for AGIs capable of acting as predictors) in games of adversarial sequence prediction.
+    Hibbard proposed \cite{hibbard} an intelligence measure for predictors
+    in games of adversarial sequence prediction.
     \item
     We argued that Hibbard's idea actually splits into two orthogonal sub-ideas.
     Firstly: that intelligence can be measured via the growth-rate of the run-times
-    of evaders that an AGI can learn to predict. Secondly: that such growth-rate can
+    of evaders that a predictor can learn to predict. Secondly: that such growth-rate can
     be measured in one specific way (involving an enumeration of the primitive recursive
     functions). We argue that there are other, more standard ways to measure growth-rates,
     and that each method of measuring growth-rates yields a corresponding Hibbard-style
@@ -1376,22 +1042,7 @@ To summarize:
     which we considered were: Big-O/Big-$\Theta$/Big-$\Omega$ notation; hyperreal numbers;
     surreal numbers; standard majorization hierarchies; and (in their debut appearance here)
     generalized majorization hierarchies.
-    \item
-    Finally, in Section \ref{trivialitysection}, we argued that all AGIs probably have
-    intelligence $\infty$ according to Hibbard's definition. Essentially, this is because
-    the specific functions that Hibbard's definition is based on should all be trivially
-    well-known by any genuine AGI.
 \end{itemize}
-
-This paper exemplifies a useful technique for theoretical AGI research.
-By viewing an AGI as an employee who is capable of engaging in casual human
-language communication with its employer, and which can be commanded (using said
-casual human language) to perform mathematical tasks, the AGI becomes a useful
-black box to which many arbitrary decisions can be delegated. For example, instead
-of arbitrarily choosing one particular majorization hierarchy (a difficult task
-because there are many majorization hierarchies and there is no consensus about
-which majorization hierarchies are canonical), we can short-circuit the decision
-by delegating it to an AGI.
 
 
 \bibliographystyle{plain}
