@@ -189,14 +189,14 @@ because of a minor (and fortunately, easy-to-fix) error there.
 
 \begin{definition}
 \label{tsubedefinition}
-    Suppose $M$ is any Turing machine which computes a total function from $B^*$ to $B$.
-    For each $n\in\mathbb N$, let $T_M(e)$ be the maximum number of steps that $M$ takes
+    Suppose $e$ is an evader.
+    For each $n\in\mathbb N$, let $T_e(n)$ be the maximum number of steps that $e$ takes
     to run on a length-$n$ sequence of binary digits.
-    In other words, $t_M(0)$ is the number of steps $M$ takes to run on $\langle\rangle$,
+    In other words, $t_e(0)$ is the number of steps $e$ takes to run on $\langle\rangle$,
     and for all $n>0$,
     \[
-        t_M(n) = \max_{b_1,\ldots,b_n\in \{0,1\}}
-        (\text{number of steps $M$ takes to run on $(b_1,\ldots,b_n)$}).
+        t_e(n) = \max_{b_1,\ldots,b_n\in \{0,1\}}
+        (\text{number of steps $e$ takes to run on $(b_1,\ldots,b_n)$}).
     \]
 \end{definition}
 
