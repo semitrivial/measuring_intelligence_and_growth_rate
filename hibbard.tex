@@ -33,12 +33,12 @@ Hibbard's intelligence measure}
     that Hibbard's idea should actually be considered as two separate
     ideas: first, that the intelligence of such agents can be measured
     based on the growth rates of the runtimes of the competitors that
-    they defeat; and second, one specific method for measuring said
-    growth rates. Hibbard combined these ideas to propose an intelligence
-    measure based on one particular method of measuring function growth
-    rates. We survey some more standard methods for measuring function
+    they defeat; and second, one specific (somewhat arbitrary) method for measuring said
+    growth rates. Whereas Hibbard's intelligence measure is based on the latter
+    growth-rate-measuring method, we survey
+    standard methods for measuring function
     growth rates, and exhibit the Hibbard-like intelligence measures
-    which result. Of particular interest, we obtain intelligence measures
+    which result from those. Of particular interest, we obtain intelligence measures
     based on Big-O notation and similar notation systems, which measures
     are novel in that they challenge conventional notions of what an
     intelligence measure should look like.
@@ -190,8 +190,8 @@ because of a minor (and fortunately, easy-to-fix) error there.
 \begin{definition}
 \label{tsubedefinition}
     Suppose $e$ is an evader.
-    For each $n\in\mathbb N$, let $T_e(n)$ be the maximum number of steps that $e$ takes
-    to run on a length-$n$ sequence of binary digits.
+    For each $n\in\mathbb N$, let $t_e(n)$ be the maximum number of steps that $e$ takes
+    to run on any length-$n$ sequence of binary digits.
     In other words, $t_e(0)$ is the number of steps $e$ takes to run on $\langle\rangle$,
     and for all $n>0$,
     \[
@@ -291,9 +291,8 @@ can be thought of as implicitly depending on a specific solution to Problem
 \label{rephrasinghibbardsmeasurecorollary}
     For every predictor $p$, the original Hibbard measure of $p$
     is equal to the maximum natural $m>0$ such that
-    $p$ learns $e$ whenever $e\in E^H_m$, or is equal to $0$ if there are no such
-    $m>0$, or is equal to $\infty$ if $p$ learns $e$ whenever $e\in E^H_m$ for
-    all $m>0$.
+    $p$ learns $e$ whenever $e\in E^H_m$, or is equal to $\infty$
+    if $p$ learns $e$ whenever $e\in E^H_m$ for all $m>0$.
 \end{corollary}
 
 \begin{proof}
@@ -315,7 +314,8 @@ intelligence measure given by $H'$ (it might be necessary to replace the
 ``maximum'' in Corollary \ref{rephrasinghibbardsmeasurecorollary}
 by a ``supremum'', if $H'$ measures growth rates using
 a non-discrete number system, or transform the form of it if $H'$
-solves Problem \ref{bigoproblem} by categorizing functions into classes
+solves Problem \ref{bigoproblem} using a non-complete number system or
+by categorizing functions into classes
 rather than by assigning
 them numerical measurements, as in the case of Big-O notation). This
 formalizes what we claimed in the Introduction,
@@ -338,19 +338,19 @@ we are only concerned here with functions from $\mathbb N$ to $\mathbb N$).
 
 \begin{definition}
 \label{bigodefn}
-    Suppose $f:\mathbb N\to\mathbb N$. We define the following the following function-sets.
+    Suppose $f:\mathbb N\to\mathbb N$. We define the following function-sets.
     \begin{itemize}
         \item
         $O(f(n))$ is the set of all $g:\mathbb N\to\mathbb N$ such that
-        there is some real $C>0$ and some natural number $n_0$ such that
+        there is some real $C>0$ and some $n_0\in\mathbb N$ such that
         for all $n\geq n_0$, $g(n)\leq Cf(n)$.
         \item
         $\Omega(f(n))$ is the set of all $g:\mathbb N\to\mathbb N$ such that
-        there is some real $C>0$ and some natural $n_0$ such that
+        there is some real $C>0$ and some $n_0\in\mathbb N$ such that
         for all $n\geq n_0$, $g(n)\geq Cf(n)$.
         \item
         $\Theta(f(n))$ is the set of all $g:\mathbb N\to\mathbb N$ such that
-        there are some real $C>0$ and $C'>0$ and some natural $n_0$ such that
+        there are some real $C>0$ and $C'>0$ and some $n_0\in\mathbb N$ such that
         for all $n\geq n_0$, $Cf(n)\leq g(n)\leq C'f(n)$.
     \end{itemize}
 \end{definition}
@@ -454,7 +454,7 @@ values from said non-Archimedean number systems.
     an Artificial General Intelligence (or AGI). This leads to a family of Hibbard-style
     measures---one measure
     $|\bullet|_X$ for each AGI $X$, so that for any particular AGI $X$, for any
-    predictor $p$, there is a corresponding intelligence measure $|p|_X$ which might be
+    predictor $p$, there is a corresponding intelligence measure $\|p\|_X$ which might be
     thought of as ``$p$'s intelligence as judged by $X$''.
 \end{itemize}
 
@@ -502,8 +502,8 @@ of the hyperreals into the surreals.
 
 A key property of the surreals
 is that they are complete. Thus, given any set $S$ of surreals with a surreal upper bound,
-there is a \emph{least} surreal upper bound of $S$, called the \emph{supremum} of $S$
-(written $\sup S$). This allows for a Hibbard-style intelligence measure which is more
+there is a \emph{least} surreal upper bound of $S$, called the \emph{supremum} of $S$.
+This allows for a Hibbard-style intelligence measure which is more
 exact than Definition \ref{hyperrealhibbardintelligencedefn}.
 
 \begin{definition}
@@ -673,7 +673,7 @@ to fill in the details in the following example.
         \item
         $g_{\omega^{\omega\cdot 3+1}+\omega+5}(n)=n^{3n+1}+n+5$.
         \item
-        $g_{\omega^{\omega^{\omega}}}=n^{n^n}$.
+        $g_{\omega^{\omega^{\omega}}}(n)=n^{n^n}$.
     \end{enumerate}
 \end{example}
 
@@ -719,7 +719,7 @@ This in turn provides a corresponding Hibbard-style measure.
     standard slow-growing hierarchy up to $\epsilon_0$} is defined to be the
     supremum of all ordinals $\alpha<\epsilon_0$ such that
     $p$ learns every evader $e$ such that $g_\alpha\succ t_e$ (or to
-    $\infty$ if said property holds for all ordinals $\alpha\leq\epsilon_0$).
+    $\infty$ if said property holds for all ordinals $\alpha<\epsilon_0$).
 \end{definition}
 
 \subsection{Generalized majorization hierarchies}
@@ -730,7 +730,7 @@ there is nothing special about defining $g_{\alpha+1}(n)=g_{\alpha}(n)+1$.
 Many other definitions for $g_{\alpha+1}$ would work, provided $g_{\alpha+1}$ ends
 up being faster-growing than $g_\alpha$.
 For example, in the so-called \emph{fast-growing hierarchy},
-$g_{\alpha+1}(n)$ is defined to be $g^n_\alpha(n)$, where the $g^n_\alpha$
+$g_{\alpha+1}(n)$ is defined to be $g^n_\alpha(n)$, where $g^n_\alpha$
 denotes the result of iterating $g_\alpha$ $n$ times, that is,
 $g^1_\alpha(n)=g_\alpha(n)$, $g^2_\alpha(n)=g_\alpha(g_\alpha(n))$,
 $g^3_\alpha(n)=g_\alpha(g_\alpha(g_\alpha(n)))$, and so on.
@@ -800,10 +800,11 @@ specific well-defined stimulus, regardless of how vague the semantics of that st
 may be).
 Thus, we are taking advantage of the AGI's ability to ``adapt with insufficient
 knowledge and resources'' \cite{wang2019defining}.
-We assume the AGI understands and obeys the commands, so $h^X_1,h^X_2,\ldots$ really are
+We assume the AGI understands and obeys the command, so $h^X_1,h^X_2,\ldots$ really are
 total computable increasing functions from $\mathbb N$ to $\mathbb N$ satisfying the
 linear ordering, largeness\footnote{Note that the largeness requirement is defined in
-terms of the AGI's knowledge. See \cite{alexanderinprep} for a definition of what
+terms of the AGI's mathematical
+knowledge. See \cite{alexanderinprep} for a definition of what
 it means for an AGI to know a mathematical fact.}, and well-foundedness requirements.
 Note that the resulting $h_i$'s
 cannot actually be dense, as that would violate well-foundedness: given any $i,j$
@@ -811,7 +812,7 @@ with $h_j\succ h_i$, there would be some $k_1$ such that $h_j\succ h_{k_1}\succ 
 and then there would be some $k_2$ such that $h_{k_1}\succ h_{k_2}\succ h_i$,
 and then there would be some $k_3$ such that $h_{k_2}\succ h_{k_3}\succ h_i$, and so
 on, but then $h_{k_1}\succ h_{k_2}\succ \cdots$ would violate well-foundedness.
-We will offer some motivation for pseudo-density below in
+We will offer some motivation for pseudo-density in
 Remark \ref{pseudodensityremark} below.
 
 \begin{definition}
@@ -887,7 +888,7 @@ $\sup_i \alpha^X_i$ is as large as possible\footnote{Chaitin \cite{chaitin}
 and Good \cite{good1969godel} have remarked
 about the importance of the size of the ordinals which an entity can notate---``and
 the larger the ordinal,
-the fitter the organism'', to quote Chaitin. See also \cite{ioi1} and \cite{ioi2}}. An
+the fitter the organism'', to quote Chaitin. See also \cite{ioi1} and \cite{ioi2}.}. An
 alternative to pseudo-density would
 be to directly command (in Definition \ref{fairsequencedefn}) that the $h_i$'s should
 be chosen in such a way as to make $\alpha=\sup_i\alpha^X_i$ large (leaving it up
@@ -906,7 +907,7 @@ such $\beta$. To this solution to Problem \ref{bigoproblem}, there is a correspo
 Hibbard-style intelligence measure.
 
 \begin{definition}
-    (Hibbard intelligence based given by an AGI)
+    (Hibbard intelligence given by an AGI)
     Suppose $X$ is an AGI. By the \emph{transfinite Hibbard measure given by $X$},
     we mean the measure $\|\bullet\|_X$ which assigns to every predictor $p$ an
     intelligence measure $\|p\|_X$ defined as follows.
@@ -942,6 +943,9 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
         just $+1$ higher than predictor $q$ tells us absolutely
         nothing about how \emph{much} more computationally complex the evaders which $p$
         learns are, versus the evaders which $q$ learns.
+        \item
+        Con: Only distinguishes sufficiently non-intelligence predictors; all predictors
+        sufficiently intelligent receive measure $\infty$.
     \end{itemize}
     \item
     Big-O/Big-$\Theta$/Big-$\Omega$ (Definition \ref{bigointelligencedefn}),
@@ -994,11 +998,15 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
         Pro: Relatively concrete.
         \item
         Pro: The numbers which the measure outputs are meaningful, in the sense that
-        the degree to which an AGI $X$ is more intelligent than an AGI $Y$ is reflected
-        in the degree to which $X$'s intelligence-measure is larger than $Y$'s.
+        the degree to which a predictor $p$ is more intelligent than a
+        predictor $q$ is reflected
+        in the degree to which $p$'s intelligence-measure is larger than $q$'s.
         \item
         Con: The numbers which the measure outputs are ordinal numbers, which may be
         unfamiliar to some users.
+        \item
+        Con: Only distinguishes sufficiently non-intelligence predictors; all predictors
+        sufficiently intelligent receive measure $\infty$.
     \end{itemize}
     \item
     Intelligence based on a generalized majorization hierarchy
@@ -1009,8 +1017,9 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
         Big-O/Big-$\Theta$/Big-$\Omega$ taxonomy.
         \item
         Pro: The numbers which the measure outputs are meaningful, in the sense that
-        the degree to which an AGI $X$ is more intelligent than an AGI $Y$ is reflected
-        in the degree to which $X$'s intelligence-measure is larger than $Y$'s.
+        the degree to which a predictor $p$ is more
+        intelligent than a predictor $q$ is reflected
+        in the degree to which $p$'s intelligence-measure is larger than $q$'s.
         \item
         Pro: Potentially capable of assigning non-$\infty$ intelligence measures to
         very advanced predictors (the more intelligent the AGI used to generate the
