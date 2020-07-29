@@ -38,7 +38,10 @@ Hibbard's intelligence measure}
     measure based on one particular method of measuring function growth
     rates. We survey some more standard methods for measuring function
     growth rates, and exhibit the Hibbard-like intelligence measures
-    which result.
+    which result. Of particular interest, we obtain intelligence measures
+    based on Big-O notation and similar notation systems, which measures
+    are novel in that they challenge conventional notions of what an
+    intelligence measure should look like.
 \end{abstract}
 
 \section{Introduction}
@@ -59,8 +62,8 @@ somewhere in the hierarchy.} an agent's original Hibbard measure is $\infty$
 if said agent learns to predict all the evaders in all levels of Hibbard's hierarchy.
 
 The hierarchy which Hibbard uses to measure intelligence is based on the growth
-rate of the runtime complexity of evaders as the adversarial sequence prediction
-progresses. We will argue that Hibbard's idea is really a combination of two
+rate of the runtime complexity of evaders.
+We will argue that Hibbard's idea is really a combination of two
 orthogonal ideas. First: that in some sense the intelligence of a predicting agent
 can be measured based on the growth rates of the runtimes of the evaders whom that
 predictor learns to predict. Second: Hibbard proposed one particular method for
@@ -73,12 +76,6 @@ not very standard, nor (in our opinion) very useful. We will survey standard
 ways of measuring function growth rates, and these will yield corresponding
 Hibbard-like intelligence measures.
 
-In this paper, we will argue that the original Hibbard measure is
-trivial: we will argue that \emph{all} suitably idealized AGIs should have
-original Hibbard intelligence $\infty$. This is because Hibbard's hierarchy
-depends on a function-sequence which is (we would argue) arbitrarily chosen,
-and which happens to consist of functions which should be trivial to a genuine AGI.
-
 The structure of the paper is as follows.
 \begin{itemize}
     \item
@@ -89,9 +86,14 @@ The structure of the paper is as follows.
     and that the original Hibbard measure is just a special case resulting from
     one particular method of measuring function growth rate.
     \item
-    In Section \ref{exoticsection}, we consider several other solutions to
-    the problem of measuring the growth rate of functions, and the
-    corresponding Hibbard-like measures of intelligence.
+    In Section \ref{bigosection}, we consider the most standard methods of measuring
+    function growth rate---Big-O notation, Big-$\Theta$ notation, and Big-$\Omega$
+    notation---and define corresponding predictor intelligence taxonomies.
+    \item
+    In Section \ref{exoticsection}, we consider several numeric solutions to
+    the problem of measuring the growth rate of functions (which use various extended number
+    systems), and define
+    corresponding Hibbard-like measures of predictor intelligence.
     \item
     In Section \ref{prosandconssection}, we give pros and cons of different
     Hibbard-style measures.
@@ -179,7 +181,7 @@ finite binary sequences. By $\langle\rangle$ we mean the empty binary sequence.
 Note that if $e$ simply ignores its inputs $(y_1,\ldots,y_n)$ and instead
 computes $e(y_1,\ldots,y_n)$ based only on $n$, then $e$ is essentially a sequence.
 Thus Definition \ref{evaderpredictordefn} is a generalization of sequence prediction,
-which many authors have written about (such as \cite{legg2006there}, who gives many
+which many authors have written about (such as Legg \cite{legg2006there}, who gives many
 references).
 
 In the following definition, we differ from Hibbard's original paper
@@ -188,8 +190,8 @@ because of a minor (and fortunately, easy-to-fix) error there.
 \begin{definition}
 \label{tsubedefinition}
     Suppose $M$ is any Turing machine which computes a total function from $B^*$ to $B$.
-    For any $n\in\mathbb N$, let $T_M(e)$ be the maximum number of steps that $M$ takes
-    to run on any length-$n$ sequence of binary digits.
+    For each $n\in\mathbb N$, let $T_M(e)$ be the maximum number of steps that $M$ takes
+    to run on a length-$n$ sequence of binary digits.
     In other words, $t_M(0)$ is the number of steps $M$ takes to run on $\langle\rangle$,
     and for all $n>0$,
     \[
@@ -326,6 +328,7 @@ Problem \ref{bigoproblem}).
 
 
 \section{Big-O, Big-$\Omega$, and Big-$\Theta$ intelligence measurement}
+\label{bigosection}
 
 The standard solution to Problem \ref{bigoproblem} in computer science is to quantify
 growth rates of arbitrary functions by comparing them to more familiar functions using
@@ -360,7 +363,7 @@ runtime $O(n^3)$ than to say that said algorithm's runtime has original Hibbard
 complexity (say) $835$. If someone were told that an algorithm's runtime had
 original Hibbard complexity (say) $835$, that number would be totally meaningless
 to them except as a key which they could use to look up which function $f_{835}$
-happens to be (in Definition \ref{originalhibbardcomplexitydefn}). The number
+happens to be (in Definition \ref{classichibbardmeasuredefn}). The number
 $835$ would merely serve to obfuscate, it would merely play the role of a worthless
 middleman.
 
@@ -481,6 +484,7 @@ the hyperreals are not complete, so Corollary \ref{rephrasinghibbardsmeasurecoro
 cannot directly be mimicked either with ``maximum'' or with ``supremum''.
 
 \begin{definition}
+\label{hyperrealhibbardintelligencedefn}
     (Hyperreal Hibbard intelligence)
     The \emph{hyperreal Hibbard intelligence} of a predictor $p$ is defined to be
     $\geq$ a hyperreal number $r$ if and only if $p$ learns every evader $e$
@@ -706,15 +710,6 @@ an arbitrary function $f:\mathbb N\to\mathbb N$
 is equal to $\alpha$, where $\alpha$ is the smallest ordinal such
 that $g_\alpha\succ f$ (or $\infty$ if no such $\alpha$ exists).
 This in turn provides a corresponding Hibbard-style measure.
-
-\begin{corollary}
-\label{rephrasinghibbardsmeasurecorollary}
-    For every predictor $p$, the original Hibbard measure of $p$
-    is equal to the maximum natural $m>0$ such that
-    $p$ learns $e$ whenever $e\in E^H_m$, or is equal to $0$ if there are no such
-    $m>0$, or is equal to $\infty$ if $p$ learns $e$ whenever $e\in E^H_m$ for
-    all $m>0$.
-\end{corollary}
 
 \begin{definition}
 \label{tradmajorizationhierarchyhibbardmeasuredefn}
