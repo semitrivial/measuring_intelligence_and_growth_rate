@@ -273,19 +273,27 @@ First, we introduce a piece of notation.
 \end{definition}
 
 \begin{proposition}
-    Let $p$ be a predictor. The original Hibbard measure of $p$
-    is equal to the largest value $v$ in $\mathbf{range}(H)$
-    such that $p$ learns every predictor $e$ such that
-    $f\succ t_e$ for every function $f:\mathbb N\to\mathbb N$ such
-    that $H(f)=v$.
+    For each $v\in\mathrm{range}(H)$, let
+    \[
+        E^H_v = \{e\,:\,\mbox{$e$ is an evader and $H(t_e)< v$}\}
+    \]
+    be the set of evaders whose runtimes have growth rate $< v$ according to
+    $H$.
+    For any predictor $p$, the original Hibbard measure of $p$
+    is equal to the largest $v\in\mathrm{range}(H)$ such that
+    $p$ learns $e$ whenever $e\in E^H_v$.
 \end{proposition}
 
 \begin{proof}
-    Let $v$ be as in the proposition.
+    t_e in E_{f_m}
+    f_m \succ t_e
 
-    Case 1: $v=\infty$. Then $p$ learns every predictor $e$ such that
-    $f\succ t_e$ for every function $f:\mathbb N\to\mathbb N$ such that
-    $H(f)=\infty$. 
+    Orig(p) = max m s.t. p learns e whenever t_e in E_{f_m}
+            = max m s.t. p learns e whenever f_m \succ t_e
+            = max m s.t. p learns e whenever H(t_e) < m
+
+    Orig(p) = infinity because p learns e whenever t_e in E_{f_m} for any m
+            = infinity because p learns e whenever f_m \succ 
 \end{proof}
 
 The standard solution to Problem \ref{bigoproblem} in computer science is to quantify
