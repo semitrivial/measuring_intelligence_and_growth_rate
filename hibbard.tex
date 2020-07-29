@@ -206,32 +206,31 @@ because of a minor (and fortunately, easy-to-fix) error there.
 \end{example}
 
 \begin{definition}
-\label{evadersetdefinition}
-    (The evader-set bounded by a function)
-    Suppose $f:\mathbb N\to\mathbb N$. We define the \emph{evader-set bounded by $f$},
-    written $E_f$, to be the set of all evaders $e$ such that
-    there is some $k\in\mathbb N$ such that $\forall n>k$,
-    $t_e(n)<f(n)$.
+\label{functionsuccdefn}
+    Suppose $f:\mathbb N\to\mathbb N$ and $g:\mathbb N\to\mathbb N$.
+    We say $f\succ g$ if there is some $n_0\in \mathbb N$ such that for all
+    $n>n_0$, $f(n)>g(n)$.
 \end{definition}
 
-In the following broad definition, for every function-sequence of functions
-from $\mathbb N$ to $\mathbb N$, we define a corresponding intelligence measure
-for predictors.
-The original Hibbard measure is a special case for one specific
-such function-sequence.
+\begin{definition}
+\label{evadersetdefinition}
+    Suppose $f:\mathbb N\to\mathbb N$. We define
+    $E_f$ to be the set of all evaders $e$ such that
+    $f\succ t_e$.
+\end{definition}
 
 \begin{definition}
 \label{classichibbardmeasuredefn}
     (The original Hibbard measure)
     Let $g_1,g_2,\ldots$ be the enumeration of the primitive recursive
     functions given by Liu \cite{liu1960enumeration}.
-    For each $m\in\mathbb N$, define $f_m:\mathbb N\to\mathbb N$ by
+    For each $m>0$, define $f_m:\mathbb N\to\mathbb N$ by
     \[f_m(k)=\max_{0<i\leq m}\max_{j\leq k}g_i(j).\]
     For any predictor $p$, we define the \emph{original Hibbard intelligence of $p$}
     to be the maximum $m>0$
     such that $p$ learns to predict $e$ for every $e\in E_{f_m}$
     (or $0$ if there is no such $m$, or $\infty$ if $p$ learns to predict $e$
-    for every $e\in E_{f_m}$ for every $m$).
+    for every $e\in E_{f_m}$ for every $m>0$).
 \end{definition}
 
 
@@ -247,54 +246,86 @@ The following is a very general and open-ended problem.
 
 The definition of the original Hibbard measure (Definition \ref{classichibbardmeasuredefn})
 can be thought of as implicitly depending on a specific solution to Problem
-\ref{bigoproblem}, which we make explicit in Definition \ref{hibbardgrowthratedefn} below.
-First, we introduce a piece of notation.
-
-\begin{definition}
-\label{functionsuccdefn}
-    Suppose $f:\mathbb N\to\mathbb N$ and $g:\mathbb N\to\mathbb N$.
-    We say $f\succ g$ if there is some $n_0\in \mathbb N$ such that for all
-    $n>n_0$, $f(n)>g(n)$.
-\end{definition}
+\ref{bigoproblem}, which we make explicit in the following definition.
 
 \begin{definition}
 \label{hibbardgrowthratedefn}
-    For each $m\in\mathbb N$, let $f_m$ be as in Definition \ref{classichibbardmeasuredefn}.
-    Suppose $f:\mathbb N\to\mathbb N$. By the \emph{original Hibbard growth-rate
-    of $f$}, written $H(f)$, we mean:
-    \begin{itemize}
-        \item
-        The maximum $m$ such that $f\succ f_m$, if there is such a maximum $m$.
-        \item
-        $0$, if there is no $m$ such that $f\succ f_m$.
-        \item
-        $\infty$, if $f\succ f_m$ for every $m$.
-    \end{itemize}
+    For each $m>0$, let $f_m$ be as in Definition \ref{classichibbardmeasuredefn}.
+    For each $f:\mathbb N\to\mathbb N$, we define the \emph{original Hibbard growth rate}
+    $H(f)$ to be $\min\{m>0\,:\,f_m\succ f\}$ if there is any such $m>0$, and otherwise
+    $H(f)=\infty$.
 \end{definition}
 
-\begin{proposition}
-    For each $v\in\mathrm{range}(H)$, let
-    \[
-        E^H_v = \{e\,:\,\mbox{$e$ is an evader and $H(t_e)< v$}\}
-    \]
-    be the set of evaders whose runtimes have growth rate $< v$ according to
-    $H$.
-    For any predictor $p$, the original Hibbard measure of $p$
-    is equal to the largest $v\in\mathrm{range}(H)$ such that
-    $p$ learns $e$ whenever $e\in E^H_v$.
-\end{proposition}
+\begin{lemma}
+\label{straightfwdtechnicallemma}
+    For every natural $m>0$ and every $f:\mathbb N\to\mathbb N$,
+    $H(f)\leq m$ if and only if $f_m\succ f$.
+\end{lemma}
 
 \begin{proof}
-    t_e in E_{f_m}
-    f_m \succ t_e
-
-    Orig(p) = max m s.t. p learns e whenever t_e in E_{f_m}
-            = max m s.t. p learns e whenever f_m \succ t_e
-            = max m s.t. p learns e whenever H(t_e) < m
-
-    Orig(p) = infinity because p learns e whenever t_e in E_{f_m} for any m
-            = infinity because p learns e whenever f_m \succ 
+    Straightforward.
 \end{proof}
+
+\begin{definition}
+\label{variationondefinitionofEdefn}
+    For every $m\in\mathbb N$, let $E^H_m$
+    be the set of all evaders $e$ such that $H(t_e)\leq m$.
+\end{definition}
+
+\begin{lemma}
+\label{equivalenceoftwoevadersetslemma}
+    For every natural $m>0$, $E^H_m=E_{f_m}$.
+\end{lemma}
+
+\begin{proof}
+    Let $e$ be an evader. By Definition \ref{variationondefinitionofEdefn},
+    $e\in E^H_m$ if and only if $H(t_e)\leq m$.
+    By Lemma \ref{straightfwdtechnicallemma}, $H(t_e)\leq m$ if and only if
+    $f_m\succ t_e$. But by Definition \ref{evadersetdefinition}, this is the
+    case if and only if $e\in E_{f_m}$.
+\end{proof}
+
+\begin{corollary}
+\label{rephrasinghibbardsmeasurecorollary}
+    For every predictor $p$, the original Hibbard measure of $p$
+    is equal to the maximum natural $m>0$ such that
+    $p$ learns $e$ whenever $e\in E^H_m$, or is equal to $0$ if there are no such
+    $m>0$, or is equal to $\infty$ if $p$ learns $e$ whenever $e\in E^H_m$ for
+    all $m>0$.
+\end{corollary}
+
+\begin{proof}
+    Immediate by Lemma \ref{equivalenceoftwoevadersetslemma}
+    and Definition \ref{classichibbardmeasuredefn}.
+\end{proof}
+
+\begin{remark}
+\label{epiphanyremark}
+Corollary \ref{rephrasinghibbardsmeasurecorollary} shows that
+the definition of the original Hibbard measure can be rephrased in such a way
+as to show that it depends in a uniform way on a particular solution to
+Problem \ref{bigoproblem}, namely to the solution proposed by
+Definition \ref{hibbardgrowthratedefn}. For \emph{any} solution $H'$ to
+Problem \ref{bigoproblem}, we could define evader-sets $E^{H'}_m$ in a similar
+way to Definition \ref{variationondefinitionofEdefn}, and, by copying
+Corollary \ref{rephrasinghibbardsmeasurecorollary}, we could obtain a corresponding
+intelligence measure given by $H'$ (it might be necessary to replace the
+``maximum'' in Corollary \ref{rephrasinghibbardsmeasurecorollary}
+by a ``supremum'', if $H'$ measures growth rates using
+a non-discrete number system, or transform the form of it if $H'$
+solves Problem \ref{bigoproblem} by categorizing functions into classes
+rather than by assigning
+them numerical measurements, as in the case of Big-O notation). This
+formalizes what we claimed in the Introduction,
+that Hibbard's idea can be decomposed into two sub-ideas, firstly, that a predictor's
+intelligence can be measured in terms of the growth rates of the runtimes of the
+evaders it learns, and secondly, a particular method (Definition \ref{hibbardgrowthratedefn})
+of measuring those growth rates (i.e., a particular solution to
+Problem \ref{bigoproblem}).
+\end{remark}
+
+
+\section{Big-O, Big-$\Omega$, and Big-$\Theta$ intelligence measurement}
 
 The standard solution to Problem \ref{bigoproblem} in computer science is to quantify
 growth rates of arbitrary functions by comparing them to more familiar functions using
@@ -321,27 +352,9 @@ we are only concerned here with functions from $\mathbb N$ to $\mathbb N$).
     \end{itemize}
 \end{definition}
 
-
-
-The original Hibbard measure (Definition \ref{classichibbardmeasuredefn}) measures
-intelligence by seeing how far along a certain specific function-sequence we must go
-before we reach functions which grow so fast that an AGI's predictor does not learn
-all evaders whose computation-time grows so fast. This strategy could be applied to
-Problem \ref{bigoproblem} as well, and would yield a solution, but a solution which we
-would argue is not very useful. Namely, adapting Hibbard's measure to
-Problem \ref{bigoproblem} would yield the following solution.
-
-\begin{definition}
-\label{originalhibbardcomplexitydefn}
-    Suppose $f:\mathbb N\to\mathbb N$.
-    Let $g_1,g_2,\ldots$ be as in Definition \ref{classichibbardmeasuredefn}, and let
-    $f_1,f_2,\ldots$ be as in Definition \ref{generalintelligencemeasuredefn}.
-    We define the \emph{original Hibbard complexity}
-    of $f$ to be the maximum $n$ such that $f_n\not\succ f$. If there is no such
-    $n$, then we say $f$ \emph{has original Hibbard complexity $\infty$}.
-\end{definition}
-
-Definition \ref{originalhibbardcomplexitydefn} would clearly not be much use in
+We would argue that Definition \ref{bigodefn} is a strictly better solution to
+Problem \ref{bigoproblem} than Definition \ref{hibbardgrowthratedefn}.
+Definition \ref{hibbardgrowthratedefn} would clearly not be much use in
 practice. It is much more useful to say that an algorithm has, say, asymptotic
 runtime $O(n^3)$ than to say that said algorithm's runtime has original Hibbard
 complexity (say) $835$. If someone were told that an algorithm's runtime had
@@ -351,56 +364,44 @@ happens to be (in Definition \ref{originalhibbardcomplexitydefn}). The number
 $835$ would merely serve to obfuscate, it would merely play the role of a worthless
 middleman.
 
-Having made the above observations, it becomes quite clear how Hibbard's original
-idea can be imporved upon to become more useful, more practical, and more familiar
-to computer scientists.
+By Remark \ref{epiphanyremark}, Definition \ref{bigodefn} yields the following elegant
+measure of predictor intelligence.
 
 \begin{definition}
 \label{bigointelligencedefn}
-    Suppose $X$ is an AGI, and suppose $f:\mathbb N\to\mathbb N$.
+    Suppose $p$ is a predictor, and suppose $f:\mathbb N\to\mathbb N$.
     \begin{itemize}
         \item
-        We say \emph{$X$ has Hibbard intelligence $O(f(n))$} if for
-        every $g\in O(f(n))$, $X$'s predictor learns every evader in
-        $E_g$.
+        We say \emph{$p$ has Hibbard intelligence $O(f(n))$} if
+        $p$ learns every evader $e$ such that $t_e$ is $O(f(n))$.
         \item
-        We say \emph{$X$ has Hibbard intelligence $\Omega(f(n))$} if for
-        every $g\in \Omega(f(n))$, $X$'s predictor learns every evader in
-        $E_g$.
+        We say \emph{$p$ has Hibbard intelligence $\Omega(f(n))$} if
+        $p$ learns every evader $e$ such that $t_e$ is $\Omega(f(n))$.
         \item
-        We say \emph{$X$ has Hibbard intelligence $\Theta(f(n))$} if for
-        every $g\in\Theta(f(n))$, $X$'s predictor learns every evader in $E_g$.
+        We say \emph{$p$ has Hibbard intelligence $\Theta(f(n))$} if
+        $p$ learns every evader $e$ such that $t_e$ is $\Theta(f(n))$.
     \end{itemize}
 \end{definition}
 
 At first glance, Definition \ref{bigointelligencedefn} might seem inferior to
 Definition \ref{classichibbardmeasuredefn} because
 Definition \ref{classichibbardmeasuredefn} assigns \emph{numerical} intelligence levels.
-However, as we pointed out above, those numbers are meaningless except as indices for
+However, as we pointed out above, those numbers are almost meaningless except as indices for
 a dictionary-lookup making them equivalent to (a more limited version of)
 Definition \ref{bigointelligencedefn}. We could imagine someone declaring:
 \begin{quote}
-    From now on, $f(n)=n$ is complexity $5$, $f(n)=n^2$ is complexity $6$,
+    From now on, $f(n)=n$ is complexity $5$, $f(n)=n^2$ is complexity $8$,
     $f(n)=2^n$ is complexity $203$,
     $f(n)=n!$ is complexity $8022$, ..., and from now on, instead of saying a
     function is $\Theta(n)$, we will say that function has growth rate $5$,
     and instead of saying a function is $\Theta(n^2)$, we will say that function
-    has growth rate $6$, and instead of saying a function is $\Theta(2^n)$, we will
+    has growth rate $8$, and instead of saying a function is $\Theta(2^n)$, we will
     say that function has growth rate $203$, and instead of saying a function is
     $\Theta(n!)$, we shall say that function has growth rate $8022$, and ...
 \end{quote}
-Superficially, this would ``improve'' upon Big-$\Theta$ by giving a more quantitative
-solution to Problem \ref{bigoproblem} in one sense, however, it is clear
+Superficially, this would ``improve'' upon Big-$\Theta$ by giving a ``more quantitative''
+solution to Problem \ref{bigoproblem}, however, it is clear
 that this would just be sleight of hand and there would be no actual improvement.
-
-The reader might object that the multiplicative constants $C$ and $C'$ in
-Definition \ref{bigodefn} (and implicitly in Definition \ref{bigointelligencedefn})
-have no counterpart in the definition of the original Hibbard measure
-(Definition \ref{classichibbardmeasuredefn}). However, since AGIs are assumed to
-be capable of mathematical reasoning (Assumption \ref{idealizingassumption}), it
-follows that if an AGI is smart enough to know that it is safe to run Turing
-machines for $f(n)$ steps, then that AGI should also be smart enough to know that
-it is safe to run Turing machines for $Cf(n)$ steps.
 
 \section{Hibbard measures using extended number systems}
 \label{exoticsection}
