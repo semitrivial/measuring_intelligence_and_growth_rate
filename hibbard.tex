@@ -70,7 +70,7 @@ predictor learns to predict. Second: Hibbard proposed one particular method for
 measuring said growth rates. The growth rate measurement which Hibbard proposed yields
 a corresponding intelligence measure for these agents. We will argue that \emph{any}
 method for measuring growth rates of functions yields a corresponding
-\emph{adversarial growth rate intelligence measure} (or \emph{ASPI} measure
+\emph{adversarial sequence prediction intelligence} measure (or \emph{ASPI} measure
 for short).
 
 The particular method which Hibbard used to measure function growth rates is
@@ -115,7 +115,7 @@ competes against evaders $e$. In each step of the game,
 both predictor and evader simultaneoulsy choose a binary digit, $1$ or $0$.
 Only after both of them have made their choice do they see which choice the other
 one made, and then the game proceeds to the next step. The predictor's goal in
-each step of the game is to choose the same digit that the evader will choose;
+each round is to choose the same digit that the evader will choose;
 the evader's goal is to choose a different digit than the predictor. The predictor
 wins the game (and is said to \emph{learn to predict $e$}, or simply to
 \emph{learn $e$}) if, after finitely many
@@ -147,7 +147,8 @@ finite binary sequences. By $\langle\rangle$ we mean the empty binary sequence.
         we write as $e(y_1,\ldots,y_n)$.
         \item
         For any predictor $p$ and evader $e$, the \emph{result of $p$ playing the
-        game of adversarial prediction against $e$} (or more simply, the \emph{result of
+        game of adversarial sequence
+        prediction against $e$} (or more simply, the \emph{result of
         $p$ playing against $e$}) is the infinite binary sequence
         $(x_1,y_1,x_2,y_2,\ldots)$
         defined as follows:
@@ -159,7 +160,7 @@ finite binary sequences. By $\langle\rangle$ we mean the empty binary sequence.
             \item
             The first prediction
             $y_1=p(\langle\rangle)$ is
-            the result of applying $p$ to the empty evasion-sequence.
+            the result of $p$ when run on the empty evasion-sequence.
             \item
             For all $n>0$, the $(n+1)$th evasion
             $x_{n+1}=e(y_1,\ldots,y_n)$ is
@@ -167,7 +168,7 @@ finite binary sequences. By $\langle\rangle$ we mean the empty binary sequence.
             \item
             For all $n>0$, the $(n+1)$th prediction
             $y_{n+1}=p(x_1,\ldots,x_n)$ is
-            the result of applying $p$ to the first $n$ evasions.
+            the output of $p$ on the sequence of the first $n$ evasions.
         \end{enumerate}
         \item
         Suppose $r=(x_1,y_1,x_2,y_2,\ldots)$ is the result of a predictor $p$ playing
@@ -249,7 +250,8 @@ The following is a very general and open-ended problem.
     Quantify the growth-rate of functions from $\mathbb N$ to $\mathbb N$.
 \end{problem}
 
-The definition of the original Hibbard measure (Definition \ref{classichibbardmeasuredefn})
+The definition of the original Hibbard measure
+(Definition \ref{classichibbardmeasuredefn})
 can be thought of as implicitly depending on a specific solution to Problem
 \ref{bigoproblem}, which we make explicit in the following definition.
 
@@ -318,13 +320,14 @@ intelligence measure given by $H'$ (it might be necessary to replace the
 by a ``supremum'', if $H'$ measures growth rates using
 a non-discrete number system, or transform the form of it if $H'$
 solves Problem \ref{bigoproblem} using a non-complete number system or
-by categorizing functions into classes
+by categorizing functions into a taxonomy
 rather than by assigning
 them numerical measurements, as in the case of Big-O notation). This
 formalizes what we claimed in the Introduction,
 that Hibbard's idea can be decomposed into two sub-ideas, firstly, that a predictor's
 intelligence can be measured in terms of the growth rates of the runtimes of the
-evaders it learns, and secondly, a particular method (Definition \ref{hibbardgrowthratedefn})
+evaders it learns, and secondly, a particular method
+(Definition \ref{hibbardgrowthratedefn})
 of measuring those growth rates (i.e., a particular solution to
 Problem \ref{bigoproblem}).
 \end{remark}
@@ -333,10 +336,12 @@ Problem \ref{bigoproblem}).
 \section{Big-O and Big-$\Theta$ intelligence measurement}
 \label{bigosection}
 
-The standard solution to Problem \ref{bigoproblem} in computer science is to quantify
+One of the most standard solutions
+to Problem \ref{bigoproblem} in computer science is to categorize
 growth rates of arbitrary functions by comparing them to more familiar functions using
 Big-O notation or Big-$\Theta$ notation.
-Knuth defines \cite{knuth1976big} these as follows (we modify the definition slightly because
+Knuth defines \cite{knuth1976big} these as follows
+(we modify the definition slightly because
 we are only concerned here with functions from $\mathbb N$ to $\mathbb N$).
 
 \begin{definition}
@@ -354,138 +359,99 @@ we are only concerned here with functions from $\mathbb N$ to $\mathbb N$).
     \end{itemize}
 \end{definition}
 
-We would argue that Definition \ref{bigodefn} is a strictly better solution to
-Problem \ref{bigoproblem} than Definition \ref{hibbardgrowthratedefn}.
-Definition \ref{hibbardgrowthratedefn} would clearly not be much use in
-practice. It is much more useful to say that an algorithm has, say, asymptotic
-runtime $O(n^3)$ than to say that said algorithm's runtime has original Hibbard
-complexity (say) $835$. If someone were told that an algorithm's runtime had
-original Hibbard complexity (say) $835$, that number would be totally meaningless
-to them except as a key which they could use to look up which function $f_{835}$
-happens to be (in Definition \ref{classichibbardmeasuredefn}). The number
-$835$ would merely serve to obfuscate, it would merely play the role of a worthless
-middleman.
+In a sense, Definition \ref{bigodefn} is a more direct solution to
+Problem \ref{bigoproblem} than Definition \ref{hibbardgrowthratedefn}:
+it is more direct to say that an algorithm has, say, asymptotic runtime
+complexity $O(n^3)$ than to say that said algorithm's runtime has original
+Hibbard complexity (say) $835$. If someone were told that an algorithm's runtime
+had original Hibbard complexity $835$, most likely the first thing they would do
+would be to look up what that actually meant, and if they found that it means the
+algorithm's runtime was majorized by $f_{835}$ and that $f_{835}(n)$ is some
+multiple of $n^3$, then
+they might say: ``Why didn't you just tell me the algorithm's runtime is
+majorized by $n^3$, why did you make me do the work of looking up $f_{835}$?''
 
 By Remark \ref{epiphanyremark}, Definition \ref{bigodefn} yields the following elegant
-measure of predictor intelligence.
+taxonomy of predictor intelligence.
 
 \begin{definition}
 \label{bigointelligencedefn}
     Suppose $p$ is a predictor, and suppose $f:\mathbb N\to\mathbb N$.
     \begin{itemize}
         \item
-        We say \emph{$p$ has Hibbard intelligence $O(f(n))$} if
+        We say \emph{$p$ has Big-O ASPI measure $O(f(n))$} if
         $p$ learns every evader $e$ such that $t_e$ is $O(f(n))$.
         \item
-        We say \emph{$p$ has Hibbard intelligence $\Theta(f(n))$} if
+        We say \emph{$p$ has Big-$\Theta$ ASPI measure $\Theta(f(n))$} if
         $p$ learns every evader $e$ such that $t_e$ is $\Theta(f(n))$.
     \end{itemize}
 \end{definition}
 
-At first glance, Definition \ref{bigointelligencedefn} might seem inferior to
-Definition \ref{classichibbardmeasuredefn} because
-Definition \ref{classichibbardmeasuredefn} assigns \emph{numerical} intelligence levels.
-However, as we pointed out above, those numbers are almost meaningless except as indices for
-a dictionary-lookup making them equivalent to (a more limited version of)
-Definition \ref{bigointelligencedefn}. We could imagine someone declaring:
-\begin{quote}
-    From now on, $f(n)=n$ is complexity $5$, $f(n)=n^2$ is complexity $8$,
-    $f(n)=2^n$ is complexity $203$,
-    $f(n)=n!$ is complexity $8022$, ..., and from now on, instead of saying a
-    function is $\Theta(n)$, we will say that function has growth rate $5$,
-    and instead of saying a function is $\Theta(n^2)$, we will say that function
-    has growth rate $8$, and instead of saying a function is $\Theta(2^n)$, we will
-    say that function has growth rate $203$, and instead of saying a function is
-    $\Theta(n!)$, we shall say that function has growth rate $8022$, and ...
-\end{quote}
-Superficially, this would ``improve'' upon Big-$\Theta$ by giving a ``more quantitative''
-solution to Problem \ref{bigoproblem}, however, it is clear
-that this would just be sleight of hand and there would be no actual improvement.
-
-\section{Hibbard measures using extended number systems}
+\section{Hibbard measures using various number systems}
 \label{exoticsection}
 
-We have argued above that it is not useful to try to replace asymptotic complexity classes
-with natural numbers. In \cite{alexander2020archimedean}, we go further, and cite
-asymptotic runtime complexity as an example of a \emph{non-Archimedean} measure which,
-we argue, implies that it is not useful to replace asymptotic complexity classes
-even with \emph{real} numbers. There are, however, non-Archimedean number systems
-flexible enough to measure some or all growth rates, and these alternative solutions to
-Problem \ref{bigoproblem} would in turn yield Hibbard-style intelligence measures taking
-values from said non-Archimedean number systems.
-\begin{itemize}
-    \item
-    Hyperreal numbers, studied in the field of non-standard analysis \cite{robinson}
-    \cite{goldblatt2012lectures},
-    are equivalence classes of infinite sequences of reals,
-    so for every sequence $(r_0,r_1,r_2,\ldots)$ of reals, there is a corresponding
-    hyperreal represented by that sequence.
-    Thus, there is a natural and elegant way to solve Problem \ref{bigoproblem}
-    using hyperreal numbers. Namely: the growth rate of $f(n)$ is the hyperreal number
-    represented by $(f(0),f(1),f(2),\ldots)$. This solution to Problem \ref{bigoproblem}
-    will yield an approximate Hibbard-style intelligence measure similar to
-    Definition \ref{bigointelligencedefn} (the reason this only yields an approximate
-    Hibbard-style intelligence measure is because the hyperreals are not complete).
-    \item
-    The surreal numbers \cite{conway} \cite{knuth} are an even larger extension
-    of the real numbers, into which the hyperreals can be embedded
-    \cite{ehrlich2012absolute}.
-    Thus, for any such embedding,
-    there is another natural and elegant way to solve Problem \ref{bigoproblem},
-    namely: the growth rate of $f(n)$ is the surreal number corresponding to the
-    hyperreal number represented by $(f(0),f(1),f(2),\ldots)$ under the embedding.
-    The advantage of the surreal numbers is that they are complete, which will allow
-    the corresponding Hibbard-style measure to be exact, not approximate.
-    \item
-    Another natural way to measure growth rate is using majorization hierarchies
-    (such as the slow-growing hierarchy or the fast-growing hierarchy
-    \cite{weiermann2002slow}) from mathematical
-    logic. A majorization hierarchy assigns ordinal number values to growth rates of
-    functions (but not to all functions---for any particular majorization hierarchy, there
-    are functions which grow too fast for that hierarchy). These yield corresponding
-    Hibbard-style intelligence measures which are ordinal-number-valued.
-    \item
-    In order to reduce the arbitrary limitations of traditional majorization
-    hierarchies, we could delegate the problem of defining a majorization hierarchy to
-    an Artificial General Intelligence (or AGI). This leads to a family of Hibbard-style
-    measures---one measure
-    $|\bullet|_X$ for each AGI $X$, so that for any particular AGI $X$, for any
-    predictor $p$, there is a corresponding intelligence measure $\|p\|_X$ which might be
-    thought of as ``$p$'s intelligence as judged by $X$''.
-\end{itemize}
+In this section we will consider various solutions to
+Problem \ref{bigoproblem} in various different number systems,
+and the ASPI measures they give rise to.
 
-\subsection{Hyperreal Hibbard intelligence}
+\subsection{Hyperreal ASPI measures}
 
-The so-called \emph{ultrapower construction} of the hyperreals depends on an object
-called a \emph{free ultrafilter}, which is a set of subsets of $\mathbb N$ satisfying
-certain requirements. It is not important for the purposes of this paper to define what
-a free ultrafilter is here. The important things to know are:
-\begin{itemize}
-    \item
-    A free ultrafilter $\mathscr U$ provides a notion of what it means for a subset
-    $S\subseteq\mathbb N$ to be ``large''. Namely: $S$ is considered to be ``large''
-    if and only if $S\in \mathscr U$.
-    \item
-    Mathematical logicians have proven that free ultrafilters exist, but that it is
-    impossible to constructively exhibit one. This makes definitions based on free
-    ultrafilters non-constructive, and computationally impractical.
-\end{itemize}
+Hyperreal numbers, studied in the field of non-standard analysis \cite{robinson}
+\cite{goldblatt2012lectures},
+are equivalence classes of infinite sequences of reals,
+so for every sequence $(r_0,r_1,r_2,\ldots)$ of reals, there is a corresponding
+hyperreal represented by that sequence.
+Thus, there is a natural and elegant way to solve Problem \ref{bigoproblem}
+using hyperreal numbers. Namely: the growth rate of $f(n)$ is the hyperreal number
+represented by $(f(0),f(1),f(2),\ldots)$.
+
+Unfortunately, the equivalence relations which give rise to hyperreals as
+equivalence classes are non-constructive. They rely on objects called
+\emph{free ultrafilters}.
+Loosely speaking, a free ultrafilter can be thought
+of as a black box which makes judgments about which subsets of $\mathbb N$
+are ``large''---and does so in a particularly consistent way.
+Mathematicians have shown that free ultrafilters
+exist, but that it is impossible to concretely exhibit one.
+
+To see the necessity of such judgments, consider the hyperreal
+$x$ represented by $(1,0,1,0,\ldots)$ and the hyperreal $y$ represented by
+$(0,1,0,1,\ldots)$. Which hyperreal is larger, $x$ or $y$? On the set of
+even numbers, $x$ is larger, and on the set of odd numbers, $y$ is larger.
+A free ultrafilter $\mathcal U$ would either judge
+the set $E$ of even numbers to be large and the set $O$ of odd numbers to be small,
+or vice versa. If $\mathcal U$ judges $E$ to be large,
+we would have $x>y$ in the hyperreal number system corresponding to $\mathcal U$.
+Otherwise, we would have $x<y$.
+
+Such arbitrary decisions are a necessary evil if one desires maximal solutions to
+Problem \ref{bigoproblem}, because there are many pairs $f,g:\mathbb N\to\mathbb N$
+with the property that $f(n)>g(n)$ for infinitely many $n$ but also $f(n)<g(n)$ for
+infinitely many other $n$. For every such pair, one must
+somehow decide which of $f$ or $g$ (if either) should be
+considered faster-growing\footnote{This is similar to the problem of deciding which
+of two reinforcement learning agents is more intelligent, if one agent
+performs better in infinitely many environments, but the other agent performs
+better in infinitely many other environments. For a treatment of that problem
+using free ultrafilters, see \cite{alexander2019intelligence}.}.
 
 Because of the computational impracticality of free ultrafilters, the following notion
 is also computationally impractical. However, it could potentially be useful for
 proving theoretical properties about the intelligence of predictors. In the following
 definition, rather than assigning a particular hyperreal number intelligence to every
-predictor, rather, we categorize predictors into classes. This is necessary because
+predictor, rather, we categorize predictors into a taxonomy. This is necessary because
 the hyperreals are not complete, so Corollary \ref{rephrasinghibbardsmeasurecorollary}
 cannot directly be mimicked either with ``maximum'' or with ``supremum''.
 
 \begin{definition}
 \label{hyperrealhibbardintelligencedefn}
-    (Hyperreal Hibbard intelligence)
-    The \emph{hyperreal Hibbard intelligence} of a predictor $p$ is defined to be
+    (Hyperreal ASPI measures)
+    For any free ultrafilter $\mathcal U$,
+    the \emph{hyperreal ASPI measure} of a predictor $p$ is defined to be
     $\geq$ a hyperreal number $r$ if and only if $p$ learns every evader $e$
     such that if $r'$ is the hyperreal number represented by
-    $(t_e(0), t_e(1), t_e(2), \ldots)$ then $r'<r$.
+    $(t_e(0), t_e(1), t_e(2), \ldots)$ (in the hyperreal number system given
+    by $\mathcal U$) then $r'<r$.
 \end{definition}
 
 \subsection{Surreal Hibbard intelligence}
