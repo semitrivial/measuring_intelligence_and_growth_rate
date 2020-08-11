@@ -36,7 +36,7 @@ Hibbard's intelligence measure}
     they defeat; and second, one specific (somewhat arbitrary) method for measuring said
     growth rates. Whereas Hibbard's intelligence measure is based on the latter
     growth-rate-measuring method, we survey
-    standard methods for measuring function
+    other methods for measuring function
     growth rates, and exhibit the Hibbard-like intelligence measures
     which result from those. Of particular interest, we obtain intelligence measures
     based on Big-O notation and similar notation systems, which measures
@@ -62,19 +62,21 @@ somewhere in the hierarchy.} an agent's original Hibbard measure is $\infty$
 if said agent learns to predict all the evaders in all levels of Hibbard's hierarchy.
 
 The hierarchy which Hibbard uses to measure intelligence is based on the growth
-rate of the runtime complexity of evaders.
+rates of the runtimes of evaders.
 We will argue that Hibbard's idea is really a combination of two
 orthogonal ideas. First: that in some sense the intelligence of a predicting agent
 can be measured based on the growth rates of the runtimes of the evaders whom that
 predictor learns to predict. Second: Hibbard proposed one particular method for
 measuring said growth rates. The growth rate measurement which Hibbard proposed yields
 a corresponding intelligence measure for these agents. We will argue that \emph{any}
-method for measuring growth rates of functions yields a corresponding Hibbard measure.
+method for measuring growth rates of functions yields a corresponding
+\emph{adversarial growth rate intelligence measure} (or \emph{ASPI} measure
+for short).
 
 The particular method which Hibbard used to measure function growth rates is
-not very standard, nor (in our opinion) very useful. We will survey standard
-ways of measuring function growth rates, and these will yield corresponding
-Hibbard-like intelligence measures.
+not very standard. We will survey other
+ways of measuring function growth rates, including some more standard ways,
+and these will yield corresponding ASPI measures.
 
 The structure of the paper is as follows.
 \begin{itemize}
@@ -82,21 +84,22 @@ The structure of the paper is as follows.
     In Section \ref{originalmeasuresection}, we review the original Hibbard measure.
     \item
     In Section \ref{growthratesection}, we argue that any method of measuring
-    the growth rate of functions yields a Hibbard-like intelligence measure,
+    the growth rate of functions yields an ASPI measure,
     and that the original Hibbard measure is just a special case resulting from
     one particular method of measuring function growth rate.
     \item
-    In Section \ref{bigosection}, we consider the most standard methods of measuring
+    In Section \ref{bigosection}, we consider some of the
+    most standard taxonomies of
     function growth rate---Big-O notation and Big-$\Theta$ notation---and define
-    corresponding predictor intelligence taxonomies.
+    corresponding ASPI taxonomies.
     \item
     In Section \ref{exoticsection}, we consider several numeric solutions to
-    the problem of measuring the growth rate of functions (which use various extended number
+    the problem of measuring the growth rate of functions (using various number
     systems), and define
-    corresponding Hibbard-like measures of predictor intelligence.
+    corresponding ASPI measures and taxonomies.
     \item
     In Section \ref{prosandconssection}, we give pros and cons of different
-    Hibbard-style measures.
+    ASPI measures and taxonomies.
     \item
     In Section \ref{conclusionsection}, we summarize and make concluding remarks.
 \end{itemize}
