@@ -87,8 +87,8 @@ The structure of the paper is as follows.
     one particular method of measuring function growth rate.
     \item
     In Section \ref{bigosection}, we consider the most standard methods of measuring
-    function growth rate---Big-O notation, Big-$\Theta$ notation, and Big-$\Omega$
-    notation---and define corresponding predictor intelligence taxonomies.
+    function growth rate---Big-O notation and Big-$\Theta$ notation---and define
+    corresponding predictor intelligence taxonomies.
     \item
     In Section \ref{exoticsection}, we consider several numeric solutions to
     the problem of measuring the growth rate of functions (which use various extended number
@@ -327,12 +327,12 @@ Problem \ref{bigoproblem}).
 \end{remark}
 
 
-\section{Big-O, Big-$\Omega$, and Big-$\Theta$ intelligence measurement}
+\section{Big-O and Big-$\Theta$ intelligence measurement}
 \label{bigosection}
 
 The standard solution to Problem \ref{bigoproblem} in computer science is to quantify
 growth rates of arbitrary functions by comparing them to more familiar functions using
-Big-O notation, Big-$\Omega$ notation, or Big-$\Theta$ notation.
+Big-O notation or Big-$\Theta$ notation.
 Knuth defines \cite{knuth1976big} these as follows (we modify the definition slightly because
 we are only concerned here with functions from $\mathbb N$ to $\mathbb N$).
 
@@ -344,10 +344,6 @@ we are only concerned here with functions from $\mathbb N$ to $\mathbb N$).
         $O(f(n))$ is the set of all $g:\mathbb N\to\mathbb N$ such that
         there is some real $C>0$ and some $n_0\in\mathbb N$ such that
         for all $n\geq n_0$, $g(n)\leq Cf(n)$.
-        \item
-        $\Omega(f(n))$ is the set of all $g:\mathbb N\to\mathbb N$ such that
-        there is some real $C>0$ and some $n_0\in\mathbb N$ such that
-        for all $n\geq n_0$, $g(n)\geq Cf(n)$.
         \item
         $\Theta(f(n))$ is the set of all $g:\mathbb N\to\mathbb N$ such that
         there are some real $C>0$ and $C'>0$ and some $n_0\in\mathbb N$ such that
@@ -377,9 +373,6 @@ measure of predictor intelligence.
         \item
         We say \emph{$p$ has Hibbard intelligence $O(f(n))$} if
         $p$ learns every evader $e$ such that $t_e$ is $O(f(n))$.
-        \item
-        We say \emph{$p$ has Hibbard intelligence $\Omega(f(n))$} if
-        $p$ learns every evader $e$ such that $t_e$ is $\Omega(f(n))$.
         \item
         We say \emph{$p$ has Hibbard intelligence $\Theta(f(n))$} if
         $p$ learns every evader $e$ such that $t_e$ is $\Theta(f(n))$.
@@ -947,15 +940,15 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
         sufficiently intelligent receive measure $\infty$.
     \end{itemize}
     \item
-    Big-O/Big-$\Theta$/Big-$\Omega$ (Definition \ref{bigointelligencedefn}),
+    Big-O/Big-$\Theta$ (Definition \ref{bigointelligencedefn}),
     in which, rather than directly measuring the intelligence of a predictor, instead, we
-    would talk of a predictor's intelligence being $O(f(n))$, or $\Theta(f(n))$, or
-    $\Omega(f(n))$, for various functions $f:\mathbb N\to\mathbb N$:
+    would talk of a predictor's intelligence being $O(f(n))$ or $\Theta(f(n))$
+    for various functions $f:\mathbb N\to\mathbb N$:
     \begin{itemize}
         \item
         Pro: Gets directly at the underlying concept, without obfuscation.
         \item
-        Pro: Computer scientists already use Big-O/Big-$\Theta$/Big-$\Omega$ routinely
+        Pro: Computer scientists already use Big-O/Big-$\Theta$ routinely
         and are comfortable with them.
         \item
         Con: This option is not really a measure, but more of a taxonomy---and a non-numerical
@@ -965,7 +958,7 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
     Hyperreal intelligence (Definition \ref{hyperrealhibbardintelligencedefn}):
     \begin{itemize}
         \item
-        Pro: A taxonomy like Big-O/Big-$\Theta$/Big-$\Omega$, but with the added benefit
+        Pro: A taxonomy like Big-O/Big-$\Theta$, but with the added benefit
         that the taxons are numerical (hyperreal numerical, to be more precise).
         \item
         Con: Depends on a non-constructive choice of a free ultrafilter (rendering it
@@ -976,7 +969,7 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
     \begin{itemize}
         \item
         Pro: An actual numerical measure (not just a taxonomy), with the same perfect
-        precision as the Big-O/Big-$\Theta$/Big-$\Omega$ approach.
+        precision as the Big-O/Big-$\Theta$ approach.
         \item
         Con: Abstract and impractical: depends not only on a
         non-constructive choice of
@@ -992,7 +985,7 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
     \begin{itemize}
         \item
         Pro: A numerical measure, albeit without as much precision as the
-        Big-O/Big-$\Theta$/Big-$\Omega$ taxonomy.
+        Big-O/Big-$\Theta$ taxonomy.
         \item
         Pro: Relatively concrete.
         \item
@@ -1013,7 +1006,7 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
     \begin{itemize}
         \item
         Pro: A numerical measure, albeit without as much precision as the
-        Big-O/Big-$\Theta$/Big-$\Omega$ taxonomy.
+        Big-O/Big-$\Theta$ taxonomy.
         \item
         Pro: The numbers which the measure outputs are meaningful, in the sense that
         the degree to which a predictor $p$ is more
@@ -1051,7 +1044,7 @@ To summarize:
     \item
     We considered several specific ways of measuring growth-rate of functions, and exhibited
     corresponding Hibbard-style intelligence measures. The growth-rate-measuring methods
-    which we considered were: Big-O/Big-$\Theta$/Big-$\Omega$ notation; hyperreal numbers;
+    which we considered were: Big-O/Big-$\Theta$ notation; hyperreal numbers;
     surreal numbers; standard majorization hierarchies; and (in their debut appearance here)
     generalized majorization hierarchies.
 \end{itemize}
