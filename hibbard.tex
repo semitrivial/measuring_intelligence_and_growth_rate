@@ -240,6 +240,7 @@ because of a minor (and fortunately, easy-to-fix) error there.
 \end{definition}
 
 \subsection{Predictor intelligence and AGI intelligence}
+\label{agiproxysection}
 
 Definition \ref{classichibbardmeasuredefn}, and similar measures which we will
 define later, as written, only quantify the intelligence of one very specific type
@@ -810,7 +811,8 @@ extended by extending the fundamental sequences of Definition
 \ref{fundsequencesdefn} to larger ordinals\footnote{Remarkably,
 the slow-growing hierarchy eventually catches up with the fast-growing hierarchy
 if both hierarchies are extended to sufficiently large ordinals
-\cite{girard1981pi12}, a beautiful illustration of how counter-intuitive
+\cite{wainer1989slow} \cite{girard1981pi12}, a beautiful illustration of
+how counter-intuitive
 large ordinal numbers can be.}, however, the larger
 the ordinals become, the more difficult it is to do this, and especially the less
 clear it is how to do it in any sort of \emph{canonical} way.
@@ -824,6 +826,52 @@ Definition \ref{fundsequencesdefn}---choosing non-canonical fundamental sequence
 drastically alter the resulting majorization hierarchy \cite{weiermann1997sometimes}.
 All these different majorization hierarchies would yield corresponding ASPI measures.
 
+\subsection{A remark about ASPI measures and AGI intelligence}
+
+All the ASPI measures we have defined so far double as indirect intelligence
+measure for an AGI, by the argument we made in Subsection \ref{agiproxysection}.
+
+For a given AGI $X$, a priori, we cannot say much for certain about the predictor $X$
+would act as if $X$ were commanded to act as a predictor. But there is one particularly
+elegant and parsimonious strategy which $X$ might use, a \emph{brute force strategy},
+namely:
+\begin{itemize}
+    \item Enumerate all the
+    computable functions $f$ which $X$ knows to be total, and for each one, attempt to
+    predict the evader $e$ by assuming that the evader's runtime $t_e$
+    satisfies $f\succ t_e$.
+    If an evader proves not to be so majorized (by differing from every computable
+    function whose runtime is so majorized), then $X$ would move on to the next
+    function $f$ which $X$ knows to be total, and repeat the process.
+\end{itemize}
+We do not
+know for certain which predictor $X$ would imitate when commanded to act as a predictor,
+but it seems plausible that $X$ would use this brute force strategy or something
+equivalent.
+
+For an AGI $X$ who uses the above brute force strategy, ASPI
+measures of $X$'s intelligence would be determined by $X$'s knowledge, namely,
+by the runtime complexity of the computable functions $X$ knows to be total.
+Furthermore, the most natural way for $X$ to know totality of functions with large
+runtime complexity, is for $X$ to know fundamental sequences for large ordinal
+numbers, and produce said functions by means of majorization hierarchies (it may be
+possible for an AGI to be contrived to know totality of functions that are larger
+than the functions produced by majorization hierarchies up to ordinals the AGI knows
+about, but we conjecture that that is not the case for AGIs not so deliberately
+contrived). This suggests a connection between
+\begin{enumerate}
+    \item
+    ASPI measures like that of
+    Definition \ref{fastmajorizationhierarchyhibbardmeasuredefn}, and
+    \item
+    intelligence measures based on which ordinals the AGI knows
+    \cite{ioi1} \cite{ioi2}.
+\end{enumerate}
+This is reminiscent of Chaitin's proposal to use ordinal notation
+as a goal intended to facilitate evolution---``and the larger the ordinal,
+the fitter the organism'' \cite{chaitin}---as well as Good's observation
+\cite{good1969godel} that iterated Lucas-Penrose contests boil down to
+contests to name the larger ordinal.
 
 % \subsection{Generalized majorization hierarchies}
 
@@ -1021,6 +1069,8 @@ All these different majorization hierarchies would yield corresponding ASPI meas
 %     $p$ learns every evader $e$ such that $g_\gamma\succ e$ for every
 %     $\gamma<\sup_i \alpha^X_i$).
 % \end{definition}
+
+
 
 \section{Pros and cons of different ASPI measures}
 \label{prosandconssection}
