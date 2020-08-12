@@ -22,8 +22,8 @@
 Hibbard's intelligence measure}
 \author{Samuel Alexander\thanks{The U.S.\ Securities and Exchange Commission.}
 \thanks{Samuel Alexander is the primary author.}\ \ and Bill Hibbard\thanks{Space Science
-and Engineering Center, University of Wisconsin, Madison}
-\thanks{Machine Intelligence Research Institute, Berkeley}}
+and Engineering Center, University of Wisconsin, Madison.}
+\thanks{Machine Intelligence Research Institute, Berkeley.}}
 \date{2020}
 
 \begin{document}
@@ -117,7 +117,7 @@ of agents who compete to predict evaders in a game of
 adversarial sequence prediction (we define this
 formally below). A predictor $p$ (whose intelligence we want to measure)
 competes against evaders $e$. In each step of the game,
-both predictor and evader simultaneoulsy choose a binary digit, $1$ or $0$.
+both predictor and evader simultaneously choose a binary digit, $1$ or $0$.
 Only after both of them have made their choice do they see which choice the other
 one made, and then the game proceeds to the next step. The predictor's goal in
 each round is to choose the same digit that the evader will choose;
@@ -165,7 +165,7 @@ finite binary sequences. By $\langle\rangle$ we mean the empty binary sequence.
             \item
             The first prediction
             $y_1=p(\langle\rangle)$ is
-            the result of $p$ when run on the empty evasion-sequence.
+            the output of $p$ when run on the empty evasion-sequence.
             \item
             For all $n>0$, the $(n+1)$th evasion
             $x_{n+1}=e(y_1,\ldots,y_n)$ is
@@ -261,7 +261,7 @@ digits of pi,'' the AGI should be capable of understanding that command, and sho
 obediently compute said digits until commanded otherwise\footnote{Our thinking
 here is reminiscent of some remarks of Yampolskiy \cite{yampolskiy2013turing}.}.
 
-It unclear how an AGI ought to respond if given an impossible command,
+It is unclear how an AGI ought to respond if given an impossible command,
 such as ``find a real number whose square is $-1$'' or ``write a computer program
 that solves the halting problem''. But an AGI should be perfectly capable of
 understanding and attempting to obey an open-ended command, provided it is not
@@ -298,7 +298,7 @@ Thus, any intelligence measure for predictors also serves as an intelligence
 measure for AGIs. Namely: the intelligence level of an AGI $X$ is equal to the
 intelligence level of $X$'s predictor. Of course, a priori,
 $X$ might be very intelligent at various other things while being poor
-at sequence prediction, so this measurement of $X$'s intelligence only
+at sequence prediction, or vice versa, so this only
 approximately measures $X$'s true intelligence.
 
 
@@ -372,7 +372,7 @@ can be thought of as implicitly depending on a specific solution to Problem
 Corollary \ref{rephrasinghibbardsmeasurecorollary} shows that
 the definition of the original Hibbard measure can be rephrased in such a way
 as to show that it depends in a uniform way on a particular solution to
-Problem \ref{bigoproblem}, namely to the solution proposed by
+Problem \ref{bigoproblem}, namely on the solution proposed by
 Definition \ref{hibbardgrowthratedefn}. For \emph{any} solution $H'$ to
 Problem \ref{bigoproblem}, we could define evader-sets $E^{H'}_m$ in a similar
 way to Definition \ref{variationondefinitionofEdefn}, and, by copying
@@ -431,7 +431,8 @@ would be to look up what that actually meant, and if they found that it means th
 algorithm's runtime was majorized by $f_{835}$ and that $f_{835}(n)$ is some
 multiple of $n^3$, then
 they might say: ``Why didn't you just tell me the algorithm's runtime is
-majorized by $n^3$, why did you make me do the work of looking up $f_{835}$?''
+majorized by some multiple of
+$n^3$, why did you make me do the work of looking up $f_{835}$?''
 
 By Remark \ref{epiphanyremark}, Definition \ref{bigodefn} yields the following elegant
 taxonomy of predictor intelligence.
@@ -449,7 +450,7 @@ taxonomy of predictor intelligence.
     \end{itemize}
 \end{definition}
 
-\section{Hibbard measures using various number systems}
+\section{ASPI measures using various number systems}
 \label{exoticsection}
 
 In this section we will consider various solutions to
@@ -478,10 +479,10 @@ exist, but that it is impossible to concretely exhibit one.
 
 To see the necessity of such judgments, consider the hyperreal
 $x$ represented by $(1,0,1,0,\ldots)$ and the hyperreal $y$ represented by
-$(0,1,0,1,\ldots)$. Which hyperreal is larger, $x$ or $y$? On the set of
-even numbers, $x$ is larger, and on the set of odd numbers, $y$ is larger.
+$(0,1,0,1,\ldots)$. Which hyperreal is larger, $x$ or $y$? On the set $E$ of
+even numbers, $x$ is larger, and on the set $O$ of odd numbers, $y$ is larger.
 A free ultrafilter $\mathcal U$ would either judge
-the set $E$ of even numbers to be large and the set $O$ of odd numbers to be small,
+$E$ to be large and $O$ to be small,
 or vice versa. If $\mathcal U$ judges $E$ to be large,
 we would have $x>y$ in the hyperreal number system corresponding to $\mathcal U$.
 Otherwise, we would have $x<y$.
@@ -509,11 +510,11 @@ cannot directly be mimicked either with ``maximum'' or with ``supremum''.
 \label{hyperrealhibbardintelligencedefn}
     (Hyperreal ASPI measures)
     For any free ultrafilter $\mathcal U$,
-    the \emph{hyperreal ASPI measure} of a predictor $p$ is defined to be
+    the \emph{$\mathcal U$-hyperreal ASPI measure} of a predictor $p$ is defined to be
     $\geq$ a hyperreal number $r$ if and only if $p$ learns every evader $e$
     such that if $r'$ is the hyperreal number represented by
-    $(t_e(0), t_e(1), t_e(2), \ldots)$ (in the hyperreal number system given
-    by $\mathcal U$) then $r'<r$.
+    $(t_e(0), t_e(1), t_e(2), \ldots)$ then $r'<r$
+    (in the hyperreal number system given by $\mathcal U$).
 \end{definition}
 
 \subsection{Surreal ASPI measures}
@@ -531,8 +532,7 @@ rather than merely classify predictors in a taxonomy as in the case of
 the hyperreal ASPI measures.
 
 There are many ways to embed the hyperreals into the surreals, and there is no
-standard or canonical way which stands out. In this subsection, we fix some embedding
-of the hyperreals into the surreals. Thus the surreal ASPI measures are even less
+standard or canonical way which stands out. Thus the surreal ASPI measures are even less
 concrete than the hyperreal ASPI measures, because they depend not only on a
 free ultrafilter, but also on an embedding of the hyperreals into the surreals.
 
@@ -547,18 +547,17 @@ than Definition \ref{hyperrealhibbardintelligencedefn}.
     (Surreal ASPI measures)
     Suppose $\mathcal U$ is a free ultrafilter, and suppose $\iota$ is an embedding
     of the hyperreals (constructed using $\mathcal U$) into the surreals.
-    For every predictor $p$, the \emph{surreal ASPI measure} of $p$ (given
-    by $\mathcal U$ and $\iota$)
-    is the supremum of all surreal numbers $r$ such that
+    For every predictor $p$, the \emph{$(\mathcal U,\iota)$-surreal ASPI measure} of $p$
+    is the supremum of all surreal numbers $\iota(r)$ such that
     $p$ learns $e$ whenever the surreal number corresponding to
-    $(t_e(0),t_e(1),t_e(2),\ldots)$ is $<r$.
+    $(t_e(0),t_e(1),t_e(2),\ldots)$ is $<r$ (according to $\mathcal U$).
 \end{definition}
 
 \subsection{ASPI measures based on majorization hierarchies}
 
 Majorization hierarchies \cite{weiermann2002slow}
 provide ordinal-number-valued measures for the growth
-rate of certain functions. A majorization hierarchy depends
+rate certain functions. A majorization hierarchy depends
 on many infinite-dimensional parameters. For illustrative purposes,
 we will describe two majorization hierarchies up to the ordinal $\epsilon_0$,
 using standard choices for the parameters.
@@ -745,11 +744,10 @@ The values of $g_{\epsilon_0}$ are as follows:
 
 Examples \ref{highdetailslowgrowingexample}--\ref{epsilon0example} illustrate
 how the slow-growing hierarchy systematically provides a family of reference
-functions which any particular function can be compared against.
-This yields a solution to Problem \ref{bigoproblem}: we can measure the growth
-rate of an arbitrary function $f:\mathbb N\to\mathbb N$ by taking the smallest ordinal
-$\beta< \epsilon_0$ such that $g_\beta\succ f$, and declare that ordinal to be the
-growth rate of $f$ (or declare $f$ to have growth rate $\infty$ if there is no such
+functions against which any particular function can be compared.
+This yields a solution to Problem \ref{bigoproblem}: we can declare the growth
+rate of an arbitrary function $f:\mathbb N\to\mathbb N$ to be the smallest ordinal
+$\beta< \epsilon_0$ such that $g_\beta\succ f$ (or $\infty$ if there is no such
 $\beta$). This yields the following ASPI measure.
 
 \begin{definition}
@@ -757,15 +755,15 @@ $\beta$). This yields the following ASPI measure.
     If $p$ is a predictor, the \emph{ASPI measure of $X$ given by the
     standard slow-growing hierarchy up to $\epsilon_0$} is defined to be the
     supremum of all ordinals $\alpha<\epsilon_0$ such that
-    $p$ learns every evader $e$ such that $g_\alpha\succ t_e$ (or to
+    $p$ learns every evader $e$ such that $g_\alpha\succ t_e$ (or
     $\infty$ if said property holds for all ordinals $\alpha<\epsilon_0$).
 \end{definition}
 
 In Definition \ref{slowgrowinghierarchydefn}, in the successor ordinal case,
 we chose to define $g_{\alpha+1}(n)=g_\alpha(n)+1$. The resulting majorization
 hierarchy is referred to as \emph{slow-growing} because in some sense this
-makes $g_{\alpha+1}$ the next slowest function after $g_\alpha$.
-Different definitions of $g_{\alpha+1}$ would yield faster-growing majorization
+makes $g_{\alpha+1}$ just barely faster-growing than $g_\alpha$.
+Different definitions of $g_{\alpha+1}$ would yield different majorization
 hierarchies, such as the following.
 
 \begin{definition}
@@ -810,7 +808,7 @@ set of predictors.
 
 It should be noted that Definitions \ref{slowgrowinghierarchydefn}
 and \ref{fastgrowinghierarchydefn} are only two
-representative samples of the ASPI measures which would be given by many other
+representative samples of
 majorization hierarchies. Both the slow- and fast-growing hierarchies can be
 extended by extending the fundamental sequences of Definition
 \ref{fundsequencesdefn} to larger ordinals\footnote{Remarkably,
@@ -821,15 +819,15 @@ how counter-intuitive
 large ordinal numbers can be.}, however, the larger
 the ordinals become, the more difficult it is to do this, and especially the less
 clear it is how to do it in any sort of \emph{canonical} way.
-There are other choices for how to proceed at successor ordinal stages besides
+There are also other choices for how to proceed at successor ordinal stages besides
 $g_{\alpha+1}(n)=g_\alpha(n)+1$ or $h_{\alpha+1}(n)=h^n_\alpha(n)$---for example,
-one of the earliest majorization hierarchies is the Hardy hierarchy
-\cite{hardy1904theorem}, where $g_{\alpha+1}(n)=g_\alpha(n+1)$.
+one of the oldest majorization hierarchies is the Hardy hierarchy
+\cite{hardy1904theorem}, where $H_{\alpha+1}(n)=H_\alpha(n+1)$.
 And even for ordinals up to $\epsilon_0$,
 there are other ways to choose fundamental sequences besides how we defined them in
 Definition \ref{fundsequencesdefn}---choosing non-canonical fundamental sequences can
 drastically alter the resulting majorization hierarchy \cite{weiermann1997sometimes}.
-All these different majorization hierarchies would yield corresponding ASPI measures.
+All these different majorization hierarchies yield different ASPI measures.
 
 \subsection{A remark about ASPI measures and AGI intelligence}
 
@@ -845,9 +843,9 @@ namely:
     computable functions $f$ which $X$ knows to be total, and for each one, attempt to
     predict the evader $e$ by assuming that the evader's runtime $t_e$
     satisfies $f\succ t_e$.
-    If an evader proves not to be so majorized (by differing from every computable
-    function whose runtime is so majorized), then $X$ would move on to the next
-    function $f$ which $X$ knows to be total, and repeat the process.
+    If the evader proves not to be so majorized (by differing from every computable
+    function whose runtime is so majorized), then would move on to the next
+    known total function $f$, and continue the process.
 \end{itemize}
 We do not
 know for certain which predictor $X$ would imitate when commanded to act as a predictor,
@@ -859,22 +857,26 @@ measures of $X$'s intelligence would be determined by $X$'s knowledge, namely,
 by the runtime complexity of the computable functions $X$ knows to be total.
 Furthermore, the most natural way for $X$ to know totality of functions with large
 runtime complexity, is for $X$ to know fundamental sequences for large ordinal
-numbers, and produce said functions by means of majorization hierarchies (it may be
+numbers, and produce said functions by means of majorization
+hierarchies\footnote{It may be
 possible for an AGI to be contrived to know totality of functions that are larger
 than the functions produced by majorization hierarchies up to ordinals the AGI knows
 about, but we conjecture that that is not the case for AGIs not so deliberately
-contrived). This suggests a connection between
+contrived.}. This suggests a connection between
 \begin{enumerate}
     \item
     ASPI measures like that of
     Definition \ref{fastmajorizationhierarchyhibbardmeasuredefn}, and
     \item
     intelligence measures based on which ordinals the AGI knows
-    \cite{ioi1} \cite{ioi2}.
+    \cite{ioi1}.
 \end{enumerate}
+Indeed, Alexander has argued \cite{ioi2} that
+the task of notating large ordinals is one which
+spans the entire range of intelligence.
 This is reminiscent of Chaitin's proposal to use ordinal notation
 as a goal intended to facilitate evolution---``and the larger the ordinal,
-the fitter the organism'' \cite{chaitin}---as well as Good's observation
+the fitter the organism'' \cite{chaitin}---and Good's observation
 \cite{good1969godel} that iterated Lucas-Penrose contests boil down to
 contests to name the larger ordinal.
 
@@ -1095,13 +1097,13 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
         \item
         Pro: Measures intelligence using a familiar number system (the natural numbers).
         \item
-        Con: The numbers which the measure outputs are not very meaningful, in the sense
+        Con: The numbers which the measure outputs are not very meaningful, in
         that predictor $p$ having a measure of
-        just $+1$ higher than predictor $q$ tells us little
+        $+1$ higher than predictor $q$ tells us little
         about how \emph{much} more computationally complex the evaders which $p$
         learns are, versus the evaders which $q$ learns.
         \item
-        Con: Only distinguishes sufficiently non-intelligence predictors; all predictors
+        Con: Only distinguishes sufficiently non-intelligent predictors; all predictors
         sufficiently intelligent receive measure $\infty$.
     \end{itemize}
     \item
@@ -1126,15 +1128,15 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
         Pro: A taxonomy like Big-O/Big-$\Theta$, but with the added benefit
         that the taxons are numerical (hyperreal numerical, to be more precise).
         \item
-        Con: Depends on a non-constructive choice of a free ultrafilter (rendering it
+        Con: Depends on a free ultrafilter (rendering it
         computationally impractical).
     \end{itemize}
     \item
     Surreal intelligence (Definition \ref{surrealhibbardintelligencedefn}):
     \begin{itemize}
         \item
-        Pro: An actual numerical measure (not just a taxonomy), with the same perfect
-        granularity as the Big-O/Big-$\Theta$ taxonomy.
+        Pro: An actual numerical measure (not just a taxonomy), with about the same perfect
+        granularity as the Big-O/Big-$\Theta$ taxonomies.
         \item
         Con: Abstract and impractical: depends not only on
         a free ultrafilter, but also on an embedding of the hyperreals into the surreals.
@@ -1143,13 +1145,14 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
         unfamiliar to some users.
     \end{itemize}
     \item
-    Intelligence based on a standard majorization hierarchy such as the
-    standard slow-growing hierarchy up to $\epsilon_0$
-    (Definition \ref{tradmajorizationhierarchyhibbardmeasuredefn}):
+    Intelligence based on a majorization hierarchy such as the
+    standard slow- or fast-growing hierarchy up to $\epsilon_0$
+    (Definitions \ref{tradmajorizationhierarchyhibbardmeasuredefn}
+    and \ref{tradmajorizationhierarchyhibbardmeasuredefn}):
     \begin{itemize}
         \item
-        Pro: A numerical measure, albeit without as much granularity as the
-        Big-O/Big-$\Theta$ taxonomy.
+        Pro: A numerical measure, albeit less granular than the
+        Big-O/Big-$\Theta$ taxonomies.
         \item
         Pro: Relatively concrete.
         \item
@@ -1161,12 +1164,13 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
         Con: The numbers which the measure outputs are ordinal numbers, which may be
         unfamiliar to some users.
         \item
-        Con: Only distinguishes sufficiently non-intelligence predictors; all predictors
+        Con: Only distinguishes sufficiently non-intelligent predictors; for any particular
+        majorization hierarchy, all predictors
         sufficiently intelligent receive measure $\infty$.
     \end{itemize}
 \end{itemize}
 
-\section{Summary and Conclusion}
+\section{Conclusion}
 \label{conclusionsection}
 
 To summarize:
@@ -1176,10 +1180,10 @@ To summarize:
     in games of adversarial sequence prediction.
     \item
     We argued that Hibbard's idea actually splits into two orthogonal sub-ideas.
-    Firstly: that intelligence can be measured via the growth-rates of the run-times
-    of evaders that a predictor can learn to predict. Secondly: that such growth-rates can
+    First: that intelligence can be measured via the growth-rates of the run-times
+    of evaders that a predictor can learn to predict. Second: that such growth-rates can
     be measured in one specific way (involving an enumeration of the primitive recursive
-    functions). We argue that there many other ways to measure growth-rates,
+    functions). We argued that there many other ways to measure growth-rates,
     and that each method of measuring growth-rates yields a corresponding
     adversarial sequence prediction intelligence (ASPI) measure.
     \item
@@ -1187,6 +1191,9 @@ To summarize:
     corresponding ASPI measures. The growth-rate-measuring methods
     which we considered were: Big-O/Big-$\Theta$ notation; hyperreal numbers;
     surreal numbers; and majorization hierarchies.
+    \item
+    We also discussed how measuring the intelligence of adversarial sequence predictors
+    provides an indirect measure of the intelligence of idealized AGIs.
 \end{itemize}
 
 
