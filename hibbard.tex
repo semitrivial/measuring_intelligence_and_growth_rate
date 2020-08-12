@@ -454,30 +454,45 @@ cannot directly be mimicked either with ``maximum'' or with ``supremum''.
     by $\mathcal U$) then $r'<r$.
 \end{definition}
 
-\subsection{Surreal Hibbard intelligence}
+\subsection{Surreal ASPI measures}
 
-The surreal number system is even
-more flexible than the hyperreal number system.
+The surreal numbers \cite{conway} \cite{knuth} are an even larger extension
+of the real numbers, into which the hyperreals can be embedded
+\cite{ehrlich2012absolute}.
+Thus, for any such embedding,
+there is another natural and elegant way to solve Problem \ref{bigoproblem},
+namely: the growth rate of $f(n)$ is the surreal number corresponding to the
+hyperreal number represented by $(f(0),f(1),f(2),\ldots)$ under the embedding.
+The advantage of the surreal numbers is that they are complete, which will allow
+the corresponding ASPI measure to exactly measure intelligence of predictors,
+rather than merely classify predictors in a taxonomy as in the case of
+the hyperreal ASPI measures.
+
 There are many ways to embed the hyperreals into the surreals, and there is no
 standard or canonical way which stands out. In this subsection, we fix some embedding
-of the hyperreals into the surreals.
+of the hyperreals into the surreals. Thus the surreal ASPI measures are even less
+concrete than the hyperreal ASPI measures, because they depend not only on a
+free ultrafilter, but also on an embedding of the hyperreals into the surreals.
 
-A key property of the surreals
-is that they are complete. Thus, given any set $S$ of surreals with a surreal upper bound,
+The surreal numbers are complete, which means that for
+any set $S$ of surreals with a surreal upper bound,
 there is a \emph{least} surreal upper bound of $S$, called the \emph{supremum} of $S$.
-This allows for a Hibbard-style intelligence measure which is more
-exact than Definition \ref{hyperrealhibbardintelligencedefn}.
+This allows for an ASPI measure which is more exact
+than Definition \ref{hyperrealhibbardintelligencedefn}.
 
 \begin{definition}
 \label{surrealhibbardintelligencedefn}
-    (Surreal Hibbard intelligence)
-    For every predictor $p$, the \emph{surreal Hibbard intelligence} of $p$
-    is equal to the supremum of all surreal numbers $r$ such that
+    (Surreal ASPI measures)
+    Suppose $\mathcal U$ is a free ultrafilter, and suppose $\iota$ is an embedding
+    of the hyperreals (constructed using $\mathcal U$) into the surreals.
+    For every predictor $p$, the \emph{surreal ASPI measure} of $p$ (given
+    by $\mathcal U$ and $\iota$)
+    is the supremum of all surreal numbers $r$ such that
     $p$ learns $e$ whenever the surreal number corresponding to
     $(t_e(0),t_e(1),t_e(2),\ldots)$ is $<r$.
 \end{definition}
 
-\subsection{Hibbard intelligence and the traditional majorization hierarchies}
+\subsection{ASPI measures based on majorization hierarchies}
 
 Majorization hierarchies \cite{weiermann2002slow}
 provide ordinal-number-valued measures for the growth
