@@ -497,6 +497,7 @@ So for the remainder of the section, we assume a free ultrafilter has been
 chosen, and we work in the resulting construction of the hyperreal numbers.
 
 \begin{definition}
+\label{hyperrealgrowthratedefn}
     (The hyperreal solution to Problem \ref{bigoproblem})
     For any function $f:\mathbb N\to\mathbb N$, the \emph{hyperreal growth rate
     of $f$} is the hyperreal number $\hat r$
@@ -521,38 +522,42 @@ cannot directly be mimicked either with ``maximum'' or with ``supremum''.
 
 \subsection{Surreal ASPI measures}
 
-The surreal numbers \cite{conway} \cite{knuth} are an even larger extension
-of the real numbers, into which the hyperreals can be embedded
-\cite{ehrlich2012absolute}.
+The surreal numbers \cite{conway} \cite{knuth} \cite{ehrlich2012absolute}
+are an even larger extension
+of the real numbers
+into which the hyperreals can be embedded.
 Thus, for any such embedding,
-there is another natural and elegant way to solve Problem \ref{bigoproblem},
-namely: the growth rate of $f(n)$ is the surreal number corresponding to the
-hyperreal number represented by $(f(0),f(1),f(2),\ldots)$ under the embedding.
-The advantage of the surreal numbers is that they are complete, which will allow
+there is another natural and elegant way to solve Problem \ref{bigoproblem}.
+
+\begin{definition}
+    (The surreal solution to Problem \ref{bigoproblem})
+    Let $\iota$ be the embedding of the hyperreal numbers into the surreal
+    numbers.
+    For any function $f:\mathbb N\to\mathbb N$, the \emph{surreal growth rate
+    of $f$} is $\iota(\hat r)$ where $\hat r$ is the hyperreal growth
+    rate of $f$ (Definition \ref{hyperrealgrowthratedefn}).
+\end{definition}
+
+The advantage of the surreal numbers is that for any set $L$ of surreal numbers,
+there is a canonical way to choose a surreal upper bound on $L$,
+which upper bound is written $\{L\,|\,\}$. This upper bound is similar to a
+supremum of $L$ in a certain sense: assuming $L$ does not contain a maximum
+element, then $\{L\,|\,\}$ is the \emph{simplest} upper bound of $L$ (but it
+would be beyond the scope of this paper to define how the simplicity of surreal
+numbers is defined). This will allow
 the corresponding ASPI measure to exactly measure intelligence of predictors,
 rather than merely classify predictors in a taxonomy as in the case of
-the hyperreal ASPI measures.
-
-There are many ways to embed the hyperreals into the surreals, and there is no
-standard or canonical way which stands out. Thus the surreal ASPI measures are even less
-concrete than the hyperreal ASPI measures, because they depend not only on a
-free ultrafilter, but also on an embedding of the hyperreals into the surreals.
-
-The surreal numbers are complete, which means that for
-any set $S$ of surreals with a surreal upper bound,
-there is a \emph{least} surreal upper bound of $S$, called the \emph{supremum} of $S$.
-This allows for an ASPI measure which is more exact
-than Definition \ref{hyperrealhibbardintelligencedefn}.
+the hyperreal ASPI measures (Definition \ref{hyperrealhibbardintelligencedefn}).
 
 \begin{definition}
 \label{surrealhibbardintelligencedefn}
     (Surreal ASPI measures)
-    Suppose $\mathcal U$ is a free ultrafilter, and suppose $\iota$ is an embedding
-    of the hyperreals (constructed using $\mathcal U$) into the surreals.
-    For every predictor $p$, the \emph{$(\mathcal U,\iota)$-surreal ASPI measure} of $p$
-    is the supremum of all surreal numbers $\iota(r)$ such that
-    $p$ learns $e$ whenever the hyperreal number corresponding to
-    $(t_e(0),t_e(1),t_e(2),\ldots)$ is $<r$ (according to $\mathcal U$).
+    Let $\iota$ be the embedding of the hyperreal numbers into the surreal
+    numbers.
+    For every predictor $p$, the \emph{surreal ASPI measure} of $p$
+    defined to be $\{L\,|\,\}$ where $L$ is the set of all surreal
+    numbers $\ell$ such that $p$ learns every predictor $e$ such that
+    $t_e$ has surreal growth rate $<\ell$.
 \end{definition}
 
 \subsection{ASPI measures based on majorization hierarchies}
