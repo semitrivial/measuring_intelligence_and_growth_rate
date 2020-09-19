@@ -456,44 +456,55 @@ and the ASPI measures they give rise to.
 Hyperreal numbers, studied in the field of non-standard analysis \cite{robinson}
 \cite{goldblatt2012lectures},
 are equivalence classes of infinite sequences of reals,
-so for every sequence $(r_0,r_1,r_2,\ldots)$ of reals, there is a corresponding
-hyperreal represented by that sequence.
-Thus, there is a natural and elegant way to solve Problem \ref{bigoproblem}
-using hyperreal numbers. Namely: the growth rate of $f(n)$ is the hyperreal number
-represented by $(f(0),f(1),f(2),\ldots)$.
+so for every sequence $r=(r_0,r_1,r_2,\ldots)$ of reals, there is a corresponding
+hyperreal $\hat r$ represented by that sequence.
+Arithmetic is performed pointwise, so if $r=(r_0,r_1,r_2,\ldots)$ and
+$s=(s_0,s_1,s_2,\ldots)$, then $\hat r + \hat s$
+is the hyperreal represented by $(r_0+s_0,r_1+s_1,r_2+s_2,\ldots)$,
+and $\hat r\cdot\hat s$ is the hyperreal represented by
+$(r_0 s_0,r_1 s_1, r_2 s_2,\ldots)$.
 
-Unfortunately, the equivalence relations which give rise to hyperreals as
-equivalence classes are non-constructive. They rely on objects called
-\emph{free ultrafilters}.
-Loosely speaking, a free ultrafilter can be thought
-of as a black box which makes judgments about which subsets of $\mathbb N$
-are ``large''---and does so in a particularly consistent way.
-Mathematicians have shown that free ultrafilters
-exist, but that it is impossible to concretely exhibit one.
-
-To see the necessity of such judgments, consider the hyperreal
-$x$ represented by $(1,0,1,0,\ldots)$ and the hyperreal $y$ represented by
-$(0,1,0,1,\ldots)$. Which hyperreal is larger, $x$ or $y$? On the set $E$ of
-even numbers, $x$ is larger, and on the set $O$ of odd numbers, $y$ is larger.
-A free ultrafilter $\mathcal U$ would either judge
-$E$ to be large and $O$ to be small,
-or vice versa. If $\mathcal U$ judges $E$ to be large,
-we would have $x>y$ in the hyperreal number system corresponding to $\mathcal U$.
-Otherwise, we would have $x<y$.
-
-Such arbitrary decisions are a necessary evil if one desires maximal solutions to
-Problem \ref{bigoproblem}, because there are many pairs $f,g:\mathbb N\to\mathbb N$
-with the property that $f(n)>g(n)$ for infinitely many $n$ but also $f(n)<g(n)$ for
-infinitely many other $n$. For every such pair, one must
-somehow decide which of $f$ or $g$ (if either) should be
-considered faster-growing\footnote{This is similar to the problem of deciding which
+The difficulty in constructing the hyperreals is how to compare them.
+We would like to compare them pointwise, so for example
+with $r,s$ as above, we would want to have $\hat r<\hat s$ if
+every $r_i<s_i$, or $\hat s<\hat r$ if every $s_i<r_i$.
+Having done this, we would immediately obtain an elegant abstract
+solution to Problem \ref{bigoproblem} using hyperreal numbers,
+namely: the growth rate of $f(n)$ could be defined to be the
+hyperreal number represented by $(f(0),f(1),f(2),\ldots)$.
+But\footnote{This is similar to the problem of deciding which
 of two reinforcement learning agents is more intelligent, if one agent
 performs better in infinitely many environments, but the other agent performs
 better in infinitely many other environments. For a treatment of that problem
-using free ultrafilters, see \cite{alexander2019intelligence}.}.
+using free ultrafilters, see \cite{alexander2019intelligence}.}
+how should $\hat r$ and $\hat s$ compare if there are infinitely
+many $i$ such that $r_i<s_i$ and infinitely many $i$ such that
+$s_i<r_i$? The answer is to declare $\hat r<\hat s$ if the set
+$\{i\in\mathbb N\,:\,r_i<s_i\}$ is ``large'', but it is not clear
+what it should mean for a set of natural numbers to be ``large''.
 
-Because of the computational impracticality of free ultrafilters, the following notion
-is also computationally impractical. However, it could potentially be useful for
+It turns out that the best answer---the only answer which leads to
+hyperreals with the properties we would want an extension of the
+reals to have---is to let the question of largeness of natural numbers
+be decided by an object called a \emph{free ultrafilter}.
+Loosely speaking, a free ultrafilter can be thought
+of as a black box which makes judgments about which subsets of $\mathbb N$
+are ``large'' (and does so in a particularly consistent way).
+Unfortunately, free ultrafilters are non-constructive: mathematicians have
+shown that free ultrafilters
+exist, but that it is impossible to concretely exhibit one.
+So for the remainder of the section, we assume a free ultrafilter has been
+chosen, and we work in the resulting construction of the hyperreal numbers.
+
+\begin{definition}
+    (The hyperreal solution to Problem \ref{bigoproblem})
+    For any function $f:\mathbb N\to\mathbb N$, the \emph{hyperreal growth rate
+    of $f$} is the hyperreal number $\hat r$
+    where $r=(f(0),f(1),f(2),\ldots)$.
+\end{definition}
+
+Because of the non-constructive nature of free ultrafilters, the following notion
+is computationally impractical. However, it could potentially be useful for
 proving theoretical properties about the intelligence of predictors. In the following
 definition, rather than assigning a particular hyperreal number intelligence to every
 predictor, rather, we categorize predictors into a taxonomy. This is necessary because
@@ -503,12 +514,9 @@ cannot directly be mimicked either with ``maximum'' or with ``supremum''.
 \begin{definition}
 \label{hyperrealhibbardintelligencedefn}
     (Hyperreal ASPI measures)
-    For any free ultrafilter $\mathcal U$,
-    the \emph{$\mathcal U$-hyperreal ASPI measure} of a predictor $p$ is defined to be
-    $\geq$ a hyperreal number $r$ if and only if $p$ learns every evader $e$
-    such that if $r'$ is the hyperreal number represented by
-    $(t_e(0), t_e(1), t_e(2), \ldots)$ then $r'<r$
-    (in the hyperreal number system given by $\mathcal U$).
+    The \emph{hyperreal ASPI measure} of a predictor $p$ is defined to be
+    $\geq$ a hyperreal number $\hat r$ if and only if $p$ learns every evader $e$
+    such that the hyperreal growth rate of $t_e$ is $<\hat r$.
 \end{definition}
 
 \subsection{Surreal ASPI measures}
