@@ -317,7 +317,7 @@ approximately captures $X$'s true intelligence.
 \section{Quantifying growth rates of functions}
 \label{growthratesection}
 
-The following is a very general and open-ended problem.
+The following is a general and open-ended problem.
 
 \begin{problem}
 \label{bigoproblem}
@@ -379,6 +379,13 @@ can be thought of as implicitly depending on a specific solution to Problem
     and Definition \ref{classichibbardmeasuredefn}.
 \end{proof}
 
+In other words, if $S$ is the set of all the $m$ as in Corollary
+\ref{rephrasinghibbardsmeasurecorollary}, then the original Hibbard
+measure of $p$ is the ``canonical upper bound'' of $S$, where
+by the ``canonical upper bound'' of a set of natural numbers
+we mean the maximum element of that set (or $\infty$ if that set
+is unbounded).
+
 \begin{remark}
 \label{epiphanyremark}
 Corollary \ref{rephrasinghibbardsmeasurecorollary} shows that
@@ -389,17 +396,15 @@ Definition \ref{hibbardgrowthratedefn}. For \emph{any} solution $H'$ to
 Problem \ref{bigoproblem}, we could define evader-sets $E^{H'}_m$ in a similar
 way to Definition \ref{variationondefinitionofEdefn}, and, by copying
 Corollary \ref{rephrasinghibbardsmeasurecorollary}, we could obtain a corresponding
-intelligence measure given by $H'$ (it might be necessary to replace the
-``maximum'' in Corollary \ref{rephrasinghibbardsmeasurecorollary}
-by a ``supremum'', if $H'$ measures growth rates using
-a non-discrete number system, or transform the form of it if $H'$
-solves Problem \ref{bigoproblem} using a non-complete number system or
-by categorizing functions into a taxonomy
-rather than by assigning
-them numerical measurements, as in the case of Big-O notation). This
-formalizes what we claimed in the Introduction,
+intelligence measure given by $H'$
+(provided there be some way of choosing canonical bounds of bounded sets in the
+underlying number system---if not, we would have to be content with a taxonomy
+rather than a measure, a predictor's intelligence falling into many nested
+taxa corresponding to many different upper bounds, just as in Big-O notation a
+function can simultaneously be $O(n^2)$ and $O(n^3)$).
+This formalizes what we claimed in the Introduction,
 that Hibbard's idea can be decomposed into two sub-ideas, firstly, that a predictor's
-intelligence can be measured in terms of the growth rates of the runtimes of the
+intelligence can be classified in terms of the growth rates of the runtimes of the
 evaders it learns, and secondly, a particular method
 (Definition \ref{hibbardgrowthratedefn})
 of measuring those growth rates (i.e., a particular solution to
