@@ -39,12 +39,12 @@ and Engineering Center, University of Wisconsin, Madison.}}
     growth rates. Whereas Hibbard's intelligence measure is based on the latter
     growth-rate-measuring method, we survey
     other methods for measuring function
-    growth rates, and exhibit the Hibbard-like intelligence measures
-    which result from those. Of particular interest, we obtain intelligence measures
-    based on Big-O notation and similar notation systems, which measures
+    growth rates, and exhibit the resulting Hibbard-like intelligence measures
+    and taxonomies. Of particular interest, we obtain intelligence taxonomies
+    based on Big-O and Big-Θ notation systems, which taxonomies
     are novel in that they challenge conventional notions of what an
-    intelligence measure should look like. We also discuss how intelligence measurement
-    of such sequence predictors can indirectly serve as intelligence measurement for
+    intelligence measure should look like. We discuss how intelligence measurement
+    of sequence predictors can indirectly serve as intelligence measurement for
     agents with Artificial General Intelligence (AGIs).
 \end{abstract}
 
@@ -75,12 +75,15 @@ measuring said growth rates. The growth rate measurement which Hibbard proposed 
 a corresponding intelligence measure for these agents. We will argue that \emph{any}
 method for measuring growth rates of functions yields a corresponding
 \emph{adversarial sequence prediction intelligence} measure (or \emph{ASPI} measure
-for short).
+for short) provided the underlying number system provides a way of choosing canonical bounds
+for bounded sets. If the underlying number system does not provide a way of choosing
+canonical bounds for bounded sets, the growth-rate-measure will yield a corresponding
+ASPI taxonomy (like the big-$O$ taxonomy of asymptotic complexity).
 
 The particular method which Hibbard used to measure function growth rates is
 not very standard. We will survey other
 ways of measuring function growth rates, including some more standard ways,
-and these will yield corresponding ASPI measures.
+and these will yield corresponding ASPI measures and taxonomies.
 
 The structure of the paper is as follows.
 \begin{itemize}
@@ -88,7 +91,7 @@ The structure of the paper is as follows.
     In Section \ref{originalmeasuresection}, we review the original Hibbard measure.
     \item
     In Section \ref{growthratesection}, we argue that any method of measuring
-    the growth rate of functions yields an ASPI measure,
+    the growth rate of functions yields an ASPI measure or taxonomy,
     and that the original Hibbard measure is just a special case resulting from
     one particular method of measuring function growth rate.
     \item
@@ -218,7 +221,8 @@ because of a minor (and fortunately, easy-to-fix) error there.
 \begin{definition}
 \label{functionsuccdefn}
     Suppose $f:\mathbb N\to\mathbb N$ and $g:\mathbb N\to\mathbb N$.
-    We say $f\succ g$ if there is some $n_0\in \mathbb N$ such that for all
+    We say $f$ \emph{majorizes} $g$, written
+    $f\succ g$, if there is some $n_0\in \mathbb N$ such that for all
     $n>n_0$, $f(n)>g(n)$.
 \end{definition}
 
@@ -246,22 +250,23 @@ because of a minor (and fortunately, easy-to-fix) error there.
 \subsection{Predictor intelligence and AGI intelligence}
 \label{agiproxysection}
 
-Definition \ref{classichibbardmeasuredefn}, and similar measures which we will
+Definition \ref{classichibbardmeasuredefn}, and similar measures and taxonomies
+which we will
 define later, as written, only quantify the intelligence of one very specific type
 of agent, namely, predictors in the game of adversarial sequence prediction.
-But any method for measuring intelligence of such predictors can also serve as
-an approximate proxy measure of the intelligence of (suitably idealized)
+But any method for quantifying the intelligence of such predictors can also
+approximately quantify the intelligence of (suitably idealized)
 agents with Artificial General Intellience (that is, the intelligence of AGIs).
 
 Presumably, a suitably idealized AGI should be capable of understanding, and
 obedient in following or trying to follow, commands issued in everyday human
-language\footnote{It is somewhat unclear exactly how explicitly an AGI would
-obey certain commands; to use an example of Yampolskiy
-\cite{yampolskiycontrol}, if an AGI were driving us in a car on a highway,
-and we asked the AGI to stop the car, would the AGI immediately stop the car
+language\footnote{It is somewhat unclear how explicitly an AGI would
+obey certain commands. To use an example of Yampolskiy
+\cite{yampolskiycontrol}, if we asked a car-driving AGI
+to stop the car, would the AGI stop the car
 in the middle of traffic, or would it pull over to the side first?
 We assume this ambiguity does not apply when we ask the AGI to perform
-tasks of an abstract and mathematical nature.}.
+tasks of a sufficiently abstract and mathematical nature.}.
 For example, if an AGI were commanded, ``until further notice, compute and list the
 digits of pi,'' the AGI should be capable of understanding that command, and should
 obediently compute said digits until commanded otherwise\footnote{Our thinking
@@ -269,7 +274,7 @@ here is reminiscent of some remarks of Yampolskiy \cite{yampolskiy2013turing}.}.
 
 It is unclear how an AGI ought to respond if given an impossible command,
 such as ``write a computer program
-that solves the halting problem'' or Yampolskiy's \cite{yampolskiycontrol}
+that solves the halting problem'', or Yampolskiy's \cite{yampolskiycontrol}
 ``Disobey!'' But an AGI should be capable of
 understanding and attempting to obey an open-ended command, provided it is not
 impossible. For example, we could command an AGI to ``until further notice,
@@ -301,12 +306,12 @@ further such observations can so alter $X$'s strategy.
 In short, to use Yampolskiy's terminology \cite{yampolskiy2012ai}, the act of
 trying to predict adversarial sequence evaders is \emph{AI-easy}.
 
-Thus, any intelligence measure for predictors also serves as an intelligence
-measure for AGIs. Namely: the intelligence level of an AGI $X$ is equal to the
+Thus, any intelligence measure (or taxonomy) for predictors also serves as an intelligence
+measure (or taxonomy) for AGIs. Namely: the intelligence level of an AGI $X$ is equal to the
 intelligence level of $X$'s predictor. Of course, a priori,
 $X$ might be very intelligent at various other things while being poor
 at sequence prediction, or vice versa, so this only
-approximately measures $X$'s true intelligence.
+approximately captures $X$'s true intelligence.
 
 
 \section{Quantifying growth rates of functions}
