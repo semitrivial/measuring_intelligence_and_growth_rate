@@ -412,7 +412,7 @@ Problem \ref{bigoproblem}).
 \end{remark}
 
 
-\section{Big-O and Big-$\Theta$ intelligence measurement}
+\section{Big-O and Big-$\Theta$ intelligence}
 \label{bigosection}
 
 One of the most standard solutions
@@ -438,6 +438,11 @@ we are only concerned here with functions from $\mathbb N$ to $\mathbb N$).
     \end{itemize}
 \end{definition}
 
+Note that Definition \ref{bigodefn} does not measure growth rates, but rather
+categorizes growth rates into Big-O and Big-$\Theta$ taxonomies.
+For example, the same function can be
+both $O(n^2)$ and $O(n^3)$, the former taxon being nested within the latter.
+
 By Remark \ref{epiphanyremark}, Definition \ref{bigodefn} yields the following elegant
 taxonomy of predictor intelligence.
 
@@ -454,14 +459,14 @@ taxonomy of predictor intelligence.
     \end{itemize}
 \end{definition}
 
-\section{ASPI measures using various number systems}
+\section{ASPI measures and taxonomies using various number systems}
 \label{exoticsection}
 
 In this section we will consider various solutions to
 Problem \ref{bigoproblem} in various different number systems,
-and the ASPI measures they give rise to.
+and the ASPI measures and taxonomies they produce.
 
-\subsection{Hyperreal ASPI measures}
+\subsection{The hyperreal ASPI taxonomy}
 
 Hyperreal numbers, studied in the field of non-standard analysis \cite{robinson}
 \cite{goldblatt2012lectures},
@@ -474,7 +479,7 @@ is the hyperreal represented by $(r_0+s_0,r_1+s_1,r_2+s_2,\ldots)$,
 and $\hat r\cdot\hat s$ is the hyperreal represented by
 $(r_0 s_0,r_1 s_1, r_2 s_2,\ldots)$.
 
-The difficulty in constructing the hyperreals is how to compare them.
+The difficulty in constructing the hyperreals is how to compare two hyperreals.
 We would like to compare them pointwise, so for example
 with $r,s$ as above, we would want to have $\hat r<\hat s$ if
 every $r_i<s_i$, or $\hat s<\hat r$ if every $s_i<r_i$.
@@ -503,7 +508,7 @@ are ``large'' (and does so in a particularly consistent way).
 Unfortunately, free ultrafilters are non-constructive: mathematicians have
 shown that free ultrafilters
 exist, but that it is impossible to concretely exhibit one.
-So for the remainder of the section, we assume a free ultrafilter has been
+For the remainder of the section, we assume a free ultrafilter has been
 chosen, and we work in the resulting construction of the hyperreal numbers.
 
 \begin{definition}
@@ -518,26 +523,29 @@ Because of the non-constructive nature of free ultrafilters, the following notio
 is computationally impractical. However, it could potentially be useful for
 proving theoretical properties about the intelligence of predictors. In the following
 definition, rather than assigning a particular hyperreal number intelligence to every
-predictor, rather, we categorize predictors into a taxonomy. This is necessary because
-the hyperreals are not complete, so Corollary \ref{rephrasinghibbardsmeasurecorollary}
-cannot directly be mimicked either with ``maximum'' or with ``supremum''.
+predictor, rather, we categorize predictors into a taxonomy.
+This is necessary because there is no way of choosing canonical bounds
+of bounded sets of hyperreal numbers in general. For lack of a way of
+choosing a particular bound, we are forced to consider many taxa corresponding
+to many bounds.
+
 
 \begin{definition}
 \label{hyperrealhibbardintelligencedefn}
-    (Hyperreal ASPI measures)
-    The \emph{hyperreal ASPI measure} of a predictor $p$ is defined to be
-    $\geq$ a hyperreal number $\hat r$ if and only if $p$ learns every evader $e$
-    such that the hyperreal growth rate of $t_e$ is $<\hat r$.
+    (The hyperreal ASPI taxonomy)
+    Let $p$ be a predictor and let $\hat r$ be a hyperreal number.
+    We say that $p$ \emph{has hyperreal ASPI intelligence at least $\hat r$}
+    if and only if the following condition holds:
+    for every evader $e$, if the hyperreal growth rate of $t_e$ is
+    $<\hat r$, then $p$ learns $e$.
 \end{definition}
 
-\subsection{Surreal ASPI measures}
+\subsection{The surreal ASPI measure}
 
 The surreal numbers \cite{conway} \cite{knuth} \cite{ehrlich2012absolute}
 are an even larger extension
 of the real numbers
 into which the hyperreals can be embedded.
-Thus, for any such embedding,
-there is another natural and elegant way to solve Problem \ref{bigoproblem}.
 
 \begin{definition}
     (The surreal solution to Problem \ref{bigoproblem})
@@ -551,23 +559,23 @@ there is another natural and elegant way to solve Problem \ref{bigoproblem}.
 The advantage of the surreal numbers is that for any set $L$ of surreal numbers,
 there is a canonical way to choose a surreal upper bound on $L$,
 which upper bound is written $\{L\,|\,\}$. This upper bound is similar to a
-supremum of $L$ in a certain sense: assuming $L$ does not contain a maximum
-element, then $\{L\,|\,\}$ is the \emph{simplest} upper bound of $L$ (but it
-would be beyond the scope of this paper to define how the simplicity of surreal
-numbers is defined). This will allow
-the corresponding ASPI measure to exactly measure intelligence of predictors,
+supremum of $L$ in a certain sense: the surreal numbers possess a
+simplicity-hierarchical structure, and $\{L\,|\,\}$ is the \emph{simplest}
+strict upper bound of $L$. This allows us to
+exactly measure intelligence of predictors,
 rather than merely classify predictors in a taxonomy as in the case of
 the hyperreal ASPI measures (Definition \ref{hyperrealhibbardintelligencedefn}).
 
 \begin{definition}
 \label{surrealhibbardintelligencedefn}
-    (Surreal ASPI measures)
+    (The surreal ASPI measure)
     Let $\iota$ be the embedding of the hyperreal numbers into the surreal
     numbers.
     For every predictor $p$, the \emph{surreal ASPI measure} of $p$
-    defined to be $\{L\,|\,\}$ where $L$ is the set of all surreal
-    numbers $\ell$ such that $p$ learns every predictor $e$ such that
-    $t_e$ has surreal growth rate $<\ell$.
+    is defined to be $\{L\,|\,\}$, the simplest surreal strict upper bound
+    of $L$, where $L$ is the set of all surreal numbers $\ell$ such that
+    the following condition holds: for every evader $e$,
+    if the surreal growth rate of $t_e$ is $<\ell$, then $p$ learns $e$.
 \end{definition}
 
 \subsection{ASPI measures based on majorization hierarchies}
