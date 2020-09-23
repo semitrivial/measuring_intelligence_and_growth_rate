@@ -569,8 +569,6 @@ the hyperreal ASPI measures (Definition \ref{hyperrealhibbardintelligencedefn}).
 \begin{definition}
 \label{surrealhibbardintelligencedefn}
     (The surreal ASPI measure)
-    Let $\iota$ be the embedding of the hyperreal numbers into the surreal
-    numbers.
     For every predictor $p$, the \emph{surreal ASPI measure} of $p$
     is defined to be $\{L\,|\,\}$, the simplest surreal strict upper bound
     of $L$, where $L$ is the set of all surreal numbers $\ell$ such that
@@ -582,10 +580,11 @@ the hyperreal ASPI measures (Definition \ref{hyperrealhibbardintelligencedefn}).
 
 Majorization hierarchies \cite{weiermann2002slow}
 provide ordinal-number-valued measures for the growth
-rate certain functions. A majorization hierarchy depends
-on many infinite-dimensional parameters. For illustrative purposes,
-we will describe two majorization hierarchies up to the ordinal $\epsilon_0$,
-using standard choices for the parameters.
+rates of certain functions. A majorization hierarchy depends
+on many infinite-dimensional parameters. We will describe two
+majorization hierarchies up to the ordinal $\epsilon_0$,
+using standard choices for the parameters, and the ASPI measures
+which they produce.
 
 \begin{definition}
     (Classification of ordinal numbers)
@@ -602,6 +601,17 @@ For example, the smallest infinite ordinal, $\omega$, is a limit ordinal. It is 
 nor can it be a successor ordinal, because if it were a successor ordinal, say, $\alpha+1$,
 then $\alpha$ would be finite (since $\omega$ is the \emph{smallest} infinite ordinal),
 but then $\alpha+1$ would be finite as well.
+
+Ordinal numbers have an arithmetical structure: two ordinals $\alpha$ and $\beta$
+have a sum $\alpha+\beta$, a product $\alpha\cdot \beta$, and a power
+$\alpha^\beta$. It would be beyond the scope of this paper to give the full
+definition of these operations. We will only remark that some care is needed because
+although ordinal arithmetic is associative---e.g.,
+$(\alpha+\beta)+\gamma=\alpha+(\beta+\gamma)$, and similarly for multiplication---it is
+not generally commutative: $\alpha+\beta$ is not always equal to $\beta+\alpha$,
+and $\alpha\cdot\beta$ is not always equal to $\beta\cdot\alpha$. For this reason,
+one often sees products like $\alpha\cdot 2$, which are not necessarily equivalent to the
+more familiar $2\cdot\alpha$.
 
 The ordinal $\epsilon_0$ is the smallest ordinal bigger than the ordinals
 $\omega,\omega^\omega,\omega^{\omega^\omega},\ldots$. It satisfies the equation
@@ -683,14 +693,14 @@ is
 \label{slowgrowinghierarchydefn}
     (The standard slow-growing hierarchy up to $\epsilon_0$)
     We define functions $g_\beta:\mathbb N\to\mathbb N$ (for all ordinals
-    $\beta\leq \epsilon_0$) by transfinite induction as follows.
+    $\leq \epsilon_0$) by transfinite induction as follows.
     \begin{itemize}
         \item
         $g_0(n)=0$.
         \item
-        $g_{\alpha+1}(n) = g_\alpha(n) + 1$.
+        $g_{\alpha+1}(n) = g_\alpha(n) + 1$ if $\alpha+1\leq\epsilon_0$.
         \item
-        $g_{\lambda}(n) = g_{\lambda[n]}(n)$ if $\lambda$ is a limit ordinal.
+        $g_{\lambda}(n) = g_{\lambda[n]}(n)$ if $\lambda\leq\epsilon_0$ is a limit ordinal.
     \end{itemize}
 \end{definition}
 
@@ -746,7 +756,8 @@ What about $g_{\epsilon_0}$? Thinking of $\epsilon_0$ as
 one might expect $g_{\epsilon_0}(n)$ to be
 \[n^{n^{n^{\iddots}}},\]
 but such an infinite tower
-of exponents makes no sense if $n>1$. Instead, the answer defies familiar mathematical
+of natural number exponents makes no sense if $n>1$. Instead,
+the answer defies familiar mathematical
 notation.
 
 \begin{example}
@@ -773,15 +784,20 @@ functions against which any particular function can be compared.
 This yields a solution to Problem \ref{bigoproblem}: we can declare the growth
 rate of an arbitrary function $f:\mathbb N\to\mathbb N$ to be the smallest ordinal
 $\beta< \epsilon_0$ such that $g_\beta\succ f$ (or $\infty$ if there is no such
-$\beta$). This yields the following ASPI measure.
+$\beta$).
+For any bounded set $S$ of ordinals, there is a canonical upper bound for $S$,
+namely, the supremum of $S$.
+Thus we obtain an ASPI measure (not just a taxonomy).
 
 \begin{definition}
 \label{tradmajorizationhierarchyhibbardmeasuredefn}
-    If $p$ is a predictor, the \emph{ASPI measure of $X$ given by the
+    If $p$ is a predictor, the \emph{ASPI measure of $p$ given by the
     standard slow-growing hierarchy up to $\epsilon_0$} is defined to be the
-    supremum of all ordinals $\alpha<\epsilon_0$ such that
-    $p$ learns every evader $e$ such that $g_\alpha\succ t_e$ (or
-    $\infty$ if said property holds for all ordinals $\alpha<\epsilon_0$).
+    supremum of $S$ (or $\infty$
+    if $\epsilon_0\in S$), where $S$ is the set of all ordinals
+    $\alpha\leq\epsilon_0$
+    such that the following condition holds:
+    for every predictor $e$, if $g_\alpha\succ t_e$, then $p$ learns $e$.
 \end{definition}
 
 In Definition \ref{slowgrowinghierarchydefn}, in the successor ordinal case,
@@ -806,11 +822,12 @@ hierarchies, such as the following.
         $h^2_\alpha(x)=h_\alpha(h_\alpha(x))$,
         $h^3_\alpha(x)=h_\alpha(h_\alpha(h_\alpha(x)))$, and so on).
         \item
-        $h_{\lambda}(n) = h_{\lambda[n]}(n)$ if $\lambda$ is a limit ordinal.
+        $h_{\lambda}(n) = h_{\lambda[n]}(n)$ if $\lambda$ is a
+        limit ordinal $\leq\epsilon_0$.
     \end{itemize}
 \end{definition}
 
-True to the name, the functions in the fast-growing hierarchy grow quickly
+The functions in the fast-growing hierarchy grow quickly
 as $\alpha$ grows. It can be shown \cite{wainer1987provably} that
 for every computable function $f$ whose totality can be proven from the axioms of
 Peano arithmetic, there is some $\alpha<\epsilon_0$ such that $h_\alpha\succ f$.
@@ -819,21 +836,22 @@ Peano arithmetic, there is some $\alpha<\epsilon_0$ such that $h_\alpha\succ f$.
 \label{fastmajorizationhierarchyhibbardmeasuredefn}
     If $p$ is a predictor, the \emph{ASPI measure of $X$ given by the
     standard fast-growing hierarchy up to $\epsilon_0$} is defined to be the
-    supremum of all ordinals $\alpha<\epsilon_0$ such that
-    $p$ learns every evader $e$ such that $h_\alpha\succ t_e$ (or to
-    $\infty$ if said property holds for all ordinals $\alpha<\epsilon_0$).
+    supremum of $S$ (or $\infty$ if $\epsilon_0\in S$),
+    where $S$ is the set of all ordinals $\alpha\leq\epsilon_0$ such that
+    the following condition holds:
+    for every predictor $e$, if $h_\alpha\succ t_e$, then $p$ learns $e$.
 \end{definition}
 
 Between Definitions \ref{tradmajorizationhierarchyhibbardmeasuredefn} and
 \ref{fastmajorizationhierarchyhibbardmeasuredefn}, the former offers a higher
 granularity
-intelligence measure for the predictors whose intelligence it assigns non-$\infty$
+intelligence measure for the predictors which it assigns non-$\infty$
 intelligence to, but the latter assigns non-$\infty$ intelligence to a much larger
 set of predictors.
 
-It should be noted that Definitions \ref{slowgrowinghierarchydefn}
+Definitions \ref{slowgrowinghierarchydefn}
 and \ref{fastgrowinghierarchydefn} are only two
-representative samples of
+examples of
 majorization hierarchies. Both the slow- and fast-growing hierarchies can be
 extended by extending the fundamental sequences of Definition
 \ref{fundsequencesdefn} to larger ordinals\footnote{Remarkably,
@@ -843,7 +861,7 @@ if both hierarchies are extended to sufficiently large ordinals
 how counter-intuitive
 large ordinal numbers can be.}, however, the larger
 the ordinals become, the more difficult it is to do this, and especially the less
-clear it is how to do it in any sort of \emph{canonical} way.
+clear it is how to do it in any sort of canonical way.
 There are also other choices for how to proceed at successor ordinal stages besides
 $g_{\alpha+1}(n)=g_\alpha(n)+1$ or $h_{\alpha+1}(n)=h^n_\alpha(n)$---for example,
 one of the oldest majorization hierarchies is the Hardy hierarchy
