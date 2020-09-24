@@ -874,8 +874,9 @@ All these different majorization hierarchies yield different ASPI measures.
 
 \subsection{A remark about ASPI measures and AGI intelligence}
 
-All the ASPI measures we have defined so far double as indirect intelligence
-measure for an AGI, by the argument we made in Subsection \ref{agiproxysection}.
+All the ASPI measures and taxonomies we have defined so far double as indirect
+intelligence measures and taxonomies for an AGI, by the argument we made
+in Subsection \ref{agiproxysection}.
 
 For a given AGI $X$, a priori, we cannot say much for certain about the predictor $X$
 would act as if $X$ were commanded to act as a predictor. But there is one particularly
@@ -923,209 +924,12 @@ the fitter the organism'' \cite{chaitin}---and Good's observation
 \cite{good1969godel} that iterated Lucas-Penrose contests boil down to
 contests to name the larger ordinal.
 
-% \subsection{Generalized majorization hierarchies}
 
-% There are many other majorization hierarchies besides the slow-growing hierarchy.
-% In Definition \ref{slowgrowinghierarchydefn},
-% there is nothing special about defining $g_{\alpha+1}(n)=g_{\alpha}(n)+1$.
-% Many other definitions for $g_{\alpha+1}$ would work, provided $g_{\alpha+1}$ ends
-% up being faster-growing than $g_\alpha$.
-% For example, in the so-called \emph{fast-growing hierarchy},
-% $g_{\alpha+1}(n)$ is defined to be $g^n_\alpha(n)$, where $g^n_\alpha$
-% denotes the result of iterating $g_\alpha$ $n$ times, that is,
-% $g^1_\alpha(n)=g_\alpha(n)$, $g^2_\alpha(n)=g_\alpha(g_\alpha(n))$,
-% $g^3_\alpha(n)=g_\alpha(g_\alpha(g_\alpha(n)))$, and so on.
-% In the early levels, this produces much faster-growing functions,
-% but astonishingly, at sufficiently high ordinals, the slow-growing hierarchy
-% actually catches up with the fast-growing hierarchy \cite{girard1981pi12}
-% (a beautiful illustration of how counter-intuitive large ordinal numbers can be).
-% One of the earliest majorization hierarchies is the Hardy
-% hierarchy \cite{hardy1904theorem}, where $g_{\alpha+1}(n)=g_\alpha(n+1)$.
-
-% Likewise, there is also much flexibility in choosing fundamental sequences.
-% For small ordinals such as the ordinals below $\epsilon_0$, there are very clear
-% canonical fundamental sequences, but the larger the ordinals become, the harder
-% it becomes to single out any choice of fundamental sequences as canonical.
-% And even at low levels, choosing non-canonical fundamental sequences can
-% drastically alter the resulting majorization hierarchy \cite{weiermann1997sometimes}.
-
-% In short, there is no consensus at all about which majorization hierarchies are
-% most canonical. If anything, there is consensus that there is no consensus.
-% However, Hibbard-style intelligence measures are primarily of interest to researchers
-% interested in agents with Artificial General Intelligence (that is, researchers
-% interested in AGIs). No-one knows what exactly an AGI is, but presumably an AGI can
-% be thought of\footnote{Our thinking here is reminiscent of some remarks of
-% Yampolskiy \cite{yampolskiy2013turing}.} as a patient, obedient, careful,
-% mechanical employee who can
-% be given commands in English, and who will follow those commands (at least when
-% the commands are \emph{possible} to follow---one could command an AGI to act as a
-% Halting Problem solver, but it is unclear how the AGI would respond to such a command,
-% since no mechanical agent can solve the Halting Problem).
-
-% Rather than attempt the futile task of choosing a canonical majorization hierarchy
-% ourselves, we can instead delegate that task to an AGI. By doing so for an arbitrary
-% AGI, we will obtain an AGI-indexed family of semi-canonical majorization hierarchies.
-
-% \begin{definition}
-% \label{fairsequencedefn}
-%     Suppose $X$ is an AGI. By $h^X_1,h^X_2,\ldots$, we mean the total computable
-%     increasing functions
-%     from $\mathbb N$ to $\mathbb N$ which $X$ would output if $X$ were commanded:
-%     \begin{quote}
-%         ``Until further notice, output (codes of) total computable increasing
-%         functions $h_1,h_2,\ldots$ from $\mathbb N$ to $\mathbb N$ satisfying the
-%         following constraints:
-%         \begin{enumerate}
-%             \item (Linear ordering) For any two $i,j\in\mathbb N$ with $i\neq j$, either
-%             $h_i\succ h_j$ or $h_j\succ h_i$.
-%             \item (Largeness) For every Turing machine $M$ such that you know
-%             $M$ computes a total computable function $h:\mathbb N\to\mathbb N$,
-%             there is some $i$ such that $h_i\succ h$.
-%             \item (Well-foundedness) There is no sequence $i_1,i_2,\ldots$ such that
-%             $h_{i_1}\succ h_{i_2}\succ\cdots$.
-%             \item (Pseudo-density)
-%             The $h_i$'s are to be as close as possible to being \emph{dense}---that is
-%             to say, they are to be as close as possible to having the property that
-%             for all $i,k\in\mathbb N$ with $h_k\succ h_i$, there is some $j\in\mathbb N$
-%             such that $h_k\succ h_j\succ h_i$---without violating the above
-%             well-foundedness constraint; you are to use your judgment and discretion
-%             to interpret this pseudo-density requirement.''
-%         \end{enumerate}
-%     \end{quote}
-% \end{definition}
-
-% The above pseudo-density constraint is intentionally vague, which we can get away
-% with because the definition does not depend on what pseudo-density actually means,
-% but only on how the AGI interprets the \emph{words} (i.e., how the AGI responds to a
-% specific well-defined stimulus, regardless of how vague the semantics of that stimulus
-% may be).
-% Thus, we are taking advantage of the AGI's ability to ``adapt with insufficient
-% knowledge and resources'' \cite{wang2019defining}.
-% We assume the AGI understands and obeys the command, so $h^X_1,h^X_2,\ldots$ really are
-% total computable increasing functions from $\mathbb N$ to $\mathbb N$ satisfying the
-% linear ordering, largeness\footnote{Note that the largeness requirement is defined in
-% terms of the AGI's mathematical
-% knowledge. See \cite{alexanderinprep} for a definition of what
-% it means for an AGI to know a mathematical fact.}, and well-foundedness requirements.
-% Note that the resulting $h_i$'s
-% cannot actually be dense, as that would violate well-foundedness: given any $i,j$
-% with $h_j\succ h_i$, there would be some $k_1$ such that $h_j\succ h_{k_1}\succ h_i$,
-% and then there would be some $k_2$ such that $h_{k_1}\succ h_{k_2}\succ h_i$,
-% and then there would be some $k_3$ such that $h_{k_2}\succ h_{k_3}\succ h_i$, and so
-% on, but then $h_{k_1}\succ h_{k_2}\succ \cdots$ would violate well-foundedness.
-% We will offer some motivation for pseudo-density in
-% Remark \ref{pseudodensityremark} below.
-
-% \begin{definition}
-% \label{alphaidefn}
-%     Let $X$ be an AGI. We define a sequence $\alpha^X_1,\alpha^X_2,\ldots$
-%     of ordinals by recursion as follows. Note that at first glance,
-%     the following recursive definition looks too circular to work.
-%     We will show in Lemma \ref{transfiniterecursionmagiclemma} that
-%     it avoids infinite regress and thus
-%     it does work. For each $i$, let $\alpha^X_i$ be the the smallest
-%     ordinal which is larger than every ordinal $\alpha^X_j$ such that
-%     $h^X_i\succ h^X_j$.
-% \end{definition}
-
-% \begin{lemma}
-% \label{transfiniterecursionmagiclemma}
-%     Definition \ref{alphaidefn} works (it does not lead to infinite regress).
-% \end{lemma}
-
-% \begin{proof}
-%     Assume, for the sake of contradiction, that Definition \ref{alphaidefn}
-%     leads to infinite regress. This means there is some $i_1$ such that
-%     in order to define $\alpha^X_{i_1}$ we must first define $\alpha^X_{i_2}$
-%     for some $i_2$, and in order to define $\alpha^X_{i_2}$ we must first
-%     define $\alpha^X_{i_3}$ for some $i_3$, and in order to define
-%     $\alpha^X_{i_3}$ we must first define $\alpha^X_{i_4}$ for some $i_4$,
-%     and so on forever. Thus, there is an infinite sequence $i_1,i_2,\ldots$
-%     such that in order to define each $\alpha^X_{i_j}$, we must first
-%     define $\alpha^X_{i_{j+1}}$. Now, each $\alpha^X_{i_j}$ is defined as
-%     the smallest ordinal larger than every ordinal $\alpha^X_j$ such that
-%     $h^X_{i_j}\succ h^X_j$. So, since defining $\alpha^X_{i_j}$ requires
-%     us to first define $\alpha^X_{i_{j+1}}$, this implies $i_{j+1}$ is
-%     such a $j$, i.e., that $h^X_{i_j}\succ h^X_{i_{j+1}}$.
-%     Thus $h^X_{i_1}\succ h^X_{i_2}\succ h^X_{i_3}\succ\cdots$,
-%     but this contradicts the \emph{well-foundedness} part of the command
-%     from Definition \ref{fairsequencedefn}.
-% \end{proof}
-
-% \begin{lemma}
-% \label{technicallemmaaboutalphaXi}
-%     Let $X$ be an AGI. For all $i,j$,
-%     $h^X_i\succ h^X_j$ if and only if $\alpha^X_i>\alpha^X_j$.
-% \end{lemma}
-
-% \begin{proof}
-%     Fix $i$ and $j$.
-%     By the \emph{linear ordering} part of the command in Definition
-%     \ref{fairsequencedefn}, either $h^X_i\succ h^X_j$ or $h^X_j\succ h^X_i$.
-%     Assume $h^X_i\succ h^X_j$, the other case is similar.
-%     By definition, $\alpha^X_i$ is defined to be the smallest ordinal
-%     which is larger than $\alpha^X_{j'}$ for every $j'$ such that
-%     $h^X_i\succ h^X_{j'}$. One such $j'$ is $j$ itself,
-%     so by definition $\alpha^X_i$ is larger than $\alpha^X_j$, as desired.
-% \end{proof}
-
-% \begin{definition}
-% \label{generalizedmajorizationhierarchydefn}
-% (Generalized majorization hierarchies)
-%     Let $X$ be an AGI. Let $\alpha=\sup_i \alpha^X_i$ be the smallest ordinal
-%     bigger than all of the $\alpha^X_i$'s. The \emph{generalized majorization
-%     hierarchy given by $X$} is the family $(g_\beta)_{\beta<\alpha}$ of functions
-%     labeled by ordinals below $\alpha$, where each $g_{\beta}$ is defined
-%     such that $g_{\beta}=h^X_i$ where $i$ is such that $\beta=\alpha^X_i$.
-% \end{definition}
-
-% \begin{remark}
-% \label{pseudodensityremark}
-% With Definition \ref{generalizedmajorizationhierarchydefn} in view,
-% the pseudo-density
-% constraint in Definition \ref{fairsequencedefn} can be better motivated:
-% the point of pseudo-density is to ensure that the ordinal
-% $\sup_i \alpha^X_i$ is as large as possible\footnote{Chaitin \cite{chaitin}
-% and Good \cite{good1969godel} have remarked
-% about the importance of the size of the ordinals which an entity can notate---``and
-% the larger the ordinal,
-% the fitter the organism'', to quote Chaitin. See also \cite{ioi1} and \cite{ioi2}.}. An
-% alternative to pseudo-density would
-% be to directly command (in Definition \ref{fairsequencedefn}) that the $h_i$'s should
-% be chosen in such a way as to make $\alpha=\sup_i\alpha^X_i$ large (leaving it up
-% to the AGI's judgment and discretion how to interpret that), but this would be
-% difficult because it would mean that Definition \ref{generalizedmajorizationhierarchydefn}
-% (and its dependencies) would need to be embedded into the command in
-% Definition \ref{fairsequencedefn}, which would require some significant acrobatics.
-% \end{remark}
-
-% A generalized majorization hierarchy (Definition \ref{generalizedmajorizationhierarchydefn})
-% serves as a solution to Problem \ref{bigoproblem}: given any AGI $X$, we can say
-% that a function $f:\mathbb N\to\mathbb N$ has growth rate
-% $\beta$ where $\beta$ is the smallest ordinal $<\sup_i \alpha^X_i$
-% such that $g_\beta\succ f$---or $f$ has growth rate $\infty$ if there is no
-% such $\beta$. To this solution to Problem \ref{bigoproblem}, there is a corresponding
-% Hibbard-style intelligence measure.
-
-% \begin{definition}
-%     (Hibbard intelligence given by an AGI)
-%     Suppose $X$ is an AGI. By the \emph{transfinite Hibbard measure given by $X$},
-%     we mean the measure $\|\bullet\|_X$ which assigns to every predictor $p$ an
-%     intelligence measure $\|p\|_X$ defined as follows.
-%     $\|p\|_X$ is defined to be the smallest $\beta<\sup_i\alpha^X_i$
-%     such that for all $\gamma<\beta$,
-%     $p$ learns every evader $e$ such that $g_\gamma\succ e$
-%     (or $\|p\|_X=\infty$ if
-%     $p$ learns every evader $e$ such that $g_\gamma\succ e$ for every
-%     $\gamma<\sup_i \alpha^X_i$).
-% \end{definition}
-
-
-
-\section{Pros and cons of different ASPI measures}
+\section{Pros and cons of different ASPI measures and taxonomies}
 \label{prosandconssection}
 
-Here are pros and cons of the ASPI measures which arise from different solutions
+Here are pros and cons of the ASPI measures and taxonomies which arise
+from different solutions
 to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of functions.
 
 \begin{itemize}
@@ -1156,20 +960,22 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
     for various functions $f:\mathbb N\to\mathbb N$:
     \begin{itemize}
         \item
-        Pro: Gets directly at the underlying concept, without obfuscation.
+        Pro: Nearly perfect granularity (slightly coarser than perfect granularity because
+        of the constants $C,C'$ in Definition \ref{bigodefn}).
         \item
         Pro: Computer scientists already use Big-O/Big-$\Theta$ routinely
         and are comfortable with them.
         \item
-        Con: This option is not really a measure, but more of a taxonomy---and a
-        non-numerical taxonomy at that.
+        Con: A non-numerical taxonomy.
     \end{itemize}
     \item
     Hyperreal intelligence (Definition \ref{hyperrealhibbardintelligencedefn}):
     \begin{itemize}
         \item
         Pro: A taxonomy like Big-O/Big-$\Theta$, but with the added benefit
-        that the taxons are numerical (hyperreal numerical, to be more precise).
+        that the taxons are numerical.
+        \item
+        Perfect granularity.
         \item
         Con: Depends on a free ultrafilter (rendering it
         computationally impractical).
@@ -1178,14 +984,12 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
     Surreal intelligence (Definition \ref{surrealhibbardintelligencedefn}):
     \begin{itemize}
         \item
-        Pro: An actual numerical measure (not just a taxonomy), with about the same perfect
-        granularity as the Big-O/Big-$\Theta$ taxonomies.
+        Pro: An actual numerical measure (not just a taxonomy), with
+        perfect granularity.
         \item
-        Con: Abstract and impractical: depends not only on
-        a free ultrafilter, but also on an embedding of the hyperreals into the surreals.
-        \item
-        Con: The numbers which the measure outputs are surreal numbers, which may be
-        unfamiliar to some users.
+        Con: The numbers which the measure outputs are surreal numbers,
+        which are relatively new and thus unfamiliar, and are difficult
+        to work with in practice.
     \end{itemize}
     \item
     Intelligence based on a majorization hierarchy such as the
@@ -1228,15 +1032,15 @@ To summarize:
     be measured in one specific way (involving an enumeration of the primitive recursive
     functions). We argued that there many other ways to measure growth-rates,
     and that each method of measuring growth-rates yields a corresponding
-    adversarial sequence prediction intelligence (ASPI) measure.
+    adversarial sequence prediction intelligence (ASPI) measure or taxonomy.
     \item
-    We considered several specific ways of measuring growth-rate of functions, and exhibited
-    corresponding ASPI measures. The growth-rate-measuring methods
+    We considered several specific ways of measuring growth-rates of functions, and exhibited
+    corresponding ASPI measures and taxonomies. The growth-rate-measuring methods
     which we considered were: Big-O/Big-$\Theta$ notation; hyperreal numbers;
     surreal numbers; and majorization hierarchies.
     \item
-    We also discussed how measuring the intelligence of adversarial sequence predictors
-    provides an indirect measure of the intelligence of idealized AGIs.
+    We also discussed how the intelligence of adversarial sequence predictors
+    can be considered as an approximation of the intelligence of idealized AGIs.
 \end{itemize}
 
 \section*{Acknowledgments}
