@@ -82,7 +82,7 @@ ASPI taxonomy (like the big-$O$ taxonomy of asymptotic complexity).
 
 The particular method which Hibbard used to measure function growth rates is
 not very standard. We will survey other
-ways of measuring function growth rates, including some more standard ways,
+ways of measuring function growth rates,
 and these will yield corresponding ASPI measures and taxonomies.
 
 The structure of the paper is as follows.
@@ -95,10 +95,8 @@ The structure of the paper is as follows.
     and that the original Hibbard measure is just a special case resulting from
     one particular method of measuring function growth rate.
     \item
-    In Section \ref{bigosection}, we consider some of the
-    most standard taxonomies of
-    function growth rate---Big-O notation and Big-$\Theta$ notation---and define
-    corresponding ASPI taxonomies.
+    In Section \ref{bigosection}, we consider Big-O notation and Big-$\Theta$ notation
+    and define corresponding ASPI taxonomies.
     \item
     In Section \ref{exoticsection}, we consider several numeric solutions to
     the problem of measuring the growth rate of functions (using various number
@@ -252,8 +250,8 @@ because of a minor (and fortunately, easy-to-fix) error there.
 
 Definition \ref{classichibbardmeasuredefn}, and similar measures and taxonomies
 which we will
-define later, as written, only quantify the intelligence of one very specific type
-of agent, namely, predictors in the game of adversarial sequence prediction.
+define later, quantify the intelligence of predictors in the game of
+adversarial sequence prediction.
 But any method for quantifying the intelligence of such predictors can also
 approximately quantify the intelligence of (suitably idealized)
 agents with Artificial General Intellience (that is, the intelligence of AGIs).
@@ -288,7 +286,7 @@ exemplifies its
 ability to ``adapt with insufficient
 knowledge and resources'' \cite{wang2019defining}.
 One well-known example of an open-ended command which an AGI should be perfectly
-capable of attempting to obey (perhaps at great peril to us all) is
+capable of attempting to obey (perhaps at peril to us) is
 Bostrom's ``manufacture as many paperclips as possible'' \cite{bostrom2003ethical}.
 
 In particular, an AGI $X$ should be perfectly capable of obeying the following command:
@@ -473,11 +471,11 @@ Hyperreal numbers, studied in the field of non-standard analysis \cite{robinson}
 are equivalence classes of infinite sequences of reals,
 so for every sequence $r=(r_0,r_1,r_2,\ldots)$ of reals, there is a corresponding
 hyperreal $\hat r$ represented by that sequence.
-Arithmetic is performed pointwise, so if $r=(r_0,r_1,r_2,\ldots)$ and
-$s=(s_0,s_1,s_2,\ldots)$, then $\hat r + \hat s$
-is the hyperreal represented by $(r_0+s_0,r_1+s_1,r_2+s_2,\ldots)$,
+Arithmetic is performed pointwise, so if $r=(r_0,r_1,\ldots)$ and
+$s=(s_0,s_1,\ldots)$, then $\hat r + \hat s$
+is the hyperreal represented by $(r_0+s_0,r_1+s_1,\ldots)$,
 and $\hat r\cdot\hat s$ is the hyperreal represented by
-$(r_0 s_0,r_1 s_1, r_2 s_2,\ldots)$.
+$(r_0 s_0,r_1 s_1,\ldots)$.
 
 The difficulty in constructing the hyperreals is how to compare two hyperreals.
 We would like to compare them pointwise, so for example
@@ -556,15 +554,14 @@ into which the hyperreals can be embedded.
     rate of $f$ (Definition \ref{hyperrealgrowthratedefn}).
 \end{definition}
 
-The advantage of the surreal numbers is that for any set $L$ of surreal numbers,
-there is a canonical way to choose a surreal upper bound on $L$,
+One advantage of the surreal numbers is that for any set $L$ of surreal numbers,
+there is a canonical way to choose a surreal strict upper bound on $L$,
 which upper bound is written $\{L\,|\,\}$. This upper bound is similar to a
 supremum of $L$ in a certain sense: the surreal numbers possess a
 simplicity-hierarchical structure, and $\{L\,|\,\}$ is the \emph{simplest}
 strict upper bound of $L$. This allows us to
 exactly measure intelligence of predictors,
-rather than merely classify predictors in a taxonomy as in the case of
-the hyperreal ASPI measures (Definition \ref{hyperrealhibbardintelligencedefn}).
+rather than merely classify predictors in a taxonomy as in Definition \ref{hyperrealhibbardintelligencedefn}.
 
 \begin{definition}
 \label{surrealhibbardintelligencedefn}
@@ -975,7 +972,7 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
         Pro: A taxonomy like Big-O/Big-$\Theta$, but with the added benefit
         that the taxons are numerical.
         \item
-        Perfect granularity.
+        Pro: Perfect granularity.
         \item
         Con: Depends on a free ultrafilter (rendering it
         computationally impractical).
@@ -1030,7 +1027,7 @@ To summarize:
     First: that intelligence can be measured via the growth-rates of the run-times
     of evaders that a predictor can learn to predict. Second: that such growth-rates can
     be measured in one specific way (involving an enumeration of the primitive recursive
-    functions). We argued that there many other ways to measure growth-rates,
+    functions). We argued that there are many other ways to measure growth-rates,
     and that each method of measuring growth-rates yields a corresponding
     adversarial sequence prediction intelligence (ASPI) measure or taxonomy.
     \item
