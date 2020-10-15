@@ -54,10 +54,10 @@ Hibbard's intelligence measure}
 
 \section{Introduction}
 
-In his insightful paper \cite{hibbard}, Bill Hibbard introduces a novel
+In his insightful paper, \citet{hibbard} introduces a novel
 intelligence measure (which we will here refer to as the \emph{original Hibbard measure})
 for agents who play a game of adversarial sequence prediction
-\cite{hibbard2008adversarial}
+\citep{hibbard2008adversarial}
 ``against a hierarchy of increasingly difficult sets of'' evaders (environments that attempt
 to emit $1$s and $0$s in such a way as to evade prediction).
 The levels of Hibbard's hierarchy are labelled by natural numbers, and
@@ -194,7 +194,7 @@ finite binary sequences. By $\langle\rangle$ we mean the empty binary sequence.
 Note that if $e$ simply ignores its inputs $(y_1,\ldots,y_n)$ and instead
 computes $e(y_1,\ldots,y_n)$ based only on $n$, then $e$ is essentially a sequence.
 Thus Definition \ref{evaderpredictordefn} is a generalization of sequence prediction,
-which many authors have written about (such as Legg \cite{legg2006there}, who gives many
+which many authors have written about (such as \citet{legg2006there}, who gives many
 references).
 
 In the following definition, we differ from Hibbard's original paper
@@ -239,7 +239,7 @@ because of a minor (and fortunately, easy-to-fix) error there.
 \label{classichibbardmeasuredefn}
     (The original Hibbard measure)
     Let $g_1,g_2,\ldots$ be the enumeration of the primitive recursive
-    functions given by Liu \cite{liu1960enumeration}.
+    functions given by \citet{liu1960enumeration}.
     For each $m>0$, define $f_m:\mathbb N\to\mathbb N$ by
     \[f_m(k)=\max_{0<i\leq m}\max_{j\leq k}g_i(j).\]
     For any predictor $p$, we define the \emph{original Hibbard intelligence of $p$}
@@ -263,8 +263,8 @@ agents with Artificial General Intellience (that is, the intelligence of AGIs).
 Presumably, a suitably idealized AGI should be capable of understanding, and
 obedient in following or trying to follow, commands issued in everyday human
 language\footnote{It is somewhat unclear how explicitly an AGI would
-obey certain commands. To use an example of Yampolskiy
-\cite{yampolskiycontrol}, if we asked a car-driving AGI
+obey certain commands. To use an example of
+\citet{yampolskiycontrol}, if we asked a car-driving AGI
 to stop the car, would the AGI stop the car
 in the middle of traffic, or would it pull over to the side first?
 We assume this ambiguity does not apply when we ask the AGI to perform
@@ -272,12 +272,12 @@ tasks of a sufficiently abstract and mathematical nature.}.
 For example, if an AGI were commanded, ``until further notice, compute and list the
 digits of pi,'' the AGI should be capable of understanding that command, and should
 obediently compute said digits until commanded otherwise\footnote{Our thinking
-here is reminiscent of some remarks of Yampolskiy \cite{yampolskiy2013turing}.}.
+here is reminiscent of some remarks of \citet{yampolskiy2013turing}.}.
 
 It is unclear how an AGI ought to respond if given an impossible command,
 such as ``write a computer program
-that solves the halting problem'', or Yampolskiy's \cite{yampolskiycontrol}
-``Disobey!'' But an AGI should be capable of
+that solves the halting problem'', or Yampolskiy's
+``Disobey!'' \citep{yampolskiycontrol}. But an AGI should be capable of
 understanding and attempting to obey an open-ended command, provided it is not
 impossible. For example, we could command an AGI to ``until further notice,
 write an endless poem about trees,'' and the AGI should be able to do so, writing
@@ -288,10 +288,10 @@ poem about trees, and we have left all these decisions to the AGI's discretion).
 The AGI's ability to obey such open-ended and under-determined commands
 exemplifies its
 ability to ``adapt with insufficient
-knowledge and resources'' \cite{wang2019defining}.
+knowledge and resources'' \citep{wang2019defining}.
 One well-known example of an open-ended command which an AGI should be perfectly
 capable of attempting to obey (perhaps at peril to us) is
-Bostrom's ``manufacture as many paperclips as possible'' \cite{bostrom2003ethical}.
+Bostrom's ``manufacture as many paperclips as possible'' \citep{bostrom2003ethical}.
 
 In particular, an AGI $X$ should be perfectly capable of obeying the following command:
 ``Act as a predictor in the game of adversarial sequence prediction''.
@@ -305,7 +305,7 @@ time $t$, the observations $X$ makes about the universe might have an effect on
 the strategy $X$ chooses to take once commanded to act as a predictor; but as long
 as we filter $X$'s sensory input immediately after giving $X$ the command, no
 further such observations can so alter $X$'s strategy.
-In short, to use Yampolskiy's terminology \cite{yampolskiy2012ai}, the act of
+In short, to use Yampolskiy's terminology \citep{yampolskiy2012ai}, the act of
 trying to predict adversarial sequence evaders is \emph{AI-easy}.
 
 Thus, any intelligence measure (or taxonomy) for predictors also serves as an intelligence
@@ -421,7 +421,7 @@ One of the most standard solutions
 to Problem \ref{bigoproblem} in computer science is to categorize
 growth rates of arbitrary functions by comparing them to more familiar functions using
 Big-O notation or Big-$\Theta$ notation.
-Knuth defines \cite{knuth1976big} these as follows
+\citet{knuth1976big} defines these as follows
 (we modify the definition slightly because
 we are only concerned here with functions from $\mathbb N$ to $\mathbb N$).
 
@@ -471,8 +471,8 @@ and the ASPI measures and taxonomies they produce.
 \subsection{The hyperreal ASPI taxonomy}
 \label{hyperrealsubsection}
 
-Hyperreal numbers, studied in the field of non-standard analysis \cite{robinson}
-\cite{goldblatt2012lectures},
+Hyperreal numbers, studied in the field of non-standard analysis
+\citep{robinson, goldblatt2012lectures},
 are equivalence classes of infinite sequences of reals,
 so for every sequence $r=(r_0,r_1,r_2,\ldots)$ of reals, there is a corresponding
 hyperreal $\hat r$ represented by that sequence.
@@ -494,7 +494,7 @@ But\footnote{This is similar to the problem of deciding which
 of two reinforcement learning agents is more intelligent, if one agent
 performs better in infinitely many environments, but the other agent performs
 better in infinitely many other environments. For a treatment of that problem
-using free ultrafilters, see \cite{alexander2019intelligence}.}
+using free ultrafilters, see \citep{alexander2019intelligence}.}
 how should $\hat r$ and $\hat s$ compare if there are infinitely
 many $i$ such that $r_i<s_i$ and infinitely many $i$ such that
 $s_i<r_i$? The answer is to declare $\hat r<\hat s$ if the set
@@ -545,7 +545,7 @@ to many bounds.
 
 \subsection{The surreal ASPI measure}
 
-The surreal numbers \cite{conway} \cite{knuth} \cite{ehrlich2012absolute}
+The surreal numbers \citep{conway, knuth, ehrlich2012absolute}
 are an even larger extension
 of the real numbers
 into which the hyperreals can be embedded.
@@ -580,7 +580,7 @@ rather than merely classify predictors in a taxonomy as in Definition \ref{hyper
 
 \subsection{ASPI measures based on majorization hierarchies}
 
-Majorization hierarchies \cite{weiermann2002slow}
+Majorization hierarchies \citep{weiermann2002slow}
 provide ordinal-number-valued measures for the growth
 rates of certain functions. A majorization hierarchy depends
 on many infinite-dimensional parameters. We will describe two
@@ -830,7 +830,7 @@ hierarchies, such as the following.
 \end{definition}
 
 The functions in the fast-growing hierarchy grow quickly
-as $\alpha$ grows. It can be shown \cite{wainer1987provably} that
+as $\alpha$ grows. It can be shown \citep{wainer1987provably} that
 for every computable function $f$ whose totality can be proven from the axioms of
 Peano arithmetic, there is some $\alpha<\epsilon_0$ such that $h_\alpha\succ f$.
 
@@ -859,7 +859,7 @@ extended by extending the fundamental sequences of Definition
 \ref{fundsequencesdefn} to larger ordinals\footnote{Remarkably,
 the slow-growing hierarchy eventually catches up with the fast-growing hierarchy
 if both hierarchies are extended to sufficiently large ordinals
-\cite{wainer1989slow} \cite{girard1981pi12}, a beautiful illustration of
+\citep{wainer1989slow, girard1981pi12}, a beautiful illustration of
 how counter-intuitive
 large ordinal numbers can be.}, however, the larger
 the ordinals become, the more difficult it is to do this, and especially the less
@@ -867,11 +867,11 @@ clear it is how to do it in any sort of canonical way.
 There are also other choices for how to proceed at successor ordinal stages besides
 $g_{\alpha+1}(n)=g_\alpha(n)+1$ or $h_{\alpha+1}(n)=h^n_\alpha(n)$---for example,
 one of the oldest majorization hierarchies is the Hardy hierarchy
-\cite{hardy1904theorem}, where $H_{\alpha+1}(n)=H_\alpha(n+1)$.
+\citep{hardy1904theorem}, where $H_{\alpha+1}(n)=H_\alpha(n+1)$.
 And even for ordinals up to $\epsilon_0$,
 there are other ways to choose fundamental sequences besides how we defined them in
 Definition \ref{fundsequencesdefn}---choosing non-canonical fundamental sequences can
-drastically alter the resulting majorization hierarchy \cite{weiermann1997sometimes}.
+drastically alter the resulting majorization hierarchy \citep{weiermann1997sometimes}.
 All these different majorization hierarchies yield different ASPI measures.
 
 \subsection{A remark about ASPI measures and AGI intelligence}
@@ -915,15 +915,15 @@ contrived.}. This suggests a connection between
     Definition \ref{fastmajorizationhierarchyhibbardmeasuredefn}, and
     \item
     intelligence measures based on which ordinals the AGI knows
-    \cite{ioi1}.
+    \citep{ioi1}.
 \end{enumerate}
-Indeed, Alexander has argued \cite{ioi2} that
+Indeed, \citet{ioi2} has argued that
 the task of notating large ordinals is one which
 spans the entire range of intelligence.
 This is reminiscent of Chaitin's proposal to use ordinal notation
 as a goal intended to facilitate evolution---``and the larger the ordinal,
-the fitter the organism'' \cite{chaitin}---and Good's observation
-\cite{good1969godel} that iterated Lucas-Penrose contests boil down to
+the fitter the organism'' \citep{chaitin}---and Good's observation
+\citep{good1969godel} that iterated Lucas-Penrose contests boil down to
 contests to name the larger ordinal.
 
 
@@ -938,7 +938,7 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
     \item
     The original Hibbard measure (Definition \ref{classichibbardmeasuredefn}),
     which arises by measuring growth rate by comparing
-    a function with Liu's enumeration \cite{liu1960enumeration} of the primitive
+    a function with Liu's enumeration \citep{liu1960enumeration} of the primitive
     recursive functions:
     \begin{itemize}
         \item
@@ -1025,7 +1025,7 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
 To summarize:
 \begin{itemize}
     \item
-    Hibbard proposed \cite{hibbard} an intelligence measure for predictors
+    \citet{hibbard} proposed an intelligence measure for predictors
     in games of adversarial sequence prediction.
     \item
     We argued that Hibbard's idea actually splits into two orthogonal sub-ideas.
