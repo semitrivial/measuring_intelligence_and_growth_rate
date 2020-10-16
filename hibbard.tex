@@ -372,7 +372,9 @@ can be thought of as implicitly depending on a specific solution to Problem
 \label{rephrasinghibbardsmeasurecorollary}
     For every predictor $p$, the original Hibbard measure of $p$
     is equal to the maximum natural $m>0$ such that
-    $p$ learns $e$ whenever $e\in E^H_m$, or is equal to $\infty$
+    $p$ learns $e$ whenever $e\in E^H_m$,
+    or is equal to $0$ if there is no such $m$,
+    or is equal to $\infty$
     if $p$ learns $e$ whenever $e\in E^H_m$ for all $m>0$.
 \end{corollary}
 
@@ -503,7 +505,7 @@ what it should mean for a set of natural numbers to be ``large''.
 
 It turns out that the best answer---the only answer which leads to
 hyperreals with the properties we would want an extension of the
-reals to have---is to let the question of largeness of natural numbers
+reals to have---is to let the question of largeness of sets of natural numbers
 be decided by an object called a \emph{free ultrafilter}.
 Loosely speaking, a free ultrafilter can be thought
 of as a black box which makes judgments about which subsets of $\mathbb N$
@@ -653,7 +655,9 @@ is
     \begin{itemize}
         \item
         If $\lambda=\epsilon_0$, then $\lambda[0]=0$,
-        $\lambda[1]=\omega^0$, $\lambda[2]=\omega^{\omega^0}$, and so on.
+        $\lambda[1]=\omega^0$, $\lambda[2]=\omega^{\omega^0}$,
+        $\lambda[3]=\omega^{\omega^{\omega^0}}$,
+        and so on.
         \item
         If $\lambda$ has Cantor normal form
         $\omega^{\alpha_1}+\cdots+\omega^{\alpha_k}$ where $k>1$,
@@ -695,7 +699,7 @@ is
 \label{slowgrowinghierarchydefn}
     (The standard slow-growing hierarchy up to $\epsilon_0$)
     We define functions $g_\beta:\mathbb N\to\mathbb N$ (for all ordinals
-    $\leq \epsilon_0$) by transfinite induction as follows.
+    $\beta\leq \epsilon_0$) by transfinite induction as follows.
     \begin{itemize}
         \item
         $g_0(n)=0$.
@@ -836,7 +840,7 @@ Peano arithmetic, there is some $\alpha<\epsilon_0$ such that $h_\alpha\succ f$.
 
 \begin{definition}
 \label{fastmajorizationhierarchyhibbardmeasuredefn}
-    If $p$ is a predictor, the \emph{ASPI measure of $X$ given by the
+    If $p$ is a predictor, the \emph{ASPI measure of $p$ given by the
     standard fast-growing hierarchy up to $\epsilon_0$} is defined to be the
     supremum of $S$ (or $\infty$ if $\epsilon_0\in S$),
     where $S$ is the set of all ordinals $\alpha\leq\epsilon_0$ such that
@@ -845,10 +849,10 @@ Peano arithmetic, there is some $\alpha<\epsilon_0$ such that $h_\alpha\succ f$.
 \end{definition}
 
 Between Definitions \ref{tradmajorizationhierarchyhibbardmeasuredefn} and
-\ref{fastmajorizationhierarchyhibbardmeasuredefn}, the former offers a higher
+\ref{fastmajorizationhierarchyhibbardmeasuredefn}, the former offers a finer
 granularity
-intelligence measure for the predictors which it assigns non-$\infty$
-intelligence to, but the latter assigns non-$\infty$ intelligence to a much larger
+intelligence measure for the predictors to which it assigns non-$\infty$
+intelligence, but the latter assigns non-$\infty$ intelligence to a larger
 set of predictors.
 
 Definitions \ref{slowgrowinghierarchydefn}
@@ -880,7 +884,7 @@ All the ASPI measures and taxonomies we have defined so far double as indirect
 intelligence measures and taxonomies for an AGI, by the argument we made
 in Subsection \ref{agiproxysection}.
 
-For a given AGI $X$, a priori, we cannot say much for certain about the predictor which $X$
+For a given AGI $X$, a priori, we cannot say much about the predictor which $X$
 would act as if $X$ were commanded to act as a predictor. But there is one particularly
 elegant and parsimonious strategy which $X$ might use, a \emph{brute force strategy},
 namely:
@@ -900,7 +904,7 @@ equivalent.
 
 For an AGI $X$ who uses the above brute force strategy, ASPI
 measures of $X$'s intelligence would be determined by $X$'s knowledge, namely,
-by the runtime complexity of the computable functions $X$ knows to be total.
+by the runtime complexity of the computable functions which $X$ knows to be total.
 Furthermore, the most natural way for $X$ to know totality of functions with large
 runtime complexity, is for $X$ to know fundamental sequences for large ordinal
 numbers, and produce said functions by means of majorization
@@ -997,7 +1001,7 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
     Intelligence based on a majorization hierarchy such as the
     standard slow- or fast-growing hierarchy up to $\epsilon_0$
     (Definitions \ref{tradmajorizationhierarchyhibbardmeasuredefn}
-    and \ref{tradmajorizationhierarchyhibbardmeasuredefn}):
+    and \ref{fastmajorizationhierarchyhibbardmeasuredefn}):
     \begin{itemize}
         \item
         Pro: A numerical measure, albeit less granular than the
