@@ -473,55 +473,200 @@ and the ASPI measures and taxonomies they produce.
 \subsection{The hyperreal ASPI taxonomy}
 \label{hyperrealsubsection}
 
-Hyperreal numbers, studied in the field of non-standard analysis
-\citep{robinson, goldblatt2012lectures},
-are equivalence classes of infinite sequences of reals,
-so for every sequence $r=(r_0,r_1,r_2,\ldots)$ of reals, there is a corresponding
-hyperreal $\hat r$ represented by that sequence.
-Arithmetic is performed pointwise, so if $r=(r_0,r_1,\ldots)$ and
-$s=(s_0,s_1,\ldots)$, then $\hat r + \hat s$
-is the hyperreal represented by $(r_0+s_0,r_1+s_1,\ldots)$,
-and $\hat r\cdot\hat s$ is the hyperreal represented by
-$(r_0 s_0,r_1 s_1,\ldots)$.
+In this subsection, we will begin by considering growth rate \emph{comparison}, which is
+a strictly simpler problem than growth rate \emph{measurement} (our proposed solution will
+then lead to a numerical intelligence measure anyway). Given two functions $f$
+and $g$, does $f$ outgrow $g$ or does $f$ not outgrow $g$? We would like to say that
+$f$ outgrows $g$ if and only if $f(n)>g(n)$ for almost every $n\in\mathbb N$, but it is
+not clear what ``almost every'' means. Certainly if $f(n)>g(n)$ for all but finitely many
+$n\in\mathbb N$, it should be safe to say $f$ outgrows $g$, and if $f(n)\leq g(n)$ for
+all but finitely many $n\in\mathbb N$, it should be safe to say $f$ does not outgrow
+$g$. But what if there are infinitely many $n\in\mathbb N$ such that $f(n)>g(n)$, and
+infinitely many $n\in\mathbb N$ such that $f(n)\leq g(n)$?
 
-The difficulty in constructing the hyperreals is how to compare two hyperreals.
-We would like to compare them pointwise, so for example
-with $r,s$ as above, we would want to have $\hat r<\hat s$ if
-every $r_i<s_i$, or $\hat s<\hat r$ if every $s_i<r_i$.
-Having done this, we would immediately obtain an elegant abstract
-solution to Problem \ref{bigoproblem} using hyperreal numbers,
-namely: the growth rate of $f(n)$ could be defined to be the
-hyperreal number represented by $(f(0),f(1),f(2),\ldots)$.
-But\footnote{This is similar to the problem of deciding which
-of two reinforcement learning agents is more intelligent, if one agent
-performs better in infinitely many environments, but the other agent performs
-better in infinitely many other environments. For a treatment of that problem
-using free ultrafilters, see \citep{alexander2019intelligence}.}
-how should $\hat r$ and $\hat s$ compare if there are infinitely
-many $i$ such that $r_i<s_i$ and infinitely many $i$ such that
-$s_i<r_i$? The answer is to declare $\hat r<\hat s$ if the set
-$\{i\in\mathbb N\,:\,r_i<s_i\}$ is ``large'', but it is not clear
-what it should mean for a set of natural numbers to be ``large''.
+Adapting the key insight from \citep{alexander2019intelligence}, consider each $n\in\mathbb N$
+to be a voter in an election to determine whether or not $f$ outgrows $g$.
+Each $n$ votes based on whether or not $f(n)>g(n)$. For example, $532$ is a voter in this
+election. If $f(532)>g(532)$, then $532$ casts her vote for ``$f$ outgrows $g$''; otherwise,
+$532$ casts her vote for ``$f$ does not outgrow $g$''. This reduces the outgrowth problem
+to an election decision problem: $f$ shall be considered to outgrow $g$ if and only if
+``$f$ outgrows $g$'' gets a winning bloc of votes.
 
-It turns out that the best answer---the only answer which leads to
-hyperreals with the properties we would want an extension of the
-reals to have---is to let the question of largeness of sets of natural numbers
-be decided by an object called a \emph{free ultrafilter}.
-Loosely speaking, a free ultrafilter can be thought
-of as a black box which makes judgments about which subsets of $\mathbb N$
-are ``large'' (and does so in a particularly consistent way).
-Unfortunately, free ultrafilters are non-constructive: mathematicians have
-shown that free ultrafilters
-exist, but that it is impossible to concretely exhibit one.
-For the remainder of the section, we assume a free ultrafilter has been
-chosen, and we work in the resulting construction of the hyperreal numbers.
+We need to decide what it means for a set $N\subseteq \mathbb N$ to constitute a winning
+bloc of votes. We reason as follows.
+\begin{itemize}
+    \item $\emptyset$ should not be a winning bloc: if no-one votes for
+    you, you lose.
+    \item If $N_1$ is a winning bloc and $N_1\subseteq N_2$, then $N_2$ should
+    be a winning bloc: if you were already winning, and additional voters switch
+    their votes to you, you should still win.
+    \item For any $N\subseteq \mathbb N$, either $N$ should be a winning bloc,
+    or its complement $N^c=\mathbb N\backslash N$ should be a winning bloc:
+    however the election goes, either you win or your opponent wins.
+    \item We should insist on the outgrowth relation being transitive:
+    if $f$ outgrows $g$ and $g$ outgrows $h$, then $f$ should outgrow $h$.
+    Suppose that
+    \begin{align*}
+        N_{fg} &= \{ n\in\mathbb N \,:\, f(n)>g(n)\},\\
+        N_{gh} &= \{ n\in\mathbb N \,:\, g(n)>h(n)\},\mbox{ and}\\
+        N_{fh} &= \{ n\in\mathbb N \,:\, f(n)>h(n)\}.
+    \end{align*}
+    Clearly $N_{fg}\cap N_{gh}\subseteq N_{fh}$ but, a priori, we cannot say
+    more: one can find functions $f,g,h$ such that
+    $N_{fg}\cap N_{gh}=N_{fh}$. Thus, in order to ensure transitivity of the
+    outgrowth relation, we should insist on the following requirement.
+    Whenever $N_1$ and $N_2$ are winning blocs, then $N_1\cap N_2$ should be a winning bloc.
+    \item We could trivially satisfy the
+    above requirements, namely: we could choose some $n_0\in\mathbb N$ and
+    declare that $N\subseteq \mathbb N$ is a winning bloc if and only if
+    $n_0\in N$. In electoral terms, this would amount to making $n_0$ a dictator, whose
+    vote decides the election regardless how anyone else votes. In terms of
+    the outgrowth relation, this would amount to declaring that $f$ outgrows $g$
+    if and only if $f(n_0)>g(n_0)$. That would be a poor method
+    of comparing growth rates. Thus, we should insist that $\{n_0\}$ is not a winning
+    bloc for any $n_0\in\mathbb N$.
+\end{itemize}
+Is it possible to satisfy all the above requirements, or are they too demanding?
+It turns out it is possible. In fact, the above requirements are exactly the requirements
+of a \emph{free ultrafilter}, an important device from mathematical logic.
+
+\begin{definition}
+\label{ultrafilterdefn}
+    An \emph{ultrafilter on $\mathbb N$} (or more simply an \emph{ultrafilter})
+    is a set $\mathcal U$ of subsets of $\mathbb N$ such that:
+    \begin{enumerate}
+        \item $\emptyset\not\in\mathcal U$.
+        \item For every $N_1\in\mathcal U$, for every $N_2\subseteq \mathbb N$,
+        if $N_1\subseteq N_2$, then $N_2\in\mathcal U$.
+        \item For every $N\subseteq\mathbb N$, either $N\in\mathcal U$
+        or $N^c\in\mathcal U$.
+        \item ($\cap$-closure) For every $N_1,N_2\in\mathcal U$, $N_1\cap N_2\in \mathcal U$.
+    \end{enumerate}
+    An ultrafilter is \emph{free} if it does not contain any singleton
+    $\{n_0\}$ ($n_0\in\mathbb N$).
+\end{definition}
+
+Clearly a free ultrafilter is exactly a notion of winning blocs meeting all our
+requirements.
+The following theorem is well-known in mathematical logic, and we state it without
+proof.
+
+\begin{theorem}
+\label{freeultrafiltersexistthm}
+    Free ultrafilters exist.
+\end{theorem}
+
+Theorem \ref{freeultrafiltersexistthm} is profound because
+it is counter-intuitive that there should be a non-dictatorial method of determining
+election winners satisfying $\cap$-closure. To see how counter-intuitive $\cap$-closure
+is, suppose that in 2021 the Dog party wins the presidency and in 2022 the
+Cat party wins the presidency (with the same voters every year and no other parties).
+Call a voter a ``Dog-to-Cat switcher'' if they vote Dog in 2021 and Cat in 2022.
+The $\cap$-closure property says in order to win in 2023, it would be enough to
+get just the Dog-to-Cat switchers' votes \emph{and no others}.
+For more on infinite-voter elections and free ultrafilters,
+and especially their interplay with Arrow's impossibility theorem,
+see \citep{kirman}.
+
+For the remainder of the section, let $\mathcal U$ be a free ultrafilter.
+Unfortunately, logicians have shown that, though free ultrafilters exist,
+it is impossible to concretely exhibit one. More precisely, all known proofs
+of Theorem \ref{freeultrafiltersexistthm} are non-constructive (using non-constructive
+set-theoretic axioms such as the Axiom of Choice) and logicians have proven that
+Theorem \ref{freeultrafiltersexistthm} cannot be proved constructively.
+
+\begin{definition}
+\label{outgrowsdefn}
+    Suppose $f,g:\mathbb N\to\mathbb R$. We say $f$ \emph{outgrows} $g$ (according
+    to $\mathcal U$) if
+    \[\{n\in\mathbb N\,:\,f(n)>g(n)\}\in \mathcal U.\]
+    In other words: if $\mathcal U$ is thought of as a black box deciding which
+    subsets of $\mathbb N$ are winning blocs, then $f$ outgrows $g$ (according to
+    $\mathcal U$) if and only if ``$f$ outgrows $g$'' wins the election when
+    each $n\in\mathbb N$ votes for ``$f$ outgrows $g$'' or ``$f$ does not outgrow $g$''
+    depending whether $f(n)>g(n)$ or $f(n)\leq g(n)$ respectively.
+\end{definition}
+
+We will now explain how Definition \ref{outgrowsdefn} leads to a numerical
+growth rate measure and, in turn, an ASPI taxonomy.
+We will show that by coming up with Definition \ref{outgrowsdefn}, we have actually
+done most of the work of the construction of the so-called ultrapower construction of
+the hyperreal number system, studied in the field of non-standard
+analysis \citep{robinson, goldblatt2012lectures}.
+
+\begin{definition}
+\label{equivrelndefn}
+(Compare Definition \ref{outgrowsdefn})
+    Suppose $f,g:\mathbb N\to\mathbb R$. We say \emph{$f$ equals $g$ almost everywhere
+    (according to $\mathcal U$)},
+    written $f\equiv g$, if
+    \[
+    \{n\in\mathbb N\,:\, f(n) = g(n)\} \in \mathcal U.
+    \]
+    In other words, $f\equiv g$ if ``$f=g$'' wins the election (as decided by
+    $\mathcal U$) when each
+    $n\in\mathbb N$ votes for ``$f=g$'' or ``$f\not=g$'' depending whether
+    $f(n)=g(n)$ or $f(n)\neq g(n)$ respectively.
+\end{definition}
+
+\begin{lemma}
+    The relation $\equiv$ (from Definition \ref{equivrelndefn}) is an equivalence
+    relation on the space $\mathbb R^{\mathbb N}$ of functions $\mathbb N\to\mathbb R$.
+\end{lemma}
+
+\begin{proof}
+    Symmetry and reflexivity are trivial. To see that $\equiv$ is transitive, we will
+    use the $\cap$-closure of $\mathcal U$. Suppose $f,g,h:\mathbb N\to\mathbb R$
+    are such that $f\equiv g$ and $g\equiv h$, we must show $f\equiv h$.
+    Let
+    \begin{align*}
+        N_{fg} &= \{n\in\mathbb N\,:\,f(n)=g(n)\},\\
+        N_{gh} &= \{n\in\mathbb N\,:\,g(n)=h(n)\},\mbox{ and}\\
+        N_{fh} &= \{n\in\mathbb N\,:\,f(n)=h(n)\}.\\
+    \end{align*}
+    Since $f\equiv g$, $N_{fg}\in\mathcal U$. Since $g\equiv h$, $N_{gh}\in\mathcal U$.
+    By $\cap$-closure, $N_{fg}\cap N_{gh}\in\mathcal U$.
+    Clearly $N_{fh}\subseteq N_{fg}\cap N_{gh}$, so, by (2) of
+    Definition \ref{ultrafilterdefn},
+    $N_{fh}\in \mathcal U$, that is, $f\equiv h$.
+\end{proof}
+
+\begin{definition}
+\label{hyperrealsdefn}
+    By the \emph{hyperreal numbers}, written $\mathbb R^*$,
+    we mean the equivalence classes of $\equiv$.
+    For every $f:\mathbb N\to\mathbb R$, write $\hat{f}$ for
+    the hyperreal number (i.e., the $\equiv$-equivalence class) containing $f$.
+    We endow $\mathbb R^*$ with arithmetic and order as follows
+    (where $f,g:\mathbb N\to\mathbb R$):
+    \begin{itemize}
+        \item We define addition on $\mathbb R^*$ by declaring that
+        $\hat{f}+\hat{g}=\hat{h}$
+        where $h(n)=f(n)+g(n)$.
+        \item We define multiplication on $\mathbb R^*$ by declaring that
+        $\hat{f}\cdot \hat{g}=\hat{h}$
+        where $h(n)=f(n)g(n)$.
+        \item We order $\mathbb R^*$ by declaring that
+        $\hat{f}>\hat{g}$ if and only if $f$ outgrows $g$ (Definition \ref{outgrowsdefn}).
+    \end{itemize}
+\end{definition}
+
+The following is well-known and we state it
+without proof.
+
+\begin{theorem}
+    The addition, multiplication, and ordering in Definition \ref{hyperrealsdefn}
+    are well-defined, and they make $\mathbb R^*$ an ordered field.
+\end{theorem}
+
+Having invested in this machinery,
+we now have a trivial hyperreal solution to Problem \ref{bigoproblem}.
 
 \begin{definition}
 \label{hyperrealgrowthratedefn}
     (The hyperreal solution to Problem \ref{bigoproblem})
     For any function $f:\mathbb N\to\mathbb N$, the \emph{hyperreal growth rate
-    of $f$} is the hyperreal number $\hat r$
-    where $r=(f(0),f(1),f(2),\ldots)$.
+    of $f$} is the hyperreal number $\hat f$.
 \end{definition}
 
 Because of the non-constructive nature of free ultrafilters, the following notion
@@ -534,15 +679,14 @@ of bounded sets of hyperreal numbers in general. For lack of a way of
 choosing a particular bound, we are forced to consider many taxa corresponding
 to many bounds.
 
-
 \begin{definition}
 \label{hyperrealhibbardintelligencedefn}
     (The hyperreal ASPI taxonomy)
-    Let $p$ be a predictor and let $\hat r$ be a hyperreal number.
-    We say that $p$ \emph{has hyperreal ASPI intelligence at least $\hat r$}
+    Let $p$ be a predictor and let $\hat f$ be a hyperreal number.
+    We say that $p$ \emph{has hyperreal ASPI intelligence at least $\hat f$}
     if and only if the following condition holds:
     for every evader $e$, if the hyperreal growth rate of $t_e$ is
-    $<\hat r$, then $p$ learns $e$.
+    $<\hat f$, then $p$ learns $e$.
 \end{definition}
 
 \subsection{The surreal ASPI measure}
