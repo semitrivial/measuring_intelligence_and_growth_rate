@@ -475,7 +475,7 @@ and the ASPI measures and taxonomies they produce.
 
 In this subsection, we will begin by considering growth rate \emph{comparison}, which is
 a strictly simpler problem than growth rate \emph{measurement} (our proposed solution will
-then lead to a numerical intelligence measure anyway). Given two functions $f$
+then lead to a numerical growth rate measure anyway). Given two functions $f$
 and $g$, does $f$ outgrow $g$ or does $f$ not outgrow $g$? We would like to say that
 $f$ outgrows $g$ if and only if $f(n)>g(n)$ for almost every $n\in\mathbb N$, but it is
 not clear what ``almost every'' means. Certainly if $f(n)>g(n)$ for all but finitely many
@@ -484,7 +484,7 @@ all but finitely many $n\in\mathbb N$, it should be safe to say $f$ does not out
 $g$. But what if there are infinitely many $n\in\mathbb N$ such that $f(n)>g(n)$, and
 infinitely many $n\in\mathbb N$ such that $f(n)\leq g(n)$?
 
-Adapting the key insight from \citep{alexander2019intelligence}, consider each $n\in\mathbb N$
+Adapting the key insight from \citet{alexander2019intelligence}, consider each $n\in\mathbb N$
 to be a voter in an election to determine whether or not $f$ outgrows $g$.
 Each $n$ votes based on whether or not $f(n)>g(n)$. For example, $532$ is a voter in this
 election. If $f(532)>g(532)$, then $532$ casts her vote for ``$f$ outgrows $g$''; otherwise,
@@ -566,7 +566,7 @@ The $\cap$-closure property says in order to win in 2023, it would be enough to
 get just the Dog-to-Cat switchers' votes \emph{and no others}.
 For more on infinite-voter elections and free ultrafilters,
 and especially their interplay with Arrow's impossibility theorem,
-see \citep{kirman}.
+see \citet{kirman}.
 
 For the remainder of the section, let $\mathcal U$ be a free ultrafilter.
 Unfortunately, logicians have shown that, though free ultrafilters exist,
@@ -626,7 +626,7 @@ analysis \citep{robinson, goldblatt2012lectures}.
     \end{align*}
     Since $f\equiv g$, $N_{fg}\in\mathcal U$. Since $g\equiv h$, $N_{gh}\in\mathcal U$.
     By $\cap$-closure, $N_{fg}\cap N_{gh}\in\mathcal U$.
-    Clearly $N_{fh}\subseteq N_{fg}\cap N_{gh}$, so, by (2) of
+    Clearly $N_{fg}\cap N_{gh}\subseteq N_{fh}$, so, by (2) of
     Definition \ref{ultrafilterdefn},
     $N_{fh}\in \mathcal U$, that is, $f\equiv h$.
 \end{proof}
