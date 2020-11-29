@@ -577,29 +577,51 @@ Theorem \ref{freeultrafiltersexistthm} cannot be proved constructively.
 
 \begin{definition}
 \label{outgrowsdefn}
-    Suppose $f,g:\mathbb N\to\mathbb R$. We say $f$ \emph{outgrows} $g$ (according
-    to $\mathcal U$) if
+    Suppose $f,g:\mathbb N\to\mathbb R$.
+    We say $f>_\mathcal U g$ if
     \[\{n\in\mathbb N\,:\,f(n)>g(n)\}\in \mathcal U.\]
     In other words: if $\mathcal U$ is thought of as a black box deciding which
-    subsets of $\mathbb N$ are winning blocs, then $f$ outgrows $g$ (according to
-    $\mathcal U$) if and only if ``$f$ outgrows $g$'' wins the election when
+    subsets of $\mathbb N$ are winning blocs, then $f>_\mathcal U g$
+    if and only if ``$f$ outgrows $g$'' wins the election when
     each $n\in\mathbb N$ votes for ``$f$ outgrows $g$'' or ``$f$ does not outgrow $g$''
     depending whether $f(n)>g(n)$ or $f(n)\leq g(n)$ respectively.
 \end{definition}
 
+\begin{lemma}
+\label{transitivitylemma}
+    $>_\mathcal U$ is transitive.
+\end{lemma}
+
+\begin{proof}
+    Suppose $f,g,h:\mathbb N\to\mathbb R$
+    are such that $f>_\mathcal U g$ and $g>_\mathcal U h$, we must show
+    $f>_\mathcal U h$.
+    Let
+    \begin{align*}
+        N_{fg} &= \{n\in\mathbb N\,:\,f(n)>g(n)\},\\
+        N_{gh} &= \{n\in\mathbb N\,:\,g(n)>h(n)\},\mbox{ and}\\
+        N_{fh} &= \{n\in\mathbb N\,:\,f(n)>h(n)\}.\\
+    \end{align*}
+    Since $f>_\mathcal U g$, $N_{fg}\in\mathcal U$.
+    Since $g>_\mathcal U h$, $N_{gh}\in\mathcal U$.
+    By $\cap$-closure, $N_{fg}\cap N_{gh}\in\mathcal U$.
+    Clearly $N_{fg}\cap N_{gh}\subseteq N_{fh}$, so, by (2) of
+    Definition \ref{ultrafilterdefn},
+    $N_{fh}\in \mathcal U$, that is, $f>_\mathcal U h$.
+\end{proof}
+
 We will now explain how Definition \ref{outgrowsdefn} leads to a numerical
 growth rate measure and, in turn, an ASPI taxonomy.
 We will show that by coming up with Definition \ref{outgrowsdefn}, we have actually
-done most of the work of the construction of the so-called ultrapower construction of
+done much of the work of the construction of the so-called ultrapower construction of
 the hyperreal number system, studied in the field of non-standard
 analysis \citep{robinson, goldblatt2012lectures}.
 
 \begin{definition}
 \label{equivrelndefn}
 (Compare Definition \ref{outgrowsdefn})
-    Suppose $f,g:\mathbb N\to\mathbb R$. We say \emph{$f$ equals $g$ almost everywhere
-    (according to $\mathcal U$)},
-    written $f\equiv g$, if
+    Suppose $f,g:\mathbb N\to\mathbb R$. We say
+    $f\equiv g$ if
     \[
     \{n\in\mathbb N\,:\, f(n) = g(n)\} \in \mathcal U.
     \]
@@ -611,30 +633,18 @@ analysis \citep{robinson, goldblatt2012lectures}.
 
 \begin{lemma}
     The relation $\equiv$ (from Definition \ref{equivrelndefn}) is an equivalence
-    relation on the space $\mathbb R^{\mathbb N}$ of functions $\mathbb N\to\mathbb R$.
+    relation.
 \end{lemma}
 
 \begin{proof}
-    Symmetry and reflexivity are trivial. To see that $\equiv$ is transitive, we will
-    use the $\cap$-closure of $\mathcal U$. Suppose $f,g,h:\mathbb N\to\mathbb R$
-    are such that $f\equiv g$ and $g\equiv h$, we must show $f\equiv h$.
-    Let
-    \begin{align*}
-        N_{fg} &= \{n\in\mathbb N\,:\,f(n)=g(n)\},\\
-        N_{gh} &= \{n\in\mathbb N\,:\,g(n)=h(n)\},\mbox{ and}\\
-        N_{fh} &= \{n\in\mathbb N\,:\,f(n)=h(n)\}.\\
-    \end{align*}
-    Since $f\equiv g$, $N_{fg}\in\mathcal U$. Since $g\equiv h$, $N_{gh}\in\mathcal U$.
-    By $\cap$-closure, $N_{fg}\cap N_{gh}\in\mathcal U$.
-    Clearly $N_{fg}\cap N_{gh}\subseteq N_{fh}$, so, by (2) of
-    Definition \ref{ultrafilterdefn},
-    $N_{fh}\in \mathcal U$, that is, $f\equiv h$.
+    Symmetry and reflexivity are trivial.
+    The proof of transitivity is similar to Lemma \ref{transitivitylemma}.
 \end{proof}
 
 \begin{definition}
 \label{hyperrealsdefn}
-    By the \emph{hyperreal numbers}, written $\mathbb R^*$,
-    we mean the equivalence classes of $\equiv$.
+    The \emph{hyperreal numbers}, written $\mathbb R^*$,
+    are the equivalence classes of $\equiv$.
     For every $f:\mathbb N\to\mathbb R$, write $\hat{f}$ for
     the hyperreal number (i.e., the $\equiv$-equivalence class) containing $f$.
     We endow $\mathbb R^*$ with arithmetic and order as follows
@@ -647,7 +657,7 @@ analysis \citep{robinson, goldblatt2012lectures}.
         $\hat{f}\cdot \hat{g}=\hat{h}$
         where $h(n)=f(n)g(n)$.
         \item We order $\mathbb R^*$ by declaring that
-        $\hat{f}>\hat{g}$ if and only if $f$ outgrows $g$ (Definition \ref{outgrowsdefn}).
+        $\hat{f}>\hat{g}$ if and only if $f>_\mathcal U g$ (Definition \ref{outgrowsdefn}).
     \end{itemize}
 \end{definition}
 
@@ -691,38 +701,172 @@ to many bounds.
 
 \subsection{The surreal ASPI measure}
 
-The surreal numbers \citep{conway, knuth, ehrlich2012absolute}
-are an even larger extension
-of the real numbers
-into which the hyperreals can be embedded.
+In Definition \ref{hyperrealhibbardintelligencedefn}, we had to content ourselves
+with an ASPI taxonomy rather than an ASPI measure, because there is no canonical
+way of choosing a preferred bound for a bounded set of hyperreals.
+In this section, we will consider another number system, the surreal numbers
+\citep{conway, knuth, ehrlich2012absolute}, in which the hyperreal numbers can be
+embedded. By embedding the hyperreals within the surreals, our hyperreal solution
+to Problem \ref{bigoproblem} yields a surreal solution to Problem \ref{bigoproblem},
+via the embedding.
+Unlike the hyperreal numbers, the surreal numbers \emph{do} admit a
+canonical way of choosing preferred bounds for bounded sets. Thus, our surreal
+solution to Problem \ref{bigoproblem} will yield an ASPI measure, not just a taxonomy.
+
+Formally defining the surreal numbers involves nuances touching the foundations
+of mathematics, so we will only sketch the definition here.
+Suppose we take the following as the guiding principal in creating a number system:
+\begin{itemize}
+    \item
+    For every set $L$ of lower bounds in our number system, and every set $R$ of
+    upper bounds in our number system, with $L<R$ (by which we mean $\ell<r$
+    for all $\ell\in L, r\in R$), we want there to exist a canonical number
+    $L<x<R$ (i.e., a canonical number $x$ such that $\ell<x<r$ for all
+    $\ell\in L, r\in R$).
+\end{itemize}
+To simplify things, since this guiding principal only requires the existence of
+these canonical numbers, we can assume no other numbers exist, only such canonical
+numbers. Thus, every number in the resulting system can, recursively, be
+\emph{identified} with a pair $(L,R)$ of sets of numbers, $L<R$. Notationally,
+we use $\{L|R\}$ as a name for the canonical number $L<\{L|R\}<R$ between $L$ and $R$,
+whenever $L<R$ are sets of numbers. There are two tricky issues with this idea:
+\begin{enumerate}
+    \item
+    A number in this number system we are building might have multiple names,
+    so we cannot simply take the numbers to be their names. Instead, it is necessary
+    to take the numbers to be equivalence classes of names.
+    What should it mean for two names to be equivalent?
+    \item
+    If $\{x_L|x_R\}$ and $\{y_L|y_R\}$ are (names of) two numbers $x,y$ (respectively)
+    in this number system we are building
+    (so $x_L<x_R$ and $y_L<y_R$ are sets of numbers in said number system),
+    what does it mean to say $x<y$? This question seems
+    somewhat circular, because in order for $\{x_L|x_R\}$ to be a valid name in the
+    first place already requires that $x_L<x_R$ (i.e., that $\ell<r$ whenever
+    $\ell\in x_L,r\in x_R$).
+\end{enumerate}
+To answer issue 2, we ask ourselves: what does it mean for the canonical number
+$x$ between $x_L$ and $x_R$ to be less than the canonical number $y$ between $y_L$ and $y_R$?
+With some thought, it seems a natural way to (recursively)
+answer this question is to declare $x<y$ if
+and only if all the following requirements hold:
+\begin{itemize}
+    \item
+    $x_L<y$ (by which we mean $x'<y$ for every $x'\in x_L$).
+    \item
+    $x<y_R$ (by which we mean $x<y'$ for every $y'\in y_R$).
+    \item
+    At least one of the following holds:
+    \begin{itemize}
+        \item
+        There is some $x''\in x_R$ such that $x''<y$; or
+        \item
+        There is some $y''\in y_L$ such that $x<y''$.
+    \end{itemize}
+\end{itemize}
+Having answered (2), we can answer (1) by declaring that two names
+$\{x_L|x_R\}$ and $\{y_L|y_R\}$ (of $x$ and $y$ respectively) are equivalent
+if $x\not<y$ and $y\not< x$.
+
+Carrying out the above definition in full formality is tricky,
+because the $<$ relation and the equivalence relation have to be
+defined by simultaneous recursion.
+To give the formal definition here would be beyond the scope of this
+paper\footnote{Technically, $<$ and the equivalence relation are not actually
+relations at all, because their
+universes are not sets. For this and other reasons, the formal construction of the surreals
+is usually carried out in transfinitely many stages, such that at any particular stage,
+the surreals constructed so far form a set.}.
+The equivalence classes of the above equivalence relation are called
+\emph{surreal numbers}. It is possible to define addition and multiplication
+on them in such a way that, along with the ordering $<$ already defined,
+the surreal numbers satisfy the axioms of an ordered field.
+
+\begin{example}
+    (Examples of surreal numbers)
+    \begin{itemize}
+        \item
+        Taking $L=R=\emptyset$ yields the surreal number named $\{\emptyset|\emptyset\}$,
+        usually abbreviated $\{|\}$. It can be shown this is the
+        surreal $0$ (i.e., the unique surreal additive identity).
+        \item
+        Let $L=\{0\}$, $R=\emptyset$, where $0$ is as above.
+        This yields the surreal named $\{\{0\}|\}$.
+        It can be shown this is the surreal $1$ (i.e.,
+        the unique multiplicative identity).
+        \item
+        Let $L=\{1\}$, $R=\emptyset$, where $1$ is as above. This yields the surreal
+        number named $\{\{1\}|\}$. It can be shown this is $2$ (i.e., $1+1$).
+        \item
+        In the same way, one can obtain surreal numbers $3,4,5,\ldots$.
+        \item
+        Let $L=\{0,1,2,\ldots\}$ (as above), $R=\emptyset$. This yields the surreal
+        named $\{\{0,1,2,\ldots\}|\}$. This surreal
+        represents the smallest infinite ordinal number, $\omega$, considered as a surreal.
+        \item
+        With $0$ and $1$ as above, $\{\{0\}|\{1\}\}$ names a surreal strictly between $0$ and
+        $1$. It can be shown to be $\frac12$
+        (i.e., that its product with $2$ is $1$).
+        \item
+        With $0$ and $\frac12$ as above, $\{\{0\}|\{\frac12\}\}$ names a surreal strictly
+        between $0$ and $\frac12$. It can be shown to be $\frac14$.
+        \item
+        Similarly, one can construct surreals $\frac18,\frac1{16},\ldots$.
+        \item
+        With $0$ and $\frac12,\frac14,\frac18,\ldots$ as above,
+        $\{\{0\}|\{\frac12,\frac14,\frac18,\ldots\}\}$ is a surreal larger than $0$
+        but smaller than every $\frac12,\frac14,\frac18,\ldots$. This shows that the
+        surreals include infinitesimals. This particular infinitesimal can be shown
+        to be $1/\omega$, in the sense that when multiplied by $\omega$, the result is $1$.
+    \end{itemize}
+\end{example}
+
+The reader might object that if we let $L$ be the set of all surreals, then
+$\{L|\}$ seems to name a surreal larger than all surreals,
+which would be absurd. This paradox is avoided because in fact the class
+of all surreals is \emph{not} a set, but a proper class\footnote{It can be shown
+that the ordinal numbers can be embedded in the surreals, and so the non-sethood
+of the class of surreals is strictly weaker than the non-sethood of the class of
+ordinals, which state of affairs is referred to as the Burali-Forti paradox.}.
+
+It can be shown that for any free ultrafilter $\mathcal U$, the hyperreals constructed using
+$\mathcal U$ can be embedded into the surreals. This allows us to transform our hyperreal
+solution to Problem \ref{bigoproblem} into a surreal solution.
+Unfortunately, there are many different ways to embed the hyperreals into the surreals,
+none of them canonical, so while our hyperreal solution already depends arbitrarily on
+a free ultrafiler, our surreal solution further depends on an embedding.
 
 \begin{definition}
     (The surreal solution to Problem \ref{bigoproblem})
-    Let $\iota$ be the embedding of the hyperreal numbers into the surreal
-    numbers.
+    Suppose $\mathcal U$ is a free ultrafilter and $\mathbb R^*$ is the corresponding
+    hyperreal number system (Definition \ref{hyperrealsdefn}).
+    Let $\iota$ be an embedding of $\mathbb R^*$ into the surreals.
     For any function $f:\mathbb N\to\mathbb N$, the \emph{surreal growth rate
-    of $f$} is $\iota(\hat r)$ where $\hat r$ is the hyperreal growth
+    of $f$} (given by $\mathcal U$ and $\iota$) is
+    $\iota(\hat f)$ where $\hat f$ is the hyperreal growth
     rate of $f$ (Definition \ref{hyperrealgrowthratedefn}).
 \end{definition}
 
-One advantage of the surreal numbers is that for any set $L$ of surreal numbers,
-there is a canonical way to choose a surreal strict upper bound on $L$,
-which upper bound is written $\{L\,|\,\}$. This upper bound is similar to a
-supremum of $L$ in a certain sense: the surreal numbers possess a
-simplicity-hierarchical structure, and $\{L\,|\,\}$ is the \emph{simplest}
-strict upper bound of $L$. This allows us to
-exactly measure intelligence of predictors,
-rather than merely classify predictors in a taxonomy as in Definition \ref{hyperrealhibbardintelligencedefn}.
+The payoff of doing this is that there is a canonical way to pick a particular
+bound of a bounded set of surreals, so the surreal solution to Problem \ref{bigoproblem}
+provides an ASPI measure, not just an ASPI taxonomy.
 
 \begin{definition}
 \label{surrealhibbardintelligencedefn}
     (The surreal ASPI measure)
+    Let $\mathcal U$ be a free ultrafilter, let $\mathbb R^*$ be the corresponding
+    hyperreal number system, and let $\iota$ be an embedding of $\mathbb R^*$
+    into the surreals. Let $\iota(\mathbb R^*)$ be the range of $\iota$.
     For every predictor $p$, the \emph{surreal ASPI measure} of $p$
-    is defined to be $\{L\,|\,\}$, the simplest surreal strict upper bound
-    of $L$, where $L$ is the set of all surreal numbers $\ell$ such that
+    (given by $\mathcal U$ and $\iota$)
+    is defined to be the surreal with name $\{L|\}$,
+    where $L$ is the set of all surreal numbers $\ell\in\iota(\mathbb R^*)$ such that
     the following condition holds: for every evader $e$,
     if the surreal growth rate of $t_e$ is $<\ell$, then $p$ learns $e$.
 \end{definition}
+
+Note that in Definition \ref{surrealhibbardintelligencedefn}, we require
+$\ell\in\iota(\mathbb R^*)$ because otherwise $L$ would not be a set.
 
 \subsection{ASPI measures based on majorization hierarchies}
 
