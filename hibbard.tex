@@ -749,20 +749,10 @@ To answer issue 2, we ask ourselves: what does it mean for the canonical number
 $x$ between $x_L$ and $x_R$ to be less than the canonical number $y$ between $y_L$ and $y_R$?
 With some thought, it seems a natural way to (recursively)
 answer this question is to declare $x<y$ if
-and only if all the following requirements hold:
+and only if one of the following holds:
 \begin{itemize}
-    \item
-    $x_L<y$ (by which we mean $x'<y$ for every $x'\in x_L$).
-    \item
-    $x<y_R$ (by which we mean $x<y'$ for every $y'\in y_R$).
-    \item
-    At least one of the following holds:
-    \begin{itemize}
-        \item
-        There is some $x''\in x_R$ such that $x''<y$; or
-        \item
-        There is some $y''\in y_L$ such that $x<y''$.
-    \end{itemize}
+    \item There is some $y'\in y_L$ such that $x\leq y'$, or
+    \item There is some $x'\in x_R$ such that $x'\leq y$.
 \end{itemize}
 Having answered (2), we can answer (1) by declaring that two names
 $\{x_L|x_R\}$ and $\{y_L|y_R\}$ (of $x$ and $y$ respectively) are equivalent
@@ -834,7 +824,7 @@ $\mathcal U$ can be embedded into the surreals. This allows us to transform our 
 solution to Problem \ref{bigoproblem} into a surreal solution.
 Unfortunately, there are many different ways to embed the hyperreals into the surreals,
 none of them canonical, so while our hyperreal solution already depends arbitrarily on
-a free ultrafiler, our surreal solution further depends on an embedding.
+a free ultrafiler, our surreal solution further depends on an arbitrary embedding.
 
 \begin{definition}
     (The surreal solution to Problem \ref{bigoproblem})
