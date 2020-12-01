@@ -249,6 +249,82 @@ because of a minor (and fortunately, easy-to-fix) error there.
     for every $e\in E_{f_m}$ for every $m>0$).
 \end{definition}
 
+The following result shows that the measure in
+Definition \ref{classichibbardmeasuredefn} does not overshoot the agents being
+measured.
+
+\begin{proposition}
+    For any integer $m\geq 1$, there is a predictor $p$ with original Hibbard
+    measure $\geq m$.
+\end{proposition}
+
+\begin{proof}
+    This is part of Proposition 3 of \citet{hibbard}, but we give a self-contained
+    proof here because we will state similar results about other measures below.
+
+    Given $n\geq 1$, let $p$ be the predictor who proceeds as follows when given
+    evasion-sequence $(x_1,\ldots,x_n)\in B^*$ as input.
+
+    First, by calling itself recursively on inputs
+    \[\langle\rangle, (x_1), (x_1,x_2), \ldots, (x_1,\ldots,x_{n-1}),\]
+    $p$ determines the prediction-sequence $(y_1,\ldots,y_n)$ as in
+    Definition \ref{evaderpredictordefn}.
+
+    Next, $p$ considers the first $n$ Turing machines, $T_1,\ldots,T_n$.
+    For $1\leq i\leq n$, say that $T_i$ is an \emph{$n$th-order $e$-lookalike} if
+    the following requirements hold:
+    \begin{itemize}
+        \item $T_i$ halts and outputs $x_1$ on input $\langle\rangle$
+            within $\leq f_m(n)$ steps.
+        \item $T_i$ halts and outputs $x_2$ on input $(y_1)$
+            within $\leq f_m(n)$ steps.
+        \item $T_i$ halts and outputs $x_3$ on input $(y_1,y_2)$
+            within $\leq f_m(n)$ steps.
+        \item $\ldots$
+        \item $T_i$ halts and outputs $x_n$ on input $(y_1,\ldots,y_{n-1})$
+            within $\leq f_m(n)$ steps.
+        \item $T_i$ halts with some output $Y_{i,n}$ on input $(y_1,\ldots,y_n)$
+            within $\leq f_m(n)$ steps.
+    \end{itemize}
+    By simulating $T_1,\ldots,T_n$ for $f_m(n)$ steps on each input,
+    $p$ determines if any $T_i$ is an $n$th-order $e$-lookalike.
+    If so, $p$ outputs $p(x_1,\ldots,x_n)=Y_{i,n}$ for the minimal such $i$.
+    If not, $p$ outputs $0$.
+
+    To show that $p$ has original Hibbard measure $\geq m$,
+    let $e\in E_{f_m}$, we will show $p$ learns $e$.
+    Being in $E_{f_m}$, $e$ is an evader and $f_m\succ t_e$.
+    Let $(x_1,y_1,x_2,y_2,\ldots)$ be the result of $p$ playing against $e$.
+    Being an evader, $e$ is a Turing machine, say, the $k$th Turing machine.
+    Since $f_m\succ t_e$, it follows that
+    for all sufficiently large $n\geq k$, $T_k$ will be an $n$th-order $e$-lookalike.
+    It follows that for all sufficiently large $n$, $p$ will, on input
+    $(x_1,\ldots,x_n)$, play the output given by some $n$th-order $e$-lookalike
+    $T_{k'}$, $k'\leq k$.
+
+    For any $k'<k$,
+    say that $p$ \emph{is tricked by $T_{k'}$ on input $(x_1,\ldots,x_n)$}
+    if, on said input, $p$ identifies $T_{k'}$ as the first
+    $n$th-order $e$-lookalike and so plays $Y_{k',n}$ but $e(y_1,\ldots,y_n)\not=Y_{k',n}$
+    (loosely speaking: $p$ is led to believe the evader is $T_{k'}$, but this
+    false belief causes $p$ to incorrectly predict the evader's next digit).
+    It follows that $p$ will \emph{not} identify $T_{k'}$ as an $(n+1)$th-order
+    $e$-lookalike when run on $(x_1,\ldots,x_{n+1})$, nor on any later
+    evasion-sequence.
+    Thus, $p$ can only be tricked at most once by $T_{k'}$ for any particular $k'<k$.
+    It follows that one of the following must hold:
+    \begin{enumerate}
+        \item
+        There is some $k'<k$ such that, for all sufficiently large $n$,
+        on input $(x_1,\ldots,x_n)$, $p$ identifies $T_{k'}$ as the first $n$th-order
+        $e$-lookalike, and does not get tricked by $T_{k'}$. Or,
+        \item
+        For all sufficiently large $n$, on input $(x_1,\ldots,x_n)$,
+        $p$ identifies $T_k$ as the first $n$th-order $e$-lookalike.
+    \end{enumerate}
+    Either way, for all sufficiently large $n$, $p$ correctly guesses $e$'s next digit.
+\end{proof}
+
 \subsection{Predictor intelligence and AGI intelligence}
 \label{agiproxysection}
 
