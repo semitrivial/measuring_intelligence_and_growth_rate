@@ -283,12 +283,12 @@ measured.
         \item $\ldots$
         \item $T_i$ halts and outputs $x_n$ on input $(y_1,\ldots,y_{n-1})$
             within $\leq f_m(n)$ steps.
-        \item $T_i$ halts with some output $Y_{i,n}$ on input $(y_1,\ldots,y_n)$
+        \item $T_i$ halts with some output $X_{i,n}$ on input $(y_1,\ldots,y_n)$
             within $\leq f_m(n)$ steps.
     \end{itemize}
     By simulating $T_1,\ldots,T_n$ for $f_m(n)$ steps on each input,
     $p$ determines if any $T_i$ is an $n$th-order $e$-lookalike.
-    If so, $p$ outputs $p(x_1,\ldots,x_n)=Y_{i,n}$ for the minimal such $i$.
+    If so, $p$ outputs $p(x_1,\ldots,x_n)=X_{i,n}$ for the minimal such $i$.
     If not, $p$ outputs $0$.
 
     To show that $p$ has original Hibbard measure $\geq m$,
@@ -305,7 +305,7 @@ measured.
     For any $k'<k$,
     say that $p$ \emph{is tricked by $T_{k'}$ on input $(x_1,\ldots,x_n)$}
     if, on said input, $p$ identifies $T_{k'}$ as the first
-    $n$th-order $e$-lookalike and so plays $Y_{k',n}$ but $e(y_1,\ldots,y_n)\not=Y_{k',n}$
+    $n$th-order $e$-lookalike and so plays $X_{k',n}$ but $x_{n+1}\not=X_{k',n}$
     (loosely speaking: $p$ is led to believe the evader is $T_{k'}$, but this
     false belief causes $p$ to incorrectly predict the evader's next digit).
     It follows that $p$ will \emph{not} identify $T_{k'}$ as an $(n+1)$th-order
@@ -315,9 +315,9 @@ measured.
     It follows that one of the following must hold:
     \begin{enumerate}
         \item
-        There is some $k'<k$ such that, for all sufficiently large $n$,
-        on input $(x_1,\ldots,x_n)$, $p$ identifies $T_{k'}$ as the first $n$th-order
-        $e$-lookalike, and does not get tricked by $T_{k'}$. Or,
+        For all sufficiently large $n$, on input $(x_1,\ldots,x_n)$, $p$ identifies
+        $T_{k'}$ as the first $n$th-order $e$-lookalike for some $k'\leq k$ (possibly
+        depending on $n$), and does not get tricked by $T_{k'}$. Or,
         \item
         For all sufficiently large $n$, on input $(x_1,\ldots,x_n)$,
         $p$ identifies $T_k$ as the first $n$th-order $e$-lookalike.
