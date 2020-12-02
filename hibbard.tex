@@ -298,7 +298,7 @@ measured.
     Being an evader, $e$ is a Turing machine, say, the $k$th Turing machine.
     Since $f_m\succ t_e$, it follows that
     for all sufficiently large $n\geq k$, $T_k$ will be an $n$th-order $e$-lookalike.
-    It follows that for all sufficiently large $n$, $p$ will, on input
+    It follows that ($*$) for all sufficiently large $n$, $p$ will, on input
     $(x_1,\ldots,x_n)$, play the output given by some $n$th-order $e$-lookalike
     $T_{k'}$, $k'\leq k$.
 
@@ -312,17 +312,10 @@ measured.
     $e$-lookalike when run on $(x_1,\ldots,x_{n+1})$, nor on any later
     evasion-sequence.
     Thus, $p$ can only be tricked at most once by $T_{k'}$ for any particular $k'<k$.
-    It follows that one of the following must hold:
-    \begin{enumerate}
-        \item
-        For all sufficiently large $n$, on input $(x_1,\ldots,x_n)$, $p$ identifies
-        $T_{k'}$ as the first $n$th-order $e$-lookalike for some $k'\leq k$ (possibly
-        depending on $n$), and does not get tricked by $T_{k'}$. Or,
-        \item
-        For all sufficiently large $n$, on input $(x_1,\ldots,x_n)$,
-        $p$ identifies $T_k$ as the first $n$th-order $e$-lookalike.
-    \end{enumerate}
-    Either way, for all sufficiently large $n$, $p$ correctly guesses $e$'s next digit.
+    It follows that ($**$) $p$ will only be tricked finitely many times while competing
+    against $e$.
+
+    By ($*$) and ($**$), it follows that $p$ will eventually learn $e$.
 \end{proof}
 
 \subsection{Predictor intelligence and AGI intelligence}
