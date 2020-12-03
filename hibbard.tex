@@ -254,6 +254,7 @@ Definition \ref{classichibbardmeasuredefn} does not overshoot the agents being
 measured.
 
 \begin{proposition}
+\label{complicatedproposition}
     For any integer $m\geq 1$, there is a predictor $p$ with original Hibbard
     measure $\geq m$.
 \end{proposition}
@@ -531,6 +532,16 @@ taxonomy of predictor intelligence.
         $p$ learns every evader $e$ such that $t_e$ is $\Theta(f(n))$.
     \end{itemize}
 \end{definition}
+
+\begin{proposition}
+    For any computable function $f:\mathbb N\to\mathbb N$, there is a predictor
+    $p$ with Big-O ASPI measure $O(f(n))$ and Big-$\Theta$ ASPI measure
+    $\Theta(f(n))$.
+\end{proposition}
+
+\begin{proof}
+    Similar to the proof of Proposition \ref{complicatedproposition}.
+\end{proof}
 
 \section{ASPI measures and taxonomies using various number systems}
 \label{exoticsection}
@@ -1197,6 +1208,18 @@ Peano arithmetic, there is some $\alpha<\epsilon_0$ such that $h_\alpha\succ f$.
     the following condition holds:
     for every predictor $e$, if $h_\alpha\succ t_e$, then $p$ learns $e$.
 \end{definition}
+
+\begin{proposition}
+    For any $\alpha<\epsilon_0$, there are predictors $p$ (resp.\ $q$)
+    whose ASPI measures
+    given by the standard slow-growing (resp.\ fast-growing)
+    hierarchy up to $\epsilon_0$
+    is $\geq \alpha$.
+\end{proposition}
+
+\begin{proof}
+    Similar to the proof of Proposition \ref{complicatedproposition}.
+\end{proof}
 
 Between Definitions \ref{tradmajorizationhierarchyhibbardmeasuredefn} and
 \ref{fastmajorizationhierarchyhibbardmeasuredefn}, the former offers a finer
