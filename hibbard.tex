@@ -263,7 +263,7 @@ measured.
     This is part of Proposition 3 of \citet{hibbard}, but we give a self-contained
     proof here because we will state similar results about other measures below.
 
-    Given $n\geq 1$, let $p$ be the predictor who proceeds as follows when given
+    Let $p$ be the predictor who proceeds as follows when given
     evasion-sequence $(x_1,\ldots,x_n)\in B^*$ as input.
 
     First, by calling itself recursively on inputs
@@ -275,26 +275,26 @@ measured.
     For $1\leq i\leq n$, say that $T_i$ is an \emph{$n$th-order $e$-lookalike} if
     the following requirements hold:
     \begin{itemize}
-        \item $T_i$ halts and outputs $x_1$ on input $\langle\rangle$
-            within $\leq f_m(n)$ steps.
-        \item $T_i$ halts and outputs $x_2$ on input $(y_1)$
-            within $\leq f_m(n)$ steps.
-        \item $T_i$ halts and outputs $x_3$ on input $(y_1,y_2)$
-            within $\leq f_m(n)$ steps.
+        \item If $T_i$ halts in $\leq f_m(0)$ steps on input
+        $\langle\rangle$, then it outputs $x_1$.
+        \item If $T_i$ halts in $\leq f_m(1)$ steps on input
+        $(y_1)$, then it outputs $x_2$.
+        \item If $T_i$ halts in $\leq f_m(2)$ steps on input
+        $(y_1,y_2)$, then it outputs $x_3$.
         \item $\ldots$
-        \item $T_i$ halts and outputs $x_n$ on input $(y_1,\ldots,y_{n-1})$
-            within $\leq f_m(n)$ steps.
-        \item $T_i$ halts with some output $X_{i,n}$ on input $(y_1,\ldots,y_n)$
-            within $\leq f_m(n)$ steps.
+        \item If $T_i$ halts in $\leq f_m(n-1)$ steps on input
+        $(y_1,\ldots,y_{n-1})$, then it outputs $x_n$.
+        \item $T_i$ halts in $\leq f_m(n)$ steps on input
+        $(y_1,\ldots,y_n)$ with some output $X_{i,n}$.
     \end{itemize}
-    By simulating $T_1,\ldots,T_n$ for $f_m(n)$ steps on each input,
+    By simulating $T_1,\ldots,T_n$ as needed (which only requires finitely many steps),
     $p$ determines if any $T_i$ is an $n$th-order $e$-lookalike.
     If so, $p$ outputs $p(x_1,\ldots,x_n)=X_{i,n}$ for the minimal such $i$.
     If not, $p$ outputs $0$.
 
     To show that $p$ has original Hibbard measure $\geq m$,
-    let $e\in E_{f_m}$, we will show $p$ learns $e$.
-    Being in $E_{f_m}$, $e$ is an evader and $f_m\succ t_e$.
+    let $e\in E_{f_m}$ be an evader, we will show $p$ learns $e$.
+    Since $e\in E_{f_m}$, $f_m\succ t_e$.
     Let $(x_1,y_1,x_2,y_2,\ldots)$ be the result of $p$ playing against $e$.
     Being an evader, $e$ is a Turing machine, say, the $k$th Turing machine.
     Since $f_m\succ t_e$, it follows that
