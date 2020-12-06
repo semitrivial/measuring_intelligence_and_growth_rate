@@ -141,7 +141,11 @@ finite binary sequences. By $\langle\rangle$ we mean the empty binary sequence.
     (Predictors and evaders)
     \begin{enumerate}
         \item
-        By a \emph{predictor}, we mean a Turing machine $p$
+        By a \emph{predictor}, we mean a Turing machine\footnote{The measures we introduce
+        in this paper would also work if we defined predictors as not-necessarily-computable
+        functions $B^*\to B$, but this would not add much to the paper and so we prefer
+        to emphasize the duality between predictors and evaders when each is a Turing
+        machine.} $p$
         which takes as input a finite (possibly empty) binary sequence
         $(x_1,\ldots,x_n)\in B^*$
         (thought of as a sequence of \emph{evasions})
