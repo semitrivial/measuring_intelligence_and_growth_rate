@@ -785,9 +785,23 @@ we now have a trivial hyperreal solution to Problem \ref{bigoproblem}.
     of $f$} is the hyperreal number $\hat f$.
 \end{definition}
 
-Because of the non-constructive nature of free ultrafilters, the following notion
-is computationally impractical. However, it could potentially be useful for
-proving theoretical properties about the intelligence of predictors. In the following
+Because of the non-constructive nature of free ultrafilters, the following notions
+are computationally impractical. However, they could potentially be useful for
+proving theoretical properties about the intelligence of predictors.
+
+\begin{definition}
+\label{Ulearndefn}
+    Suppose $p$ is a predictor and $e$ is an evader. Let
+    $(x_1,y_1,x_2,y_2,\ldots)$ be the result of $p$ playing against $e$.
+    We say $p$ \emph{$\mathcal U$-learns} $e$ if
+    $\{n\,:\,x_n=y_n\}\in\mathcal U$.
+    In other words, $p$ $\mathcal U$-learns $e$ if ``$p$ learns $e$''
+    wins the election (according to $\mathcal U$)
+    when every $n\in\mathbb N$ votes for ``$p$ learns $e$''
+    or ``$p$ does not learn $e$'' depending whether or not $x_n=y_n$.
+\end{definition}
+
+In the following
 definition, rather than assigning a particular hyperreal number intelligence to every
 predictor, rather, we categorize predictors into a taxonomy.
 This is necessary because there is no way of choosing canonical bounds
@@ -802,8 +816,49 @@ to many bounds.
     We say that $p$ \emph{has hyperreal ASPI intelligence at least $\hat f$}
     if and only if the following condition holds:
     for every evader $e$, if the hyperreal growth rate of $t_e$ is
-    $<\hat f$, then $p$ learns $e$.
+    $<\hat f$, then $p$ $\mathcal U$-learns $e$.
 \end{definition}
+
+Now we would like to state an analog of Proposition \ref{complicatedproposition}
+for hyperreal ASPI intelligence, but before we can do that, we need to state the
+following lemma. This lemma is well-known so we state it without proof.
+
+\begin{lemma}
+\label{technicallemmaaboutultrafilters}
+    For any $N\in\mathcal U$, for any finite $N_0\subseteq\mathbb N$,
+    the difference $N\backslash N_0$ is in $\mathcal U$.
+\end{lemma}
+
+\begin{proposition}
+    For any computable function $f:\mathbb N\to\mathbb N$, there is a predictor which has
+    hyperreal ASPI intelligence at least $\hat f$.
+\end{proposition}
+
+\begin{proof}
+    For every evader $e$, let $N_e=\{n\in\mathbb N\,:\,t_e(n)<f(n)\}$.
+    By Definition \ref{outgrowsdefn}, for every $e$, if the hyperreal growth rate of
+    $t_e$ is $<\hat f$, then $N_e\in\mathcal U$.
+
+    By a similar method as in the proof of Proposition \ref{complicatedproposition},
+    construct a predictor $p$ such that for every evader $e$, the following statement
+    is true: if $(x_1,y_1,x_2,y_2,\ldots)$ is the result of $p$ playing against $e$ then,
+    for all-but-at-most-finitely-many $n\in\mathbb N$, if $t_e(n)<f(n)$ then
+    $x_n=y_n$. We claim $p$ has hyperreal ASPI intelligence at least $\hat f$.
+    To see this, assume $e$ is an evader such that the hyperreal growth rate of $t_e$ is
+    $<\hat f$, we will show $p$ $\mathcal U$-learns $e$.
+
+    Let $(x_1,y_1,x_2,y_2,\ldots)$ be the result of $p$ playing against $e$. Let
+    \begin{align*}
+        N_1 &= \{n\in\mathbb N\,:\,t_e(n)<f(n)\},\\
+        N_2 &= \{n\in N_1\,:\,x_n=y_n\},\\
+        N_3 &= \{n\in\mathbb N\,:\,x_n=y_n\}.
+    \end{align*}
+    Since the hyperreal growth rate of $t_e$ is $<\hat f$, that means $N_1\in\mathcal U$.
+    By construction of $p$, for all-but-at-most-finitely-many $n\in N_1$,
+    $x_n=y_n$. By Lemma \ref{technicallemmaaboutultrafilters}, $N_2\in\mathcal U$.
+    Since $N_2\subseteq N_3$, it follows $N_3\in\mathcal U$, i.e.,
+    $p$ $\mathcal U$-learns $e$.
+\end{proof}
 
 \subsection{The surreal ASPI measure}
 
