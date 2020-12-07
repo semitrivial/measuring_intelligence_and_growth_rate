@@ -336,7 +336,7 @@ given an evader $e$, to determine whether or not $f\succ t_e$.}.
     numbering of predictors (for convenience, we may assume every natural number
     is a G\"odel number of some predictor).
     Let $F:\mathbb N\to\mathbb N$ be the function which takes as input a natural
-    number $n$, say, a G\"odel number of predictor with original Hibbard measure
+    number $n$, say, a G\"odel number of a predictor with original Hibbard measure
     $m$, and outputs $m+1$ if $m<\infty$, or $0$ if $m=\infty$. Then $F$ is not
     computable.
 \end{proposition}
@@ -351,7 +351,7 @@ given an evader $e$, to determine whether or not $f\succ t_e$.}.
     Given any Turing machine $M$, in order to determine whether or not $M$ halts
     on the empty input, proceed as follows. Let $p_M$ be the predictor which, on
     input $(x_1,\ldots,x_n)$, outputs either the output of $p$ on said input,
-    or else outputs $0$, depending whether or not $M$ halts on empty input within
+    or else $0$, depending whether or not $M$ halts on empty input within
     $\leq n$ steps. Clearly, $M$ halts on empty input if and only if $p_M$ has
     original Hibbard measure $>m$.
 \end{proof}
