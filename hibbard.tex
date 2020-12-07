@@ -326,6 +326,46 @@ measured.
     By ($*$) and ($**$), it follows that $p$ will eventually learn $e$.
 \end{proof}
 
+Unfortunately, the original Hibbard measure is not computable, as the following
+proposition shows\footnote{In fact, for any increasing total computable function $f$,
+even the following can be shown to be non-computable:
+given an evader $e$, to determine whether or not $f\succ t_e$.}.
+
+\begin{proposition}
+    The original Hibbard measure is not computable. To be precise, fix a G\"odel
+    numbering of predictors (for convenience, we may assume every natural number
+    is a G\"odel number of some predictor).
+    Let $F:\mathbb N\to\mathbb N$ be the function which takes as input a natural
+    number $n$, say, a G\"odel number of predictor with original Hibbard measure
+    $m$, and outputs $m+1$ if $m<\infty$, or $0$ if $m=\infty$. Then $F$ is not
+    computable.
+\end{proposition}
+
+\begin{proof}
+    If $F$ were computable, then we could use $F$ to solve the halting problem,
+    as follows.
+    Let $p_0$ be the predictor which always outputs $0$, and let $m$ be its
+    original Hibbard measure, clearly $m<\infty$. Let $p$ be a predictor with
+    original Hibbard measure $>m$
+    (some such $p$ exists by Proposition \ref{complicatedproposition}).
+    Given any Turing machine $M$, in order to determine whether or not $M$ halts
+    on the empty input, proceed as follows. Let $p_M$ be the predictor which, on
+    input $(x_1,\ldots,x_n)$, outputs either the output of $p$ on said input,
+    or else outputs $0$, depending whether or not $M$ halts on empty input within
+    $\leq n$ steps. Clearly, $M$ halts on empty input if and only if $p_M$ has
+    original Hibbard measure $>m$.
+\end{proof}
+
+Likewise, the variations on Hibbard's measure which we present in this paper are also
+non-computable. To quantify their precise degrees of computability (e.g., where they
+fall within the arithmetical hierarchy) would be beyond the scope of this paper.
+We will, however, state one conjecture. If we modified the original Hibbard
+measure by replacing Liu's enumeration of the primitive recursive functions by an
+enumeration of all total computable functions, then we conjecture the resulting measure would
+be strictly higher in the arithmetical hierarchy (i.e., would require strictly
+stronger oracles to compute), essentially because the set of total computable functions
+is \emph{not} computably enumerable, whereas the primitive recursive functions are.
+
 \subsection{Predictor intelligence and AGI intelligence}
 \label{agiproxysection}
 
