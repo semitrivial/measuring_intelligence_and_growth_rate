@@ -330,8 +330,9 @@ measured.
 \end{proof}
 
 Unfortunately, the original Hibbard measure is not computable
-(unless the background model of computation is very contrived), as the following
-proposition shows\footnote{In fact, for any increasing total computable function $f$,
+(unless the background model of computation is contrived), as the following
+proposition shows\footnote{In fact, for any strictly
+increasing total computable function $f$,
 even the following can be shown to be non-computable:
 given an evader $e$, to determine whether or not $f\succ t_e$.}.
 
@@ -342,8 +343,7 @@ given an evader $e$, to determine whether or not $f\succ t_e$.}.
     is bounded by some primitive recursive function.
     Then the original Hibbard measure is not computable. To be precise, fix an
     effective G\"odel numbering of partial computable functions
-    from $B^*$ to $B$ (for convenience, we may assume every natural number
-    is a G\"odel number of some such function).
+    from $B^*$ to $B$.
     There is no partial computable function $F$ from $\mathbb N$ to $\mathbb N$
     such that whenever $n$ is a G\"odel number of a predictor $p$ then
     \[
@@ -361,9 +361,9 @@ given an evader $e$, to determine whether or not $f\succ t_e$.}.
     follows that $m<\infty$ since certainly $p_1$ does not learn $e_0$.
     Let $p$ be a predictor with
     original Hibbard measure $>m$
-    (some such $p$ exists by Proposition \ref{complicatedproposition}).
+    (Proposition \ref{complicatedproposition}).
 
-    If there were some $F$ falsifying the proposition, then we could use $F$ to solve
+    If there were some $F$ falsifying this proposition, then we could use $F$ to solve
     the halting problem as follows.
     Given any Turing machine $M$, in order to determine whether or not $M$ halts,
     proceed as follows. Let $p_M$ be the predictor which, on
@@ -775,9 +775,8 @@ is
     written $(\lambda[0],\lambda[1],\lambda[2],\ldots)$, inductively as follows.
     \begin{itemize}
         \item
-        If $\lambda=\epsilon_0$, then $\lambda[0]=1$,
-        $\lambda[1]=\omega$, $\lambda[2]=\omega^\omega$,
-        $\lambda[3]=\omega^{\omega^{\omega}}$,
+        If $\lambda=\epsilon_0$, then $\lambda[0]=\omega$,
+        $\lambda[1]=\omega^\omega$, $\lambda[2]=\omega^{\omega^\omega}$,
         and so on.
         \item
         If $\lambda$ has Cantor normal form
@@ -895,11 +894,11 @@ The values of $g_{\epsilon_0}$ are as follows:
     \item
     $g_{\epsilon_0}(0)=0$.
     \item
-    $g_{\epsilon_0}(1)=1$.
+    $g_{\epsilon_0}(1)=1^1$.
     \item
-    $g_{\epsilon_0}(2)=2^2$.
+    $g_{\epsilon_0}(2)=2^{2^2}$.
     \item
-    $g_{\epsilon_0}(3)=3^{3^{3}}$.
+    $g_{\epsilon_0}(3)=3^{3^{3^3}}$.
     \item
     And so on.
 \end{itemize}
