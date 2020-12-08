@@ -560,6 +560,71 @@ of measuring those growth rates (i.e., a particular solution to
 Problem \ref{bigoproblem}).
 \end{remark}
 
+\subsection{A theoretical note on the difficulty of Problem \ref{bigoproblem}}
+
+In this subsection, we will argue that in order for a solution to Problem \ref{bigoproblem}
+to be much good, it cannot possibly use real numbers to quantify growth rates (in a sense
+we will make more precise). Essentially,
+this is because the real numbers have the Archimedean property
+(the property that for any positive real $r>0$ and any real $y$, there is
+some $n\in\mathbb N$ such that $nr>y$), a constraint which does
+not apply to function growth rates.
+
+\begin{definition}
+    Let $\mathbb N^\mathbb N$ be the set of all functions $\mathbb N\to\mathbb N$.
+    A \emph{well-behaved real-measure of $\mathbb N^\mathbb N$} is a function
+    $F:\mathbb N^\mathbb N\to\mathbb R$ satisfying the following requirements.
+    \begin{enumerate}
+        \item (Monotonicity)
+        For any $f,g:\mathbb N\to\mathbb N$, if $f\succ g$, then $F(f)>F(g)$.
+        \item (Nontriviality)
+        For any $r\in\mathbb R$, there is some $f:\mathbb N\to\mathbb N$ such that
+        $F(f)>r$.
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+\label{nonarchimedeantheorem}
+    There is no well-behaved real-measure of $\mathbb N^\mathbb N$.
+\end{theorem}
+
+\begin{proof}
+    Assume $F:\mathbb N^\mathbb N\to\mathbb R$ is a well-behaved real-measure
+    of $\mathbb N^\mathbb N$.
+    By Nontriviality, there are
+    $f_0,f_1,\ldots:\mathbb N\to\mathbb N$
+    such that each $F(f_n)>n$.
+    Define $g:\mathbb N\to\mathbb N$ by $g(n)=f_0(n)+\cdots+f_n(n)$.
+    Clearly, for every $n\in\mathbb N$, $g\succ f_{n}$.
+    By the Archimedean property of the real numbers, there is some $n\in\mathbb N$
+    such that $n>F(g)$. By Monotonicity, $F(g)>F(f_{n})$,
+    but by choice of $f_{n}$, $F(f_{n})>n>F(g)$, a contradiction.
+\end{proof}
+
+In light of Theorem \ref{nonarchimedeantheorem}, we are motivated to investigate
+solutions to Problem \ref{bigoproblem} using alternative number systems to the reals,
+which will yield ASPI measures (or taxonomies) in terms of those alternative number
+systems.
+
+A similar argument (but one which is necessarily informal until we better understand AGI)
+could be made that real numbers might be inadequate for measuring
+AGI intelligence in general. It at least seems plausible that there are AGIs $X_1,X_2,\ldots$
+such that each $X_{i+1}$ is significantly more intelligent than $X_i$, and another AGI
+$Y$ such that $Y$ is more intelligent than each $X_i$. At least, if this is not true,
+it is not \emph{obvious} that it is not true, and it seems like it would require a
+non-trivial proof to prove that it were not true. Now, if ``significantly more
+intelligent'' implies ``at least $+1$ more intelligent'', then it follows that the
+intelligence levels of $Y$ and of $X_1,X_2,\ldots$ could not possibly be real numbers,
+or else one of the $X_i$ would necessarily have an intelligence level higher than
+$Y$. This was pointed out previously by \citet{ioi1},
+and by \citet{alexander2020arch} again, the latter admist a wider discussion of
+Archimedean and non-Archimedean measures.
+
+It is for this reason that we do not, in this paper, consider variations on Hibbard's
+intelligence measure that arise from simply replacing Liu's enumeration of the primitive
+recursive functions with various other $\mathbb N$-indexed lists of functions
+(for example, the list of all total computable functions).
+
 
 \section{Big-O and Big-$\Theta$ intelligence}
 \label{bigosection}
