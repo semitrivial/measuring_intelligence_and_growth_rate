@@ -102,10 +102,14 @@ The structure of the paper is as follows.
     In Section \ref{bigosection}, we consider Big-O notation and Big-$\Theta$ notation
     and define corresponding ASPI taxonomies.
     \item
-    In Section \ref{exoticsection}, we consider several numeric solutions to
-    the problem of measuring the growth rate of functions (using various number
-    systems), and define
-    corresponding ASPI measures and taxonomies.
+    In Section \ref{majorizationsection}, we consider solutions to the problem of
+    measuring growth rate of functions using majorization hierarchies, and define
+    corresponding ASPI measures.
+    \item
+    In Section \ref{hyperrealsurrealsection}, we consider solutions to the
+    problem of measuring growth rate of functions using more abstract number
+    systems, namely the hyperreal numbers and the surreal numbers. We do not
+    assume previous familiarity with these number systems.
     \item
     In Section \ref{prosandconssection}, we give pros and cons of different
     ASPI measures and taxonomies.
@@ -696,12 +700,376 @@ taxonomy of predictor intelligence.
     Similar to the proof of Proposition \ref{complicatedproposition}.
 \end{proof}
 
-\section{ASPI measures and taxonomies using various number systems}
-\label{exoticsection}
 
-In this section we will consider various solutions to
-Problem \ref{bigoproblem} in various different number systems,
-and the ASPI measures and taxonomies they produce.
+\section{ASPI measures based on majorization hierarchies}
+\label{majorizationsection}
+
+Majorization hierarchies \citep{weiermann2002slow}
+provide ordinal-number-valued measures for the growth
+rates of certain functions. A majorization hierarchy depends
+on many infinite-dimensional parameters. We will describe two
+majorization hierarchies up to the ordinal $\epsilon_0$,
+using standard choices for the parameters, and the ASPI measures
+which they produce.
+
+\begin{definition}
+    (Classification of ordinal numbers)
+    Ordinal numbers are divided into three types:
+    \begin{enumerate}
+        \item Zero: The ordinal $0$.
+        \item Successor ordinals: Ordinals of the form $\alpha+1$ for some ordinal $\alpha$.
+        \item Limit ordinals: Ordinals which are not successor ordinals nor $0$.
+    \end{enumerate}
+\end{definition}
+
+For example, the smallest infinite ordinal, $\omega$, is a limit ordinal. It is not zero
+(because zero is finite),
+nor can it be a successor ordinal, because if it were a successor ordinal, say, $\alpha+1$,
+then $\alpha$ would be finite (since $\omega$ is the \emph{smallest} infinite ordinal),
+but then $\alpha+1$ would be finite as well.
+
+Ordinal numbers have an arithmetical structure: two ordinals $\alpha$ and $\beta$
+have a sum $\alpha+\beta$, a product $\alpha\cdot \beta$, and a power
+$\alpha^\beta$. It would be beyond the scope of this paper to give the full
+definition of these operations. We will only remark that some care is needed because
+although ordinal arithmetic is associative---e.g.,
+$(\alpha+\beta)+\gamma=\alpha+(\beta+\gamma)$, and similarly for multiplication---it is
+not generally commutative: $\alpha+\beta$ is not always equal to $\beta+\alpha$,
+and $\alpha\cdot\beta$ is not always equal to $\beta\cdot\alpha$. For this reason,
+one often sees products like $\alpha\cdot 2$, which are not necessarily equivalent to the
+more familiar $2\cdot\alpha$.
+
+The ordinal $\epsilon_0$ is the smallest ordinal bigger than the ordinals
+$\omega,\omega^\omega,\omega^{\omega^\omega},\ldots$. It satisfies the equation
+$\epsilon_0=\omega^{\epsilon_0}$ and can be intuitively thought of as
+\[
+    \epsilon_0 = \omega^{\omega^{\omega^{\iddots}}}.
+\]
+Ordinals below $\epsilon_0$ include such ordinals as $\omega$,
+$\omega^{\omega+1}+\omega^{\omega}+\omega^5+3$,
+\[
+\omega^{\omega^{\omega^{\omega^\omega}}}+
+\omega^{\omega^{\omega^\omega}+\omega^{\omega\cdot 2+1}+\omega^4 + 3}
++ \omega^{\omega^5+\omega^3}+\omega^8+1,
+\]
+and so on.
+Any ordinal below $\epsilon_0$ can be uniquely written in the form
+\[
+    \omega^{\alpha_1}+\omega^{\alpha_2}+\cdots + \omega^{\alpha_k}
+\]
+where $\alpha_1\geq\cdots\geq\alpha_k$ are smaller ordinals below $\epsilon_0$---this form
+for an ordinal below $\epsilon_0$ is called its \emph{Cantor normal form}.
+For example, the Cantor normal form for $\omega^{\omega\cdot 2}\cdot 2+\omega\cdot 3+2$
+is
+\[
+\omega^{\omega\cdot 2}\cdot 2+\omega\cdot 3+2
+=
+\omega^{\omega\cdot 2} + \omega^{\omega\cdot 2} + \omega^1 + \omega^1 + \omega^1
++\omega^0 + \omega^0.
+\]
+
+\begin{definition}
+\label{fundsequencesdefn}
+    (Standard fundamental sequences for limit ordinals $\leq\epsilon_0$)
+    Suppose $\lambda$ is a limit ordinal $\leq\epsilon_0$. We define a
+    \emph{fundamental sequence for $\lambda$},
+    written $(\lambda[0],\lambda[1],\lambda[2],\ldots)$, inductively as follows.
+    \begin{itemize}
+        \item
+        If $\lambda=\epsilon_0$, then $\lambda[0]=1$,
+        $\lambda[1]=\omega$, $\lambda[2]=\omega^\omega$,
+        $\lambda[3]=\omega^{\omega^{\omega}}$,
+        and so on.
+        \item
+        If $\lambda$ has Cantor normal form
+        $\omega^{\alpha_1}+\cdots+\omega^{\alpha_k}$ where $k>1$,
+        then
+        each
+        \[
+            \lambda[i] = \omega^{\alpha_1}+\cdots+\omega^{\alpha_{k-1}}
+            + (\omega^{\alpha_k}[i]).
+        \]
+        \item
+        If $\lambda$ has Cantor normal form $\omega^{\alpha+1}$,
+        then each $\lambda[i]=\omega^{\alpha}\cdot i$.
+        \item
+        If $\lambda$ has Cantor normal form $\omega^{\lambda_0}$ where $\lambda_0$
+        is a limit ordinal, then each $\lambda[i]=\omega^{\lambda_0[i]}$.
+    \end{itemize}
+\end{definition}
+
+\begin{example}
+    (Fundamental sequence examples)
+    \begin{itemize}
+        \item
+        The fundamental sequence for $\lambda=\omega=\omega^1=\omega^{0+1}$ is
+        $\omega^0\cdot 0, \omega^0\cdot 1, \omega^0\cdot 2, \ldots$,
+        i.e., $0, 1, 2, \ldots$.
+        \item
+        The fundamental sequence for $\lambda=\omega^5$ is
+        $0,\omega^4,\omega^4\cdot 2,\omega^4\cdot 3,\ldots$.
+        \item
+        The fundamental sequence for $\lambda=\omega^\omega$ is
+        $\omega^0,\omega^1,\omega^2,\ldots$.
+        \item
+        The fundamental sequence for $\lambda=\omega^\omega+\omega$ is
+        $\omega^\omega+0,\omega^\omega+1,\omega^\omega+2,\ldots$.
+    \end{itemize}
+\end{example}
+
+\begin{definition}
+\label{slowgrowinghierarchydefn}
+    (The standard slow-growing hierarchy up to $\epsilon_0$)
+    We define functions $g_\beta:\mathbb N\to\mathbb N$ (for all ordinals
+    $\beta\leq \epsilon_0$) by transfinite induction as follows.
+    \begin{itemize}
+        \item
+        $g_0(n)=0$.
+        \item
+        $g_{\alpha+1}(n) = g_\alpha(n) + 1$ if $\alpha+1\leq\epsilon_0$.
+        \item
+        $g_{\lambda}(n) = g_{\lambda[n]}(n)$ if $\lambda\leq\epsilon_0$ is a limit ordinal.
+    \end{itemize}
+\end{definition}
+
+Here are some early levels in the slow-growing hierarchy, spelled out in detail.
+
+\begin{example}
+\label{highdetailslowgrowingexample}
+    (Early examples of functions in the slow-growing hierarchy)
+    \begin{enumerate}
+        \item
+        $g_1(n)=g_{0+1}(n)=g_0(n)+1=0+1=1$.
+        \item
+        $g_2(n)=g_{1+1}(n)=g_1(n)+1=1+1=2$.
+        \item
+        More generally, for all $m\in\mathbb N$,
+        $g_m(n)=m$.
+        \item
+        $g_\omega(n)=g_{\omega[n]}(n)=g_n(n)=n$.
+        \item
+        $g_{\omega+1}(n)=g_{\omega}(n)+1=n+1$.
+        \item
+        $g_{\omega+2}(n)=g_{\omega+1}(n)+1=(n+1)+1=n+2$.
+        \item
+        More generally, for all $m\in\mathbb N$,
+        $g_{\omega+m}(n)=n+m$.
+        \item
+        $g_{\omega\cdot 2}(n)=g_{(\omega\cdot 2)[n]}(n)
+        =g_{\omega+n}(n)=n+n=n\cdot 2$.
+    \end{enumerate}
+\end{example}
+
+Following Example \ref{highdetailslowgrowingexample}, the reader should be able
+to fill in the details in the following example.
+
+\begin{example}
+    (More examples from the slow-growing hierarchy)
+    \begin{enumerate}
+        \item
+        $g_{\omega^2}(n)=n^2$.
+        \item
+        $g_{\omega^3}(n)=n^3$.
+        \item
+        $g_{\omega^\omega}(n)=n^n$.
+        \item
+        $g_{\omega^{\omega\cdot 3+1}+\omega+5}(n)=n^{3n+1}+n+5$.
+        \item
+        $g_{\omega^{\omega^{\omega}}}(n)=n^{n^n}$.
+    \end{enumerate}
+\end{example}
+
+What about $g_{\epsilon_0}$? Thinking of $\epsilon_0$ as
+\[\omega^{\omega^{\omega^{\iddots}}},\]
+one might expect $g_{\epsilon_0}(n)$ to be
+\[n^{n^{n^{\iddots}}},\]
+but such an infinite tower
+of natural number exponents makes no sense if $n>1$. Instead,
+the answer defies familiar mathematical
+notation.
+
+\begin{example}
+\label{epsilon0example}
+(Level $\epsilon_0$ in the slow-growing hierarchy)
+The values of $g_{\epsilon_0}$ are as follows:
+\begin{itemize}
+    \item
+    $g_{\epsilon_0}(0)=0$.
+    \item
+    $g_{\epsilon_0}(1)=1$.
+    \item
+    $g_{\epsilon_0}(2)=2^2$.
+    \item
+    $g_{\epsilon_0}(3)=3^{3^{3}}$.
+    \item
+    And so on.
+\end{itemize}
+\end{example}
+
+Examples \ref{highdetailslowgrowingexample}--\ref{epsilon0example} illustrate
+how the slow-growing hierarchy systematically provides a family of reference
+functions against which any particular function can be compared.
+This yields a solution to Problem \ref{bigoproblem}: we can declare the growth
+rate of an arbitrary function $f:\mathbb N\to\mathbb N$ to be the smallest ordinal
+$\beta< \epsilon_0$ such that $g_\beta\succ f$ (or $\infty$ if there is no such
+$\beta$).
+For any bounded set $S$ of ordinals, there is a canonical upper bound for $S$,
+namely, the supremum of $S$.
+Thus we obtain an ASPI measure (not just a taxonomy).
+
+\begin{definition}
+\label{tradmajorizationhierarchyhibbardmeasuredefn}
+    If $p$ is a predictor, the \emph{ASPI measure of $p$ given by the
+    standard slow-growing hierarchy up to $\epsilon_0$} is defined to be the
+    supremum of $S$ (or $\infty$
+    if $\epsilon_0\in S$), where $S$ is the set of all ordinals
+    $\alpha\leq\epsilon_0$
+    such that the following condition holds:
+    for every evader $e$, if $g_\alpha\succ t_e$, then $p$ learns $e$.
+\end{definition}
+
+In Definition \ref{slowgrowinghierarchydefn}, in the successor ordinal case,
+we chose to define $g_{\alpha+1}(n)=g_\alpha(n)+1$. The resulting majorization
+hierarchy is referred to as \emph{slow-growing} because in some sense this
+makes $g_{\alpha+1}$ just barely faster-growing than $g_\alpha$.
+Different definitions of $g_{\alpha+1}$ would yield different majorization
+hierarchies, such as the following.
+
+\begin{definition}
+\label{fastgrowinghierarchydefn}
+    (The standard fast-growing hierarchy up to $\epsilon_0$, also known as
+    the Wainer hierarchy)
+    We define functions $h_\beta:\mathbb N\to\mathbb N$ (for all ordinals
+    $\beta\leq \epsilon_0$) by transfinite induction as follows.
+    \begin{itemize}
+        \item
+        $h_0(n)=n+1$.
+        \item
+        $h_{\alpha+1}(n) = h^n_\alpha(n)$, where $h^n_\alpha$ is the $n$th
+        iterate of $h_\alpha$ (so $h^1_\alpha(x)=h_\alpha(x)$,
+        $h^2_\alpha(x)=h_\alpha(h_\alpha(x))$,
+        $h^3_\alpha(x)=h_\alpha(h_\alpha(h_\alpha(x)))$, and so on).
+        \item
+        $h_{\lambda}(n) = h_{\lambda[n]}(n)$ if $\lambda$ is a
+        limit ordinal $\leq\epsilon_0$.
+    \end{itemize}
+\end{definition}
+
+The functions in the fast-growing hierarchy grow quickly
+as $\alpha$ grows. It can be shown \citep{wainer1987provably} that
+for every computable function $f$ whose totality can be proven from the axioms of
+Peano arithmetic, there is some $\alpha<\epsilon_0$ such that $h_\alpha\succ f$.
+
+\begin{definition}
+\label{fastmajorizationhierarchyhibbardmeasuredefn}
+    If $p$ is a predictor, the \emph{ASPI measure of $p$ given by the
+    standard fast-growing hierarchy up to $\epsilon_0$} is defined to be the
+    supremum of $S$ (or $\infty$ if $\epsilon_0\in S$),
+    where $S$ is the set of all ordinals $\alpha\leq\epsilon_0$ such that
+    the following condition holds:
+    for every predictor $e$, if $h_\alpha\succ t_e$, then $p$ learns $e$.
+\end{definition}
+
+\begin{proposition}
+    For any $\alpha<\epsilon_0$, there are predictors $p$ (resp.\ $q$)
+    whose ASPI measures
+    given by the standard slow-growing (resp.\ fast-growing)
+    hierarchy up to $\epsilon_0$
+    is $\geq \alpha$.
+\end{proposition}
+
+\begin{proof}
+    Similar to the proof of Proposition \ref{complicatedproposition}.
+\end{proof}
+
+Between Definitions \ref{tradmajorizationhierarchyhibbardmeasuredefn} and
+\ref{fastmajorizationhierarchyhibbardmeasuredefn}, the former offers a finer
+granularity
+intelligence measure for the predictors to which it assigns non-$\infty$
+intelligence, but the latter assigns non-$\infty$ intelligence to a larger
+set of predictors.
+
+Definitions \ref{slowgrowinghierarchydefn}
+and \ref{fastgrowinghierarchydefn} are only two
+examples of
+majorization hierarchies. Both the slow- and fast-growing hierarchies can be
+extended by extending the fundamental sequences of Definition
+\ref{fundsequencesdefn} to larger ordinals\footnote{Remarkably,
+the slow-growing hierarchy eventually catches up with the fast-growing hierarchy
+if both hierarchies are extended to sufficiently large ordinals
+\citep{wainer1989slow, girard1981pi12}, a beautiful illustration of
+how counter-intuitive
+large ordinal numbers can be.}, however, the larger
+the ordinals become, the more difficult it is to do this, and especially the less
+clear it is how to do it in any sort of canonical way.
+There are also other choices for how to proceed at successor ordinal stages besides
+$g_{\alpha+1}(n)=g_\alpha(n)+1$ or $h_{\alpha+1}(n)=h^n_\alpha(n)$---for example,
+one of the oldest majorization hierarchies is the Hardy hierarchy
+\citep{hardy1904theorem}, where $H_{\alpha+1}(n)=H_\alpha(n+1)$.
+And even for ordinals up to $\epsilon_0$,
+there are other ways to choose fundamental sequences besides how we defined them in
+Definition \ref{fundsequencesdefn}---choosing non-canonical fundamental sequences can
+drastically alter the resulting majorization hierarchy \citep{weiermann1997sometimes}.
+All these different majorization hierarchies yield different ASPI measures.
+
+\subsection{A remark about ASPI measures and AGI intelligence}
+
+All the ASPI measures and taxonomies we have defined so far double as indirect
+intelligence measures and taxonomies for an AGI, by the argument we made
+in Subsection \ref{agiproxysection}.
+
+For a given AGI $X$, a priori, we cannot say much about the predictor which $X$
+would act as if $X$ were commanded to act as a predictor. But there is one particularly
+elegant and parsimonious strategy which $X$ might use, a \emph{brute force strategy},
+namely:
+\begin{itemize}
+    \item Enumerate all the
+    computable functions $f$ which $X$ knows to be total, and for each one, attempt to
+    predict the evader $e$ by assuming that the evader's runtime $t_e$
+    satisfies $f\succ t_e$.
+    If the evader proves not to be so majorized (by differing from every computable
+    function whose runtime is so majorized), then move on to the next
+    known total function $f$, and continue the process.
+\end{itemize}
+We do not
+know for certain which predictor $X$ would imitate when commanded to act as a predictor,
+but it seems plausible that $X$ would use this brute force strategy or something
+equivalent.
+
+For an AGI $X$ who uses the above brute force strategy, ASPI
+measures of $X$'s intelligence would be determined by $X$'s knowledge, namely,
+by the runtime complexity of the computable functions which $X$ knows to be total.
+Furthermore, the most natural way for $X$ to know totality of functions with large
+runtime complexity, is for $X$ to know fundamental sequences for large ordinal
+numbers, and produce said functions by means of majorization
+hierarchies\footnote{It may be
+possible for an AGI to be contrived to know totality of functions that are larger
+than the functions produced by majorization hierarchies up to ordinals the AGI knows
+about, but we conjecture that that is not the case for AGIs not so deliberately
+contrived.}. This suggests a connection between
+\begin{enumerate}
+    \item
+    ASPI measures like that of
+    Definition \ref{fastmajorizationhierarchyhibbardmeasuredefn}, and
+    \item
+    intelligence measures based on which ordinals the AGI knows
+    \citep{ioi1}.
+\end{enumerate}
+Indeed, \citet{ioi2} has argued that
+the task of notating large ordinals is one which
+spans the entire range of intelligence.
+This is reminiscent of Chaitin's proposal to use ordinal notation
+as a goal intended to facilitate evolution---``and the larger the ordinal,
+the fitter the organism'' \citep{chaitin}---and Good's observation
+\citep{good1969godel} that iterated Lucas-Penrose contests boil down to
+contests to name the larger ordinal.
+
+\section{Hyperreal numbers and surreal numbers}
+\label{hyperrealsurrealsection}
+
+In this section, we will exhibit an abstract ASPI taxonomy based on hyperreal numbers
+and an abstract ASPI measure based on surreal numbers. We do not assume previous
+familiarity with either of these number systems.
 
 \subsection{The hyperreal ASPI taxonomy}
 \label{hyperrealsubsection}
@@ -1157,368 +1525,6 @@ provides an ASPI measure, not just an ASPI taxonomy.
 Note that in Definition \ref{surrealhibbardintelligencedefn}, we require
 $\ell\in\iota(\mathbb R^*)$ because otherwise $L$ would not be a set.
 
-\subsection{ASPI measures based on majorization hierarchies}
-
-Majorization hierarchies \citep{weiermann2002slow}
-provide ordinal-number-valued measures for the growth
-rates of certain functions. A majorization hierarchy depends
-on many infinite-dimensional parameters. We will describe two
-majorization hierarchies up to the ordinal $\epsilon_0$,
-using standard choices for the parameters, and the ASPI measures
-which they produce.
-
-\begin{definition}
-    (Classification of ordinal numbers)
-    Ordinal numbers are divided into three types:
-    \begin{enumerate}
-        \item Zero: The ordinal $0$.
-        \item Successor ordinals: Ordinals of the form $\alpha+1$ for some ordinal $\alpha$.
-        \item Limit ordinals: Ordinals which are not successor ordinals nor $0$.
-    \end{enumerate}
-\end{definition}
-
-For example, the smallest infinite ordinal, $\omega$, is a limit ordinal. It is not zero
-(because zero is finite),
-nor can it be a successor ordinal, because if it were a successor ordinal, say, $\alpha+1$,
-then $\alpha$ would be finite (since $\omega$ is the \emph{smallest} infinite ordinal),
-but then $\alpha+1$ would be finite as well.
-
-Ordinal numbers have an arithmetical structure: two ordinals $\alpha$ and $\beta$
-have a sum $\alpha+\beta$, a product $\alpha\cdot \beta$, and a power
-$\alpha^\beta$. It would be beyond the scope of this paper to give the full
-definition of these operations. We will only remark that some care is needed because
-although ordinal arithmetic is associative---e.g.,
-$(\alpha+\beta)+\gamma=\alpha+(\beta+\gamma)$, and similarly for multiplication---it is
-not generally commutative: $\alpha+\beta$ is not always equal to $\beta+\alpha$,
-and $\alpha\cdot\beta$ is not always equal to $\beta\cdot\alpha$. For this reason,
-one often sees products like $\alpha\cdot 2$, which are not necessarily equivalent to the
-more familiar $2\cdot\alpha$.
-
-The ordinal $\epsilon_0$ is the smallest ordinal bigger than the ordinals
-$\omega,\omega^\omega,\omega^{\omega^\omega},\ldots$. It satisfies the equation
-$\epsilon_0=\omega^{\epsilon_0}$ and can be intuitively thought of as
-\[
-    \epsilon_0 = \omega^{\omega^{\omega^{\iddots}}}.
-\]
-Ordinals below $\epsilon_0$ include such ordinals as $\omega$,
-$\omega^{\omega+1}+\omega^{\omega}+\omega^5+3$,
-\[
-\omega^{\omega^{\omega^{\omega^\omega}}}+
-\omega^{\omega^{\omega^\omega}+\omega^{\omega\cdot 2+1}+\omega^4 + 3}
-+ \omega^{\omega^5+\omega^3}+\omega^8+1,
-\]
-and so on.
-Any ordinal below $\epsilon_0$ can be uniquely written in the form
-\[
-    \omega^{\alpha_1}+\omega^{\alpha_2}+\cdots + \omega^{\alpha_k}
-\]
-where $\alpha_1\geq\cdots\geq\alpha_k$ are smaller ordinals below $\epsilon_0$---this form
-for an ordinal below $\epsilon_0$ is called its \emph{Cantor normal form}.
-For example, the Cantor normal form for $\omega^{\omega\cdot 2}\cdot 2+\omega\cdot 3+2$
-is
-\[
-\omega^{\omega\cdot 2}\cdot 2+\omega\cdot 3+2
-=
-\omega^{\omega\cdot 2} + \omega^{\omega\cdot 2} + \omega^1 + \omega^1 + \omega^1
-+\omega^0 + \omega^0.
-\]
-
-\begin{definition}
-\label{fundsequencesdefn}
-    (Standard fundamental sequences for limit ordinals $\leq\epsilon_0$)
-    Suppose $\lambda$ is a limit ordinal $\leq\epsilon_0$. We define a
-    \emph{fundamental sequence for $\lambda$},
-    written $(\lambda[0],\lambda[1],\lambda[2],\ldots)$, inductively as follows.
-    \begin{itemize}
-        \item
-        If $\lambda=\epsilon_0$, then $\lambda[0]=1$,
-        $\lambda[1]=\omega$, $\lambda[2]=\omega^\omega$,
-        $\lambda[3]=\omega^{\omega^{\omega}}$,
-        and so on.
-        \item
-        If $\lambda$ has Cantor normal form
-        $\omega^{\alpha_1}+\cdots+\omega^{\alpha_k}$ where $k>1$,
-        then
-        each
-        \[
-            \lambda[i] = \omega^{\alpha_1}+\cdots+\omega^{\alpha_{k-1}}
-            + (\omega^{\alpha_k}[i]).
-        \]
-        \item
-        If $\lambda$ has Cantor normal form $\omega^{\alpha+1}$,
-        then each $\lambda[i]=\omega^{\alpha}\cdot i$.
-        \item
-        If $\lambda$ has Cantor normal form $\omega^{\lambda_0}$ where $\lambda_0$
-        is a limit ordinal, then each $\lambda[i]=\omega^{\lambda_0[i]}$.
-    \end{itemize}
-\end{definition}
-
-\begin{example}
-    (Fundamental sequence examples)
-    \begin{itemize}
-        \item
-        The fundamental sequence for $\lambda=\omega=\omega^1=\omega^{0+1}$ is
-        $\omega^0\cdot 0, \omega^0\cdot 1, \omega^0\cdot 2, \ldots$,
-        i.e., $0, 1, 2, \ldots$.
-        \item
-        The fundamental sequence for $\lambda=\omega^5$ is
-        $0,\omega^4,\omega^4\cdot 2,\omega^4\cdot 3,\ldots$.
-        \item
-        The fundamental sequence for $\lambda=\omega^\omega$ is
-        $\omega^0,\omega^1,\omega^2,\ldots$.
-        \item
-        The fundamental sequence for $\lambda=\omega^\omega+\omega$ is
-        $\omega^\omega+0,\omega^\omega+1,\omega^\omega+2,\ldots$.
-    \end{itemize}
-\end{example}
-
-\begin{definition}
-\label{slowgrowinghierarchydefn}
-    (The standard slow-growing hierarchy up to $\epsilon_0$)
-    We define functions $g_\beta:\mathbb N\to\mathbb N$ (for all ordinals
-    $\beta\leq \epsilon_0$) by transfinite induction as follows.
-    \begin{itemize}
-        \item
-        $g_0(n)=0$.
-        \item
-        $g_{\alpha+1}(n) = g_\alpha(n) + 1$ if $\alpha+1\leq\epsilon_0$.
-        \item
-        $g_{\lambda}(n) = g_{\lambda[n]}(n)$ if $\lambda\leq\epsilon_0$ is a limit ordinal.
-    \end{itemize}
-\end{definition}
-
-Here are some early levels in the slow-growing hierarchy, spelled out in detail.
-
-\begin{example}
-\label{highdetailslowgrowingexample}
-    (Early examples of functions in the slow-growing hierarchy)
-    \begin{enumerate}
-        \item
-        $g_1(n)=g_{0+1}(n)=g_0(n)+1=0+1=1$.
-        \item
-        $g_2(n)=g_{1+1}(n)=g_1(n)+1=1+1=2$.
-        \item
-        More generally, for all $m\in\mathbb N$,
-        $g_m(n)=m$.
-        \item
-        $g_\omega(n)=g_{\omega[n]}(n)=g_n(n)=n$.
-        \item
-        $g_{\omega+1}(n)=g_{\omega}(n)+1=n+1$.
-        \item
-        $g_{\omega+2}(n)=g_{\omega+1}(n)+1=(n+1)+1=n+2$.
-        \item
-        More generally, for all $m\in\mathbb N$,
-        $g_{\omega+m}(n)=n+m$.
-        \item
-        $g_{\omega\cdot 2}(n)=g_{(\omega\cdot 2)[n]}(n)
-        =g_{\omega+n}(n)=n+n=n\cdot 2$.
-    \end{enumerate}
-\end{example}
-
-Following Example \ref{highdetailslowgrowingexample}, the reader should be able
-to fill in the details in the following example.
-
-\begin{example}
-    (More examples from the slow-growing hierarchy)
-    \begin{enumerate}
-        \item
-        $g_{\omega^2}(n)=n^2$.
-        \item
-        $g_{\omega^3}(n)=n^3$.
-        \item
-        $g_{\omega^\omega}(n)=n^n$.
-        \item
-        $g_{\omega^{\omega\cdot 3+1}+\omega+5}(n)=n^{3n+1}+n+5$.
-        \item
-        $g_{\omega^{\omega^{\omega}}}(n)=n^{n^n}$.
-    \end{enumerate}
-\end{example}
-
-What about $g_{\epsilon_0}$? Thinking of $\epsilon_0$ as
-\[\omega^{\omega^{\omega^{\iddots}}},\]
-one might expect $g_{\epsilon_0}(n)$ to be
-\[n^{n^{n^{\iddots}}},\]
-but such an infinite tower
-of natural number exponents makes no sense if $n>1$. Instead,
-the answer defies familiar mathematical
-notation.
-
-\begin{example}
-\label{epsilon0example}
-(Level $\epsilon_0$ in the slow-growing hierarchy)
-The values of $g_{\epsilon_0}$ are as follows:
-\begin{itemize}
-    \item
-    $g_{\epsilon_0}(0)=0$.
-    \item
-    $g_{\epsilon_0}(1)=1$.
-    \item
-    $g_{\epsilon_0}(2)=2^2$.
-    \item
-    $g_{\epsilon_0}(3)=3^{3^{3}}$.
-    \item
-    And so on.
-\end{itemize}
-\end{example}
-
-Examples \ref{highdetailslowgrowingexample}--\ref{epsilon0example} illustrate
-how the slow-growing hierarchy systematically provides a family of reference
-functions against which any particular function can be compared.
-This yields a solution to Problem \ref{bigoproblem}: we can declare the growth
-rate of an arbitrary function $f:\mathbb N\to\mathbb N$ to be the smallest ordinal
-$\beta< \epsilon_0$ such that $g_\beta\succ f$ (or $\infty$ if there is no such
-$\beta$).
-For any bounded set $S$ of ordinals, there is a canonical upper bound for $S$,
-namely, the supremum of $S$.
-Thus we obtain an ASPI measure (not just a taxonomy).
-
-\begin{definition}
-\label{tradmajorizationhierarchyhibbardmeasuredefn}
-    If $p$ is a predictor, the \emph{ASPI measure of $p$ given by the
-    standard slow-growing hierarchy up to $\epsilon_0$} is defined to be the
-    supremum of $S$ (or $\infty$
-    if $\epsilon_0\in S$), where $S$ is the set of all ordinals
-    $\alpha\leq\epsilon_0$
-    such that the following condition holds:
-    for every evader $e$, if $g_\alpha\succ t_e$, then $p$ learns $e$.
-\end{definition}
-
-In Definition \ref{slowgrowinghierarchydefn}, in the successor ordinal case,
-we chose to define $g_{\alpha+1}(n)=g_\alpha(n)+1$. The resulting majorization
-hierarchy is referred to as \emph{slow-growing} because in some sense this
-makes $g_{\alpha+1}$ just barely faster-growing than $g_\alpha$.
-Different definitions of $g_{\alpha+1}$ would yield different majorization
-hierarchies, such as the following.
-
-\begin{definition}
-\label{fastgrowinghierarchydefn}
-    (The standard fast-growing hierarchy up to $\epsilon_0$, also known as
-    the Wainer hierarchy)
-    We define functions $h_\beta:\mathbb N\to\mathbb N$ (for all ordinals
-    $\beta\leq \epsilon_0$) by transfinite induction as follows.
-    \begin{itemize}
-        \item
-        $h_0(n)=n+1$.
-        \item
-        $h_{\alpha+1}(n) = h^n_\alpha(n)$, where $h^n_\alpha$ is the $n$th
-        iterate of $h_\alpha$ (so $h^1_\alpha(x)=h_\alpha(x)$,
-        $h^2_\alpha(x)=h_\alpha(h_\alpha(x))$,
-        $h^3_\alpha(x)=h_\alpha(h_\alpha(h_\alpha(x)))$, and so on).
-        \item
-        $h_{\lambda}(n) = h_{\lambda[n]}(n)$ if $\lambda$ is a
-        limit ordinal $\leq\epsilon_0$.
-    \end{itemize}
-\end{definition}
-
-The functions in the fast-growing hierarchy grow quickly
-as $\alpha$ grows. It can be shown \citep{wainer1987provably} that
-for every computable function $f$ whose totality can be proven from the axioms of
-Peano arithmetic, there is some $\alpha<\epsilon_0$ such that $h_\alpha\succ f$.
-
-\begin{definition}
-\label{fastmajorizationhierarchyhibbardmeasuredefn}
-    If $p$ is a predictor, the \emph{ASPI measure of $p$ given by the
-    standard fast-growing hierarchy up to $\epsilon_0$} is defined to be the
-    supremum of $S$ (or $\infty$ if $\epsilon_0\in S$),
-    where $S$ is the set of all ordinals $\alpha\leq\epsilon_0$ such that
-    the following condition holds:
-    for every predictor $e$, if $h_\alpha\succ t_e$, then $p$ learns $e$.
-\end{definition}
-
-\begin{proposition}
-    For any $\alpha<\epsilon_0$, there are predictors $p$ (resp.\ $q$)
-    whose ASPI measures
-    given by the standard slow-growing (resp.\ fast-growing)
-    hierarchy up to $\epsilon_0$
-    is $\geq \alpha$.
-\end{proposition}
-
-\begin{proof}
-    Similar to the proof of Proposition \ref{complicatedproposition}.
-\end{proof}
-
-Between Definitions \ref{tradmajorizationhierarchyhibbardmeasuredefn} and
-\ref{fastmajorizationhierarchyhibbardmeasuredefn}, the former offers a finer
-granularity
-intelligence measure for the predictors to which it assigns non-$\infty$
-intelligence, but the latter assigns non-$\infty$ intelligence to a larger
-set of predictors.
-
-Definitions \ref{slowgrowinghierarchydefn}
-and \ref{fastgrowinghierarchydefn} are only two
-examples of
-majorization hierarchies. Both the slow- and fast-growing hierarchies can be
-extended by extending the fundamental sequences of Definition
-\ref{fundsequencesdefn} to larger ordinals\footnote{Remarkably,
-the slow-growing hierarchy eventually catches up with the fast-growing hierarchy
-if both hierarchies are extended to sufficiently large ordinals
-\citep{wainer1989slow, girard1981pi12}, a beautiful illustration of
-how counter-intuitive
-large ordinal numbers can be.}, however, the larger
-the ordinals become, the more difficult it is to do this, and especially the less
-clear it is how to do it in any sort of canonical way.
-There are also other choices for how to proceed at successor ordinal stages besides
-$g_{\alpha+1}(n)=g_\alpha(n)+1$ or $h_{\alpha+1}(n)=h^n_\alpha(n)$---for example,
-one of the oldest majorization hierarchies is the Hardy hierarchy
-\citep{hardy1904theorem}, where $H_{\alpha+1}(n)=H_\alpha(n+1)$.
-And even for ordinals up to $\epsilon_0$,
-there are other ways to choose fundamental sequences besides how we defined them in
-Definition \ref{fundsequencesdefn}---choosing non-canonical fundamental sequences can
-drastically alter the resulting majorization hierarchy \citep{weiermann1997sometimes}.
-All these different majorization hierarchies yield different ASPI measures.
-
-\subsection{A remark about ASPI measures and AGI intelligence}
-
-All the ASPI measures and taxonomies we have defined so far double as indirect
-intelligence measures and taxonomies for an AGI, by the argument we made
-in Subsection \ref{agiproxysection}.
-
-For a given AGI $X$, a priori, we cannot say much about the predictor which $X$
-would act as if $X$ were commanded to act as a predictor. But there is one particularly
-elegant and parsimonious strategy which $X$ might use, a \emph{brute force strategy},
-namely:
-\begin{itemize}
-    \item Enumerate all the
-    computable functions $f$ which $X$ knows to be total, and for each one, attempt to
-    predict the evader $e$ by assuming that the evader's runtime $t_e$
-    satisfies $f\succ t_e$.
-    If the evader proves not to be so majorized (by differing from every computable
-    function whose runtime is so majorized), then move on to the next
-    known total function $f$, and continue the process.
-\end{itemize}
-We do not
-know for certain which predictor $X$ would imitate when commanded to act as a predictor,
-but it seems plausible that $X$ would use this brute force strategy or something
-equivalent.
-
-For an AGI $X$ who uses the above brute force strategy, ASPI
-measures of $X$'s intelligence would be determined by $X$'s knowledge, namely,
-by the runtime complexity of the computable functions which $X$ knows to be total.
-Furthermore, the most natural way for $X$ to know totality of functions with large
-runtime complexity, is for $X$ to know fundamental sequences for large ordinal
-numbers, and produce said functions by means of majorization
-hierarchies\footnote{It may be
-possible for an AGI to be contrived to know totality of functions that are larger
-than the functions produced by majorization hierarchies up to ordinals the AGI knows
-about, but we conjecture that that is not the case for AGIs not so deliberately
-contrived.}. This suggests a connection between
-\begin{enumerate}
-    \item
-    ASPI measures like that of
-    Definition \ref{fastmajorizationhierarchyhibbardmeasuredefn}, and
-    \item
-    intelligence measures based on which ordinals the AGI knows
-    \citep{ioi1}.
-\end{enumerate}
-Indeed, \citet{ioi2} has argued that
-the task of notating large ordinals is one which
-spans the entire range of intelligence.
-This is reminiscent of Chaitin's proposal to use ordinal notation
-as a goal intended to facilitate evolution---``and the larger the ordinal,
-the fitter the organism'' \citep{chaitin}---and Good's observation
-\citep{good1969godel} that iterated Lucas-Penrose contests boil down to
-contests to name the larger ordinal.
-
 
 \section{Pros and cons of different ASPI measures and taxonomies}
 \label{prosandconssection}
@@ -1564,6 +1570,30 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
         Con: A non-numerical taxonomy.
     \end{itemize}
     \item
+    Intelligence based on a majorization hierarchy such as the
+    standard slow- or fast-growing hierarchy up to $\epsilon_0$
+    (Definitions \ref{tradmajorizationhierarchyhibbardmeasuredefn}
+    and \ref{fastmajorizationhierarchyhibbardmeasuredefn}):
+    \begin{itemize}
+        \item
+        Pro: A numerical measure, albeit less granular than the
+        Big-O/Big-$\Theta$ taxonomies.
+        \item
+        Pro: Relatively concrete.
+        \item
+        Pro: The numbers which the measure outputs are meaningful, in the sense that
+        the degree to which a predictor $p$ is more intelligent than a
+        predictor $q$ is reflected
+        in the degree to which $p$'s intelligence-measure is larger than $q$'s.
+        \item
+        Con: The numbers which the measure outputs are ordinal numbers, which may be
+        unfamiliar to some users.
+        \item
+        Con: Only distinguishes sufficiently non-intelligent predictors; for any particular
+        majorization hierarchy, all predictors
+        sufficiently intelligent receive measure $\infty$.
+    \end{itemize}
+    \item
     Hyperreal intelligence (Definition \ref{hyperrealhibbardintelligencedefn}):
     \begin{itemize}
         \item
@@ -1590,30 +1620,6 @@ to the problem (Problem \ref{bigoproblem}) of measuring the growth rate of funct
         the resulting hyperreals into the surreals, each of which dependencies
         is computationally impractical.
     \end{itemize}
-    \item
-    Intelligence based on a majorization hierarchy such as the
-    standard slow- or fast-growing hierarchy up to $\epsilon_0$
-    (Definitions \ref{tradmajorizationhierarchyhibbardmeasuredefn}
-    and \ref{fastmajorizationhierarchyhibbardmeasuredefn}):
-    \begin{itemize}
-        \item
-        Pro: A numerical measure, albeit less granular than the
-        Big-O/Big-$\Theta$ taxonomies.
-        \item
-        Pro: Relatively concrete.
-        \item
-        Pro: The numbers which the measure outputs are meaningful, in the sense that
-        the degree to which a predictor $p$ is more intelligent than a
-        predictor $q$ is reflected
-        in the degree to which $p$'s intelligence-measure is larger than $q$'s.
-        \item
-        Con: The numbers which the measure outputs are ordinal numbers, which may be
-        unfamiliar to some users.
-        \item
-        Con: Only distinguishes sufficiently non-intelligent predictors; for any particular
-        majorization hierarchy, all predictors
-        sufficiently intelligent receive measure $\infty$.
-    \end{itemize}
 \end{itemize}
 
 \section{Conclusion}
@@ -1635,8 +1641,8 @@ To summarize:
     \item
     We considered several specific ways of measuring growth-rates of functions, and exhibited
     corresponding ASPI measures and taxonomies. The growth-rate-measuring methods
-    which we considered were: Big-O/Big-$\Theta$ notation; hyperreal numbers;
-    surreal numbers; and majorization hierarchies.
+    which we considered were: Big-O/Big-$\Theta$ notation; majorization hierarchies;
+    hyperreal numbers; and surreal numbers.
     \item
     We also discussed how the intelligence of adversarial sequence predictors
     can be considered as an approximation of the intelligence of idealized AGIs.
