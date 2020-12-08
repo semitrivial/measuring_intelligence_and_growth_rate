@@ -965,10 +965,6 @@ following lemma. This lemma is well-known so we state it without proof.
 \end{proposition}
 
 \begin{proof}
-    For every evader $e$, let $N_e=\{n\in\mathbb N\,:\,t_e(n)<f(n)\}$.
-    By Definition \ref{outgrowsdefn}, for every $e$, if the hyperreal growth rate of
-    $t_e$ is $<\hat f$, then $N_e\in\mathcal U$.
-
     By a similar method as in the proof of Proposition \ref{complicatedproposition},
     construct a predictor $p$ such that for every evader $e$, the following statement
     is true: if $(x_1,y_1,x_2,y_2,\ldots)$ is the result of $p$ playing against $e$ then,
@@ -1155,7 +1151,7 @@ provides an ASPI measure, not just an ASPI taxonomy.
     is defined to be the surreal with name $\{L|\}$,
     where $L$ is the set of all surreal numbers $\ell\in\iota(\mathbb R^*)$ such that
     the following condition holds: for every evader $e$,
-    if the surreal growth rate of $t_e$ is $<\ell$, then $p$ learns $e$.
+    if the surreal growth rate of $t_e$ is $<\ell$, then $p$ $\mathcal U$-learns $e$.
 \end{definition}
 
 Note that in Definition \ref{surrealhibbardintelligencedefn}, we require
