@@ -586,9 +586,9 @@ not apply to function growth rates.
     $F:\mathbb N^\mathbb N\to\mathbb R$ satisfying the following requirements.
     \begin{enumerate}
         \item (Monotonicity)
-        For any $f,g:\mathbb N\to\mathbb N$, if $f\succ g$, then $F(f)>F(g)$.
+        For each $f,g:\mathbb N\to\mathbb N$, if $f\succ g$, then $F(f)>F(g)$.
         \item (Nontriviality)
-        For any $r\in\mathbb R$, there is some $f:\mathbb N\to\mathbb N$ such that
+        For each $r\in\mathbb R$, there is some $f:\mathbb N\to\mathbb N$ such that
         $F(f)>r$.
     \end{enumerate}
 \end{definition}
@@ -966,8 +966,8 @@ Peano arithmetic, there is some $\alpha<\epsilon_0$ such that $h_\alpha\succ f$.
 \end{definition}
 
 \begin{proposition}
-    For any $\alpha<\epsilon_0$, there are predictors $p$ (resp.\ $q$)
-    whose ASPI measures
+    For each $\alpha<\epsilon_0$, there is a predictor $p$ (resp.\ $q$)
+    whose ASPI measure
     given by the standard slow-growing (resp.\ fast-growing)
     hierarchy up to $\epsilon_0$
     is $\geq \alpha$.
@@ -1239,21 +1239,21 @@ analysis \citep{robinson, goldblatt2012lectures}.
 
 \begin{definition}
 \label{hyperrealsdefn}
-    The \emph{hyperreal numbers}, written $\mathbb R^*$,
+    The \emph{hyperreal numbers}, written ${}^*\mathbb R$,
     are the equivalence classes of $\equiv$.
-    For every $f:\mathbb N\to\mathbb R$, write $\hat{f}$ for
+    For every $f:\mathbb N\to\mathbb R$, write $\hat f$ for
     the hyperreal number (i.e., the $\equiv$-equivalence class) containing $f$.
-    We endow $\mathbb R^*$ with arithmetic and order as follows
+    We endow ${}^*\mathbb R$ with arithmetic and order as follows
     (where $f,g:\mathbb N\to\mathbb R$):
     \begin{itemize}
-        \item We define addition on $\mathbb R^*$ by declaring that
-        $\hat{f}+\hat{g}=\hat{h}$
+        \item We define addition on ${}^*\mathbb R$ by declaring that
+        $\hat {f}+\hat {g}=\hat {h}$
         where $h(n)=f(n)+g(n)$.
-        \item We define multiplication on $\mathbb R^*$ by declaring that
-        $\hat{f}\cdot \hat{g}=\hat{h}$
+        \item We define multiplication on ${}^*\mathbb R$ by declaring that
+        $\hat {f}\cdot \hat {g}=\hat {h}$
         where $h(n)=f(n)g(n)$.
-        \item We order $\mathbb R^*$ by declaring that
-        $\hat{f}>\hat{g}$ if and only if $f>_\mathcal U g$ (Definition \ref{outgrowsdefn}).
+        \item We order ${}^*\mathbb R$ by declaring that
+        $\hat {f}>\hat {g}$ if and only if $f>_\mathcal U g$ (Definition \ref{outgrowsdefn}).
     \end{itemize}
 \end{definition}
 
@@ -1262,7 +1262,7 @@ without proof.
 
 \begin{theorem}
     The addition, multiplication, and ordering in Definition \ref{hyperrealsdefn}
-    are well-defined, and they make $\mathbb R^*$ an ordered field.
+    are well-defined, and they make ${}^*\mathbb R$ an ordered field.
 \end{theorem}
 
 Having invested in this machinery,
@@ -1285,7 +1285,7 @@ proving theoretical properties about the intelligence of predictors.
     Suppose $p$ is a predictor and $e$ is an evader. Let
     $(x_1,y_1,x_2,y_2,\ldots)$ be the result of $p$ playing against $e$.
     We say $p$ \emph{$\mathcal U$-learns} $e$ if
-    $\{n\,:\,x_n=y_n\}\in\mathcal U$.
+    $\{n\in\mathbb N\,:\,x_n=y_n\}\in\mathcal U$.
     In other words, $p$ $\mathcal U$-learns $e$ if ``$p$ learns $e$''
     wins the election (according to $\mathcal U$)
     when every $n\in\mathbb N$ votes for ``$p$ learns $e$''
@@ -1486,9 +1486,9 @@ a free ultrafiler, our surreal solution further depends on an arbitrary embeddin
 
 \begin{definition}
     (The surreal solution to Problem \ref{bigoproblem})
-    Suppose $\mathcal U$ is a free ultrafilter and $\mathbb R^*$ is the corresponding
+    Suppose $\mathcal U$ is a free ultrafilter and ${}^*\mathbb R$ is the corresponding
     hyperreal number system (Definition \ref{hyperrealsdefn}).
-    Let $\iota$ be an embedding of $\mathbb R^*$ into the surreals.
+    Let $\iota$ be an embedding of ${}^*\mathbb R$ into the surreals.
     For any function $f:\mathbb N\to\mathbb N$, the \emph{surreal growth rate
     of $f$} (given by $\mathcal U$ and $\iota$) is
     $\iota(\hat f)$ where $\hat f$ is the hyperreal growth
@@ -1502,19 +1502,19 @@ provides an ASPI measure, not just an ASPI taxonomy.
 \begin{definition}
 \label{surrealhibbardintelligencedefn}
     (The surreal ASPI measure)
-    Let $\mathcal U$ be a free ultrafilter, let $\mathbb R^*$ be the corresponding
-    hyperreal number system, and let $\iota$ be an embedding of $\mathbb R^*$
-    into the surreals. Let $\iota(\mathbb R^*)$ be the range of $\iota$.
+    Let $\mathcal U$ be a free ultrafilter, let ${}^*\mathbb R$ be the corresponding
+    hyperreal number system, and let $\iota$ be an embedding of ${}^*\mathbb R$
+    into the surreals. Let $\iota({}^*\mathbb R)$ be the range of $\iota$.
     For every predictor $p$, the \emph{surreal ASPI measure} of $p$
     (given by $\mathcal U$ and $\iota$)
     is defined to be the surreal with name $\{L|\}$,
-    where $L$ is the set of all surreal numbers $\ell\in\iota(\mathbb R^*)$ such that
+    where $L$ is the set of all surreal numbers $\ell\in\iota({}^*\mathbb R)$ such that
     the following condition holds: for every evader $e$,
     if the surreal growth rate of $t_e$ is $<\ell$, then $p$ $\mathcal U$-learns $e$.
 \end{definition}
 
 Note that in Definition \ref{surrealhibbardintelligencedefn}, we require
-$\ell\in\iota(\mathbb R^*)$ because otherwise $L$ would not be a set.
+$\ell\in\iota({}^*\mathbb R)$ because otherwise $L$ would not be a set.
 
 
 \section{Pros and cons of different ASPI measures and taxonomies}
