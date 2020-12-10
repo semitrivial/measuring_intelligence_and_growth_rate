@@ -344,7 +344,9 @@ given an evader $e$, to determine whether or not $f\succ t_e$.}.
     is bounded by some primitive recursive function.
     Then the original Hibbard measure is not computable:
     there is no effectively computable procedure, given a predictor, to compute its
-    original Hibbard measure.
+    original Hibbard measure. In fact, there is not even an effective computable
+    procedure to tell if one given predictor has a higher original Hibbard measure
+    than another given predictor.
 \end{proposition}
 
 \begin{proof}
@@ -355,14 +357,14 @@ given an evader $e$, to determine whether or not $f\succ t_e$.}.
     original Hibbard measure $>m$
     (Proposition \ref{complicatedproposition}).
 
-    If the proposition were false, then we could use $F$ to solve
+    If the proposition were false, then we could solve
     the halting problem as follows.
     Given any Turing machine $M$, in order to determine whether or not $M$ halts,
     proceed as follows. Let $p_M$ be the predictor which, on
     input $(x_1,\ldots,x_n)$, outputs $p(x_1,\ldots,x_n)$
     if $M$ halts in $\leq n$ steps, or $1$ otherwise.
-    Clearly, $M$ halts if and only if $p_M$ has
-    original Hibbard measure $>m$.
+    Clearly, $M$ halts if and only if $p_M$ has a higher original Hibbard
+    measure than $p_1$.
 \end{proof}
 
 Likewise, the variations on Hibbard's measure which we present in this paper are also
