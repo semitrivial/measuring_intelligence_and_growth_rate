@@ -331,7 +331,8 @@ measured.
 
 Unfortunately, the original Hibbard measure is not computable
 (unless the background model of computation is contrived), as the following
-proposition shows\footnote{In fact, for any strictly
+proposition shows\footnote{In fact, assuming a non-contrived background
+model of computation, for any strictly
 increasing total computable function $f$,
 even the following can be shown to be non-computable:
 given an evader $e$, to determine whether or not $f\succ t_e$.}.
@@ -341,18 +342,9 @@ given an evader $e$, to determine whether or not $f\succ t_e$.}.
     Assume the background model of computation is well-behaved enough that
     there is an evader $e_0$ which always outputs $0$ and whose runtime $t_{e_0}$
     is bounded by some primitive recursive function.
-    Then the original Hibbard measure is not computable. To be precise, fix an
-    effective G\"odel numbering of partial computable functions
-    from $B^*$ to $B$.
-    There is no partial computable function $F$ from $\mathbb N$ to $\mathbb N$
-    such that whenever $n$ is a G\"odel number of a predictor $p$ then
-    \[
-        F(n) =
-        \begin{cases}
-            m+1 & \mbox{if $p$ has original Hibbard measure $m<\infty$,}\\
-            0 &\mbox{if $p$ has original Hibbard measure $\infty$.}
-        \end{cases}
-    \]
+    Then the original Hibbard measure is not computable:
+    there is no effectively computable procedure, given a predictor, to compute its
+    original Hibbard measure.
 \end{proposition}
 
 \begin{proof}
@@ -363,15 +355,14 @@ given an evader $e$, to determine whether or not $f\succ t_e$.}.
     original Hibbard measure $>m$
     (Proposition \ref{complicatedproposition}).
 
-    If there were some $F$ falsifying this proposition, then we could use $F$ to solve
+    If the proposition were false, then we could use $F$ to solve
     the halting problem as follows.
     Given any Turing machine $M$, in order to determine whether or not $M$ halts,
     proceed as follows. Let $p_M$ be the predictor which, on
-    input $(x_1,\ldots,x_n)$, outputs either the output of $p$ on said input,
-    or else $0$, depending whether or not $M$ halts within
-    $\leq n$ steps. Clearly, $M$ halts if and only if $p_M$ has
-    original Hibbard measure $>m$. This can be checked by computing $F$ on a
-    G\"odel number for $p_M$.
+    input $(x_1,\ldots,x_n)$, outputs $p(x_1,\ldots,x_n)$
+    if $M$ halts in $\leq n$ steps, or $0$ otherwise.
+    Clearly, $M$ halts if and only if $p_M$ has
+    original Hibbard measure $>m$.
 \end{proof}
 
 Likewise, the variations on Hibbard's measure which we present in this paper are also
