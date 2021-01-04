@@ -274,59 +274,72 @@ measured.
     This is part of Proposition 3 of \citet{hibbard}, but we give a self-contained
     proof here because we will state similar results about other measures below.
 
-    Let $p$ be the predictor who proceeds as follows when given
+    For each computable $f:\mathbb N\to\mathbb N$,
+    let $p_f$ be the predictor who proceeds as follows when given
     evasion-sequence $(x_1,\ldots,x_n)\in B^*$ as input.
 
     First, by calling itself recursively on inputs
     \[\langle\rangle, (x_1), (x_1,x_2), \ldots, (x_1,\ldots,x_{n-1}),\]
-    $p$ determines the prediction-sequence $(y_1,\ldots,y_n)$ as in
+    $p_f$ determines the prediction-sequence $(y_1,\ldots,y_n)$ as in
     Definition \ref{evaderpredictordefn}.
 
-    Next, $p$ considers the first $n$ Turing machines, $T_1,\ldots,T_n$.
+    Next, $p_f$ considers the first $n$ Turing machines, $T_1,\ldots,T_n$.
     For $1\leq i\leq n$, say that $T_i$ is an \emph{$n$th-order $e$-lookalike} if
     the following requirements hold:
     \begin{itemize}
-        \item If $T_i$ halts in $\leq f_m(0)$ steps on input
+        \item If $T_i$ halts in $\leq f(0)$ steps on input
         $\langle\rangle$, then $T_i$ outputs $x_1$ on that input.
-        \item If $T_i$ halts in $\leq f_m(1)$ steps on input
+        \item If $T_i$ halts in $\leq f(1)$ steps on input
         $(y_1)$, then $T_i$ outputs $x_2$ on that input.
-        \item If $T_i$ halts in $\leq f_m(2)$ steps on input
+        \item If $T_i$ halts in $\leq f(2)$ steps on input
         $(y_1,y_2)$, then $T_i$ outputs $x_3$ on that input.
         \item $\ldots$
-        \item If $T_i$ halts in $\leq f_m(n-1)$ steps on input
+        \item If $T_i$ halts in $\leq f(n-1)$ steps on input
         $(y_1,\ldots,y_{n-1})$, then $T_i$ outputs $x_n$ on that input.
-        \item $T_i$ halts in $\leq f_m(n)$ steps on input
+        \item $T_i$ halts in $\leq f(n)$ steps on input
         $(y_1,\ldots,y_n)$ with some output $X_{i,n}$.
     \end{itemize}
     By simulating $T_1,\ldots,T_n$ as needed (which only requires finitely many steps),
-    $p$ determines if any $T_i$ is an $n$th-order $e$-lookalike.
-    If so, $p$ outputs $p(x_1,\ldots,x_n)=X_{i,n}$ for the minimal such $i$.
-    If not, $p$ outputs $0$.
+    $p_f$ determines if any $T_i$ is an $n$th-order $e$-lookalike.
+    If so, $p_f$ outputs $p_f(x_1,\ldots,x_n)=X_{i,n}$ for the minimal such $i$.
+    If not, $p_f$ outputs $0$.
 
-    To show that $p$ has original Hibbard measure $\geq m$,
-    let $e\in E_{f_m}$ be an evader, we will show $p$ learns $e$.
-    Since $e\in E_{f_m}$, $f_m\succ t_e$.
-    Let $(x_1,y_1,x_2,y_2,\ldots)$ be the result of $p$ playing against $e$.
+    \textbf{Claim:} For every computable $f:\mathbb N\to\mathbb N$,
+    for every evader $e$,
+    if $(x_1,y_1,x_2,y_2,\ldots)$ is the result of $p_f$ playing against $e$,
+    then for all-but-finitely-many $n\in\mathbb N$,
+    if $f(n)>t_e(n)$ then $x_n=y_n$.
+
+    Let $f,e,(x_1,y_1,\ldots)$ be as in the claim and assume $f(n)>t_e(n)$.
     Being an evader, $e$ is a Turing machine, say, the $k$th Turing machine.
-    Since $f_m\succ t_e$, it follows that
-    for all sufficiently large $n\geq k$, $T_k$ will be an $n$th-order $e$-lookalike.
-    It follows that ($*$) for all sufficiently large $n$, $p$ will, on input
-    $(x_1,\ldots,x_n)$, play the output given by some $n$th-order $e$-lookalike
-    $T_{k'}$, $k'\leq k$.
+    Since $f(n)>t_e(n)$, it follows that $T_k$ is an $n$th-order $e$-lookalike.
+    It follows that, on input $(x_1,\ldots,x_n)$, $p_f$ will play the output
+    given by some $n$th-order $e$-lookalike $T_{k'}$, $k'\leq k$.
 
-    For any $k'<k$,
-    say that $p$ \emph{is tricked by $T_{k'}$ on input $(x_1,\ldots,x_n)$}
-    if, on said input, $p$ identifies $T_{k'}$ as the first
-    $n$th-order $e$-lookalike and so plays $X_{k',n}$ but $x_{n+1}\not=X_{k',n}$
-    (loosely speaking: $p$ is led to believe the evader is $T_{k'}$, and this
-    false belief causes $p$ to incorrectly predict the evader's next digit).
-    It follows that $p$ will \emph{not} identify $T_{k'}$ as an $n'$th-order
+    For any $k'<k$, say that $p_f$ \emph{is tricked by $T_{k'}$ on
+    input $(x_1,\ldots,x_n)$} if, on said input, $p$ identifies $T_{k'}$
+    as the first $n$th-order $e$-lookalike and so plays $X_{k',n}$ but
+    $x_{n+1}\not=X_{k',n}$
+    (loosely speaking: $p_f$ is led to believe the evader is $T_{k'}$, and
+    this false belief causes $p_f$ to incorrectly predict the evader's next digit).
+    It follows that $p_f$ will \emph{not} identify $T_{k'}$ as an $n'$th-order
     $e$-lookalike when run on $(x_1,\ldots,x_{n'})$ for any $n'>n$.
-    Thus, $p$ can only be tricked at most once by $T_{k'}$ for any particular $k'<k$.
-    It follows that ($**$) $p$ will only be tricked finitely many times while competing
-    against $e$.
+    Thus, $p_f$ can only be tricked at most once by $T_{k'}$ for any particular
+    $k'<k$. If $p_f$ is not so tricked, then either $p_f$ identifies $T_{k'}$
+    as the first $n$th-order $e$-lookalike for some $k'<k$ (in which case
+    $p_f$ plays $X_{k',n}=x_{n+1}$, lest $p_f$ be tricked by $T_{k'}$), or else
+    $p_f$ identifies $T_k$ as the first $n$th-order $e$-lookalike, in which case
+    $p_f$ plays $X_{k,n}=x_{n+1}$ since $e=T_k$. Either way, after possibly being
+    tricked finitely many times, $p_f$ always guesses correctly whenever
+    $f(n)>t_e(n)$, proving the claim.
 
-    By ($*$) and ($**$), it follows that $p$ learns $e$.
+    We claim $p_{f_m}$ has original Hibbard measure $\geq m$. To see this,
+    let $e\in E_{f_m}$, we must show $p$ learns $e$.
+    Let $(x_1,y_1,\ldots)$ be the result of $p_{f_m}$ playing against $e$.
+    Since $e\in E_{f_m}$, $f_m\succ t_e$, so for-all-finitely-many $n\in\mathbb N$,
+    $f_m(n)>t_e(n)$. And, by the above Claim, with at most finitely many exceptions,
+    whenever $f_m(n)>t_e(n)$, $x_n=y_n$. It follows that $p_{f_m}$ learns $e$,
+    as desired.
 \end{proof}
 
 Unfortunately, the original Hibbard measure is not computable
