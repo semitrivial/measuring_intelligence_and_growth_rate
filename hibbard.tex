@@ -712,7 +712,17 @@ taxonomy of predictor intelligence.
 \end{proposition}
 
 \begin{proof}
-    Similar to the proof of Proposition \ref{complicatedproposition}.
+    Define $g:\mathbb N\to\mathbb N$ by $g(n)=nf(n)+1$, and let $p_g$ be as in
+    the proof of Proposition \ref{complicatedproposition}.
+    We claim $p_g$ has Big-O ASPI measure $O(f(n))$. To see this, let $e$ be
+    any evader such that $t_e$ is $O(f(n))$. Thus there is some $C\in\mathbb R$ such that
+    for all-but-finitely-many $n\in\mathbb N$, $t_e(n)\leq Cf(n)$.
+    It follows that $g\succ t_e$. By the Claim in the proof of Proposition
+    \ref{complicatedproposition}, for all-but-finitely-many $n\in\mathbb N$,
+    if $g(n)>t_e(n)$ then $x_{n+1}=y_{n+1}$, where $(x_1,y_1,\ldots)$ is the
+    result of $p_g$ playing against $e$. So in all, with only finitely many
+    exceptions, each $x_{n+1}=y_{n+1}$, as desired. The proof that $p_g$ has
+    Big-$\Theta$ ASPI measure $\Theta(f(n))$ is similar.
 \end{proof}
 
 
