@@ -1282,7 +1282,7 @@ without proof.
     are well-defined, and they make ${}^*\mathbb R$ an ordered field.
 \end{theorem}
 
-Having invested in this machinery,
+With this machinery,
 we now have a trivial hyperreal solution to Problem \ref{bigoproblem}.
 
 \begin{definition}
@@ -1302,11 +1302,13 @@ proving theoretical properties about the intelligence of predictors.
     Suppose $p$ is a predictor and $e$ is an evader. Let
     $(x_1,y_1,x_2,y_2,\ldots)$ be the result of $p$ playing against $e$.
     We say $p$ \emph{$\mathcal U$-learns} $e$ if
-    $\{n\in\mathbb N\,:\,x_n=y_n\}\in\mathcal U$.
+    \[\{n\in\mathbb N\,:\,p(x_1,\ldots,x_n)=e(y_1,\ldots,y_n)\}\in\mathcal U\]
+    (or equivalently: $\{n\in\mathbb N\,:\,y_{n+1}=x_{n+1}\}\in\mathcal U$).
     In other words, $p$ $\mathcal U$-learns $e$ if ``$p$ learns $e$''
     wins the election (according to $\mathcal U$)
     when every $n\in\mathbb N$ votes for ``$p$ learns $e$''
-    or ``$p$ does not learn $e$'' depending whether or not $x_n=y_n$.
+    or ``$p$ does not learn $e$'' depending whether or not
+    $p(x_1,\ldots,x_n)=e(y_1,\ldots,y_n)$.
 \end{definition}
 
 In the following
@@ -1343,25 +1345,27 @@ following lemma. This lemma is well-known so we state it without proof.
 \end{proposition}
 
 \begin{proof}
-    By a similar method as in the proof of Proposition \ref{complicatedproposition},
-    construct a predictor $p$ such that for every evader $e$, the following statement
-    is true: if $(x_1,y_1,x_2,y_2,\ldots)$ is the result of $p$ playing against $e$ then,
-    for all-but-at-most-finitely-many $n\in\mathbb N$, if $t_e(n)<f(n)$ then
-    $x_n=y_n$. We claim $p$ has hyperreal ASPI intelligence at least $\hat f$.
-    To see this, assume $e$ is an evader such that the hyperreal growth rate of $t_e$ is
-    $<\hat f$, we will show $p$ $\mathcal U$-learns $e$.
+    Let $p_f$ be as in the proof of Proposition \ref{complicatedproposition}.
+    We claim $p_f$ has hyperreal ASPI intelligence at least $\hat f$.
+    To see this, assume $e$ is an evader such that the hyperreal growth rate of
+    $t_e$ is $<\hat f$, we will show $p$ $\mathcal U$-learns $e$.
 
-    Let $(x_1,y_1,x_2,y_2,\ldots)$ be the result of $p$ playing against $e$. Let
+    Let $(x_1,y_1,x_2,y_2,\ldots)$ be the result of $p$ playing against $e$.
+    Let
     \begin{align*}
-        N_1 &= \{n\in\mathbb N\,:\,t_e(n)<f(n)\},\\
-        N_2 &= \{n\in N_1\,:\,x_n=y_n\},\\
-        N_3 &= \{n\in\mathbb N\,:\,x_n=y_n\}.
+        N_1 &= \{n\in\mathbb N\,:\,f(n)>t_e(n)\},\\
+        N_2 &= \{n\in N_1\,:\,p(x_1,\ldots,x_n)=e(y_1,\ldots,y_n)\},\\
+        N_3 &= \{n\in\mathbb N\,:\,p(x_1,\ldots,x_n)=e(y_1,\ldots,y_n)\}.
     \end{align*}
-    Since the hyperreal growth rate of $t_e$ is $<\hat f$, that means $N_1\in\mathcal U$.
-    By construction of $p$, for all-but-at-most-finitely-many $n\in N_1$,
-    $x_n=y_n$. By Lemma \ref{technicallemmaaboutultrafilters}, $N_2\in\mathcal U$.
-    Since $N_2\subseteq N_3$, it follows $N_3\in\mathcal U$, i.e.,
-    $p$ $\mathcal U$-learns $e$.
+    By the Claim in the proof of Proposition \ref{complicatedproposition},
+    for all-but-finitely-many $n\in\mathbb N$, if $f(n)>t_e(n)$, then
+    $x_{n+1}=y_{n+1}$, i.e., $p(x_1,\ldots,x_n)=e(y_1,\ldots,y_n)$.
+    In other words, $N_2=N_1\backslash N_0$ for some finite $N_0\subseteq \mathbb N$.
+
+    Since the hyperreal growth rate of $t_e$ is $<\hat f$, $N_1\in\mathcal U$.
+    Since $N_2=N_1\backslash N_0$, by Lemma \ref{technicallemmaaboutultrafilters}
+    we have $N_2\in\mathcal U$. Since $N_2\subseteq N_3$, it follows that
+    $N_3\in\mathcal U$, that is, $p$ $\mathcal U$-learns $e$, as desired.
 \end{proof}
 
 Whereas we showed in Proposition \ref{originalnoncomputableprop} that
