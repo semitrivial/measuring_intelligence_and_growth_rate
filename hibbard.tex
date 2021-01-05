@@ -1358,24 +1358,24 @@ following lemma. This lemma is well-known so we state it without proof.
     Let $p_f$ be as in the proof of Proposition \ref{complicatedproposition}.
     We claim $p_f$ has hyperreal ASPI intelligence at least $\hat f$.
     To see this, assume $e$ is an evader such that the hyperreal growth rate of
-    $t_e$ is $<\hat f$, we will show $p$ $\mathcal U$-learns $e$.
+    $t_e$ is $<\hat f$, we will show $p_f$ $\mathcal U$-learns $e$.
 
-    Let $(x_1,y_1,x_2,y_2,\ldots)$ be the result of $p$ playing against $e$.
+    Let $(x_1,y_1,x_2,y_2,\ldots)$ be the result of $p_f$ playing against $e$.
     Let
     \begin{align*}
         N_1 &= \{n\in\mathbb N\,:\,f(n)>t_e(n)\},\\
-        N_2 &= \{n\in N_1\,:\,p(x_1,\ldots,x_n)=e(y_1,\ldots,y_n)\},\\
-        N_3 &= \{n\in\mathbb N\,:\,p(x_1,\ldots,x_n)=e(y_1,\ldots,y_n)\}.
+        N_2 &= \{n\in N_1\,:\,p_f(x_1,\ldots,x_n)=e(y_1,\ldots,y_n)\},\\
+        N_3 &= \{n\in\mathbb N\,:\,p_f(x_1,\ldots,x_n)=e(y_1,\ldots,y_n)\}.
     \end{align*}
     By the Claim in the proof of Proposition \ref{complicatedproposition},
     for all-but-finitely-many $n\in\mathbb N$, if $f(n)>t_e(n)$, then
-    $x_{n+1}=y_{n+1}$, i.e., $p(x_1,\ldots,x_n)=e(y_1,\ldots,y_n)$.
+    $x_{n+1}=y_{n+1}$, i.e., $p_f(x_1,\ldots,x_n)=e(y_1,\ldots,y_n)$.
     In other words, $N_2=N_1\backslash N_0$ for some finite $N_0\subseteq \mathbb N$.
 
     Since the hyperreal growth rate of $t_e$ is $<\hat f$, $N_1\in\mathcal U$.
     Since $N_2=N_1\backslash N_0$, by Lemma \ref{technicallemmaaboutultrafilters}
     we have $N_2\in\mathcal U$. Since $N_2\subseteq N_3$, it follows that
-    $N_3\in\mathcal U$, that is, $p$ $\mathcal U$-learns $e$, as desired.
+    $N_3\in\mathcal U$, that is, $p_f$ $\mathcal U$-learns $e$, as desired.
 \end{proof}
 
 Whereas we showed in Proposition \ref{originalnoncomputableprop} that
